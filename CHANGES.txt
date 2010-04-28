@@ -1,0 +1,15 @@
+Changelog of lizard-ui
+======================
+
+
+0.1 (2010-02-12)
+----------------
+
+- Added lizardbase.html template as base for a lizard user interface.
+
+- Added django-staticfiles as a dependency for managing css and javascript
+  resources.
+
+- Added blueprint css framework.
+
+- Initial structure created by nensskel.

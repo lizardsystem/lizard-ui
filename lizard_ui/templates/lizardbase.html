@@ -1,0 +1,86 @@
+<html>
+  <head>
+    <title>{% block title %} Lizard {% endblock %}</title>
+    <link rel="stylesheet"
+          href="{{ STATIC_URL }}blueprint/screen.css"
+          type="text/css"
+          media="screen, projection" />
+    <link rel="stylesheet"
+          href="{{ STATIC_URL }}blueprint/print.css"
+          type="text/css"
+          media="print" />
+    <!--[if IE]>
+    <link rel="stylesheet"
+          href="{{ STATIC_URL }}blueprint/ie.css"
+          type="text/css"
+          media="screen, projection" />
+    <![endif]-->
+    <link rel="stylesheet"
+          href="{{ STATIC_URL }}lizard_ui/lizard.css"
+          type="text/css"
+          media="screen, projection" />
+  </head>
+  <body>
+    <div class="container">
+      <div id="header"
+           class="span-24 last">
+        <div id="logo"
+             class="span-5">
+          {% block logo %}
+          <a href="/"><img src="{{ STATIC_URL }}lizard_ui/logo.png"</a>
+          {% endblock %}
+        </div>
+        <!-- Possibly fancy-title-here extra block -->
+      </div>
+
+      <div id="bar"
+           class="span-24 last">
+        <div id="sidebar-title"
+             class="span-5">
+          {% block sidebar-title %}
+          &nbsp;
+          {% endblock %}
+        </div>
+        <div id="object-tabs"
+             class="span-12 prepend-1">
+          {% block object-tabs %}
+          &nbsp;
+          {% endblock %}
+        </div>
+        <div id="object-actions"
+             class="span-5 last">
+          {% block object-actions %}
+          &nbsp;
+          {% endblock %}
+        </div>
+      </div>
+
+
+      <div id="main"
+           class="span-24 last">
+        <div id="sidebar"
+             class="span-5 colborder">
+          {% block sidebar %}
+          {% endblock %}
+        </div>
+        <div id="content"
+             class="span-18 last">
+          {% block content %}
+          {% endblock %}
+        </div>
+      </div>
+
+      <div id="footer"
+           class="span-24 last">
+        <div id="copyright"
+             class="quiet small">
+          {% block copyright %}
+          Copyright &copy; Nelen &amp; Schuurmans -
+          <a href="http://www.nelen-schuurmans.nl">www.nelen-schuurmans.nl</a>
+          {% endblock %}
+        </div>
+      </div>
+
+    </div>
+  </body>
+</head
