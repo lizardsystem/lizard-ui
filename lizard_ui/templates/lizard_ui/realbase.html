@@ -1,0 +1,143 @@
+<HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <title>
+      {% block title %}
+      Lizard
+      {% endblock title %}
+    </title>
+
+    {# YUI css framework. #}
+    <link rel="stylesheet"
+          href="{{ STATIC_URL }}yui/reset-fonts-grids.css"
+          type="text/css" />
+    <link rel="stylesheet"
+          href="{{ STATIC_URL }}yui/base-min.css"
+          type="text/css" />
+    {# Sprites: all icons (print, info, etc) in one cacheable image. #}
+    <link rel="stylesheet"
+          href="{{ STATIC_URL }}sprites/sprite.css"
+          type="text/css" />
+    {# CSS for jqueryui: "smoothness" theme #}
+    <link type="text/css"
+          href="{{ STATIC_URL }}jqueryui/smoothness/jquery-ui-1.8.custom.css"
+          rel="stylesheet" />
+    {# CSS for jquery-treeview #}
+    <link type="text/css"
+          href="{{ STATIC_URL }}jquery-treeview/jquery.treeview.css"
+          rel="stylesheet" />
+    {# Our own css comes last #}
+    <link rel="stylesheet"
+          href="{{ STATIC_URL }}lizard_ui/lizard.css"
+          type="text/css"
+          media="screen, projection" />
+
+    {# Jquery, Jqueryui and JsTree #}
+    <script type="text/javascript"
+            src="{{ STATIC_URL }}jquery/jquery.js"></script>
+    <script type="text/javascript"
+            src="{{ STATIC_URL }}jqueryui/jqueryui.min.js"></script>
+    <script type="text/javascript"
+            src="{{ STATIC_URL }}jqueryui/jquery.ui.datepicker-nl.js"></script>
+    <script type="text/javascript"
+            src="{{ STATIC_URL }}jquery-treeview/jquery.treeview.min.js"</script>
+    {% block base-head-extras %}
+    {# Block for other base templates (read: map) to inject javascript #}
+    {% endblock base-head-extras %}
+
+    <script type="text/javascript"
+            src="{{ STATIC_URL }}lizard_ui/lizard.js"></script>
+    {% block head-extras %}
+    {# Your own extra css and javascript #}
+    {% endblock head-extras %}
+    {% block map-javascript %}
+    {# Custom in-template map javascript setup code #}
+    {% endblock map-javascript %}
+  </head>
+  <body>
+    {% comment %}
+    Everything is wrapped in a #doc3, which uses the full width of the page.
+
+    Header, main body and footer are identified by #hd, #bd and #ft.
+
+    We use the yui-t3 template which means a 300px sidebar on the left and
+    "the rest" on the right for the #bd main body.
+
+    {% endcomment %}
+    <div id="doc3"
+         class="yui-t3">
+
+      <div id="hd">
+        <div id="top">
+          <div id="logo">
+            {% block logo %}
+            <a href="/"><img src="{{ STATIC_URL }}lizard_ui/logo.png" alt="" /></a>
+            {% endblock logo %}
+          </div>
+          <div id="portal-actions">
+            {% block portal-actions %}
+            &nbsp;
+            {% endblock portal-actions %}
+          </div>
+          <div id="portal-tabs">
+            {% block portal-tabs %}
+            &nbsp;
+            {% endblock portal-tabs %}
+          </div>
+        </div>
+
+        <div id="menubar">
+          <div id="above-sidebar">
+            {% block above-sidebar %}
+            &nbsp;
+            {% endblock above-sidebar %}
+          </div>
+
+          <div id="content-menubar">
+            <div id="object-actions">
+              {% block object-actions %}
+              &nbsp;
+              {% endblock object-actions %}
+            </div>
+            <div id="above-content">
+              {% block above-content %}
+              &nbsp;
+              {% endblock above-content %}
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="bd">
+        <div id="sidebar"
+             class="yui-b">
+          {% block sidebar %}
+          {% endblock sidebar %}
+        </div>
+        <div id="yui-main">
+          <div class="yui-b">
+
+            <div id="content">
+              {% block breadcrumbs %}
+              {% endblock breadcrumbs %}
+              {% block content %}
+              {% endblock content %}
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="footer">
+      <div id="copyright">
+        {% block copyright %}
+        Copyright &copy; Nelen &amp; Schuurmans -
+        <a href="http://www.nelen-schuurmans.nl">www.nelen-schuurmans.nl</a>
+        {% endblock copyright %}
+      </div>
+    </div>
+
+  </body>
+</html>
