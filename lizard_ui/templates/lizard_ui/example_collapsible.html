@@ -1,0 +1,63 @@
+{% extends "lizard_ui/lizardbase.html" %}
+
+{% block title %}Collapsible headers in sidebar{% endblock %}
+
+
+{% block sidebar %}
+<div class="sidebarbox">
+  <h2 class="collapsible">Collapsible header</h2>
+  <div>
+    The example here in the sidebar shows what jquery can do.  With a little bit
+    of help and configuration from a bit of custom javascript.
+  </div>
+</div>
+<div class="sidebarbox">
+  <h2>Not collapsible</h2>
+  <div>
+    The example here in the sidebar shows what jquery can do.  With a little bit
+    of help and configuration from a bit of custom javascript.
+  </div>
+</div>
+<div class="sidebarbox">
+  <h2>Not collapsible</h2>
+  <div>
+    Sub stuff that <i>is</i> collapsible.
+  </div>
+  <h3 class="collapsible">Collapsible subheader</h3>
+  <div>
+    The example here in the sidebar shows what jquery can do.  With a little bit
+    of help and configuration from a bit of custom javascript.
+  </div>
+  <h3 class="collapsible">Collapsible subheader</h3>
+  <div>
+    The example here in the sidebar shows what jquery can do.  With a little bit
+    of help and configuration from a bit of custom javascript.
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div id="textual">
+  <h1>Collapsible header demo</h1>
+  <p>
+    In the sidebar, mark collapsible headers with a "collapsible" class.  This
+    adds an icon indicating that the header can be collapsed.  When clicked,
+    the <i>very next</i> item (a div, an img, a ul, whatever) is collapsed or
+    expanded.
+  </p>
+  <p>
+    The sidebar boxes are divs with a class "sidebarbox" and a heading as
+    first element.
+  </p>
+  <p>
+    You can have an extra header (suggestion: h1) at the top with a class
+    "sidebarheader".  This one typically has a "close" button to slide the
+    entire sidebar to the left.
+  </p>
+  <p>
+    Note on headers: keep the h1-h3 nicely in order.  So a sidebar header at
+    the top is h1.  Sidebarboxes have a h2.  And sub-headers inside the
+    sidebarboxes are h3.
+  </p>
+</div>
+{% endblock %}

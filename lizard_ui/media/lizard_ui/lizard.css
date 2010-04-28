@@ -1,0 +1,245 @@
+/* We use blueprint css.  The base font size (1em) is 12px, the line height is
+   18px (1.5em).
+
+*/
+
+/* Background on body instead of main div */
+body
+{ background-image: url(background.png);
+  background-repeat: repeat-x;
+  margin: 0;
+  background-color: #f5f4f5;
+  }
+
+#page
+{ margin: 0 0.5em 0.5em 0.5em;
+  }
+
+/* We give the header a fixed height to make sure the javascript height
+   calculation has some definitive number to work with.  This assumes a logo
+   of 48 pixels max in height (4em).  */
+#header
+{ width: 100%;
+  height: 4em;
+  }
+
+/* At the top, you need room for the logo that floats left.  The biggest one
+   till now is 220px.  We give the portal-tabs an additional left margin to
+   offset it against the logo.
+   And floated right portal actions. */
+#logo
+{ float: left;
+  padding-left: 1em;
+  width: 17em;  /* 220/13 */
+  height: 4em;
+  overflow: hidden;
+  }
+#portal-actions
+{ text-align: right;
+  float: right;
+  padding-right: 1em;
+  }
+#portal-tabs
+{ text-align: center;
+  }
+#portal-tabs a
+{ text-decoration: none;
+  color: black;
+  }
+/* TODO: similar to object-actions, perhaps combine them? */
+
+
+/* Horizontal alignment of sidebar, collapser and main content */
+#sidebar
+{ float: left;
+  border: 1px solid #aaaaaa;
+  }
+.sidebar-open #sidebar
+{ width: 20em;  /* 300/12 */
+  }
+.sidebar-closed #sidebar
+{ width: 0;
+  border: 0;
+  }
+#collapser
+{ width: 0.5em;  /* Icon is 5 px wide */
+  float: left;
+  background-position: center center;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  }
+.sidebar-open #collapser
+{ background-image: url(arrow_collapse.png);
+  }
+.sidebar-closed #collapser
+{ background-image: url(arrow_expand.png);
+  }
+.sidebar-open #main
+{ padding-left: 21em;  /* 20em sidebar plus 1em for the #collapsible */
+  }
+.sidebar-closed #main
+{ padding-left: 1em;
+  }
+
+#sidebar,
+#content
+{ overflow: auto;
+  background-color: white;
+  }
+
+#content
+{ width: 100%;
+  }
+
+/* The horizontal bar needs a bit of padding top/bottom and a background.
+   The desired height is 24px.  This is achieved with line-height.  */
+#menubar
+{ background-color: #eeeeee;
+  background-image: url(bar_background.png);
+  background-repeat: repeat-x;
+  line-height: 2em;
+  width: 100%;
+  border: 1px solid #aaaaaa;
+  }
+
+#content
+{ border-width: 0 1px;
+  border-style: solid;
+  border-color: #aaaaaa;
+  }
+
+
+#object-actions
+{ text-align: right;
+  float: right;
+  padding-right: 1em;
+  }
+
+/* The object tabs and portal tabs are list items: show them nicely next to
+   each other */
+#above-content ul,
+#portal-tabs ul
+{ margin: 0;
+  padding-left: 0;
+  }
+#above-content li,
+#portal-tabs li
+{ display: inline;
+  padding-right: 0.5em;
+  padding-left: 0.5em;
+  }
+#portal-tabs li
+{ border-color: #aaaaaa;
+  border-style: solid;
+  border-width: 0px 0px 1px 1px;
+  padding-top: 1px;
+  padding-bottom: 0.46em;
+  }
+#portal-tabs li.last
+{ border-right-width: 1px;
+  }
+#portal-tabs li.selected
+{ background-image: none;
+  background-color: #aaa;
+  }
+
+/* Footer content centered */
+#footer
+{ text-align: center;
+  background-image: url(small_bar_background.png);
+  background-repeat: repeat-x;
+  color: #666;
+  border: 1px solid #aaaaaa;
+  width: 100%;
+  }
+#footer a
+{ text-decoration: none;
+  color: #666;
+  }
+
+/* The sidebar and body have some margins */
+
+#bd
+{ margin-top: 0.25em;
+  margin-bottom: 0.25em;
+  }
+
+#map
+{ height: 100%;
+  width: 100%;
+  }
+
+#breadcrumbs
+{ float: left;
+  padding-left: 8em;  /* 25 sidebar - 17 logo */
+  padding-top: 0.5em;
+  color: #666;
+  }
+
+/* Give vertical items in #evenly-spaced-vertical a thick bottom border.
+   And align the */
+#evenly-spaced-vertical .vertical-item
+{ border-bottom: 1px solid #eeeeee;
+  }
+
+
+/* For giving regular body text some space to the left. */
+#textual
+{ padding-left: 1em;
+  }
+
+
+/* For the time being, float collapsible icon. */
+.collapsible .ui-icon
+{ float: left;
+  }
+
+
+/* Sidebar styling */
+#sidebar .sidebarbox
+{ /* Not used at the moment (visually) */
+  }
+
+#sidebar .sidebarbox > div,
+#sidebar .sidebarbox > img,
+#sidebar .sidebarbox > p,
+#sidebar .sidebarbox > table,
+#sidebar .sidebarbox > ul,
+#sidebar .sidebarbox > ol,
+#sidebar .sidebarbox > dl
+{ margin-left: 0.5em;
+  margin-right: 0.5em;
+  /* Note: no ie6, so the '>' works fine. */
+  }
+
+#sidebar .sidebarbox h2,
+#sidebar .sidebarbox h3
+{ background-image: url(bar_background.png);
+  background-repeat: repeat-x;
+  line-height: 2em;
+  font-size: 1em;
+  font-weight: bold;
+  border-top: 1px solid #aaaaaa;
+  border-bottom: 1px solid #aaaaaa;
+  padding-left: 0.5em;
+  margin-bottom: 0;
+  }
+
+#sidebar .sidebarbox h3
+{ padding-left: 1em;
+  color: #444;
+  }
+
+#sidebar div:first-child h2
+{ /* Topmost header should not have a border at the top */
+  border-top-width: 0;
+  }
+
+#sidebar .sidebarheader
+{ /* BBB */
+  display: none;
+  }
+
+.sidebarbox-stretched
+{ overflow: auto;
+  }

@@ -1,0 +1,42 @@
+{% extends "lizard_ui/lizardbase.html" %}
+
+{% block title %} Vertical spacing demo {% endblock %}
+
+
+{% block sidebar %}
+<div class="sidebarbox">
+  <h2>Example to the right</h2>
+  <div>
+    The main area is divided in a number of horizontal evenly sized areas with a
+    thick border in between.
+  </div>
+</div>
+{% endblock %}
+
+{% block object-tabs %}
+<ul>
+  <li class="selected">Overview</li>
+  <li>Measures</li>
+  <li class="last">Scores</li>
+</ul>
+{% endblock %}
+
+
+{% block object-actions %}
+<span class="ss_sprite ss_page_edit">edit</span> | <span class="ss_sprite ss_printer">print</span>
+{% endblock %}
+
+
+{% block content %}
+<div id="evenly-spaced-vertical">
+  <div class="vertical-item">
+    Everything is wrapped in a div with id="evenly-spaced-vertical".
+  </div>
+  <div class="vertical-item">
+    And the items in there are divs with a class="vertical-item".
+  </div>
+  <div class="vertical-item">
+    Jquery is used to give everything a proper height.
+  </div>
+</div>
+{% endblock %}

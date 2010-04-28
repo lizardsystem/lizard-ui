@@ -1,0 +1,38 @@
+{% extends "lizard_ui/lizardbase.html" %}
+
+{% block title %}Collapsible headers in sidebar{% endblock %}
+
+
+{% block sidebar %}
+<div class="sidebarbox">
+  <h2>Some header</h2>
+  <div>
+    The example here in the sidebar shows what jquery can do.  With a little bit
+    of help and configuration from a bit of custom javascript.
+  </div>
+</div>
+<div class="sidebarbox sidebarbox-stretched">
+  <h2>Stretched sidebarbox</h2>
+  <div>
+    Yeah, we have an additional sidebarbox-stretched class!
+  </div>
+</div>
+<div class="sidebarbox">
+  <h2 class="collapsible">Some header</h2>
+  <div>
+    The example here in the sidebar shows what jquery can do.  With a little bit
+    of help and configuration from a bit of custom javascript.
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div id="textual">
+  <h1>Sidebar stretched box demo</h1>
+  <p>
+    In the sidebar, mark <b>one</b> sidebarbox with an additional
+    "sidebarbox-stretched" class to get it to take up all remaining available
+    space.
+  </p>
+</div>
+{% endblock %}
