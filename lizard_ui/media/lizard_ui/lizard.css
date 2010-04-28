@@ -1,0 +1,22 @@
+/* Header height and background */
+#header
+{ height: 4em;
+  }
+
+/* The horizontal bar needs a bit of padding top/bottom and a background */
+#bar
+{ padding-top: 0.5em;
+  padding-bottom: 0.5em;
+  background-color: #eee;
+  }
+/* The actions should "float" right */
+#object-actions
+{ text-align: right;
+  }
+
+
+/* Footer content centered */
+#footer
+{ text-align: center;
+  background-color: #eee;
+  }

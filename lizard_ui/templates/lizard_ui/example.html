@@ -1,0 +1,105 @@
+{% extends "lizard_ui/lizardbase.html" %}
+
+{% block title %} Head title injection {% endblock %}
+
+{% block sidebar-title %}
+Sidebar title
+{% endblock %}
+
+{% block sidebar %}
+<ul>
+  <li>This</li>
+  <li>is the</li>
+  <li>sidebar</li>
+</ul>
+<p>
+  The sidebar is for showing overview info, details, perhaps a small
+  "navigator" map to indicate the current location, etc.
+</p>
+{% endblock %}
+
+{% block object-tabs %}
+Overview | Measures | Scores
+{% endblock %}
+
+
+{% block object-actions %}
+edit | print
+{% endblock %}
+
+
+
+{% block content %}
+<h1>Content area</h1>
+<p>
+  This is the content area, btw.  Here you can put for instance:
+</p>
+<ul>
+  <li>
+    The big main map.
+  </li>
+  <li>
+    An edit form for the current object.
+  </li>
+  <li>
+    A bunch of graphs.
+  </li>
+</ul>
+
+<h2>About the bar</h2>
+<p>
+  The bar above the sidebar and this content area is divided into three areas:
+</p>
+<ol>
+  <li>
+    The sidebar header.
+  </li>
+  <li>
+    A couple of "object tabs": click them and you get a different view for the
+    currently viewed object.  Object is kinda loose: it can be a selected area
+    or a specific report or the homepage.  But for a selected area you might
+    want to show an overview with graphs, a table with raw data and an edit
+    form.  That's where "object tabs" are for.
+  </li>
+  <li>
+    A couple of "object actions".  Terminology is a bit borrowed from Plone
+    (big python CMS) where they've really nailed down the concept of a
+    pluggable interface, btw.  Actions are things like "print" and "export"
+    (and perhaps "edit", though that can be a tab, too).
+  </li>
+</ol>
+
+<h2>About blueprint's advantage</h2>
+<p>
+  A big big big advantage is that a css framework like blueprint is
+  cross-browser.  No more weird IE bugs that come to bite you.  Consistency
+  across browsers.  Huge timesaver, especially as we don't have a real css
+  expert as far as I know.
+<p>
+<p>
+  A second advantage is that you get a reliable, known layout.  You don't have
+  to worry how wide or narrow something ends up as, you just define it.  So
+  for graphs you just *know* you can make them 500px (or so) wide and they'll
+  fit beautifully.
+</p>
+<p>
+  You need less css.  The basics and IE corner cases are all taken care off,
+  so most html elements just work like you want them to.  The "only" things
+  you need to do yourself, typically, are background colors, GUI items like tabs and
+  application-specific tweaks.
+</p>
+<p>
+  As long as you stick to blueprint's way of lining things out, the typography
+  is pretty OK.  Line height, margins and font sizes all match.  No more
+  one-pixel size differences that can make your website look bad.
+</p>
+<p>
+  Drawback: you're tied to the framework.  You've got to work with it.  Which
+  can be a good thing anyway.  One specific drawback is that the layout is
+  fixed at a 950px width.  This helps designing a layout that also works on
+  the smaller monitors of our customers, but it doesn't take advantage of our
+  own big monitors.  (Note that there are extensions that make the framework
+  "fluid" so that it stretches, but I haven't used those yet).
+</p>
+
+{% endblock %}
