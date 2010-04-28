@@ -5,8 +5,6 @@ Changelog of lizard-ui
 0.6 (unreleased)
 ----------------
 
-- Smaller sidebar (240 instead of 300px).
-
 - Added collapsible sidebar.
 
 - Changed css framework from yui to blueprint: more understandable.  The

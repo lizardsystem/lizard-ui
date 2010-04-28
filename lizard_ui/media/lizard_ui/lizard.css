@@ -55,7 +55,7 @@ body
   border: 1px solid #aaaaaa;
   }
 .sidebar-open #sidebar
-{ width: 20em;  /* 300/12 */
+{ width: 25em;  /* 300/12 */
   }
 .sidebar-closed #sidebar
 { width: 0;
@@ -75,7 +75,7 @@ body
 { background-image: url(arrow_expand.png);
   }
 .sidebar-open #main
-{ padding-left: 21em;  /* 20em sidebar plus 1em for the #collapsible */
+{ padding-left: 26em;  /* 25em sidebar plus 1em for the #collapsible */
   }
 .sidebar-closed #main
 { padding-left: 1em;
