@@ -1,0 +1,22 @@
+{% extends "lizard_ui/lizardbase.html" %}
+
+{% block template-extras %}
+<link rel="stylesheet"
+      type="text/css"
+      href="{{ STATIC_URL }}extjs/resources/css/ext-all.css" />
+<script type="text/javascript"
+        src="{{ STATIC_URL }}extjs/adapter/jquery/ext-jquery-adapter.js"></script>
+<script type="text/javascript"
+        src="{{ STATIC_URL }}extjs/ext-all.js"></script>
+<script src="{{ STATIC_URL }}openlayers/OpenLayers.js"></script>
+{% endblock template-extras %}
+
+{% block head-extras %}
+<script type="text/javascript">
+    $(document).ready(showExampleMap);
+</script>
+{% endblock head-extras %}
+
+{% block content %}
+<div id="map"></div>
+{% endblock content %}

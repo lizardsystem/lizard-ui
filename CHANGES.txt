@@ -1,0 +1,48 @@
+Changelog of lizard-ui
+======================
+
+
+0.4 (2010-03-16)
+----------------
+
+- Added extjs javascript library.
+
+- Added javascript and css for dividing the vertical space equally.
+
+
+0.3.1 (2010-03-05)
+------------------
+
+- Bugfix: removed sample breadcrumb content from the template.
+
+
+0.3 (2010-03-05)
+----------------
+
+- Added openlayers 2.8.
+
+- Added famfamfam silk icon set.
+
+- Added background to menubar, footer and body.
+
+- Removed blueprint and added the YUI css framework.
+
+
+0.2 (2010-02-12)
+----------------
+
+- Nested our templates in templates/lizard_ui instead of directly in
+  templates.  We're well-behaved now!
+
+
+0.1 (2010-02-12)
+----------------
+
+- Added lizardbase.html template as base for a lizard user interface.
+
+- Added django-staticfiles as a dependency for managing css and javascript
+  resources.
+
+- Added blueprint css framework.
+
+- Initial structure created by nensskel.

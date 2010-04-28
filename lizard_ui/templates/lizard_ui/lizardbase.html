@@ -1,0 +1,118 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+  <head>
+    <title>
+      {% block title %}
+      Lizard
+      {% endblock title %}
+    </title>
+    <link rel="stylesheet"
+          href="{{ STATIC_URL }}yui/reset-fonts-grids.css"
+          type="text/css" />
+    <link rel="stylesheet"
+          href="{{ STATIC_URL }}yui/base-min.css"
+          type="text/css" />
+    <link rel="stylesheet"
+          href="{{ STATIC_URL }}sprites/sprite.css"
+          type="text/css" />
+    <link rel="stylesheet"
+          href="{{ STATIC_URL }}lizard_ui/lizard.css"
+          type="text/css"
+          media="screen, projection" />
+    <script type="text/javascript"
+            src="{{ STATIC_URL }}jquery/jquery.js"></script>
+    {% block template-extras %}
+    {# Block for lizardgis.html template to inject javascript #}
+    {% endblock template-extras %}
+    <script type="text/javascript"
+            src="{{ STATIC_URL }}lizard_ui/lizard.js"></script>
+    {% block head-extras %}
+    {% endblock head-extras %}
+  </head>
+  <body>
+    {% comment %}
+    Everything is wrapped in a #doc3, which uses the full width of the page.
+
+    Header, main body and footer are identified by #hd, #bd and #ft.
+
+    We use the yui-t2 template which means a 180px sidebar on the left and
+    "the rest" on the right for the #bd main body.
+
+    {% endcomment %}
+    <div id="doc3"
+         class="yui-t2">
+
+      <div id="hd">
+        <div id="top">
+          <div id="logo">
+            {% block logo %}
+            <a href="/"><img src="{{ STATIC_URL }}lizard_ui/logo.png" alt="" /></a>
+            {% endblock logo %}
+          </div>
+          <div id="portal-actions">
+            {% block portal-actions %}
+            &nbsp;
+            {% endblock portal-actions %}
+          </div>
+          <div id="portal-tabs">
+            {% block portal-tabs %}
+            &nbsp;
+            {% endblock portal-tabs %}
+          </div>
+        </div>
+
+        <div id="menubar">
+          <div id="sidebar-title">
+            {% block sidebar-title %}
+            &nbsp;
+            {% endblock sidebar-title %}
+          </div>
+
+          <div id="content-menubar">
+            <div id="object-actions">
+              {% block object-actions %}
+              &nbsp;
+              {% endblock object-actions %}
+            </div>
+            <div id="object-tabs">
+              {% block object-tabs %}
+              &nbsp;
+              {% endblock object-tabs %}
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div id="bd">
+        <div id="sidebar"
+             class="yui-b">
+          {% block sidebar %}
+          {% endblock sidebar %}
+        </div>
+        <div id="yui-main">
+          <div class="yui-b">
+
+            <div id="content">
+              {% block breadcrumbs %}
+              {% endblock breadcrumbs %}
+              {% block content %}
+              {% endblock content %}
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="footer">
+      <div id="copyright">
+        {% block copyright %}
+        Copyright &copy; Nelen &amp; Schuurmans -
+        <a href="http://www.nelen-schuurmans.nl">www.nelen-schuurmans.nl</a>
+        {% endblock copyright %}
+      </div>
+    </div>
+
+  </body>
+</html>

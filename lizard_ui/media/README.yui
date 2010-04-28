@@ -1,0 +1,22 @@
+YUI css framework
+=================
+
+License: BSD
+
+
+The css framework consists of four parts:
+
+http://developer.yahoo.com/yui/reset/ resets all html elements (no formatting,
+no margins, no padding, no font size, etc) to provide a common baseline.
+
+http://developer.yahoo.com/yui/fonts/ sets everything to a 13px base font size
+and an arial font.  If you want different font sizes, **use the font size
+table** on that page to set relative font sizes to allow for proper resizing
+by the user.
+
+http://developer.yahoo.com/yui/base/ provides a basic html layout (a big bold
+h1, indentend unordered lists, and so on).  So what reset tore down to get
+browser-independence, base builds up again in a browser-independent way.
+
+http://developer.yahoo.com/yui/grids/ gives us a grid in which to place
+header, footer, sidebar, whatever in a browser-independent way.

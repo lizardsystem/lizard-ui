@@ -1,0 +1,143 @@
+/* Override for yui: no 1em margin between the sidebar and the main content.
+   Compensate for this with margins in the content classes. */
+.yui-t2 #yui-main .yui-b
+{ margin-left: 13.8461em;
+  }
+
+/* Background on body instead of main div */
+body
+{ background-image: url(background.png);
+  background-repeat: repeat-x;
+  margin: 0;
+  }
+
+/* We give the header a fixed height to make sure the javascript height
+   calculation has some definitive number to work with.  This assumes a logo
+   of some 45-50 pixels max in height (4em).  */
+#top
+{ width: 100%;
+  height: 4em;
+  }
+
+/* At the top, you need room for the logo that floats left.  The biggest one
+   till now is 220px.  We give the portal-tabs an additional left margin to
+   offset it against the logo.
+   And floated right portal actions. */
+#logo
+{ float: left;
+  padding-left: 1em;
+  width: 17em;  /* 220/13 */
+  }
+#portal-actions
+{ text-align: right;
+  float: right;
+  padding-right: 1em;
+  }
+#portal-tabs
+{ text-align: center;
+  }
+/* TODO: similar to object-actions, perhaps combine them? */
+
+
+/* The horizontal bar needs a bit of padding top/bottom and a background.
+   The desired height is 26px.  Line height is 16px, so that's 5px top
+   and button. */
+#menubar
+{ padding-top: 0.38em;  /* 5/13 */
+  padding-bottom: 0.38em;
+  background-color: #eeeeee;
+  background-image: url(bar_background.png);
+  background-repeat: repeat-x;
+  height: 1.23em;
+  clear: both;
+  }
+
+/* The sidebar menubar part should have a fixed with of 180px left.
+   Next to it, the object tags.
+   The object actions should float right. */
+#sidebar-title
+{ float: left;
+  padding-left: 1em;
+  width: 13.85em;  /* 180/13 */
+  *width: 13.5em;  /* 180/13.3333 for IE */
+  font-weight: bold;
+  }
+#object-actions
+{ text-align: right;
+  float: right;
+  padding-right: 1em;
+  }
+
+/* The object tabs are list items: show them nicely next to each other */
+#object-tabs ul
+{ margin: 0;
+  }
+#object-tabs li
+{ display: block;
+  float: left;
+  border: solid;
+  border-width: 1px 0px 1px 1px;
+  border-color: #888;
+  padding-right: 0.5em;
+  padding-left: 0.5em;
+  background-repeat: repeat-x;
+  background-image: url(menubar_button.png);
+  }
+#object-tabs li.last
+{ border-width: 1px 1px 1px 1px;
+  }
+#object-tabs li.selected
+{ background-image: none;
+  background-color: #aaa;
+  }
+
+/* Footer content centered and with a bit of top/bottom padding */
+#footer
+{ text-align: center;
+  padding-top: 0.38em;  /* 5/13 */
+  padding-bottom: 0.38em;
+  background-color: #eeeeee;
+  background-image: url(bar_background.png);
+  background-repeat: repeat-x;
+  margin-right: 10px;
+  margin-left: 10px;
+  }
+
+/* The sidebar and body have a border and some margins */
+
+#bd
+{ margin-top: 0.25em;
+  margin-bottom: 0.25em;
+  border: 1px solid #eeeeee;
+  xxxoverflow: auto;
+  }
+
+#sidebar
+{ border-right: 1px solid #eeeeee;
+  overflow: auto;
+  }
+
+#content
+{ overflow: auto;
+  }
+
+#map
+{ height: 100%;
+  width: 100%;
+  }
+
+#breadcrumbs
+{ padding-left: 1em;
+  }
+
+/* Give vertical items in #evenly-spaced-vertical a thick bottom border.
+   And align the */
+#evenly-spaced-vertical .vertical-item
+{ border-bottom: 4px solid #eeeeee;
+  }
+
+
+/* For giving regular body text some space to the left. */
+#textual
+{ padding-left: 1em;
+  }

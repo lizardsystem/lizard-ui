@@ -1,0 +1,95 @@
+{% extends "lizard_ui/lizardbase.html" %}
+
+{% block title %} Head title injection {% endblock %}
+
+
+{% block portal-tabs %}
+Samenvatting | Analyse
+{% endblock %}
+
+
+{% block portal-actions %}
+<span class="ss_sprite ss_user">Log in</span>
+{% endblock %}
+
+
+{% block sidebar-title %}
+Sidebar title
+{% endblock %}
+
+{% block sidebar %}
+<ul>
+  <li>This</li>
+  <li>is the</li>
+  <li>sidebar</li>
+</ul>
+<p>
+  The sidebar is for showing overview info, details, perhaps a small
+  "navigator" map to indicate the current location, etc.
+</p>
+{% endblock %}
+
+{% block object-tabs %}
+<ul>
+  <li class="selected">Overview</li>
+  <li>Measures</li>
+  <li class="last">Scores</li>
+</ul>
+{% endblock %}
+
+
+{% block object-actions %}
+<span class="ss_sprite ss_page_edit">edit</span> | <span class="ss_sprite ss_printer">print</span>
+{% endblock %}
+
+
+{% block breadcrumbs %}
+<div id="breadcrumbs">
+  home &rarr; overzicht achterhoek &rarr; chloride parameters
+</div>
+{% endblock %}
+
+
+{% block content %}
+<div id="textual">
+  <h1>Content area</h1>
+  <p>
+    This is the content area, btw.  Here you can put for instance:
+  </p>
+  <ul>
+    <li>
+      The big main map.
+    </li>
+    <li>
+      An edit form for the current object.
+    </li>
+    <li>
+      A bunch of graphs.
+    </li>
+  </ul>
+
+  <h2>About the bar</h2>
+  <p>
+    The bar above the sidebar and this content area is divided into three areas:
+  </p>
+  <ol>
+    <li>
+      The sidebar header.
+    </li>
+    <li>
+      A couple of "object tabs": click them and you get a different view for the
+      currently viewed object.  Object is kinda loose: it can be a selected area
+      or a specific report or the homepage.  But for a selected area you might
+      want to show an overview with graphs, a table with raw data and an edit
+      form.  That's where "object tabs" are for.
+    </li>
+    <li>
+      A couple of "object actions".  Terminology is a bit borrowed from Plone
+      (big python CMS) where they've really nailed down the concept of a
+      pluggable interface, btw.  Actions are things like "print" and "export"
+      (and perhaps "edit", though that can be a tab, too).
+    </li>
+  </ol>
+</div>
+
+{% endblock %}
