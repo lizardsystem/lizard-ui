@@ -184,6 +184,10 @@ body
 #evenly-spaced-vertical .vertical-item
 { border-bottom: 1px solid #eeeeee;
   }
+/* Prevent some weird padding/margin below pictures in firefox */
+#evenly-spaced-vertical .vertical-item img
+{ vertical-align: bottom;
+  }
 
 
 /* For giving regular body text some space to the left. */
@@ -200,7 +204,9 @@ body
 
 /* Sidebar styling */
 #sidebar .sidebarbox
-{ /* Not used at the moment (visually) */
+{ padding-bottom: 1px;
+  /* 1px bottom padding to prevent margin collapse which can wreak the layout
+     when the bottommost item has a margin. */
   }
 
 #sidebar .sidebarbox > div,
