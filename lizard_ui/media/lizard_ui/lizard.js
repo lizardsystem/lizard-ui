@@ -10,7 +10,8 @@ function fillScreen() {
 
      The resulting height is available as "mainContentHeight".
    */
-  var viewportHeight = $(window).height();
+  var jqueryBug = $("#ui-datepicker-div").outerHeight(true);
+  var viewportHeight = $(window).height() - jqueryBug;
   var bottomMargin = $("#page").outerHeight(true) - $("#page").innerHeight();
   var headerHeight = $("#header").outerHeight(true);
   var stuffAroundSidebar = $("#sidebar").outerHeight(true) -
@@ -26,7 +27,7 @@ function fillScreen() {
   $("#collapser").height(sidebarHeight);
   $("#content").height(mainContentHeight);
   $("#map").height(mainContentHeight);
-  mainContentWidth = $("#content").innerWidth();
+  mainContentWidth = $("#content").innerWidth() - 100;
 }
 
 
@@ -47,7 +48,7 @@ function divideVerticalSpaceEqually() {
        Take note of the 4px border between them.
      */
   var numberOfItems = $('#evenly-spaced-vertical > .vertical-item').length;
-  verticalItemHeight = (mainContentHeight / numberOfItems) - 1;
+  verticalItemHeight = Math.floor(mainContentHeight / numberOfItems) - 1;
   $('#evenly-spaced-vertical > .vertical-item').height(verticalItemHeight);
 }
 
