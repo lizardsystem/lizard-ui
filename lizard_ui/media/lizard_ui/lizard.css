@@ -114,6 +114,9 @@ body
   float: right;
   padding-right: 1em;
   }
+#object-actions a
+{ text-decoration: none;
+  }
 
 /* The object tabs and portal tabs are list items: show them nicely next to
    each other */
