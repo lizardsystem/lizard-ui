@@ -253,21 +253,14 @@ body
 { overflow: auto;
   }
 
-#sidebar .sidebarbox-actions
-{
-}
-
-#sidebar .sidebarbox-actions > div
-{
-  background-color: #f9f9f9;
-  // outline: #eee solid thin; // werkt niet goed: de drophover overschrijft hem niet
+.sidebarbox-actions
+{ background-color: #f9f9f9;
   text-align: center;
-  // margin: 0.3em; // werkt niet goed: je krijgt een scrollbar in de sidebarbox
-}
+  }
 
 .drophover
-{ /* for hovering over droppable */
-  outline: #afa solid thin;
+{ /* For hovering over droppable */
+  background-color: #ffffcc;
 }
 
 .ui-sortable-placeholder
