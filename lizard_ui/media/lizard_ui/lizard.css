@@ -269,3 +269,21 @@ body
 { /* for hovering over droppable */
   outline: #afa solid thin;
 }
+
+.ui-sortable-placeholder
+{ /* Empty space created when sorting: indicates current drop location. */
+  border: 1px dotted black;
+  height: 1.5em;
+  }
+.ui-sortable-helper
+{ /* Element being dragged around */
+  border: 1px dotted black;
+ }
+
+/* UL *without* bullets and margin. */
+ul.without-bullets
+{ padding-left: 0;
+  }
+ul.without-bullets li
+{ list-style: none;
+  }
