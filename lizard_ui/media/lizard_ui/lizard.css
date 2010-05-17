@@ -287,3 +287,11 @@ ul.without-bullets
 ul.without-bullets li
 { list-style: none;
   }
+
+.workspace_item img
+{ /* 16px big icons: start them right at the bottom instead of
+     at the baseline. */
+  vertical-align: bottom;
+  width: 16px;
+  height: 16px
+  }
