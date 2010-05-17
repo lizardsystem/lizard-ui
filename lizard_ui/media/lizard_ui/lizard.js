@@ -117,3 +117,4 @@ $(document).ready(setUpCollapsibleSidebar);
 
 $(document).ready(stretchOneSidebarBox);
 $(window).resize(stretchOneSidebarBox);
+$(window).load(stretchOneSidebarBox);

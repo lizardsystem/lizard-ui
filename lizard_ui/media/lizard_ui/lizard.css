@@ -221,6 +221,11 @@ body
   /* Note: no ie6, so the '>' works fine. */
   }
 
+#sidebar .sidebarbox > div#filter-parameter-accordeon
+{ margin-left: 0em;
+  margin-right: 0em;
+  }
+
 #sidebar .sidebarbox h2,
 #sidebar .sidebarbox h3
 { background-image: url(bar_background.png);
