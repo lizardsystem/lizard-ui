@@ -1,4 +1,4 @@
-.treeview, .treeview ul {
+.treeview, .treeview ul { 
 	padding: 0;
 	margin: 0;
 	list-style: none;
@@ -9,7 +9,7 @@
 	margin-top: 4px;
 }
 
-#sidebar .treeview .hitarea {
+.treeview .hitarea {
 	background: url(images/treeview-default.gif) -64px -25px no-repeat;
 	height: 16px;
 	width: 16px;
@@ -23,13 +23,7 @@
 	float:none;
 }
 
-.treeview ul li{
-    margin: 0;
-    list-style: none;
-}
-
-.treeview li{ 
-        list-style: none;
+.treeview li { 
 	margin: 0;
 	padding: 3px 0pt 3px 16px;
 }

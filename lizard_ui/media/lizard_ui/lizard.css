@@ -288,3 +288,10 @@ ul.without-bullets li
   width: 16px;
   height: 16px
   }
+
+
+/* Filetree tweaks */
+.filetree span.folder,
+.filetree span.file
+{ padding-left: 20px;
+  }
