@@ -294,6 +294,9 @@ ul.without-bullets li
   height: 16px
   }
 
+.workspace
+{ min-height: 4em;
+  }
 
 /* Filetree tweaks */
 .filetree span.folder,
