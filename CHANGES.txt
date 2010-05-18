@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-0.7 (unreleased)
+0.7 (2010-05-18)
 ----------------
 
 - Added jquerytools for accordeon behaviour in sidebar.
