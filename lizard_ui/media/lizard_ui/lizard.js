@@ -102,6 +102,18 @@ function stretchOneSidebarBox() {
   $("#sidebar .sidebarbox-stretched").height(stillAvailable);
 }
 
+/* sets up the auto resize sidebar and screen
+
+use this function when altering sidebar without reloading the page 
+*/
+function setUpScreen() {
+    fillScreen();
+    divideVerticalSpaceEqually();
+    setUpCollapsibleSidebarBoxes();
+    setUpCollapsibleSidebar();
+    stretchOneSidebarBox();
+}
+
 
 /* Fill the screen (again) when we open the page and when the window is
    resized.

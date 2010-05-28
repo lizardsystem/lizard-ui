@@ -62,10 +62,8 @@
     {% block site-head-extras %}
     {# Block for site templates to inject js/css for the whole site #}
     {% endblock site-head-extras %}
-
-    {% block head-extras %}
-    {# Your own per-template extra css and javascript #}
-    {% endblock head-extras %}
+    
+    {# head-extras old location #}
 
     {% block map-javascript %}
     {# Custom in-template map javascript setup code (last in line) #}
@@ -74,6 +72,15 @@
   <body>
     <div id="page"
          class="sidebar-open">
+      <div id="head-extras">
+        {% block head-extras %}
+        {# Your own per-template extra css and javascript #}
+        {% comment %}
+       Strangely enough this div element could not be found
+       after a $.get if placed outside div#page
+       {% endcomment %}
+        {% endblock head-extras %}
+      </div>
 
       <div id="header"
            class="clearfix">
