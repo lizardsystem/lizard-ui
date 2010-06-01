@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-0.8 (unreleased)
+0.8 (2010-06-01)
 ----------------
 
 - Added generic accordion handling for the sidebar.  Including ajaxy loading.
