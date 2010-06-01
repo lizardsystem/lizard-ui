@@ -110,18 +110,20 @@ function setUpAccordion() {
          effect: "slide"});
     /* Set up a global 'accordion' variable to later steer the animation. */
     accordion = $("#accordion").tabs();
+    $("#accordion").enableAccordionLinks();
 }
 
-function setUpAccordionInteraction() {
-    $(".accordion-load-next a").each(function() {
+$.fn.enableAccordionLinks = function() {
+    $(".accordion-load-next a", this).each(function() {
         $(this).click(function(event) {
             event.preventDefault();
-            /* TODO: add 'select' class and remove other select classes. */
             var pane = $(this).parents(".accordion-load-next")
             var nextPaneId = pane.attr("data-next-pane-id");
             var url = $(this).attr("href");
             $(nextPaneId).load(url + " " + nextPaneId,
-                              setUpAccordionInteraction);
+                               function() {
+                                   $(this).enableAccordionLinks();
+                               });
             $("li.selected", pane).removeClass("selected");
             $(this).parent("li").addClass("selected");
             accordion.click(accordion.getIndex() + 1);
@@ -155,7 +157,6 @@ $(window).resize(divideVerticalSpaceEqually);
 $(document).ready(setUpCollapsibleSidebarBoxes);
 $(document).ready(setUpCollapsibleSidebar);
 $(document).ready(setUpAccordion);
-$(document).ready(setUpAccordionInteraction);
 
 $(document).ready(stretchOneSidebarBox);
 $(window).resize(stretchOneSidebarBox);
