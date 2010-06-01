@@ -31,8 +31,32 @@
 <div id="textual">
   <h1>Automatic accordion in the sidebar demo</h1>
   <p>
-    TODO
+    How to set it up? Best look in the source code for this page.  Some instructions:
   </p>
+  <ul>
+    <li>
+      Give the sidebarbox an "accordion" (note: not accord<b>e</b>on) id.
+    </li>
+    <li>
+      Individual collapsible items get a h2 or h3 as a header and <i>one</i>
+      div or ul or whatever as content block, which needs a class "pane".
+    </li>
+    <li>
+      Every "pane" (as the accordion terminology calls it) needs an ID.
+    </li>
+    <li>
+      If you have a ul with a couple of links in there and you want those
+      links to load the next pane, first make sure the link actually returns a
+      page with the desired content in some block with the same ID as the pane
+      you're replacing.  It can be just a full page or a snippet.  The idea is
+      to return a full page, though.
+    </li>
+    <li>
+      In the ul/div with the links, add a class "accordion-load-next" so that
+      the links are set up to load the next pane via ajax.  And add an
+      attibute "data-next-pane-id" to tell which ID needs loading/replacing.
+    </li>
+  </ul>
   <p>
     Note: the <code>&lt;ul&gt;</code> elements have a "without-bullets" class
     to remove the bullets from the list items.
