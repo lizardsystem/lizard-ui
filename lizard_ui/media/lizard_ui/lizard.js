@@ -102,9 +102,34 @@ function stretchOneSidebarBox() {
   $("#sidebar .sidebarbox-stretched").height(stillAvailable);
 }
 
+
+function setUpAccordion() {
+    $("#accordion").tabs(
+        "#accordion .pane",
+        {tabs: "h2, h3",
+         effect: "slide"});
+    /* Set up a global 'accordion' variable to later steer the animation. */
+    accordion = $("#accordion").tabs();
+}
+
+function setUpAccordionInteraction() {
+    $(".accordion-load-next a").each(function() {
+        $(this).click(function(event) {
+            event.preventDefault();
+            /* TODO: add 'select' class and remove other select classes. */
+            var nextPaneId = $(this).parents(".accordion-load-next").attr(
+                "data-next-pane-id");
+            var url = $(this).attr("href");
+            $(nextPaneId).load(url + " " + nextPaneId);
+            /* TODO: open the other pane. */
+        });
+    });
+}
+
+
 /* sets up the auto resize sidebar and screen
 
-use this function when altering sidebar without reloading the page 
+   use this function when altering sidebar without reloading the page
 */
 function setUpScreen() {
     fillScreen();
@@ -126,6 +151,8 @@ $(window).resize(divideVerticalSpaceEqually);
 
 $(document).ready(setUpCollapsibleSidebarBoxes);
 $(document).ready(setUpCollapsibleSidebar);
+$(document).ready(setUpAccordion);
+$(document).ready(setUpAccordionInteraction);
 
 $(document).ready(stretchOneSidebarBox);
 $(window).resize(stretchOneSidebarBox);

@@ -24,6 +24,10 @@ urlpatterns = patterns(
      {'template': 'lizard_ui/example_collapsible.html'}),
     (r'^sidebarstretch/$', 'django.views.generic.simple.direct_to_template',
      {'template': 'lizard_ui/example_sidebarstretch.html'}),
+    (r'^accordion/$', 'django.views.generic.simple.direct_to_template',
+     {'template': 'lizard_ui/example_accordion1.html'}),
+    (r'^accordion2/$', 'django.views.generic.simple.direct_to_template',
+     {'template': 'lizard_ui/example_accordion2.html'}),
     )
 
 

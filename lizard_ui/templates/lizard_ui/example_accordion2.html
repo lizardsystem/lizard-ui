@@ -1,0 +1,40 @@
+{% extends "lizard_ui/lizardbase.html" %}
+
+{% block title %}Automatic accordion in the sidebar{% endblock %}
+
+
+{% block sidebar %}
+<div class="sidebarbox"
+     id="accordion">
+  <h2>First choice</h2>
+  <ul class="pane without-bullets accordion-load-next"
+      data-next-pane-id="#accordion2"
+      id="accordion1">
+    <li><a href="../accordion2">One</a></li>
+    <li><a href="../accordion2">Two</a></li>
+  </ul>
+  <h2>Second choice</h2>
+  <ul class="pane without-bullets"
+       id="accordion2">
+    <li><a href="../accordion3">Three</a></li>
+    <li><a href="../accordion3">Four</a></li>
+  </ul>
+  <h2>Final result</h2>
+  <div class="pane"
+       id="accordion3">
+    Still empty
+  </div>
+</div>
+{% endblock %}
+
+{% block content %}
+<div id="textual">
+  <h1>Automatic accordion in the sidebar demo</h1>
+  <p>
+    TODO
+  </p>
+  <p>
+    Note: the <code>&lt;ul&gt;</code> elements have a "without-bullets" class
+    to remove the bullets from the list items.
+</div>
+{% endblock %}
