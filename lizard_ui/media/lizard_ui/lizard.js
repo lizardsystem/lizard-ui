@@ -117,11 +117,14 @@ function setUpAccordionInteraction() {
         $(this).click(function(event) {
             event.preventDefault();
             /* TODO: add 'select' class and remove other select classes. */
-            var nextPaneId = $(this).parents(".accordion-load-next").attr(
-                "data-next-pane-id");
+            var pane = $(this).parents(".accordion-load-next")
+            var nextPaneId = pane.attr("data-next-pane-id");
             var url = $(this).attr("href");
-            $(nextPaneId).load(url + " " + nextPaneId);
-            /* TODO: open the other pane. */
+            $(nextPaneId).load(url + " " + nextPaneId,
+                              setUpAccordionInteraction);
+            $("li.selected", pane).removeClass("selected");
+            $(this).parent("li").addClass("selected");
+            accordion.click(accordion.getIndex() + 1);
         });
     });
 }

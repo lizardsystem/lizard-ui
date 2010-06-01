@@ -255,6 +255,10 @@ body
   display: none;
   }
 
+#sidebar .selected
+{ background-color: lightyellow;
+  }
+
 .sidebarbox-stretched
 { overflow: auto;
   }
@@ -310,3 +314,4 @@ a.title
 {
     text-decoration: none;
 }
+

@@ -28,6 +28,8 @@ urlpatterns = patterns(
      {'template': 'lizard_ui/example_accordion1.html'}),
     (r'^accordion2/$', 'django.views.generic.simple.direct_to_template',
      {'template': 'lizard_ui/example_accordion2.html'}),
+    (r'^accordion3/$', 'django.views.generic.simple.direct_to_template',
+     {'template': 'lizard_ui/example_accordion3.html'}),
     )
 
 
