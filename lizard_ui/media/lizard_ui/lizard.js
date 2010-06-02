@@ -110,24 +110,15 @@ function setUpAccordion() {
          effect: "slide"});
     /* Set up a global 'accordion' variable to later steer the animation. */
     accordion = $("#accordion").tabs();
-    $("#accordion").enableAccordionLinks();
-}
-
-$.fn.enableAccordionLinks = function() {
-    $(".accordion-load-next a", this).each(function() {
-        $(this).click(function(event) {
-            event.preventDefault();
-            var pane = $(this).parents(".accordion-load-next")
-            var nextPaneId = pane.attr("data-next-pane-id");
-            var url = $(this).attr("href");
-            $(nextPaneId).load(url + " " + nextPaneId,
-                               function() {
-                                   $(this).enableAccordionLinks();
-                               });
-            $("li.selected", pane).removeClass("selected");
-            $(this).parent("li").addClass("selected");
-            accordion.click(accordion.getIndex() + 1);
-        });
+    $(".accordion-load-next a").live('click', function() {
+        event.preventDefault();
+        var pane = $(this).parents(".accordion-load-next")
+        var nextPaneId = pane.attr("data-next-pane-id");
+        var url = $(this).attr("href");
+        $(nextPaneId).load(url + " " + nextPaneId);
+        $("li.selected", pane).removeClass("selected");
+        $(this).parent("li").addClass("selected");
+        accordion.click(accordion.getIndex() + 1);
     });
 }
 

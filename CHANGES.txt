@@ -5,7 +5,8 @@ Changelog of lizard-ui
 0.9 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Using jquery's live() for "late binding" of events to elements added later
+  through javascript.  Saves some couple of lines.
 
 
 0.8 (2010-06-01)
