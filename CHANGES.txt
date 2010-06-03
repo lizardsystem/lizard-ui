@@ -20,7 +20,7 @@ Changelog of lizard-ui
 
 - Added jquerytools for accordeon behaviour in sidebar.
 
-- Layout fixes, mostly for the sidebar.  ALso fix for the datepicker-placed
+- Layout fixes, mostly for the sidebar.  Also fix for the datepicker-placed
   div at the bottom.
 
 - Update to jquery-ui 1.8.1.

@@ -2,54 +2,52 @@
 
 
 function fillScreen() {
-  /* Resize the main body elements (#sidebar, #content and #map) so that we
-     fill the screen completely.
+    /* Resize the main body elements (#sidebar, #content and #map) so that we
+    fill the screen completely.
 
-     Detect the height of the window and subtract the known vertical elements
-     like header, footer and main content margin/border.
+    Detect the height of the window and subtract the known vertical elements
+    like header, footer and main content margin/border.
 
-     The resulting height is available as "mainContentHeight".
-   */
-  var jqueryBug = $("#ui-datepicker-div").outerHeight(true);
-  var viewportHeight = $(window).height() - jqueryBug;
-  var bottomMargin = $("#page").outerHeight(true) - $("#page").innerHeight();
-  var headerHeight = $("#header").outerHeight(true);
-  var stuffAroundSidebar = $("#sidebar").outerHeight(true) -
-    $("#sidebar").innerHeight();
-  sidebarHeight = viewportHeight - headerHeight - bottomMargin - stuffAroundSidebar;
-  var footerHeight = $("#footer").outerHeight(true);
-  var menubarHeight = $("#menubar").outerHeight(true);
-  var stuffAroundMainContent = $("#content").outerHeight(true) -
-    $("#content").innerHeight();
-  mainContentHeight = viewportHeight - headerHeight - bottomMargin
+    The resulting height is available as "mainContentHeight".  */
+    var jqueryBug = $("#ui-datepicker-div").outerHeight(true);
+    var viewportHeight = $(window).height() - jqueryBug;
+    var bottomMargin = $("#page").outerHeight(true) - $("#page").innerHeight();
+    var headerHeight = $("#header").outerHeight(true);
+    var stuffAroundSidebar = $("#sidebar").outerHeight(true) -
+        $("#sidebar").innerHeight();
+    sidebarHeight = viewportHeight - headerHeight - bottomMargin - stuffAroundSidebar;
+    var footerHeight = $("#footer").outerHeight(true);
+    var menubarHeight = $("#menubar").outerHeight(true);
+    var stuffAroundMainContent = $("#content").outerHeight(true) -
+        $("#content").innerHeight();
+    mainContentHeight = viewportHeight - headerHeight - bottomMargin
         - footerHeight - menubarHeight - stuffAroundMainContent;
-  $("#sidebar").height(sidebarHeight);
-  $("#collapser").height(sidebarHeight);
-  $("#content").height(mainContentHeight);
-  $("#map").height(mainContentHeight);
-  mainContentWidth = $("#content").innerWidth() - 100;
+    $("#sidebar").height(sidebarHeight);
+    $("#collapser").height(sidebarHeight);
+    $("#content").height(mainContentHeight);
+    $("#map").height(mainContentHeight);
+    mainContentWidth = $("#content").innerWidth() - 100;
 }
 
 
 function showExampleMap() {
-  /* Show an example map.  For use with the lizardgis.html template.  */
-  var map = new OpenLayers.Map('map');
-  var wms = new OpenLayers.Layer.WMS(
-    "OpenLayers WMS",
-    "http://labs.metacarta.com/wms/vmap0", {layers: 'basic'});
-  map.addLayer(wms);
-  map.zoomToMaxExtent();
+    /* Show an example map.  For use with the lizardgis.html template.  */
+    var map = new OpenLayers.Map('map');
+    var wms = new OpenLayers.Layer.WMS(
+        "OpenLayers WMS",
+        "http://labs.metacarta.com/wms/vmap0", {layers: 'basic'});
+    map.addLayer(wms);
+    map.zoomToMaxExtent();
 }
 
 
 function divideVerticalSpaceEqually() {
     /* For #evenly-spaced-vertical, divide the vertical space evenly between
-       the .vertical-item elements.
-       Take note of the 4px border between them.
-     */
-  var numberOfItems = $('#evenly-spaced-vertical > .vertical-item').length;
-  verticalItemHeight = Math.floor(mainContentHeight / numberOfItems) - 1;
-  $('#evenly-spaced-vertical > .vertical-item').height(verticalItemHeight);
+    the .vertical-item elements.  Take note of the 4px border between them.
+    */
+    var numberOfItems = $('#evenly-spaced-vertical > .vertical-item').length;
+    verticalItemHeight = Math.floor(mainContentHeight / numberOfItems) - 1;
+    $('#evenly-spaced-vertical > .vertical-item').height(verticalItemHeight);
 }
 
 
@@ -110,7 +108,7 @@ function setUpAccordion() {
          effect: "slide"});
     /* Set up a global 'accordion' variable to later steer the animation. */
     accordion = $("#accordion").tabs();
-    $(".accordion-load-next a").live('click', function() {
+    $(".accordion-load-next a").live('click', function(event) {
         event.preventDefault();
         var pane = $(this).parents(".accordion-load-next")
         var nextPaneId = pane.attr("data-next-pane-id");
