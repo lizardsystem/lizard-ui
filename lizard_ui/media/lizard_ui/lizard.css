@@ -289,6 +289,7 @@ ul.without-bullets
   }
 ul.without-bullets li
 { list-style: none;
+  border-bottom: 1px solid #f2f2f2;
   }
 
 .workspace_item img
