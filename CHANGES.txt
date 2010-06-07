@@ -5,6 +5,8 @@ Changelog of lizard-ui
 0.10 (unreleased)
 -----------------
 
+- Added fillSidebar() alias for stretchOneSidebarBox().
+
 - Splitted title block in sitetitle/subtitle as that's a common occurrence.
 
 
