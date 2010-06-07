@@ -101,6 +101,13 @@ function stretchOneSidebarBox() {
 }
 
 
+function fillSidebar() {
+    /* Basically only an alias to have a simpler name: fill up the sidebar by
+    streching  the appropriate box. */
+    stretchOneSidebarBox();
+}
+
+
 function setUpAccordion() {
     $("#accordion").tabs(
         "#accordion .pane",
