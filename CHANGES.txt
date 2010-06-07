@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-0.10 (unreleased)
+0.10 (2010-06-07)
 -----------------
 
 - Added fillSidebar() alias for stretchOneSidebarBox().
