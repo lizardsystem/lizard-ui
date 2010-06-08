@@ -128,6 +128,18 @@ function setUpAccordion() {
 }
 
 
+function setUpTree() {
+    $(".automatic-tree").each(function() {
+        if (!$(this).data("tree-initialized")) {
+            $(this).data("tree-initialized", true);
+            $(this).treeview({
+                collapsed: true
+            });
+        }
+    });
+}
+
+
 /* sets up the auto resize sidebar and screen
 
    use this function when altering sidebar without reloading the page
@@ -153,6 +165,7 @@ $(window).resize(divideVerticalSpaceEqually);
 $(document).ready(setUpCollapsibleSidebarBoxes);
 $(document).ready(setUpCollapsibleSidebar);
 $(document).ready(setUpAccordion);
+$(document).ready(setUpTree);
 
 $(document).ready(stretchOneSidebarBox);
 $(window).resize(stretchOneSidebarBox);
