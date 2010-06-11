@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-0.12 (unreleased)
+0.12 (2010-06-11)
 -----------------
 
 - Upgraded to jqueryui 1.8.2 (from 1.8.1).
