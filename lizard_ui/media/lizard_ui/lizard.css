@@ -308,6 +308,10 @@ ul.without-bullets li
 .filetree span.file
 { padding-left: 20px;
   }
+.filetree a
+{ text-decoration: none;
+  color: #222222;
+  }
 
 /* Title icons: icons next to title */
 a.title
