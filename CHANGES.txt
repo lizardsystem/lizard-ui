@@ -5,6 +5,8 @@ Changelog of lizard-ui
 0.13 (unreleased)
 -----------------
 
+- Fixed javascript code with jslint.
+
 - Added django-compressor for javascript and css compression and combination.
   You'll need to add the configuration in http://dpaste.de/xLDU/ to your
   settings and add "compressor" to your installed apps.
