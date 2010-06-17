@@ -5,6 +5,10 @@ Changelog of lizard-ui
 0.13 (unreleased)
 -----------------
 
+- Added django-compressor for javascript and css compression and combination.
+  You'll need to add the configuration in http://dpaste.de/xLDU/ to your
+  settings and add "compressor" to your installed apps.
+
 - Switched to a separate "javascript" and "css" block instead of the
   site-head-extras, head-extras and so.  Be sure to add {{super.block}} when
   you override the blocks.
