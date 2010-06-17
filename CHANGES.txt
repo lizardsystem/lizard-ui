@@ -5,7 +5,9 @@ Changelog of lizard-ui
 0.13 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Switched to a separate "javascript" and "css" block instead of the
+  site-head-extras, head-extras and so.  Be sure to add {{super.block}} when
+  you override the blocks.
 
 
 0.12 (2010-06-11)

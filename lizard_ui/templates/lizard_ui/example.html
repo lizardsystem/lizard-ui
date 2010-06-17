@@ -72,36 +72,35 @@ home &rarr; Block &rarr; "breadcrumbs"
   <h2>Other extendable blocks</h2>
   <dl>
     <dt>
-      base-head-extras
+      css
     </dt>
     <dd>
-      Block for other base templates (read: lizard-map) to inject javascript.
-      Don't use this in ordinary templates.
+      Block to add css.  Be sure to use <code>{{ </code><code>block.super</code><code> }}</code>
+      at the start of your block to get all the previously defined css, too.
     </dd>
 
     <dt>
-      site-head-extras
+      javascript
     </dt>
     <dd>
-      For injecting javascript or css for an entire site: used from a site's
-      overridden lizardbase.html.  This keeps the head-extras available for
-      individual templates.
+      Block to add javascript.  Be sure to use <code>{{ </code><code>block.super</code><code> }}</code>
+      at the start of your block to get all the previously defined javascript, too.
     </dd>
 
     <dt>
       head-extras
     </dt>
     <dd>
-      For injecting javascript or css from your template.
+      For injecting links, javascript or css from your template.  This is not
+      compressed or otherwise managed.  For javascript and css, use the "css"
+      and "javascript" blocks.
     </dd>
 
     <dt>
       map-javascript
     </dt>
     <dd>
-      Same as head-extras.  An extra block specificly for the common map
-      javascript injection seems handy.  Placed all the way at the end in the
-      head section.
+      A block specifically for lizard-map's in-template javascript.
     </dd>
 
     <dt>
@@ -111,12 +110,6 @@ home &rarr; Block &rarr; "breadcrumbs"
       Replaces the logo.
     </dd>
 
-    <dt>
-
-    </dt>
-    <dd>
-
-    </dd>
   </dl>
 
 </div>
