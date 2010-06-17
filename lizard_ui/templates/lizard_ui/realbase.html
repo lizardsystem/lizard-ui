@@ -10,13 +10,14 @@
       {% endblock sitetitle %}
       {% endblock title %}
     </title>
-
+    {% load compress %}
+    {% compress css %}
     {% block css %}
     {# Blueprint css framework. #}
     <link rel="stylesheet"
           href="{{ STATIC_URL }}blueprint/screen.css"
           type="text/css"
-          media="screen, projection"/>
+          media="screen, projection" />
     <link rel="stylesheet"
           href="{{ STATIC_URL }}blueprint/print.css"
           type="text/css"
@@ -25,21 +26,25 @@
     {# Sprites: all icons (print, info, etc) in one cacheable image. #}
     <link rel="stylesheet"
           href="{{ STATIC_URL }}sprites/sprite.css"
-          type="text/css" />
+          type="text/css"
+          media="screen, projection" />
     {# CSS for jqueryui: "smoothness" theme #}
     <link type="text/css"
           href="{{ STATIC_URL }}jqueryui/smoothness/jquery-ui-1.8.custom.css"
-          rel="stylesheet" />
+          rel="stylesheet"
+          media="screen, projection" />
     {# CSS for jquery-treeview #}
     <link type="text/css"
           href="{{ STATIC_URL }}jquery-treeview/jquery.treeview.css"
-          rel="stylesheet" />
+          rel="stylesheet"
+          media="screen, projection" />
     {# Our own css comes last #}
     <link rel="stylesheet"
           href="{{ STATIC_URL }}lizard_ui/lizard.css"
           type="text/css"
           media="screen, projection" />
     {% endblock css %}
+    {% endcompress %}
 
     <!--[if IE]>
     <link rel="stylesheet"
@@ -48,6 +53,7 @@
           media="screen, projection" />
     <![endif]-->
 
+    {% compress js %}
     {% block javascript %}
     {# Jquery, jqueryui jquerytools and jstree #}
     <script type="text/javascript"
@@ -56,14 +62,15 @@
             src="{{ STATIC_URL }}jquerytools/jquery.tools.min.js"></script>
     {# TODO ^^^ use non-minified version #}
     <script type="text/javascript"
-            src="{{ STATIC_URL }}jqueryui/jqueryui.js"></script>
+            src="{{ STATIC_URL }}jqueryui/jqueryui.min.js"></script>
     <script type="text/javascript"
             src="{{ STATIC_URL }}jqueryui/jquery.ui.datepicker-nl.js"></script>
     <script type="text/javascript"
-            src="{{ STATIC_URL }}jquery-treeview/jquery.treeview.js"></script>
+            src="{{ STATIC_URL }}jquery-treeview/jquery.treeview.min.js"></script>
     <script type="text/javascript"
             src="{{ STATIC_URL }}lizard_ui/lizard.js"></script>
     {% endblock javascript %}
+    {% endcompress %}
 
     {% block map-javascript %}
     {# For lizard-map's wms handling #}
