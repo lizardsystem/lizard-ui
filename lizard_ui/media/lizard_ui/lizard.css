@@ -9,11 +9,14 @@ body
   background-repeat: repeat-x;
   margin: 0;
   background-color: #f5f4f5;
-  text-align: left;  /* Fix for blueprint's ie fixes :-) */
   }
 
 #page
 { margin: 0 0.5em 0.5em 0.5em;
+  }
+
+.container
+{ width: 100%;
   }
 
 /* We give the header a fixed height to make sure the javascript height
@@ -108,7 +111,6 @@ body
   border-style: solid;
   border-color: #aaaaaa;
   }
-
 
 #object-actions
 { text-align: right;

@@ -47,10 +47,12 @@
     {% endcompress %}
 
     <!--[if IE]>
+    {% compress css %}
     <link rel="stylesheet"
           href="{{ STATIC_URL }}blueprint/ie.css"
           type="text/css"
           media="screen, projection" />
+    {% endcompress %}
     <![endif]-->
 
     {% compress js %}
@@ -84,81 +86,81 @@
   <body>
     <div id="page"
          class="sidebar-open">
+      <div class="container">
+        <div id="header"
+             class="clearfix">
+          <div id="logo">
+            {% block logo %}
+            {# Watch out: keep the tags next to each other without spaces #}
+            <a href="/"><img
+            src="{{ STATIC_URL }}lizard_ui/logo.png"
+            alt="Lizard web" /></a>
+            {% endblock logo %}
+          </div>
+          <div id="portal-actions">
+            {% block portal-actions %}
+            &nbsp;
+            {% endblock portal-actions %}
+          </div>
+          <div id="portal-tabs">
+            {% block portal-tabs %}
+            &nbsp;
+            {% endblock portal-tabs %}
+          </div>
+          <div id="breadcrumbs">
+            {% block breadcrumbs %}
+            {% endblock breadcrumbs %}
+          </div>
+        </div>
+        {# End of header #}
 
-      <div id="header"
-           class="clearfix">
-        <div id="logo">
-          {% block logo %}
-          {# Watch out: keep the tags next to each other without spaces #}
-          <a href="/"><img
-          src="{{ STATIC_URL }}lizard_ui/logo.png"
-          alt="Lizard web" /></a>
-          {% endblock logo %}
+        <div id="main_area"
+             class="clear">
+          <div id="sidebar">
+            {% block sidebar %}
+            {% endblock sidebar %}
+          </div>
+          {# End of sidebar #}
+
+          <div id="collapser"></div>
+
+          <div id="main">
+            <div id="menubar">
+              <div id="object-actions">
+                {% block object-actions %}
+                &nbsp;
+                {% endblock object-actions %}
+              </div>
+              <div id="above-content">
+                {% block above-content %}
+                &nbsp;
+                {% endblock above-content %}
+              </div>
+            </div>
+            {# End of menubar #}
+
+            <div id="content">
+              {% block content %}
+              {% endblock content %}
+            </div>
+            {# End of content #}
+
+            <div id="footer">
+              <div id="copyright">
+                {% block copyright %}
+                Copyright &copy; Nelen &amp; Schuurmans -
+                <a href="http://www.nelen-schuurmans.nl">www.nelen-schuurmans.nl</a>
+                {% endblock copyright %}
+              </div>
+            </div>
+            {# End of footer #}
+
+          </div>
+          {# End of main #}
         </div>
-        <div id="portal-actions">
-          {% block portal-actions %}
-          &nbsp;
-          {% endblock portal-actions %}
-        </div>
-        <div id="portal-tabs">
-          {% block portal-tabs %}
-          &nbsp;
-          {% endblock portal-tabs %}
-        </div>
-        <div id="breadcrumbs">
-          {% block breadcrumbs %}
-          {% endblock breadcrumbs %}
-        </div>
+        {# End of main_area #}
       </div>
-      {# End of header #}
-
-      <div id="main_area"
-           class="clear clearfix">
-        <div id="sidebar">
-          {% block sidebar %}
-          {% endblock sidebar %}
-        </div>
-        {# End of sidebar #}
-
-        <div id="collapser">
-        </div>
-
-        <div id="main">
-          <div id="menubar">
-            <div id="object-actions">
-              {% block object-actions %}
-              &nbsp;
-              {% endblock object-actions %}
-            </div>
-            <div id="above-content">
-              {% block above-content %}
-              &nbsp;
-              {% endblock above-content %}
-            </div>
-          </div>
-          {# End of menubar #}
-
-          <div id="content">
-            {% block content %}
-            {% endblock content %}
-          </div>
-          {# End of content #}
-
-          <div id="footer">
-            <div id="copyright">
-              {% block copyright %}
-              Copyright &copy; Nelen &amp; Schuurmans -
-              <a href="http://www.nelen-schuurmans.nl">www.nelen-schuurmans.nl</a>
-              {% endblock copyright %}
-            </div>
-          </div>
-          {# End of footer #}
-
-        </div>
-        {# End of main #}
-      </div>
-      {# End of main_area #}
-
+      {# End of container #}
     </div>
     {# End of page #}
 
