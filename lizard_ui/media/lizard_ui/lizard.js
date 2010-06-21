@@ -21,14 +21,16 @@ function fillScreen() {
     var jqueryBug, viewportHeight, bottomMargin, headerHeight,
         stuffAroundSidebar, footerHeight, menubarHeight,
         stuffAroundMainContent, mainAreaWidth, sidebarWidth, collapserWidth,
-        mainDivWidth;
+        mainDivWidth, viewportWidth;
     // Width.
-    mainAreaWidth = $("#main_area").innerWidth();
+    viewportWidth = $(window).width();
+    mainAreaWidth = viewportWidth - $("#page").outerWidth(true) +
+        $("#page").innerWidth();
     sidebarWidth = $("#sidebar").outerWidth(true);
     collapserWidth = $("#collapser").outerWidth(true);
     mainDivWidth = mainAreaWidth - sidebarWidth - collapserWidth;
     $("#main").width(mainDivWidth);
-    mainContentWidth = $("#content").innerWidth()
+    mainContentWidth = $("#content").innerWidth();
     // Height.
     jqueryBug = $("#ui-datepicker-div").outerHeight(true);
     viewportHeight = $(window).height() - jqueryBug;
@@ -184,7 +186,7 @@ function setUpScreen() {
 /* Fill the screen (again) when we open the page and when the window is
    resized.
 */
-$(window).resize(function() {
+$(window).resize(function () {
     // Don't re-calculate 50 times while resizing, only when finished.
     var resizeTimer;
     if (resizeTimer) {
