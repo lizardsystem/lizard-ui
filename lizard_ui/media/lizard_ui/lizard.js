@@ -23,12 +23,13 @@ function fillScreen() {
         stuffAroundMainContent, mainAreaWidth, sidebarWidth, collapserWidth,
         mainDivWidth, viewportWidth;
     // Width.
-    viewportWidth = $(window).width();
+    viewportWidth = $("body").innerWidth();
     mainAreaWidth = viewportWidth - $("#page").outerWidth(true) +
         $("#page").innerWidth();
     sidebarWidth = $("#sidebar").outerWidth(true);
     collapserWidth = $("#collapser").outerWidth(true);
-    mainDivWidth = mainAreaWidth - sidebarWidth - collapserWidth;
+    mainDivWidth = mainAreaWidth - sidebarWidth - collapserWidth -2;
+    // ^^^ 2px border for the content.
     $("#main").width(mainDivWidth);
     mainContentWidth = $("#content").innerWidth();
     // Height.
