@@ -137,6 +137,7 @@ function setUpAccordion() {
         pane = $(this).parents(".accordion-load-next");
         nextPaneId = pane.attr("data-next-pane-id");
         url = $(this).attr("href");
+        $(nextPaneId).html('<div class="loading" />');
         $(nextPaneId).load(url + " " + nextPaneId);
         $("li.selected", pane).removeClass("selected");
         $(this).parent("li").addClass("selected");

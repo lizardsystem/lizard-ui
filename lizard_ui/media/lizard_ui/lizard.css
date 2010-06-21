@@ -317,7 +317,13 @@ ul.without-bullets li
 
 /* Title icons: icons next to title */
 a.title
-{
-    text-decoration: none;
-}
+{ text-decoration: none;
+  }
 
+div.loading
+{ background-position: center center;
+  background-repeat: no-repeat;
+  background-image: url('ajax-loader.gif');
+  height: 4em;
+  width: 100%;
+  }
