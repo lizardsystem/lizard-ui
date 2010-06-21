@@ -175,17 +175,26 @@ function setUpScreen() {
 /* Fill the screen (again) when we open the page and when the window is
    resized.
 */
+$(window).resize(function() {
+    // Don't re-calculate 50 times while resizing, only when finished.
+    var resizeTimer;
+    if (resizeTimer) {
+        clearTimeout(resizeTimer);
+    }
+    resizeTimer = setTimeout(
+        function () {
+            fillScreen();
+            divideVerticalSpaceEqually();
+            stretchOneSidebarBox();
+        },
+        600);
+});
+
+
 $(document).ready(fillScreen);
-$(window).resize(fillScreen);
-
 $(document).ready(divideVerticalSpaceEqually);
-$(window).resize(divideVerticalSpaceEqually);
-
 $(document).ready(setUpCollapsibleSidebarBoxes);
 $(document).ready(setUpCollapsibleSidebar);
 $(document).ready(setUpAccordion);
 $(document).ready(setUpTree);
-
 $(document).ready(stretchOneSidebarBox);
-$(window).resize(stretchOneSidebarBox);
-$(window).load(stretchOneSidebarBox);
