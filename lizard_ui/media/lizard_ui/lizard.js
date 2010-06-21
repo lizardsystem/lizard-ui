@@ -99,6 +99,13 @@ function setUpCollapsibleSidebarBoxes() {
 }
 
 
+function fillSidebar() {
+    /* Basically only an alias to have a simpler name: fill up the sidebar by
+    streching  the appropriate box. */
+    stretchOneSidebarBox();
+}
+
+
 function setUpCollapsibleSidebar() {
     /* Set up the sidebar to be opened/closed completely */
     $("#collapser").toggle(
@@ -112,15 +119,9 @@ function setUpCollapsibleSidebar() {
             $("#page").removeClass("sidebar-closed").addClass("sidebar-open");
             $("#sidebar").fadeIn('slow', function () {
                 fillScreen();
+                fillSidebar();
             });
         });
-}
-
-
-function fillSidebar() {
-    /* Basically only an alias to have a simpler name: fill up the sidebar by
-    streching  the appropriate box. */
-    stretchOneSidebarBox();
 }
 
 
