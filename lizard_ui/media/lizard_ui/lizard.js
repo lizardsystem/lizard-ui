@@ -20,7 +20,16 @@ function fillScreen() {
 
     var jqueryBug, viewportHeight, bottomMargin, headerHeight,
         stuffAroundSidebar, footerHeight, menubarHeight,
-        stuffAroundMainContent;
+        stuffAroundMainContent, mainAreaWidth, sidebarWidth, collapserWidth,
+        mainDivWidth;
+    // Width.
+    mainAreaWidth = $("#main_area").innerWidth();
+    sidebarWidth = $("#sidebar").outerWidth(true);
+    collapserWidth = $("#collapser").outerWidth(true);
+    mainDivWidth = mainAreaWidth - sidebarWidth - collapserWidth;
+    $("#main").width(mainDivWidth);
+    mainContentWidth = $("#content").innerWidth()
+    // Height.
     jqueryBug = $("#ui-datepicker-div").outerHeight(true);
     viewportHeight = $(window).height() - jqueryBug;
     bottomMargin = $("#page").outerHeight(true) - $("#page").innerHeight();
@@ -40,7 +49,6 @@ function fillScreen() {
     $("#collapser").height(sidebarHeight);
     $("#content").height(mainContentHeight);
     $("#map").height(mainContentHeight);
-    mainContentWidth = $("#content").innerWidth() - 100;
 }
 
 
@@ -117,6 +125,7 @@ function setUpCollapsibleSidebar() {
         },
         function () {
             $("#page").removeClass("sidebar-closed").addClass("sidebar-open");
+            $("#main").width($("#main").width() - 310);
             $("#sidebar").fadeIn('slow', function () {
                 fillScreen();
                 fillSidebar();

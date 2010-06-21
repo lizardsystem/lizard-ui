@@ -54,9 +54,11 @@ body
 
 
 /* Horizontal alignment of sidebar, collapser and main content */
-#sidebar
+#sidebar, #collapser, #main
 { float: left;
-  border: 1px solid #aaaaaa;
+  }
+#sidebar
+{ border: 1px solid #aaaaaa;
   }
 .sidebar-open #sidebar
 { width: 25em;  /* 300/12 */
@@ -66,8 +68,7 @@ body
   border: 0;
   }
 #collapser
-{ width: 0.5em;  /* Icon is 5 px wide */
-  float: left;
+{ width: 1em;  /* Icon is 5 px wide */
   background-position: center center;
   background-repeat: no-repeat;
   cursor: pointer;
@@ -78,11 +79,8 @@ body
 .sidebar-closed #collapser
 { background-image: url(arrow_expand.png);
   }
-.sidebar-open #main
-{ padding-left: 26em;  /* 25em sidebar plus 1em for the #collapsible */
-  }
-.sidebar-closed #main
-{ padding-left: 1em;
+#main
+{ width: 10em;  /* Just some figure, will be set via javascript. */
   }
 
 #sidebar,
