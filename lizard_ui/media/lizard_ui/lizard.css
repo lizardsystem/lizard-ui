@@ -334,3 +334,8 @@ div.loading
   height: 4em;
   width: 100%;
   }
+
+.notworking
+{ /* Change pointer so that it is clear that something isn't working yet. */
+  cursor: not-allowed;
+  }
