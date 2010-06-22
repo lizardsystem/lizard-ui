@@ -9,6 +9,7 @@ body
   background-repeat: repeat-x;
   margin: 0;
   background-color: #f5f4f5;
+  overflow: hidden;
   }
 
 #page
@@ -266,6 +267,14 @@ body
 .sidebarbox-actions
 { background-color: #f9f9f9;
   text-align: center;
+  }
+
+.sidebarbox-action-icon
+{ float: right;
+  cursor: pointer;
+  margin-top: 4px;
+  margin-right: 2px;
+  /* Right margin for a-href icons bug */
   }
 
 .drophover
