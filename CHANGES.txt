@@ -5,13 +5,21 @@ Changelog of lizard-ui
 1.2 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Floating the main content area now and giving it the proper width with
+  javascript.  This makes the layout in IE more reliable.
+
+- The main body has "overflow: hidden" to get rid of scrollbars once and for
+  all: scrollbars sometimes occur when there's a small layout bug.  A
+  scrollbar takes up space, so the main content float is pushed down.  We have
+  an assumption of a single page without scrolling, so hiding scrollbars is
+  perfectly fine.  (The main area itself *can* have scrollbars for textual
+  content).
 
 
 1.1 (2010-06-18)
 ----------------
 
-- Nothing changed yet.
+- IE tweaks.
 
 
 1.0 (2010-06-17)
