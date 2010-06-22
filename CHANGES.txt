@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-1.2 (unreleased)
+1.2 (2010-06-22)
 ----------------
 
 - Floating the main content area now and giving it the proper width with
