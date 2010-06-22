@@ -75,16 +75,19 @@ home &rarr; Block &rarr; "breadcrumbs"
       css
     </dt>
     <dd>
-      Block to add css.  Be sure to use <code>{ { block.super } }</code>
-      at the start of your block to get all the previously defined css, too.
+      Block to add css.  Be sure to use <code>{% templatetag openvariable %}
+      block.super {% templatetag closevariable %}</code> at the start of your
+      block to get all the previously defined css, too.
     </dd>
 
     <dt>
       javascript
     </dt>
     <dd>
-      Block to add javascript.  Be sure to use <code>{ { block.super } }</code>
-      at the start of your block to get all the previously defined javascript, too.
+      Block to add javascript.  Be sure to use <code>{% templatetag
+      openvariable %} block.super {% templatetag closevariable %}</code> at
+      the start of your block to get all the previously defined javascript,
+      too.
     </dd>
 
     <dt>
