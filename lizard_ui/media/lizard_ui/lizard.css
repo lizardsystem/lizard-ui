@@ -80,6 +80,10 @@ body
 .sidebar-closed #collapser
 { background-image: url(arrow_expand.png);
   }
+#collapser:hover
+{ /* Feedback that not only the little triangle is clickable. */
+   background-color: #f8f8f8;
+  }
 #main
 { width: 10em;  /* Just some figure, will be set via javascript. */
   }
