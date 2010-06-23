@@ -9,6 +9,12 @@ var mainContentHeight, sidebarHeight, mainContentWidth, verticalItemHeight,
     accordion;
 
 
+function reloadGraphs() {
+    // Overridden in krw-waternet...
+    //loadCorrectlySizedImages();
+}
+
+
 function fillScreen() {
     /* Resize the main body elements (#sidebar, #content and #map) so that we
     fill the screen completely.
@@ -124,6 +130,7 @@ function setUpCollapsibleSidebar() {
             $("#sidebar").fadeOut(function () {
                 $("#page").removeClass("sidebar-open").addClass("sidebar-closed");
                 fillScreen();
+                reloadGraphs();
             });
         },
         function () {
@@ -132,6 +139,7 @@ function setUpCollapsibleSidebar() {
             $("#sidebar").fadeIn('slow', function () {
                 fillScreen();
                 fillSidebar();
+                reloadGraphs();
             });
         });
 }
