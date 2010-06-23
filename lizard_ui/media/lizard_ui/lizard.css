@@ -59,7 +59,9 @@ body
 { float: left;
   }
 #sidebar
-{ border: 1px solid #aaaaaa;
+{ overflow: auto;
+  background-color: white;
+  border: 1px solid #aaaaaa;
   }
 .sidebar-open #sidebar
 { width: 25em;  /* 300/12 */
@@ -88,14 +90,13 @@ body
 { width: 10em;  /* Just some figure, will be set via javascript. */
   }
 
-#sidebar,
 #content
-{ overflow: auto;
+{ overflow: hidden;
   background-color: white;
-  }
-
-#content
-{ width: 100%;
+  width: 100%;
+  border-width: 0 1px;
+  border-style: solid;
+  border-color: #aaaaaa;
   }
 
 /* The horizontal bar needs a bit of padding top/bottom and a background.
@@ -109,11 +110,6 @@ body
   border: 1px solid #aaaaaa;
   }
 
-#content
-{ border-width: 0 1px;
-  border-style: solid;
-  border-color: #aaaaaa;
-  }
 
 #object-actions
 { text-align: right;
@@ -196,9 +192,11 @@ body
   }
 
 
-/* For giving regular body text some space to the left. */
+/* For giving regular body text some space to the left.
+   And... a scrollbar when needed. */
 #textual
 { padding-left: 1em;
+  overflow: auto;
   }
 
 
