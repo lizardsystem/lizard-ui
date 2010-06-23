@@ -15,6 +15,25 @@ function reloadGraphs() {
 }
 
 
+function stretchOneSidebarBox() {
+    /* Stretch out one sidebarbox so that the sidebar is completely filled */
+    var stillAvailable, includeMargin;
+    $("#sidebar .sidebarbox-stretched").height('0');
+    stillAvailable = $("#sidebar").innerHeight();
+    $("#sidebar > *").each(function () {
+        stillAvailable -= $(this).outerHeight(includeMargin = true);
+    });
+    $("#sidebar .sidebarbox-stretched").height(stillAvailable);
+}
+
+
+function fillSidebar() {
+    /* Basically only an alias to have a simpler name: fill up the sidebar by
+    streching  the appropriate box. */
+    stretchOneSidebarBox();
+}
+
+
 function fillScreen() {
     /* Resize the main body elements (#sidebar, #content and #map) so that we
     fill the screen completely.
@@ -34,7 +53,7 @@ function fillScreen() {
         $("#page").innerWidth();
     sidebarWidth = $("#sidebar").outerWidth(true);
     collapserWidth = $("#collapser").outerWidth(true);
-    mainDivWidth = mainAreaWidth - sidebarWidth - collapserWidth -2;
+    mainDivWidth = mainAreaWidth - sidebarWidth - collapserWidth - 2;
     // ^^^ 2px border for the content.
     $("#main").width(mainDivWidth);
     mainContentWidth = $("#content").innerWidth();
@@ -83,18 +102,6 @@ function divideVerticalSpaceEqually() {
 }
 
 
-function stretchOneSidebarBox() {
-    /* Stretch out one sidebarbox so that the sidebar is completely filled */
-    var stillAvailable, includeMargin;
-    $("#sidebar .sidebarbox-stretched").height('0');
-    stillAvailable = $("#sidebar").innerHeight();
-    $("#sidebar > *").each(function () {
-        stillAvailable -= $(this).outerHeight(includeMargin = true);
-    });
-    $("#sidebar .sidebarbox-stretched").height(stillAvailable);
-}
-
-
 function setUpCollapsibleSidebarBoxes() {
     /* Headers with .collapsible are set up so jquery(ui) nicely collapses the
        headers when clicked.
@@ -113,13 +120,6 @@ function setUpCollapsibleSidebarBoxes() {
             $('.ui-icon', this).removeClass('ui-icon-triangle-1-e');
             $(this).next().slideDown(stretchOneSidebarBox);
         });
-}
-
-
-function fillSidebar() {
-    /* Basically only an alias to have a simpler name: fill up the sidebar by
-    streching  the appropriate box. */
-    stretchOneSidebarBox();
 }
 
 
