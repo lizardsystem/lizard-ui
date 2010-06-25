@@ -178,10 +178,48 @@ And a suitable apache config hint::
   Alias /static_media/ ${buildout:directory}/var/static/
 
 
+Usage
+-----
+
 You can mount lizard-ui's urls, but it contains only live examples.  So
 perhaps you should only mount it in debug mode under ``/ui``.  Handy, as it
-contains reasonably full documentation on how to use it.
+contains reasonably full documentation on how to use it, including available
+blocks and classes/IDs that you can use.
 
+The base layout is defined in ``realbase.html``.  You should however extend
+``lizard_ui/lizardbase.html`` and then override the blocks that you want.
+
+CSS and javascript should be added to the relevant blocks, but don't forget to
+call "block.super".  An example::
+
+  {% extends "lizard_ui/lizardbase.html" %}
+
+  {% block css %}
+  {{ block.super }}
+  <link type="text/css"
+        href="{{ STATIC_URL }}lizard_map/lizard_map.css"
+        media="screen, projection"
+        rel="stylesheet" />
+  {% endblock css %}
+
+  {% block javascript %}
+  {{ block.super }}
+  <script type="text/javascript"
+          src="{{ STATIC_URL }}openlayers/OpenLayers.js"></script>
+  <script type="text/javascript"
+          src="{{ STATIC_URL }}lizard_map/jquery.workspace.js"></script>
+  <script type="text/javascript"
+          src="{{ STATIC_URL }}lizard_map/lizard_map.js"></script>
+  {% endblock javascript %}
+
+  {% block content %}
+  <div id="map"></div>
+  {% endblock content %}
+
+A example of a common task: change the logo.  For that, make a
+``media/lizard_ui`` directory in your django application (or site) and place a
+``logo.png`` in it.  Django-staticfiles' mechanism will take your logo.png in
+preference to lizard-ui's.
 
 
 Development installation
