@@ -76,6 +76,7 @@ function fillScreen() {
     $("#sidebar").height(sidebarHeight);
     $("#collapser").height(sidebarHeight);
     $("#content").height(mainContentHeight);
+    $("#textual").height(mainContentHeight);
     $("#map").height(mainContentHeight);
 }
 
