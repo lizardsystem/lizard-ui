@@ -5,7 +5,12 @@ Changelog of lizard-ui
 1.4 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- We're now on the python package index, hurray!
+  http://pypi.python.org/pypi/lizard-ui
+
+- Updated package metadata.
+
+- Big README documentation update.
 
 
 1.3 (2010-06-23)

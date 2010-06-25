@@ -20,6 +20,10 @@ ROOT_URLCONF = 'lizard_ui.urls'
 # Note: the below settings are more elaborate than needed,
 # but we want to test django_compressor's compressing which
 # needs a media url and root and so.
+
+# Set COMPRESS to True if you want to test compression when
+# DEBUG == True.  (By default, COMPRESS is the opposite of
+# DEBUG).
 COMPRESS = False
 
 # SETTINGS_DIR allows media paths and so to be relative to

@@ -1,11 +1,187 @@
 lizard-ui
-==========================================
+=========
 
-Introduction
+Lizard-ui provides a basic `Django <http://djangoproject.com>`_ user
+interface, so a **base Django template** and some **css + javascript**.  We
+designed it at `Nelen & Schuurmans <http://www.nelen-schuurmans.nl>`_ for our
+geographical information websites (with water management information).
 
-Usage, etc.
 
-More details in src/lizard_ui/USAGE.txt .
+Choices, requirements, assumptions
+----------------------------------
+
+Lizard-ui is opinionated: it makes choices and prescribes (good!)
+technologies.
+
+- Included: the `blueprint css framework <http://www.blueprintcss.org/>`_.  It
+  resets css styles so that we've got a common base.  It fixes common IE
+  layout bugs.  It gives a basic typography that's quite pleasing.
+
+- Required: `django-staticfiles
+  <http://pypi.python.org/pypi/django-staticfiles>`_.  For a more verbose
+  description, see `Reinout's blog entry
+  <http://reinout.vanrees.org/weblog/2010/05/19/django-css-javascript-files.html>`_
+  (written with lizard-ui in mind).
+
+- Required: `django_compressor
+  <http://pypi.python.org/pypi/django_compressor>`_ for combining css/javascript
+  files in production.
+
+- Assumption: one screen, using the full width/height of the browser, without
+  scrolling.  Our main goal is showing a nice big map with a small header and
+  a sidebar.  You don't want to scroll a map.  It is of course possible to
+  have a scrollbar inside that main content area itself.
+
+- Assumption: javascript is available.  Hey, we're showing a map so you need
+  javascript.  So we liberally use javascript to get the UI right, for
+  instance by detecting and setting the main content area's width and height.
+
+- Included: jquery.  Yeah, it is pretty much the standard nowadays.  So we use
+  jquery where jquery can be used instead of doing it with generic javascript.
+
+- Included: both jqueryui and jquerytools.  Visual goodies.  Jquerytools for
+  the overlay and tabs, jqueryui for the rest (drag/drop and so).
+
+- Included: openlayers as map javascript library.  (Lizard-map, sooooon to be
+  released, contains our basic map interaction javascript and python code).
+
+
+License + licenses
+------------------
+
+Our own license is GPLv3.
+
+Lizard-ui ships with a couple of external css/javascript libraries.
+
+Blueprint
+  Modified MIT
+
+Jquery and jqueryui
+  Dual licensed under the MIT or GPL Version 2 licenses.  Includes Sizzle.js,
+  released under the MIT, BSD, and GPL Licenses.
+
+Jquerytools
+  No copyrights or licenses. Do what you like.
+
+Openlayers
+  Clear BSD license.
+
+Famfamfam icon set
+  CC attribution license.
+
+Treeview jquery plugin
+  MIT/GPL
+
+
+Django settings
+---------------
+
+Here's an excerpt of a ``settings.py`` you can use.  The media and static root
+directory setup assumes the use of buildout, but you can translate it to your
+own filesystem setup::
+
+  INSTALLED_APPS = [
+      'lizard_ui',
+      'compressor',
+      'staticfiles',
+      'django.contrib.admin',
+      'django.contrib.auth',
+      'django.contrib.contenttypes',
+      'django.contrib.sessions',
+      'django.contrib.sites',
+      ]
+
+  # Note: the below settings are more elaborate than needed,
+  # but we want to test django_compressor's compressing which
+  # needs a media url and root and so.
+
+  # Set COMPRESS to True if you want to test compression when
+  # DEBUG == True.  (By default, COMPRESS is the opposite of
+  # DEBUG).
+  COMPRESS = False
+
+  # SETTINGS_DIR allows media paths and so to be relative to
+  # this settings file instead of hardcoded to
+  # c:\only\on\my\computer.
+  SETTINGS_DIR = os.path.dirname(os.path.realpath(__file__))
+
+  # BUILDOUT_DIR is for access to the "surrounding" buildout,
+  # for instance for BUILDOUT_DIR/var/static files to give
+  # django-staticfiles a proper place to place all collected
+  # static files.
+  BUILDOUT_DIR = os.path.abspath(os.path.join(SETTINGS_DIR, '..'))
+
+  # Absolute path to the directory that holds user-uploaded
+  # media.
+  MEDIA_ROOT = os.path.join(BUILDOUT_DIR, 'var', 'media')
+  # Absolute path to the directory where django-staticfiles'
+  # "bin/django build_static" places all collected static
+  # files from all applications' /media directory.
+  STATIC_ROOT = os.path.join(BUILDOUT_DIR, 'var', 'static')
+
+  # URL that handles the media served from MEDIA_ROOT. Make
+  # sure to use a trailing slash if there is a path component
+  # (optional in other cases).
+  MEDIA_URL = '/media/'
+  # URL for the per-application /media static files collected
+  # by django-staticfiles.  Use it in templates like "{{
+  # MEDIA_URL }}mypackage/my.css".
+  STATIC_URL = '/static_media/'
+  # URL prefix for admin media -- CSS, JavaScript and
+  # images. Make sure to use a trailing slash.  Uses
+  # STATIC_URL as django-staticfiles nicely collects admin's
+  # static media into STATIC_ROOT/admin.
+  ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
+
+  # Storage engine to be used during compression
+  COMPRESS_STORAGE = "staticfiles.storage.StaticFileStorage"
+  # The URL that linked media will be read from and compressed
+  # media will be written to.
+  COMPRESS_URL = STATIC_URL
+  # The absolute file path that linked media will be read from
+  # and compressed media will be written to.
+  COMPRESS_ROOT = STATIC_ROOT
+
+
+  # Used for django-staticfiles
+  TEMPLATE_CONTEXT_PROCESSORS = (
+      # Default items.
+      "django.core.context_processors.auth",
+      "django.core.context_processors.debug",
+      "django.core.context_processors.i18n",
+      "django.core.context_processors.media",
+      # Needs to be added for django-staticfiles to allow you
+      # to use {{ STATIC_URL }}myapp/my.css in your templates.
+      'staticfiles.context_processors.static_url',
+      )
+
+And a suitable apache config hint::
+
+  <Location /static_media/>
+    # The css/javascript/image staticfiles are cached in the
+    # browser for a day.
+    ExpiresActive On
+    ExpiresDefault "access plus 1 day"
+  </Location>
+
+  <Location /static_media/CACHE/>
+    # django_compress's generated timestamp'ed files:
+    # cache forever
+    ExpiresActive On
+    ExpiresDefault "access plus 10 years"
+  </Location>
+
+  # Static files are hosted by apache itself.
+  # User-uploaded media: MEDIA_URL = '/media/'
+  Alias /media/ ${buildout:directory}/var/media/
+  # django-staticfiles: STATIC_URL = '/static_media/'
+  Alias /static_media/ ${buildout:directory}/var/static/
+
+
+You can mount lizard-ui's urls, but it contains only live examples.  So
+perhaps you should only mount it in debug mode under ``/ui``.  Handy, as it
+contains reasonably full documentation on how to use it.
+
 
 
 Development installation
