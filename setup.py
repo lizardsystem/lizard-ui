@@ -1,11 +1,10 @@
 from setuptools import setup
-import os.path
 
 version = '1.4dev'
 
 long_description = '\n\n'.join([
     open('README.txt').read(),
-    open(os.path.join('lizard_ui', 'USAGE.txt')).read(),
+    # open(os.path.join('lizard_ui', 'USAGE.txt')).read(),
     open('TODO.txt').read(),
     open('CREDITS.txt').read(),
     open('CHANGES.txt').read(),
@@ -25,7 +24,6 @@ setup(name='lizard-ui',
       version=version,
       description="Basic user interface for lizard websites",
       long_description=long_description,
-      # Get strings from http://www.python.org/pypi?%3Aaction=list_classifiers
       classifiers=['Programming Language :: Python',
                    'Framework :: Django',
                    ],
