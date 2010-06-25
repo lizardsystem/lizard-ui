@@ -1,16 +1,19 @@
 TODO
 ====
 
-- Document how to use this UI.
+- Document all of the available classes/IDs that you can use to get automatic
+  (javascript) behaviour.
+
+- Document the javascript code.
 
 - Strip out some/most of the applications in the testsettings.py as they're
   not really needed.
 
 - Add basic test that the example.html renders without errors.
 
+- Add tests for the javascript code.
+
 - Add mechanism for rendering a passed-in (or registered/configured) list of
   object_tabs and object_actions, including some nice formatting.
 
-- Add jquery and extjs javascript libraries.
-
-- Beautify the UI.
+- Add mechanism for breadcrumbs.
