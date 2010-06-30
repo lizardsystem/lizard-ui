@@ -1,6 +1,5 @@
 /* We use blueprint css.  The base font size (1em) is 12px, the line height is
    18px (1.5em).
-
 */
 
 /* Background on body instead of main div */
@@ -12,17 +11,21 @@ body
   overflow: hidden;
   }
 
+/* #page wraps everything, only for adding a margin l/b/r */
 #page
 { margin: 0 0.5em 0.5em 0.5em;
   }
 
+/* Blueprint's containing-everything container class.
+   We use the full width of the window instead of blueprint's
+   900-something px width. */
 .container
 { width: 100%;
   }
 
 /* We give the header a fixed height to make sure the javascript height
    calculation has some definitive number to work with.  This assumes a logo
-   of 48 pixels max in height (4em).  */
+   of 48 pixels max in height (a bit less than 4em).  */
 #header
 { width: 100%;
   height: 4em;
@@ -54,7 +57,9 @@ body
 /* TODO: similar to object-actions, perhaps combine them? */
 
 
-/* Horizontal alignment of sidebar, collapser and main content */
+/* Horizontal alignment of sidebar, collapser and main content.
+   Just like blueprint's columns, we float them all left.
+   The main column gets a real width from our javascript code. */
 #sidebar, #collapser, #main
 { float: left;
   }
@@ -90,6 +95,9 @@ body
 { width: 10em;  /* Just some figure, will be set via javascript. */
   }
 
+/* #content is the div that houses the main map or content.
+   Overflow is hidden so that scrollbars do not appear.
+   Use an inner #textual div to get some margin and a scrollbar.  */
 #content
 { overflow: hidden;
   background-color: white;
