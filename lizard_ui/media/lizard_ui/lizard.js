@@ -12,7 +12,7 @@ var hiddenStuffHeight, mainContentHeight, sidebarHeight, mainContentWidth,
 function reloadGraphs() {
     $('a.replace-with-image').each(
         function (index) {
-            var url, timestamp, width, height;
+            var url, timestamp, width, height, amp_or_questionmark;
             width = $(this).parent('.img-use-my-width').innerWidth();
             height = $(this).parent('.img-use-my-height').innerHeight();
             if (width === null) {
@@ -23,11 +23,17 @@ function reloadGraphs() {
             }
             $(this).hide();
             url = $(this).attr('href');
+            if (url.indexOf('?')) {
+                amp_or_questionmark = '&';
+            } else {
+                amp_or_questionmark = '?';
+            }
             // Remove a previous image that's already there.
             $('~ img', this).remove();
             timestamp = new Date().getTime();  // No cached images.
             $(this).after('<img src="' + url +
-                          '?width=' + width +
+                          amp_or_questionmark +
+                          'width=' + width +
                           '&height=' + height +
                           '&random=' + timestamp + '" ' +
                           'width="' + width + '" ' +
