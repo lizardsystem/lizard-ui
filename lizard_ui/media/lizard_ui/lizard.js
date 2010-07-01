@@ -10,8 +10,31 @@ var hiddenStuffHeight, mainContentHeight, sidebarHeight, mainContentWidth,
 
 
 function reloadGraphs() {
-    // Overridden in krw-waternet...
-    //loadCorrectlySizedImages();
+    $('a.replace-with-image').each(
+        function (index) {
+            var url, timestamp, width, height;
+            width = $(this).parent('.img-use-my-width').innerWidth();
+            height = $(this).parent('.img-use-my-height').innerHeight();
+            if (width == null) {
+                width = '';
+            }
+            if (height == null) {
+                height = '';
+            }
+            $(this).hide();
+            url = $(this).attr('href');
+            // Remove a previous image that's already there.
+            $('~ img', this).remove();
+            timestamp = new Date().getTime();  // No cached images.
+            $(this).after('<img src="' + url +
+                          '?width=' + width +
+                          '&height=' + height +
+                          '&random=' + timestamp + '" ' +
+                          'width="' + width + '" ' +
+                          'height="' + height + '" ' +
+                          '/>');
+        }
+    );
 }
 
 function calculateHiddenStuffHeight() {

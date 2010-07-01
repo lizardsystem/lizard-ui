@@ -16,6 +16,8 @@ urlpatterns = patterns(
      {'template': 'lizard_ui/example.html'}),
     (r'^textual/$', 'django.views.generic.simple.direct_to_template',
      {'template': 'lizard_ui/example-textual.html'}),
+    (r'^images/$', 'django.views.generic.simple.direct_to_template',
+     {'template': 'lizard_ui/example-images.html'}),
     (r'^tree/$', 'django.views.generic.simple.direct_to_template',
      {'template': 'lizard_ui/example_tree.html'}),
     (r'^vertical/$', 'django.views.generic.simple.direct_to_template',

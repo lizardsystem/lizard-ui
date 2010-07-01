@@ -1,0 +1,40 @@
+{% extends "lizard_ui/lizardbase.html" %}
+
+{% block title %}Image scaling{% endblock %}
+
+{% block content %}
+<div id="textual">
+  <h1>Automatic image scaling</h1>
+  <p>
+    Add an "a href" with class "replace-with-image" and it'll get replaced
+    with an image.  For example, the logo below.  Do a comparison between what
+    you get with "view source" and "firebug, that's the best way to see what
+    happens.  A width and height are added automatically, but they're empty by
+    default.
+  </p>
+  <div>
+    <a href="{{ STATIC_URL }}lizard_ui/logo.png"
+       class="replace-with-image">image</a>
+  </div>
+
+  <p>
+    If the "a href" has a <b>direct parent</b> with a "img-use-my-width" class
+    (and similar for height), that parent's height/width is used.  The below
+    div is 100px high and 400px wide.  Both a height and width parameter are
+    added to the image url <i>and</i> the with/height attributes on the img
+    tag are set.
+  </p>
+  <div style="height: 100px; width: 400px;"
+       class="img-use-my-width img-use-my-height">
+    <a href="{{ STATIC_URL }}lizard_ui/logo.png"
+       class="replace-with-image">image</a>
+  </div>
+
+  <p>
+    The image is always fresh, as we also add an always-new timestamp
+    parameter to the image's url.
+  </p>
+
+</div>
+
+{% endblock %}
