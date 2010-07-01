@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-1.5 (unreleased)
+1.5 (2010-07-01)
 ----------------
 
 - Added generic automatic image resizing (replacing a generic "a href" with an
