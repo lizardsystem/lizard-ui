@@ -211,6 +211,7 @@ $(window).resize(function () {
             fillScreen();
             divideVerticalSpaceEqually();
             stretchOneSidebarBox();
+            reloadGraphs();
         },
         600);
 });
@@ -225,4 +226,5 @@ $(document).ready(function () {
     setUpAccordion();
     setUpTree();
     stretchOneSidebarBox();
+    reloadGraphs();
 });
