@@ -5,6 +5,8 @@ Changelog of lizard-ui
 1.5 (unreleased)
 ----------------
 
+- Fixed resize timer by having a global variable for it.
+
 - Calculating hiddenStuffHeight (currently: only the date popup hidden div)
   only once: before it has been opened..  Fixes the bug that you'd get a large
   empty space at the bottom of the screen.
