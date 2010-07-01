@@ -15,10 +15,10 @@ function reloadGraphs() {
             var url, timestamp, width, height;
             width = $(this).parent('.img-use-my-width').innerWidth();
             height = $(this).parent('.img-use-my-height').innerHeight();
-            if (width == null) {
+            if (width === null) {
                 width = '';
             }
-            if (height == null) {
+            if (height === null) {
                 height = '';
             }
             $(this).hide();
