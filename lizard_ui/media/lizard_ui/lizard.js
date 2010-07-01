@@ -1,12 +1,12 @@
 /* Javascript functions for the lizard user interface */
 
-// jslint configuration
+// jslint configuration.  Don't put spaces before 'jslint' and 'global'.
 /*jslint browser: true */
 /*global $, OpenLayers, window */
 
-// Globals that we define
-var mainContentHeight, sidebarHeight, mainContentWidth, verticalItemHeight,
-    accordion;
+// Globals that we ourselves define.
+var hiddenStuffHeight, mainContentHeight, sidebarHeight, mainContentWidth,
+    verticalItemHeight, accordion;
 
 
 function reloadGraphs() {
@@ -14,9 +14,13 @@ function reloadGraphs() {
     //loadCorrectlySizedImages();
 }
 
+function calculateHiddenStuffHeight() {
+    // Calculate once.  If opened, the height isn't 5 but 208 or so...
+    hiddenStuffHeight = $("#ui-datepicker-div").outerHeight(true);
+}
 
 function stretchOneSidebarBox() {
-    /* Stretch out one sidebarbox so that the sidebar is completely filled */
+    /* Stretch out one sidebarbox so that the sidebar is completely filled. */
     var stillAvailable, includeMargin;
     $("#sidebar .sidebarbox-stretched").height('0');
     stillAvailable = $("#sidebar").innerHeight();
@@ -43,7 +47,7 @@ function fillScreen() {
 
     The resulting height is available as "mainContentHeight".  */
 
-    var jqueryBug, viewportHeight, bottomMargin, headerHeight,
+    var viewportHeight, bottomMargin, headerHeight,
         stuffAroundSidebar, footerHeight, menubarHeight,
         stuffAroundMainContent, mainAreaWidth, sidebarWidth, collapserWidth,
         mainDivWidth, viewportWidth;
@@ -57,9 +61,9 @@ function fillScreen() {
     // ^^^ 2px border for the content.
     $("#main").width(mainDivWidth);
     mainContentWidth = $("#content").innerWidth();
+
     // Height.
-    jqueryBug = $("#ui-datepicker-div").outerHeight(true);
-    viewportHeight = $(window).height() - jqueryBug;
+    viewportHeight = $(window).height() - hiddenStuffHeight;
     bottomMargin = $("#page").outerHeight(true) - $("#page").innerHeight();
     headerHeight = $("#header").outerHeight(true);
     stuffAroundSidebar = $("#sidebar").outerHeight(true) -
@@ -212,10 +216,13 @@ $(window).resize(function () {
 });
 
 
-$(document).ready(fillScreen);
-$(document).ready(divideVerticalSpaceEqually);
-$(document).ready(setUpCollapsibleSidebarBoxes);
-$(document).ready(setUpCollapsibleSidebar);
-$(document).ready(setUpAccordion);
-$(document).ready(setUpTree);
-$(document).ready(stretchOneSidebarBox);
+$(document).ready(function () {
+    calculateHiddenStuffHeight();
+    fillScreen();
+    divideVerticalSpaceEqually();
+    setUpCollapsibleSidebarBoxes();
+    setUpCollapsibleSidebar();
+    setUpAccordion();
+    setUpTree();
+    stretchOneSidebarBox();
+});

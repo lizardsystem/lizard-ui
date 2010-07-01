@@ -5,7 +5,9 @@ Changelog of lizard-ui
 1.5 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Calculating hiddenStuffHeight (currently: only the date popup hidden div)
+  only once: before it has been opened..  Fixes the bug that you'd get a large
+  empty space at the bottom of the screen.
 
 
 1.4.1 (2010-06-25)
