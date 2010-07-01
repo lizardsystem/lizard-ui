@@ -5,6 +5,10 @@ Changelog of lizard-ui
 1.5 (unreleased)
 ----------------
 
+- Added generic automatic image resizing (replacing a generic "a href" with an
+  image with the same src as the href and then figuring out the height/width
+  and passing that along as a GET parameter and as attributes on the img tag.
+
 - Fixed resize timer by having a global variable for it.
 
 - Calculating hiddenStuffHeight (currently: only the date popup hidden div)
