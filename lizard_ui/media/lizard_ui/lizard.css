@@ -2,7 +2,7 @@
    18px (1.5em).
 */
 
-/* Background on body instead of main div */
+/* Background on whole body instead of main div */
 body
 { background-image: url(background.png);
   background-repeat: repeat-x;
@@ -63,23 +63,37 @@ body
 #sidebar, #collapser, #main
 { float: left;
   }
-#sidebar
-{ overflow: auto;
-  background-color: white;
-  border: 1px solid #aaaaaa;
-  }
 .sidebar-open #sidebar
 { width: 25em;  /* 300/12 */
   }
 .sidebar-closed #sidebar
 { width: 0;
-  border: 0;
   }
 #collapser
 { width: 1em;  /* Icon is 5 px wide */
-  background-position: center center;
+  }
+#main
+{ width: 10em;  /* Just some figure, will be set via javascript. */
+  }
+
+/* Layout of sidebar, collapser and main content. */
+#sidebar
+{ overflow: auto;
+  background-color: white;
+  border: 1px solid #aaaaaa;
+  }
+.sidebar-closed #sidebar
+{ border: 0;
+  }
+#collapser
+{ background-position: center center;
   background-repeat: no-repeat;
   cursor: pointer;
+  }
+/* Feedback that not only the little triangle is clickable, but the
+   entire height of the collapser div. */
+#collapser:hover
+{ background-color: #f8f8f8;
   }
 .sidebar-open #collapser
 { background-image: url(arrow_collapse.png);
@@ -87,12 +101,27 @@ body
 .sidebar-closed #collapser
 { background-image: url(arrow_expand.png);
   }
-#collapser:hover
-{ /* Feedback that not only the little triangle is clickable. */
-   background-color: #f8f8f8;
+
+/* Inside #main you've got a #menubar, #content and #footer.  #menubar and
+   #footer have a border on all sides, #content only left/right.  */
+#menubar,
+#footer
+{ border: 1px solid #aaaaaa;
   }
-#main
-{ width: 10em;  /* Just some figure, will be set via javascript. */
+#content
+{ border-width: 0 1px;
+  border-style: solid;
+  border-color: #aaaaaa;
+  }
+
+/* The horizontal menubar needs a bit of padding top/bottom and a background.
+   The desired height is 24px.  This is achieved with line-height.  */
+#menubar
+{ background-color: #eeeeee;
+  background-image: url(bar_background.png);
+  background-repeat: repeat-x;
+  line-height: 2em;
+  width: 100%;
   }
 
 /* #content is the div that houses the main map or content.
@@ -102,23 +131,21 @@ body
 { overflow: hidden;
   background-color: white;
   width: 100%;
-  border-width: 0 1px;
-  border-style: solid;
-  border-color: #aaaaaa;
   }
-
-/* The horizontal bar needs a bit of padding top/bottom and a background.
-   The desired height is 24px.  This is achieved with line-height.  */
-#menubar
-{ background-color: #eeeeee;
-  background-image: url(bar_background.png);
+/* Footer content centered and with non-obtrusive links. */
+#footer
+{ text-align: center;
+  background-image: url(small_bar_background.png);
   background-repeat: repeat-x;
-  line-height: 2em;
+  color: #666;
   width: 100%;
-  border: 1px solid #aaaaaa;
+  }
+#footer a
+{ text-decoration: none;
+  color: #666;
   }
 
-
+/* Object actions (like "print") are floated right. */
 #object-actions
 { text-align: right;
   float: right;
@@ -129,11 +156,12 @@ body
   }
 
 /* The object tabs and portal tabs are list items: show them nicely next to
-   each other */
+   each other.  And inline so they don't take up extra space. */
 #above-content ul,
 #portal-tabs ul
 { margin: 0;
   padding-left: 0;
+  display: inline;
   }
 #above-content li,
 #portal-tabs li
@@ -156,32 +184,13 @@ body
   background-color: #aaa;
   }
 
-/* Footer content centered */
-#footer
-{ text-align: center;
-  background-image: url(small_bar_background.png);
-  background-repeat: repeat-x;
-  color: #666;
-  border: 1px solid #aaaaaa;
-  width: 100%;
-  }
-#footer a
-{ text-decoration: none;
-  color: #666;
-  }
-
-/* The sidebar and body have some margins */
-
-#bd
-{ margin-top: 0.25em;
-  margin-bottom: 0.25em;
-  }
-
+/* The map has the full height/width. */
 #map
 { height: 100%;
   width: 100%;
   }
 
+/* Breadcrums nest themselves next to the logo. */
 #breadcrumbs
 { float: left;
   padding-left: 8em;  /* 25 sidebar - 17 logo */
@@ -189,8 +198,7 @@ body
   color: #666;
   }
 
-/* Give vertical items in #evenly-spaced-vertical a thick bottom border.
-   And align the */
+/* Give vertical items in #evenly-spaced-vertical a thick bottom border. */
 #evenly-spaced-vertical .vertical-item
 { border-bottom: 1px solid #eeeeee;
   }
@@ -199,7 +207,6 @@ body
 { vertical-align: bottom;
   }
 
-
 /* For giving regular body text some space to the left.
    And... a scrollbar when needed. */
 #textual
@@ -207,20 +214,19 @@ body
   overflow: auto;
   }
 
-
 /* For the time being, float collapsible icon. */
 .collapsible .ui-icon
 { float: left;
   }
 
-
 /* Sidebar styling */
 #sidebar .sidebarbox
 { padding-bottom: 1px;
-  /* 1px bottom padding to prevent margin collapse which can wreak the layout
-     when the bottommost item has a margin. */
+  /* 1px bottom padding hack to prevent margin collapse which can wreak the
+     layout when the bottommost item has a margin. */
   }
 
+/* Give non-header items a bit of left/right room in the sidebar. */
 #sidebar .sidebarbox > div,
 #sidebar .sidebarbox > img,
 #sidebar .sidebarbox > p,
@@ -233,11 +239,13 @@ body
   /* Note: no ie6, so the '>' works fine. */
   }
 
+/* ... but with an override for fews-unblobbed that should be moved there. */
 #sidebar .sidebarbox > div#filter-parameter-accordeon
 { margin-left: 0em;
   margin-right: 0em;
   }
 
+/* Nice background for h2/h3 headers in the sidebar. */
 #sidebar .sidebarbox h2,
 #sidebar .sidebarbox h3
 { background-image: url(bar_background.png);
@@ -256,53 +264,53 @@ body
   color: #444;
   }
 
+/* Topmost sidebarbox header should not have a border at the top. */
 #sidebar div:first-child h2
-{ /* Topmost header should not have a border at the top */
-  border-top-width: 0;
-  }
-
-#sidebar .sidebarheader
-{ /* BBB */
-  display: none;
+{ border-top-width: 0;
   }
 
 #sidebar .selected
-{ background-color: lightyellow;
+{ background-color: #ffffe0;
   }
 
 .sidebarbox-stretched
 { overflow: auto;
   }
 
+/* Currently: only the trash. */
 .sidebarbox-actions
 { background-color: #f9f9f9;
   text-align: center;
   }
 
+/* Floating icons next to a h2/h3 header. */
+/* TODO: they drop a line in IE: perhaps line height instead of margins? */
 .sidebarbox-action-icon
 { float: right;
+  display: block;
   cursor: pointer;
-  margin-top: 4px;
-  margin-right: 2px;
+  font-weight: normal;
+  margin-top: 3px;
   /* Right margin for a-href icons bug */
+  margin-right: 2px;
   }
 
+/* Feedback when hovering over droppable. */
 .drophover
-{ /* For hovering over droppable */
-  background-color: #ffffcc;
+{ background-color: #ffffcc;
 }
 
+/* Empty space created when sorting: indicates current drop location. */
 .ui-sortable-placeholder
-{ /* Empty space created when sorting: indicates current drop location. */
-  border: 1px dotted black;
+{ border: 1px dotted black;
   height: 1.5em;
   }
+/* Element being dragged around */
 .ui-sortable-helper
-{ /* Element being dragged around */
-  border: 1px dotted black;
+{ border: 1px dotted black;
  }
 
-/* UL *without* bullets and margin. */
+/* UL *without* bullets and margin.  Mostly useful in sidebar lists. */
 ul.without-bullets
 { padding-left: 0;
   }
@@ -310,10 +318,10 @@ ul.without-bullets li
 { list-style: none;
   }
 
-.workspace_item img
-{ /* 16px big icons: start them right at the bottom instead of
+/* 16px big icons: start them right at the bottom instead of
      at the baseline. */
-  vertical-align: bottom;
+.workspace_item img
+{ vertical-align: bottom;
   width: 16px;
   height: 16px
   }
@@ -337,6 +345,7 @@ a.title
 { text-decoration: none;
   }
 
+/* Nice "we're busy" animated gif: just add a div with class "loading". */
 div.loading
 { background-position: center center;
   background-repeat: no-repeat;
@@ -345,7 +354,7 @@ div.loading
   width: 100%;
   }
 
+/* Change pointer so that it is clear that something isn't working yet. */
 .notworking
-{ /* Change pointer so that it is clear that something isn't working yet. */
-  cursor: not-allowed;
+{ cursor: not-allowed;
   }
