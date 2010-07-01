@@ -6,7 +6,7 @@
 
 // Globals that we ourselves define.
 var hiddenStuffHeight, mainContentHeight, sidebarHeight, mainContentWidth,
-    verticalItemHeight, accordion;
+    verticalItemHeight, accordion, resizeTimer;
 
 
 function reloadGraphs() {
@@ -202,7 +202,6 @@ function setUpScreen() {
 */
 $(window).resize(function () {
     // Don't re-calculate 50 times while resizing, only when finished.
-    var resizeTimer;
     if (resizeTimer) {
         clearTimeout(resizeTimer);
     }
@@ -213,7 +212,7 @@ $(window).resize(function () {
             stretchOneSidebarBox();
             reloadGraphs();
         },
-        600);
+        300);
 });
 
 
