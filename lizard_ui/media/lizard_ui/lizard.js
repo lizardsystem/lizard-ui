@@ -33,12 +33,16 @@ function reloadGraphs() {
             height = $(this).parent('.img-use-my-size').innerHeight();
             if (width === null) {
                 width = '';
+                height = '';
             } else {
+                if (width < (height / 10)) {
+                    width = 0.5 * height;
+                }
+                if (height < (width / 10)) {
+                    height = 0.5 * width;
+                }
                 // Prevent a horizontal scrollbar in any case.
                 width = width - scrollbarWidth();
-            }
-            if (height === null) {
-                height = '';
             }
             $(this).hide();
             url = $(this).attr('href');
