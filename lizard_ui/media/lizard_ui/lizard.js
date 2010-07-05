@@ -9,6 +9,22 @@ var hiddenStuffHeight, mainContentHeight, sidebarHeight, mainContentWidth,
     verticalItemHeight, accordion, resizeTimer;
 
 
+function scrollbarWidth() {
+    // Copied from http://jdsharp.us/jQuery/minute/calculate-scrollbar-width.php
+    var div, w1, w2;
+    div = $('<div style="width:50px;height:50px;overflow:hidden;' +
+            'position:absolute;top:-200px;left:-200px;">' +
+            '<div style="height:100px;"></div>');
+    // Append our div, do our calculation and then remove it
+    $('body').append(div);
+    w1 = $('div', div).innerWidth();
+    div.css('overflow-y', 'scroll');
+    w2 = $('div', div).innerWidth();
+    $(div).remove();
+    return (w1 - w2);
+}
+
+
 function reloadGraphs() {
     $('a.replace-with-image').each(
         function (index) {
@@ -17,6 +33,9 @@ function reloadGraphs() {
             height = $(this).parent('.img-use-my-size').innerHeight();
             if (width === null) {
                 width = '';
+            } else {
+                // Prevent a horizontal scrollbar in any case.
+                width = width - scrollbarWidth();
             }
             if (height === null) {
                 height = '';
