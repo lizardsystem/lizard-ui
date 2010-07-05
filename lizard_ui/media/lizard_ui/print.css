@@ -1,0 +1,15 @@
+/* Print stylesheet for lizard websites.  This is in addition to blueprint's
+   own print css stylesheet. */
+
+#header,
+#sidebar,
+#collapser,
+#footer
+{ display: none;
+  }
+
+#content
+{ width: 100%;
+  margin: 0;
+  overflow: none;
+  }

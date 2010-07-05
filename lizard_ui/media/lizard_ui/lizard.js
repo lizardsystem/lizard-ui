@@ -25,7 +25,7 @@ function scrollbarWidth() {
 }
 
 
-function reloadGraphs() {
+function reloadGraphs(max_image_width) {
     $('a.replace-with-image').each(
         function (index) {
             var url, timestamp, width, height, amp_or_questionmark;
@@ -35,6 +35,9 @@ function reloadGraphs() {
                 width = '';
                 height = '';
             } else {
+                if (width > max_image_width) {
+                    width = max_image_width
+                }
                 if (width < (height / 10)) {
                     width = 0.5 * height;
                 }
@@ -55,8 +58,7 @@ function reloadGraphs() {
             $('~ img', this).remove();
             timestamp = new Date().getTime();  // No cached images.
             $(this).after('<img src="' + url +
-                          amp_or_questionmark +
-                          'width=' + width +
+                          amp_or_questionmark + 'width=' + width +
                           '&height=' + height +
                           '&random=' + timestamp + '" ' +
                           'width="' + width + '" ' +
@@ -65,6 +67,16 @@ function reloadGraphs() {
         }
     );
 }
+
+
+function printPage() {
+    var max_image_width;
+    max_image_width = 750;
+    // Make images smaller
+    reloadGraphs(max_image_width);
+    setTimeout(window.print, 500);
+}
+
 
 function calculateHiddenStuffHeight() {
     // Calculate once.  If opened, the height isn't 5 but 208 or so...
