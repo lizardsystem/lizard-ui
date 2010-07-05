@@ -18,14 +18,14 @@
   </div>
 
   <p>
-    If the "a href" has a <b>direct parent</b> with a "img-use-my-width" class
-    (and similar for height), that parent's height/width is used.  The below
+    If the "a href" has a <b>direct parent</b> with a "img-use-my-size" class,
+    that parent's height/width is used.  The below
     div is 100px high and 400px wide.  Both a height and width parameter are
     added to the image url <i>and</i> the with/height attributes on the img
     tag are set.
   </p>
   <div style="height: 100px; width: 400px;"
-       class="img-use-my-width img-use-my-height">
+       class="img-use-my-width img-use-my-size">
     <a href="{{ STATIC_URL }}lizard_ui/logo.png"
        class="replace-with-image">image</a>
   </div>

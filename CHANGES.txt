@@ -5,7 +5,8 @@ Changelog of lizard-ui
 1.6 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Image replacement looks at "use-my-size" class instead of
+  use-my-width/height.
 
 
 1.5 (2010-07-01)
