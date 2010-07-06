@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-1.6 (unreleased)
+1.6 (2010-07-06)
 ----------------
 
 - Image replacement looks at "use-my-size" class instead of
