@@ -8,6 +8,13 @@ Changelog of lizard-ui
 - Image replacement looks at "use-my-size" class instead of
   use-my-width/height.
 
+- Added javascript "printPage()" function that prints a webpage that at least
+  doesn't flow over the right hand side of the physical paper page.  Printing
+  uses a combination of a custom print stylesheet and blueprint's print
+  stylesheet.  Printing definitively isn't perfect yet, but at least usable.
+  Note: you should refresh or resize the page after printing to get the full
+  width again.
+
 
 1.5 (2010-07-01)
 ----------------
