@@ -38,10 +38,10 @@ function reloadGraphs(max_image_width) {
                 if (width > max_image_width) {
                     width = max_image_width
                 }
-                if (width < (height / 10)) {
+                if (width < 10) {
                     width = 0.5 * height;
                 }
-                if (height < (width / 10)) {
+                if (height < 10) {
                     height = 0.5 * width;
                 }
                 // Prevent a horizontal scrollbar in any case.
