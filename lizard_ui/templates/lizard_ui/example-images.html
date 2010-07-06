@@ -21,8 +21,11 @@
     If the "a href" has a <b>direct parent</b> with a "img-use-my-size" class,
     that parent's height/width is used.  The below
     div is 100px high and 400px wide.  Both a height and width parameter are
-    added to the image url <i>and</i> the with/height attributes on the img
-    tag are set.
+    added to the image url.  The example only uses a static image, so it
+    doesn't react to the height/width parameters.  You can check with firebug,
+    though, that the parameters have been set.  (Note that we don't set the
+    height/width attributes on the image as we cannot fully control
+    matplotlib's generated images to the last pixel, strangely).
   </p>
   <div style="height: 100px; width: 400px;"
        class="img-use-my-width img-use-my-size">

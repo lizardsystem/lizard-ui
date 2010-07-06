@@ -61,8 +61,6 @@ function reloadGraphs(max_image_width) {
                           amp_or_questionmark + 'width=' + width +
                           '&height=' + height +
                           '&random=' + timestamp + '" ' +
-                          'width="' + width + '" ' +
-                          'height="' + height + '" ' +
                           '/>');
         }
     );
@@ -71,11 +69,14 @@ function reloadGraphs(max_image_width) {
 
 function printPage() {
     var max_image_width;
-    max_image_width = 750;
+    max_image_width = 850;
+    // Resize the main window to get a smaller map.
+    if ($("#main").width() > max_image_width) {
+        $("#main").width(max_image_width);
+    }
     // Make images smaller
     reloadGraphs(max_image_width);
-    // TODO: perhaps resize the main window to get a smaller map.
-    setTimeout(window.print, 700);
+    setTimeout(window.print, 500);
     // TODO: add link you can click to restore the normal view.
 }
 
