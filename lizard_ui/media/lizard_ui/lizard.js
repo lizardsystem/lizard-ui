@@ -74,7 +74,9 @@ function printPage() {
     max_image_width = 750;
     // Make images smaller
     reloadGraphs(max_image_width);
-    setTimeout(window.print, 500);
+    // TODO: perhaps resize the main window to get a smaller map.
+    setTimeout(window.print, 700);
+    // TODO: add link you can click to restore the normal view.
 }
 
 
