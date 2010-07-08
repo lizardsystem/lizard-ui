@@ -358,3 +358,30 @@ div.loading
 .notworking
 { cursor: not-allowed;
   }
+
+/* For forms, currently used by lizard-sticky */
+ol.forms label 
+{ display:block;
+  line-height:1.5em;
+  padding-right:1%;
+  text-align:left;
+  width: 20%;
+  }
+
+ol.forms label.alert
+{ 
+  color: red;    
+}
+
+ol.forms li 
+{ line-height:1.5em;
+  margin-bottom:0.5em;
+  }
+
+ol.forms 
+{ list-style:none outside none;
+  }
+
+ol.forms input 
+{ width:100%;
+}
