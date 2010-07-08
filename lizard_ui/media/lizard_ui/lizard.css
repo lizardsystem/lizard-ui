@@ -385,3 +385,8 @@ ol.forms
 ol.forms input 
 { width:100%;
 }
+
+/* For list items in summary screen */
+ul, ol 
+{ padding-left: 1em;
+  }
