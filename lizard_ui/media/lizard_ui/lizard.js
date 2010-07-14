@@ -28,7 +28,7 @@ function scrollbarWidth() {
 function reloadGraphs(max_image_width) {
     $('a.replace-with-image').each(
         function (index) {
-            var url, timestamp, width, height, amp_or_questionmark;
+            var url, url_click, timestamp, width, height, amp_or_questionmark, html_img;
             width = $(this).parent('.img-use-my-size').innerWidth();
             height = $(this).parent('.img-use-my-size').innerHeight();
             if (width === null) {
@@ -54,14 +54,20 @@ function reloadGraphs(max_image_width) {
             } else {
                 amp_or_questionmark = '&';
             }
+            url_click = $(this).attr('data-href-click');
             // Remove a previous image that's already there.
             $('~ img', this).remove();
             timestamp = new Date().getTime();  // No cached images.
-            $(this).after('<img src="' + url +
-                          amp_or_questionmark + 'width=' + width +
-                          '&height=' + height +
-                          '&random=' + timestamp + '" ' +
-                          '/>');
+            html_img = '<img src="' + url +
+                amp_or_questionmark + 'width=' + width +
+                '&height=' + height +
+                '&random=' + timestamp + '" ' +
+                '/>'
+            // place <a href></a> around image
+            if (url_click !== undefined) {
+                html_img = '<a href="' + url_click + '">' + html_img + '</a>';
+            }
+            $(this).after(html_img);
         }
     );
 }
