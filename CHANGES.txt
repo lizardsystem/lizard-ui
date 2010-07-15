@@ -5,7 +5,10 @@ Changelog of lizard-ui
 1.7 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Make "replace-with-image" clickable by using "data-href-click"
+  property.
+- Add ol.forms css.
+
 
 
 1.6 (2010-07-06)
