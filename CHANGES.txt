@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-1.7 (unreleased)
+1.7 (2010-07-15)
 ----------------
 
 - Make "replace-with-image" clickable by using "data-href-click"
