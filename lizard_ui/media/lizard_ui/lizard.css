@@ -330,6 +330,13 @@ ul.without-bullets li
 { min-height: 6em;
   }
 
+/* Snippet lists can be long. Limit is. Style below is not working correctly yet.
+ul.snippet-list
+{ height: 100px;
+  overflow: auto;
+  }
+*/
+
 /* Filetree tweaks */
 .filetree span.folder,
 .filetree span.file
@@ -360,7 +367,7 @@ div.loading
   }
 
 /* For forms, currently used by lizard-sticky */
-ol.forms label 
+ol.forms label
 { display:block;
   line-height:1.5em;
   padding-right:1%;
@@ -369,24 +376,24 @@ ol.forms label
   }
 
 ol.forms label.alert
-{ 
-  color: red;    
+{
+  color: red;
 }
 
-ol.forms li 
+ol.forms li
 { line-height:1.5em;
   margin-bottom:0.5em;
   }
 
-ol.forms 
+ol.forms
 { list-style:none outside none;
   }
 
-ol.forms input 
+ol.forms input
 { width:100%;
 }
 
 /* For list items in summary screen */
-ul, ol 
+ul, ol
 { padding-left: 1em;
   }
