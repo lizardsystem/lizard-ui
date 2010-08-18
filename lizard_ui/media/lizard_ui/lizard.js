@@ -36,7 +36,7 @@ function reloadGraphs(max_image_width) {
                 height = '';
             } else {
                 if (width > max_image_width) {
-                    width = max_image_width
+                    width = max_image_width;
                 }
                 if (width < 10) {
                     width = 0.5 * height;
@@ -62,7 +62,7 @@ function reloadGraphs(max_image_width) {
                 amp_or_questionmark + 'width=' + width +
                 '&height=' + height +
                 '&random=' + timestamp + '" ' +
-                '/>'
+                '/>';
             // place <a href></a> around image
             if (url_click !== undefined) {
                 html_img = '<a href="' + url_click + '">' + html_img + '</a>';
