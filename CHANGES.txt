@@ -5,7 +5,7 @@ Changelog of lizard-ui
 1.8 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Javascript syntax fix: added two semicolons and removed another.
 
 
 1.7 (2010-07-15)
@@ -13,8 +13,8 @@ Changelog of lizard-ui
 
 - Make "replace-with-image" clickable by using "data-href-click"
   property.
-- Add ol.forms css.
 
+- Add ol.forms css.
 
 
 1.6 (2010-07-06)
