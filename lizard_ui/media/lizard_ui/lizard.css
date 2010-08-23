@@ -211,6 +211,7 @@ body
    And... a scrollbar when needed. */
 #textual
 { padding-left: 1em;
+  padding-right: 1em;
   overflow: auto;
   }
 
@@ -397,3 +398,30 @@ ol.forms input
 ul, ol
 { padding-left: 1em;
   }
+
+
+/* Tables */
+table.generic-table
+{ border-collapse: collapse;
+  }
+
+table.generic-table,
+table.generic-table th,
+table.generic-table td
+{ border: 1px solid lightgrey;
+  }
+
+table.generic-table thead th
+{ background-color: #f5f4f5;
+  }
+
+table.generic-table .number
+{ /* Number cells align right. */
+  text-align: right;
+  }
+
+table.generic-table .button
+{ /* Cells with some clickable image align in the center. */
+  text-align: center;
+  }
+
