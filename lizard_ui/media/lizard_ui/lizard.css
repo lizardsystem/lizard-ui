@@ -298,8 +298,11 @@ body
 
 /* Feedback when hovering over droppable. */
 .drophover
-{ background-color: #ffffcc;
-}
+{ background-color: yellow ! important;
+  }
+.dropactive
+{ background-color: lightyellow;
+  }
 
 /* Empty space created when sorting: indicates current drop location. */
 .ui-sortable-placeholder
