@@ -1,7 +1,9 @@
 from django.contrib.auth import authenticate
 from django.contrib.auth import login
+from django.contrib.auth import logout
 from django.http import HttpResponse
 import simplejson
+
 
 def simple_login(request):
     """
@@ -17,3 +19,11 @@ def simple_login(request):
             login(request, user)
             success = True
     return HttpResponse(simplejson.dumps(success))
+
+
+def simple_logout(request):
+    """
+    The simplest logout script possible, call this from a javascript using GET or POST.
+    """
+    logout(request)
+    return HttpResponse("")

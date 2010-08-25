@@ -12,7 +12,7 @@ urlpatterns = patterns(
         'lizard_ui.views.simple_login',
         name='lizard_ui.login'),
     url(r'^accounts/logout/$',
-        'django.contrib.auth.views.logout',
+        'lizard_ui.views.simple_logout',
         name='lizard_ui.logout'),
     )
 

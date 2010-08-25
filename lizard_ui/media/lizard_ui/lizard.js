@@ -285,6 +285,16 @@ function setUpLogin() {
                 }
             });
     });
+    $("#logout-button").click(function () {
+        var url;
+        url = $(this).attr("data-url");
+        $.post(
+            url,
+            {},
+            function (data) {
+                window.location.reload();
+            });
+    });
 }
 
 /* sets up the auto resize sidebar and screen
