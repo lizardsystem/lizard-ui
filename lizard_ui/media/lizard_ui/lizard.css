@@ -301,7 +301,7 @@ body
 { background-color: yellow ! important;
   }
 .dropactive
-{ background-color: lightyellow;
+{ background-color: lightblue;
   }
 
 /* Empty space created when sorting: indicates current drop location. */
