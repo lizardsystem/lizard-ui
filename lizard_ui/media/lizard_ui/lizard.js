@@ -92,6 +92,7 @@ function calculateHiddenStuffHeight() {
     hiddenStuffHeight = $("#ui-datepicker-div").outerHeight(true);
 }
 
+
 function stretchOneSidebarBox() {
     /* Stretch out one sidebarbox so that the sidebar is completely filled. */
     var stillAvailable, includeMargin;
@@ -257,6 +258,35 @@ function setUpTree() {
 }
 
 
+/* Turn all objects with class "popup-trigger" into jquery overlay triggers. */
+function setUpOverlays() {
+    $(".popup-trigger").each(function () {
+        $(this).overlay();
+    });
+}
+
+/* Make the "login" button post the login request and react on response */
+function setUpLogin() {
+    $("#login-button").click(function () {
+        var url, $form;
+        $form = $(this).parents("form");
+        url = $form.attr("data-url");
+        $.post(
+            url,
+            $form.serialize(),
+            function (data) {
+                if (data == "true") {
+                    // Login successful.
+                    window.location.reload();
+                } else {
+                    // Login unsuccessful.
+                    $("#login-form").find(".close").click();
+                    $("#wrong-login").overlay({load: true });
+                }
+            });
+    });
+}
+
 /* sets up the auto resize sidebar and screen
 
    use this function when altering sidebar without reloading the page
@@ -299,4 +329,6 @@ $(document).ready(function () {
     setUpTree();
     stretchOneSidebarBox();
     reloadGraphs();
+    setUpOverlays();
+    setUpLogin();
 });
