@@ -432,6 +432,10 @@ table.generic-table .button
   text-align: center;
   }
 
+.popup-trigger
+{ cursor: pointer;
+  }
+
 /* Generic overlays */
 /* TODO: remove different variations on popups */
 
