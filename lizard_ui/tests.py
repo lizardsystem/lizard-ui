@@ -1,16 +1,12 @@
-import doctest
+from django.test import TestCase
 
 
-def suite():
-    """Return test suite
+class TestHomepage(TestCase):
 
-    This method is automatically called by django's test mechanism.
+    def test_loginpage(self):
+        # No parameters.
+        self.assertRaises(
+            KeyError,  #MultiValueDictKeyError
+            self.client.get,
+            '/accounts/login/')
 
-    """
-    return doctest.DocFileSuite(
-        'USAGE.txt',
-        #'TODO_several_more_tests.txt',
-        module_relative=True,
-        optionflags=(doctest.NORMALIZE_WHITESPACE|
-                     doctest.ELLIPSIS|
-                     doctest.REPORT_NDIFF))

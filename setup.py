@@ -11,10 +11,11 @@ long_description = '\n\n'.join([
     ])
 
 install_requires = [
+    'BeautifulSoup',
     'Django',
+    'django-nose',
     'django-staticfiles',
     'django_compressor',  # Yes, underscore.
-    'BeautifulSoup',
     ],
 
 tests_require = [
