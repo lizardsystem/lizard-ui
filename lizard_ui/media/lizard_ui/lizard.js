@@ -275,9 +275,9 @@ function setUpOverlays() {
 
 /* Make the "login" button post the login request and react on response */
 function setUpLogin() {
-    $("#login-button").click(function () {
+    $("#popup-login-form").submit(function () {
         var url, $form;
-        $form = $(this).parents("form");
+        $form = $(this);
         url = $form.attr("data-url");
         $.post(
             url,
@@ -292,6 +292,7 @@ function setUpLogin() {
                     $("#wrong-login").overlay({load: true });
                 }
             });
+        return false;  // Prevents propagation to original form submit.
     });
     $("#logout-button").click(function () {
         var url;

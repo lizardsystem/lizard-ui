@@ -7,7 +7,8 @@ Ingelogd als {{ user }}.
   <h1>Log in</h1>
   <div>
     <form data-url="{% url lizard_ui.login %}"
-          method="post">
+          method="post"
+          id="popup-login-form">
       {% csrf_token %}
       <div>
         <label>Naam</label>
@@ -21,7 +22,12 @@ Ingelogd als {{ user }}.
                name="password"
                tabindex="2" />
       </div>
-      <p><input id="login-button" type="button" value="Log in" /></p>
+      <p>
+        <input id="login-button"
+               type="submit"
+               tabindex="3"
+               value="Log in" />
+      </p>
     </form>
   </div>
 </div>
