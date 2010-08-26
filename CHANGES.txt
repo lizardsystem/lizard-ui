@@ -5,7 +5,8 @@ Changelog of lizard-ui
 1.11 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Styled the login form including proper "enter" behaviour and
+  first-field-gets-focus handling.
 
 
 1.10 (2010-08-26)
