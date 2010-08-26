@@ -5,7 +5,12 @@ Changelog of lizard-ui
 1.9 (unreleased)
 ----------------
 
-- Moved some css styling to lizard-ui.
+- Moved some css styling from lizard-map to lizard-ui.
+
+- Added initial login support + forms.  You need to add lizard-ui's urls.py to
+  yours if you want to use it.
+
+- Better drag/drop visual feedback.
 
 
 1.8 (2010-08-18)
