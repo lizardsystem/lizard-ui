@@ -18,6 +18,8 @@ INSTALLED_APPS = [
     ]
 ROOT_URLCONF = 'lizard_ui.urls'
 
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+
 # Note: the below settings are more elaborate than needed,
 # but we want to test django_compressor's compressing which
 # needs a media url and root and so.
