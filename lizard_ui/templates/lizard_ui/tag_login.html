@@ -4,27 +4,32 @@ Ingelogd als {{ user }}.
 {% else %}
 <a class="popup-trigger ss_sprite ss_user" rel="#login-form">Log in</a>
 <div class="popup noprint" id="login-form">
-  <h1>Login</h1>
+  <h1>Log in</h1>
   <div>
     <form data-url="{% url lizard_ui.login %}"
           method="post">
       {% csrf_token %}
       <div>
         <label>Naam</label>
-        <input type="text" name="username" />
+        <input type="text"
+               name="username"
+               tabindex="1"/>
       </div>
       <div>
         <label>Wachtwoord</label>
-        <input type="password" name="password" />
+        <input type="password"
+               name="password"
+               tabindex="2" />
       </div>
-      <p><input id="login-button" type="button" value="Login" /></p>
+      <p><input id="login-button" type="button" value="Log in" /></p>
     </form>
   </div>
 </div>
 <div class="popup noprint" id="wrong-login">
   <h1>Fout</h1>
   <div>
-    Logingegevens zijn onjuist, probeer het nogmaals of contacteer de beheerder.
+    Inloggegevens zijn onjuist, probeer het nogmaals of neem contact op met de
+    beheerder.
   </div>
   <form action="">
     <input type="submit" value="Ok" />

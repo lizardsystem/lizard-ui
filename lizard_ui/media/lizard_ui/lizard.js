@@ -261,7 +261,15 @@ function setUpTree() {
 /* Turn all objects with class "popup-trigger" into jquery overlay triggers. */
 function setUpOverlays() {
     $(".popup-trigger").each(function () {
-        $(this).overlay();
+        $(this).overlay({
+            onLoad: function (event) {
+                var first_field;
+                first_field = $("input:visible:enabled:first", this.getOverlay()).get(0);
+                if (first_field) {
+                    first_field.focus();
+                }
+            }
+        });
     });
 }
 
