@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-1.11 (unreleased)
+1.11 (2010-08-26)
 -----------------
 
 - Styled the login form including proper "enter" behaviour and
