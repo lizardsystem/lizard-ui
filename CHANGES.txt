@@ -2,8 +2,8 @@ Changelog of lizard-ui
 ======================
 
 
-1.9 (unreleased)
-----------------
+1.10 (2010-08-26)
+-----------------
 
 - Moved some css styling from lizard-map to lizard-ui.
 
