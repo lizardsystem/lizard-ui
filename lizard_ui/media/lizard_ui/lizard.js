@@ -283,7 +283,7 @@ function setUpLogin() {
             url,
             $form.serialize(),
             function (data) {
-                if (data == "true") {
+                if (data === "true") {
                     // Login successful.
                     window.location.reload();
                 } else {
