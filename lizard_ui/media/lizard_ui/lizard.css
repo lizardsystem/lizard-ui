@@ -398,10 +398,14 @@ ol.forms input
 }
 
 /* For list items in summary screen */
+/* No, no, no: no overly generic ul/ol overriding just for one screen!
+   Use a more specific one (like "#summary ul").
+
 ul, ol
 { padding-left: 1em;
   }
 
+*/
 
 /* Tables */
 table.generic-table
@@ -456,3 +460,15 @@ table.generic-table .button
   -moz-box-shadow:0 0 40px 5px black;
   -webkit-box-shadow: 0 0 40px black;
 }
+
+
+#login-form
+{ text-align: left;
+  }
+
+#login-form label
+{ width: 10em;
+  margin: 0.5em 0;
+  display: block;
+  float: left;
+  }
