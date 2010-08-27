@@ -6,7 +6,6 @@ class TestHomepage(TestCase):
     def test_loginpage(self):
         # No parameters.
         self.assertRaises(
-            KeyError,  #MultiValueDictKeyError
+            KeyError,  # MultiValueDictKeyError
             self.client.get,
             '/accounts/login/')
-

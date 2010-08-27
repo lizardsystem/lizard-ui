@@ -23,7 +23,8 @@ def simple_login(request):
 
 def simple_logout(request):
     """
-    The simplest logout script possible, call this from a javascript using GET or POST.
+    The simplest logout script possible, call this from a javascript using GET
+    or POST.
     """
     logout(request)
     return HttpResponse("")
