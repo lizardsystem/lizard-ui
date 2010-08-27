@@ -17,7 +17,7 @@ urlpatterns = patterns(
     )
 
 
-if settings.DEBUG:
+if settings.DEBUG:  # Pragma: nocover
     # Add this also to the projects that use lizard-ui
     urlpatterns += patterns(
         '',
