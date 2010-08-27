@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-1.12 (unreleased)
+1.12 (2010-08-27)
 -----------------
 
 - Small adjustments to support lizard-map's new graph popup.  (A better
