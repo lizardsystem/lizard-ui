@@ -5,7 +5,9 @@ Changelog of lizard-ui
 1.12 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Small adjustments to support lizard-map's new graph popup.  (A better
+  separation of lizard-ui and lizard-map is needed later on: after the
+  deadlines :-) ).
 
 
 1.11 (2010-08-26)
