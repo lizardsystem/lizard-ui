@@ -156,6 +156,11 @@ function fillScreen() {
     $("#content").height(mainContentHeight);
     $("#textual").height(mainContentHeight);
     $("#map").height(mainContentHeight);
+    // The next one ought to be in lizard-map.  For that we'd need a proper
+    // set of events that other code can listen to.  So for the time being...
+    $('#graph-popup-content').css(
+        'max-height',
+        mainContentHeight - 30);
 }
 
 
