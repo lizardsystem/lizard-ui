@@ -450,9 +450,3 @@ table.generic-table .button
   display: block;
   float: left;
   }
-
-textarea.popup-content
-{ width: 99%;
-  height: 5em;
-  paggin: 1em;
-  }
