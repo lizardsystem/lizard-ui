@@ -2,7 +2,8 @@ from django.contrib.auth import authenticate
 from django.contrib.auth import login
 from django.contrib.auth import logout
 from django.http import HttpResponse
-import simplejson
+from django.utils import simplejson as json
+
 
 
 def simple_login(request):
@@ -18,7 +19,7 @@ def simple_login(request):
         if user.is_active:
             login(request, user)
             success = True
-    return HttpResponse(simplejson.dumps(success))
+    return HttpResponse(json.dumps(success))
 
 
 def simple_logout(request):
