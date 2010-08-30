@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-1.14 (unreleased)
+1.14 (2010-08-30)
 -----------------
 
 - Importing json via django now.
