@@ -2,10 +2,16 @@ Changelog of lizard-ui
 ======================
 
 
-1.13 (unreleased)
+1.14 (unreleased)
 -----------------
 
 - Importing json via django now.
+
+
+1.13 (2010-08-30)
+-----------------
+
+- Bugfix simplejson.
 
 
 1.12 (2010-08-27)
