@@ -370,33 +370,6 @@ div.loading
 { cursor: not-allowed;
   }
 
-/* For forms, currently used by lizard-sticky */
-ol.forms label
-{ display:block;
-  line-height:1.5em;
-  padding-right:1%;
-  text-align:left;
-  width: 20%;
-  }
-
-ol.forms label.alert
-{
-  color: red;
-}
-
-ol.forms li
-{ line-height:1.5em;
-  margin-bottom:0.5em;
-  }
-
-ol.forms
-{ list-style:none outside none;
-  }
-
-ol.forms input
-{ width:100%;
-}
-
 /* For list items in summary screen */
 /* No, no, no: no overly generic ul/ol overriding just for one screen!
    Use a more specific one (like "#summary ul").
@@ -450,7 +423,7 @@ table.generic-table .button
   cursor: pointer;
   height: 35px;
   width: 35px;
-}
+  }
 
 .popup,
 #not_found_popup
@@ -464,7 +437,7 @@ table.generic-table .button
   /* CSS3 styling for latest browsers */
   -moz-box-shadow:0 0 40px 5px black;
   -webkit-box-shadow: 0 0 40px black;
-}
+  }
 
 
 #login-form
@@ -476,4 +449,10 @@ table.generic-table .button
   margin: 0.5em 0;
   display: block;
   float: left;
+  }
+
+textarea.popup-content
+{ width: 99%;
+  height: 5em;
+  paggin: 1em;
   }
