@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-1.15 (unreleased)
+1.15 (2010-09-03)
 -----------------
 
 - Added utility templatetags.
