@@ -49,6 +49,7 @@ class TestUtility(TestCase):
         from lizard_ui.templatetags.utility import euro
         self.assertEquals(u'&euro; 10,-', euro(10.0))
         self.assertEquals(u'&euro; 10,-', euro(10))
+        self.assertEquals(u'&euro; 10.000,-', euro(10000))
         self.assertEquals(u'&euro; 1.234.567,-', euro(1234567))
         self.assertEquals(u'&euro; 1.234.567,-', euro(1234567.0))
         euro(None)  # Should not crash
