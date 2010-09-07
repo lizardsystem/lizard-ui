@@ -27,7 +27,7 @@ def euro(price):
     TODO: make unit test for it.
     """
 
-    if isinstance(price, float):
+    if isinstance(price, float) or isinstance(price, int):
         price_string = '%.0f' % price
         price_list = split_len(price_string, 3)
         price_with_points = '.'.join(price_list)

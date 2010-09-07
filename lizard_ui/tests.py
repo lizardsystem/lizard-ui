@@ -1,7 +1,6 @@
 from django.test import TestCase
 from django.contrib.auth.models import User
 
-
 class TestLoginLogout(TestCase):
 
     def setUp(self):
@@ -42,3 +41,14 @@ class TestLoginLogout(TestCase):
         self.assertEquals(response.status_code, 200)
         # And empty.
         self.assertEquals(response.content, '')
+
+
+class TestUtility(TestCase):
+
+    def test_euro(self):
+        from lizard_ui.templatetags.utility import euro
+        self.assertEquals(u'&euro; 10,-', euro(10.0))
+        self.assertEquals(u'&euro; 10,-', euro(10))
+        self.assertEquals(u'&euro; 1.234.567,-', euro(1234567))
+        self.assertEquals(u'&euro; 1.234.567,-', euro(1234567.0))
+        euro(None)  # Should not crash
