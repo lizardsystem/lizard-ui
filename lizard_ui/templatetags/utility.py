@@ -23,8 +23,6 @@ def euro(price):
 
     10000.0 -> &euro; 10.000,- (which will show as a euro sign in your
     web browser)
-
-    TODO: make unit test for it.
     """
 
     if isinstance(price, float) or isinstance(price, int):
