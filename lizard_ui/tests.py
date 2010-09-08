@@ -1,6 +1,7 @@
 from django.test import TestCase
 from django.contrib.auth.models import User
 
+
 class TestLoginLogout(TestCase):
 
     def setUp(self):
