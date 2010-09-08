@@ -5,6 +5,7 @@ from django.utils.safestring import mark_safe
 
 register = template.Library()
 
+
 def split_len(seq, length):
     """
     Takes a string and returns a list containing the n-sized pieces of
@@ -12,9 +13,10 @@ def split_len(seq, length):
 
     # Nice... stride backwards using step length of one reverses the string.
     seq_rev = seq[::-1]
-    result = [seq_rev[i:i+length][::-1] for i in range(0, len(seq), length)]
+    result = [seq_rev[i:i + length][::-1] for i in range(0, len(seq), length)]
     result.reverse()
     return result
+
 
 @register.filter
 def euro(price):

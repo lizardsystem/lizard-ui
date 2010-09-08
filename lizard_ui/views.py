@@ -5,7 +5,6 @@ from django.http import HttpResponse
 from django.utils import simplejson as json
 
 
-
 def simple_login(request):
     """
     Logs a user in, replies success or failure in json success: 0 or
