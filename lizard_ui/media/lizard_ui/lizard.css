@@ -405,6 +405,12 @@ table.generic-table .button
   text-align: center;
   }
 
+.button a.ss_sprite
+{ /* No underline under the &nbsp; that we need in an empty
+     .button for IE7 */
+  text-decoration: none;
+  }
+
 .popup-trigger
 { cursor: pointer;
   }
