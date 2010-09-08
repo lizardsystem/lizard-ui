@@ -5,7 +5,9 @@ Changelog of lizard-ui
 1.16 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Added more tests.
+
+- Small layout tweak for popup box.
 
 
 1.15 (2010-09-03)
