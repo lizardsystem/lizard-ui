@@ -5,7 +5,7 @@ Changelog of lizard-ui
 1.17 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Added createcoverage command.
 
 
 1.16 (2010-09-08)
