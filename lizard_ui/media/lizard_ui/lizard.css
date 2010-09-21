@@ -456,3 +456,8 @@ table.generic-table .button
   display: block;
   float: left;
   }
+
+/* extra for colorpicker */
+.colorpicker
+{ z-index: 10000;
+  }
