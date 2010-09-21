@@ -5,7 +5,10 @@ Changelog of lizard-ui
 1.17 (unreleased)
 -----------------
 
+- Add colorpicker js library.
+
 - Added createcoverage command.
+
 
 
 1.16 (2010-09-08)
