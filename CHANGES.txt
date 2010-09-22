@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-1.17 (unreleased)
+1.17 (2010-09-22)
 -----------------
 
 - Add colorpicker js library.
