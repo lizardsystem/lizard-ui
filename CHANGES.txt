@@ -8,6 +8,11 @@ Changelog of lizard-ui
 - Added automatic print button that also allows you to expand the
   collapsed-for-printing view again.
 
+- Tables now print with a grid and proper left/center/right alignment.
+
+- Links don't print anymore (at least, their url isn't appended anymore to the
+  link text when printing).
+
 
 1.17 (2010-09-22)
 -----------------
