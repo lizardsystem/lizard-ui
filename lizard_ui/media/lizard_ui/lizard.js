@@ -180,6 +180,7 @@ function setUpPrintButton() {
             $('#print-button').addClass('ss_printer');
             $('#print-button').text($('#print-button').data("text"));
             fillScreen();
+            reloadGraphs();
         });
 }
 
