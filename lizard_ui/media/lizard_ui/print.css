@@ -15,3 +15,36 @@
   margin: 0;
   overflow: none;
   }
+
+/* Don't print links */
+
+a:link:after, a:visited:after
+{ content: " ";
+  }
+
+
+/* Copied verbatim from the "screen" lizard.css stylesheet. */
+
+table.generic-table
+{ border-collapse: collapse;
+  }
+
+table.generic-table,
+table.generic-table th,
+table.generic-table td
+{ border: 1px solid lightgrey;
+  }
+
+table.generic-table thead th
+{ background-color: #f5f4f5;
+  }
+
+table.generic-table .number
+{ /* Number cells align right. */
+  text-align: right;
+  }
+
+table.generic-table .button
+{ /* Cells with some clickable image align in the center. */
+  text-align: center;
+  }
