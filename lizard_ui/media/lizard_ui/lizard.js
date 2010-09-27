@@ -174,6 +174,7 @@ function setUpPrintButton() {
             $('#print-button').addClass('ss_arrow_right');
             $('#print-button').data("text", $('#print-button').text());
             $('#print-button').html('&nbsp;&nbsp;');
+            return false;
         },
         function () {
             $('#print-button').removeClass('ss_arrow_right');
@@ -181,6 +182,7 @@ function setUpPrintButton() {
             $('#print-button').text($('#print-button').data("text"));
             fillScreen();
             reloadGraphs();
+            return false;
         });
 }
 
