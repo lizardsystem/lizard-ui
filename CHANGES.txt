@@ -5,7 +5,7 @@ Changelog of lizard-ui
 1.19 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Fixed float problem for IE in login popup.
 
 
 1.18 (2010-09-27)
