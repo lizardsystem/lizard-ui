@@ -164,6 +164,26 @@ function fillScreen() {
 }
 
 
+function setUpPrintButton() {
+    $('#print-button').addClass('ss_sprite');
+    $('#print-button').addClass('ss_printer');
+    $('#print-button').toggle(
+        function () {
+            printPage();
+            $('#print-button').removeClass('ss_printer');
+            $('#print-button').addClass('ss_arrow_right');
+            $('#print-button').data("text", $('#print-button').text());
+            $('#print-button').text(' ');
+        },
+        function () {
+            $('#print-button').removeClass('ss_arrow_right');
+            $('#print-button').addClass('ss_printer');
+            $('#print-button').text($('#print-button').data("text"));
+            fillScreen();
+        });
+}
+
+
 function showExampleMap() {
     /* Show an example map.  For use with the lizardgis.html template.  */
     var map, wms;
@@ -355,4 +375,5 @@ $(document).ready(function () {
     reloadGraphs();
     setUpOverlays();
     setUpLogin();
+    setUpPrintButton();
 });

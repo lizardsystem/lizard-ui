@@ -45,6 +45,8 @@ if settings.DEBUG:  # Pragma: nocover
          {'template': 'lizard_ui/example_collapsible.html'}),
         (r'^examples/sidebarstretch/$', 'direct_to_template',
          {'template': 'lizard_ui/example_sidebarstretch.html'}),
+        (r'^examples/printbutton/$', 'direct_to_template',
+         {'template': 'lizard_ui/example-printbutton.html'}),
         (r'^examples/accordion/$', 'direct_to_template',
          {'template': 'lizard_ui/example_accordion1.html'}),
         (r'^examples/accordion2/$', 'direct_to_template',

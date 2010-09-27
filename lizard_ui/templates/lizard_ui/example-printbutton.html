@@ -1,0 +1,20 @@
+{% extends "lizard_ui/lizardbase.html" %}
+
+{% block title %}Print button{% endblock %}
+
+{% block object-actions %}
+<span id="print-button">Print</a>
+{% endblock %}
+
+{% block content %}
+<div id="textual">
+  <h1>Automatic print button setup</h1>
+  <p>
+    Just add the following code to your "object-actions" block and you're set:
+  </p>
+  <pre>
+    &lt;span id="print-button"&gt;Print&lt/a&gt;
+  </pre>
+</div>
+
+{% endblock %}

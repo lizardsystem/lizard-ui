@@ -5,7 +5,8 @@ Changelog of lizard-ui
 1.18 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Added automatic print button that also allows you to expand the
+  collapsed-for-printing view again.
 
 
 1.17 (2010-09-22)

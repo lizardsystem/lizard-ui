@@ -155,6 +155,10 @@ body
 { text-decoration: none;
   }
 
+#print-button
+{ cursor: pointer;
+  }
+
 /* The object tabs and portal tabs are list items: show them nicely next to
    each other.  And inline so they don't take up extra space. */
 #above-content ul,
