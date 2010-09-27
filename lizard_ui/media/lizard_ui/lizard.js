@@ -173,7 +173,7 @@ function setUpPrintButton() {
             $('#print-button').removeClass('ss_printer');
             $('#print-button').addClass('ss_arrow_right');
             $('#print-button').data("text", $('#print-button').text());
-            $('#print-button').text(' ');
+            $('#print-button').html('&nbsp;&nbsp;');
         },
         function () {
             $('#print-button').removeClass('ss_arrow_right');
