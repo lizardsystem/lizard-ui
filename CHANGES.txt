@@ -7,6 +7,8 @@ Changelog of lizard-ui
 
 - Fixed float problem for IE in login popup.
 
+- Fixing visibility of "restore from print view" icon in IE.
+
 
 1.18 (2010-09-27)
 -----------------
