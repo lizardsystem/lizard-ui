@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-1.18 (unreleased)
+1.18 (2010-09-27)
 -----------------
 
 - Added automatic print button that also allows you to expand the
