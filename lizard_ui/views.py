@@ -1,3 +1,4 @@
+# (c) Nelen & Schuurmans.  GPL licensed, see LICENSE.txt
 from django.contrib.auth import authenticate
 from django.contrib.auth import login
 from django.contrib.auth import logout

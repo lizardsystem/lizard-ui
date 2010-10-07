@@ -5,7 +5,7 @@ Changelog of lizard-ui
 1.20 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Added exception-logging middleware.
 
 
 1.19 (2010-09-27)
