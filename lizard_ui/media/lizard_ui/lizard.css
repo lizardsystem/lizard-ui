@@ -90,17 +90,47 @@ body
   background-repeat: no-repeat;
   cursor: pointer;
   }
+
 /* Feedback that not only the little triangle is clickable, but the
    entire height of the collapser div. */
 #collapser:hover
 { background-color: #f8f8f8;
   }
+
 .sidebar-open #collapser
 { background-image: url(arrow_collapse.png);
   }
+
 .sidebar-closed #collapser
 { background-image: url(arrow_expand.png);
   }
+
+#sidebar .sidebarbox.iconlist ul,
+#sidebar .sidebarbox.iconlist li,
+#sidebar .sidebarbox.iconlist div,
+#sidebar .sidebarbox.iconlist img
+{ margin: 0px;
+  padding-left: 0px;
+  }
+
+#sidebar .sidebarbox.iconlist li
+{ float: left;
+  text-decoration: none;
+  }
+
+#sidebar .sidebarbox.iconlist li
+{ list-style-type: none;
+  width: 80px;
+  padding: 5px;
+  float: left;
+  text-align: center;
+  font-size: 0.85em;
+  }
+
+.sidebarbox.workspace ul
+{ margin: 0px;
+  }
+
 
 /* Inside #main you've got a #menubar, #content and #footer.  #menubar and
    #footer have a border on all sides, #content only left/right.  */
