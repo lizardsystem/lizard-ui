@@ -1,0 +1,19 @@
+{# the variables tree_template and tree_items must be defined before entering #}
+{# tree_items is a list of dicts with properties name, url, children #}
+{% for child in tree_items %}
+<li>
+  {% if child.children %}
+    <span class="folder">{{ child.name }}</span>
+    <ul>
+      {% with child.children as tree_items %}
+        {% include tree_template %}
+      {% endwith %}
+    </ul>
+  {% else %}
+    <a href="{{ child.url }}"
+       class="file">
+      {{ child.name }}
+    </a>
+  {% endif %}
+</li>
+{% endfor %}

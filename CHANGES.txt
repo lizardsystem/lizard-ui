@@ -13,6 +13,8 @@ Changelog of lizard-ui
 
 - Added sidebar and sidebarbox css entries.
 
+- Added tree_snippet.html template for creating trees.
+
 
 1.19 (2010-09-27)
 -----------------
