@@ -7,6 +7,10 @@ Changelog of lizard-ui
 
 - Added exception-logging middleware.
 
+- Added app_icons.
+
+- Added sidebar and sidebarbox css entries.
+
 
 1.19 (2010-09-27)
 -----------------
