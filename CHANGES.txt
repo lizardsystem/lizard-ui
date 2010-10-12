@@ -5,6 +5,8 @@ Changelog of lizard-ui
 1.20 (unreleased)
 -----------------
 
+- Fixed IE7 print problem.
+
 - Added exception-logging middleware.
 
 - Added app_icons.
