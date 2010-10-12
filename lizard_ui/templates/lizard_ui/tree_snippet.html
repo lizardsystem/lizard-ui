@@ -10,10 +10,14 @@
       {% endwith %}
     </ul>
   {% else %}
-    <a href="{{ child.url }}"
-       class="file">
-      {{ child.name }}
-    </a>
+    {% if child.url %}
+      <a href="{{ child.url }}"
+         class="file">
+        {{ child.name }}
+      </a>
+    {% else %}
+      <span class="quiet">{{ child.name }}</span>
+    {% endif %}
   {% endif %}
 </li>
 {% endfor %}
