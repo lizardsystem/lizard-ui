@@ -82,8 +82,9 @@ function printPage() {
     }
     // Make images smaller
     reloadGraphs(max_image_width);
-    // IE7 doesn't print.  Timeout problem?  Does reloadGraphs do something funny?
-    setTimeout("window.print()", 500);
+    setTimeout(function () {
+        window.print();
+    }, 500);
 }
 
 
