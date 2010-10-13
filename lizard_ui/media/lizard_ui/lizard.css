@@ -368,6 +368,10 @@ ul.without-bullets li
 { min-height: 6em;
   }
 
+.workspace-acceptable
+{ cursor:pointer;
+}
+
 /* Snippet lists can be long. Limit is. Style below is not working correctly yet.
 ul.snippet-list
 { height: 100px;
