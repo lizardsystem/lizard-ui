@@ -261,13 +261,23 @@ function setUpAccordion() {
     /* Set up a global 'accordion' variable to later steer the animation. */
     accordion = $("#accordion").tabs();
     $(".accordion-load-next a").live('click', function (event) {
-        var pane, nextPaneId, url;
+        var pane, nextPaneId, url, newTitle;
         event.preventDefault();
         pane = $(this).parents(".accordion-load-next");
         nextPaneId = pane.attr("data-next-pane-id");
         url = $(this).attr("href");
         $(nextPaneId).html('<div class="loading" />');
-        $(nextPaneId).load(url + " " + nextPaneId);
+        $.get(url, {}, function (data) {
+            // Update all panes. Data is the whole (new) html page.
+            $(".pane").each(function () {
+                // Title of current pane.
+                newTitle = $(data).find("#" + $(this).attr("id")).prev().html();
+                console.log($(this).prev());
+                $(this).prev().html(newTitle);
+                // Content of current pane.
+                $(this).html($(data).find("#" + $(this).attr("id")).html());
+            });
+        });
         $("li.selected", pane).removeClass("selected");
         $(this).parent("li").addClass("selected");
         accordion.click(accordion.getIndex() + 1);

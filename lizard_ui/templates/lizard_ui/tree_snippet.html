@@ -3,7 +3,9 @@
 {% for child in tree_items %}
 <li>
   {% if child.children %}
+    {% if child.url %}<a href="{{ child.url }}">{% endif %}
     <span class="folder">{{ child.name }}</span>
+    {% if child.url %}</a>{% endif %}
     <ul>
       {% with child.children as tree_items %}
         {% include tree_template %}
