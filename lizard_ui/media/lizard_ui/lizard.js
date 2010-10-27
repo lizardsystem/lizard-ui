@@ -272,7 +272,6 @@ function setUpAccordion() {
             $(".pane").each(function () {
                 // Title of current pane.
                 newTitle = $(data).find("#" + $(this).attr("id")).prev().html();
-                console.log($(this).prev());
                 $(this).prev().html(newTitle);
                 // Content of current pane.
                 $(this).html($(data).find("#" + $(this).attr("id")).html());
