@@ -2,10 +2,10 @@ Changelog of lizard-ui
 ======================
 
 
-1.22 (unreleased)
+1.22 (2010-11-09)
 -----------------
 
-- Updates accordion: when an item is clicked, all panes and headers
+- Updated accordion: when an item is clicked, all panes and headers
   are updated.
 
 
