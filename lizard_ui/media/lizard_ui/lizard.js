@@ -253,6 +253,39 @@ function setUpCollapsibleSidebar() {
 }
 
 
+/* Initializes and shows (legend) tooltip. Must be re-initialized
+after lizard-map workspace update.  */
+function setUpTooltips() {
+    $(".legend-tooltip").each(function () {
+        if (!$(this).data("popup-initialized")) {
+            $(this).data("popup-initialized", true);
+            $(this).tooltip({
+                position: 'center right',
+                effect: 'fade',
+                onShow: function () {
+                    var offset, pixels_below_screen;
+                    // Too high?
+                    offset = this.getTip().offset();
+                    if (offset.top < 0) {
+                        offset.top = 0;
+                        this.getTip().offset(offset);
+                    }
+                    // Too low?
+                    pixels_below_screen = offset.top +
+                        this.getTip().height() -
+                        $(window).height();
+                    if (pixels_below_screen > 0) {
+                        offset.top = offset.top - pixels_below_screen;
+                        this.getTip().offset(offset);
+                    }
+                    // Repositioning beforehand would be visually nicer.
+                }
+            });
+        }
+    });
+}
+
+
 function setUpAccordion() {
     $("#accordion").tabs(
         "#accordion .pane",
@@ -276,6 +309,7 @@ function setUpAccordion() {
                 // Content of current pane.
                 $(this).html($(data).find("#" + $(this).attr("id")).html());
             });
+            setUpTooltips();
         });
         $("li.selected", pane).removeClass("selected");
         $(this).parent("li").addClass("selected");
@@ -389,4 +423,7 @@ $(document).ready(function () {
     setUpOverlays();
     setUpLogin();
     setUpPrintButton();
+
+    // Set up legend.
+    setUpTooltips(); // The edit function is on the tooltip.
 });

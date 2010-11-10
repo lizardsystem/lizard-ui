@@ -5,7 +5,7 @@ Changelog of lizard-ui
 1.23 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Added setUpTooltips() in lizard.js.
 
 
 1.22 (2010-11-09)

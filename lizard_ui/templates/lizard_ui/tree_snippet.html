@@ -4,7 +4,12 @@
 <li>
   {% if child.children %}
     {% if child.url %}<a href="{{ child.url }}">{% endif %}
-    <span class="folder">{{ child.name }}</span>
+    <span class="folder">{{ child.name }}
+      {% if child.description %}{# show info button if description available #}
+      <span class="ss_sprite ss_information sidebarbox-action-icon legend-tooltip">&nbsp;</span>
+      <div class="tooltip">{% autoescape off %}{{ child.description }}{% endautoescape %}</div>
+      {% endif %}
+    </span>
     {% if child.url %}</a>{% endif %}
     <ul>
       {% with child.children as tree_items %}
