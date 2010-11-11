@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-1.23 (unreleased)
+1.23 (2010-11-11)
 -----------------
 
 - (Re-)initializes tooltips when loading accordion.
