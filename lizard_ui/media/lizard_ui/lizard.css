@@ -504,3 +504,11 @@ table.generic-table .button
 .colorpicker
 { z-index: 10000;
   }
+
+/* Examples of action icons are found above maps of lizard-map */
+.action-icon
+{ cursor: pointer;
+  float: left;
+  margin-top: 0.3em;
+  margin-left: 1em;
+  }
