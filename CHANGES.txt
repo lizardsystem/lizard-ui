@@ -5,7 +5,9 @@ Changelog of lizard-ui
 1.25 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Moved tooltip css from lizard_map to here.
+
+- Add optional description to tree snippet.
 
 
 1.24 (2010-11-24)

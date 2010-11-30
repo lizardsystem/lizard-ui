@@ -17,6 +17,7 @@
       {% endwith %}
     </ul>
   {% else %}
+    {# No children: it's a leaf. #}
     {% if child.url %}
       <a href="{{ child.url }}"
          class="file">
@@ -24,6 +25,10 @@
       </a>
     {% else %}
       <span class="quiet">{{ child.name }}</span>
+    {% endif %}
+    {% if child.description %}{# show info button if description available #}
+      <span class="ss_sprite ss_information sidebarbox-action-icon legend-tooltip">&nbsp;</span>
+      <div class="tooltip">{% autoescape off %}{{ child.description }}{% endautoescape %}</div>
     {% endif %}
   {% endif %}
 </li>
