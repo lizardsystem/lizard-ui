@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-1.25 (unreleased)
+1.25 (2010-12-01)
 -----------------
 
 - Added custom templatetag dutch_timedelta.
