@@ -36,3 +36,48 @@ def euro(price):
         return mark_safe(u'&euro; %s,-' % price_with_points)
     else:
         return '(geen bedrag)'
+
+
+@register.filter
+def dutch_timedelta(seconds):
+    """
+    Make friendly looking duration in dutch.
+
+    60 -> "1 minuut"
+    65 -> "1 minuut, 5 seconden"
+    125 -> "2 minuten, 5 seconden"
+    3600 -> "1 uur"
+    3700 -> "1 uur, 1 minuut" (rounded off)
+    86400 -> "1 dag"
+    """
+    if not seconds:  # Either seconds is None, or 0, or 0.0..
+        return "0"
+
+    seconds = int(seconds)  # Make sure input is int
+    days, hours, minutes = None, None, None
+    result = []
+
+    if seconds >= 86400:
+        days = seconds / 86400
+        seconds = seconds - days * 86400
+        if days == 1:
+            result.append("%d dag" % days)
+        else:
+            result.append("%d dagen" % days)
+    if seconds >= 3600:
+        hours = seconds / 3600
+        seconds = seconds - hours * 3600
+        result.append("%d uur" % hours)
+    if seconds >= 60:
+        minutes = seconds / 60
+        seconds = seconds - minutes * 60
+        if minutes == 1:
+            result.append("%d minuut" % minutes)
+        else:
+            result.append("%d minuten" % minutes)
+    if seconds == 1:
+        result.append("%d seconde" % seconds)
+    elif seconds > 1:
+        result.append("%d seconden" % seconds)
+
+    return ', '.join(result[:2])

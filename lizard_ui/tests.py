@@ -2,6 +2,7 @@ from django.test import TestCase
 from django.contrib.auth.models import User
 
 from lizard_ui.middleware import TracebackLoggingMiddleware
+from lizard_ui.templatetags.utility import dutch_timedelta
 from lizard_ui.templatetags.utility import euro
 
 
@@ -56,6 +57,16 @@ class TestUtility(TestCase):
         self.assertEquals(u'&euro; 1.234.567,-', euro(1234567))
         self.assertEquals(u'&euro; 1.234.567,-', euro(1234567.0))
         euro(None)  # Should not crash
+
+    def test_dutch_timedelta(self):
+        self.assertEquals(u'1 minuut', dutch_timedelta(60))
+        self.assertEquals(u'1 minuut, 5 seconden', dutch_timedelta(65))
+        self.assertEquals(u'2 minuten, 5 seconden', dutch_timedelta(125))
+        self.assertEquals(u'1 uur', dutch_timedelta(3600))
+        self.assertEquals(u'1 uur, 1 minuut', dutch_timedelta(3700))  # Rounded off
+        self.assertEquals(u'1 dag, 1 minuut', dutch_timedelta(86500))  # Rounded off
+        dutch_timedelta(None)  # Should not crash
+
 
 
 class TestTracebackLoggingMiddleware(TestCase):

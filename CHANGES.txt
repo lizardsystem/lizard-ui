@@ -5,6 +5,8 @@ Changelog of lizard-ui
 1.25 (unreleased)
 -----------------
 
+- Added custom templatetag dutch_timedelta.
+
 - Moved tooltip css from lizard_map to here.
 
 - Add optional description to tree snippet.
