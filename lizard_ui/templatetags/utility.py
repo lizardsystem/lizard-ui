@@ -51,7 +51,7 @@ def dutch_timedelta(seconds):
     86400 -> "1 dag"
     """
     if not seconds:  # Either seconds is None, or 0, or 0.0..
-        return "0"
+        return "-"
 
     seconds = int(seconds)  # Make sure input is int
     days, hours, minutes = None, None, None
