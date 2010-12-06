@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-1.26 (unreleased)
+1.26 (2010-12-06)
 -----------------
 
 - Added default 500 and 404 pages.
