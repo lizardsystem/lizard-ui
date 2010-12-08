@@ -286,6 +286,21 @@ function setUpTooltips() {
 }
 
 
+/*
+Sets up treestructures with an interactive interface. Use force_initialize.
+*/
+function setUpTree(force_initialize) {
+    $(".automatic-tree").each(function () {
+        if (!$(this).data("tree-initialized") || (force_initialize)) {
+            $(this).data("tree-initialized", true);
+            $(this).treeview({
+                collapsed: true
+            });
+        }
+    });
+}
+
+
 function setUpAccordion() {
     $("#accordion").tabs(
         "#accordion .pane",
@@ -310,22 +325,11 @@ function setUpAccordion() {
                 $(this).html($(data).find("#" + $(this).attr("id")).html());
             });
             setUpTooltips();
+            setUpTree(true);
         });
         $("li.selected", pane).removeClass("selected");
         $(this).parent("li").addClass("selected");
         accordion.click(accordion.getIndex() + 1);
-    });
-}
-
-
-function setUpTree() {
-    $(".automatic-tree").each(function () {
-        if (!$(this).data("tree-initialized")) {
-            $(this).data("tree-initialized", true);
-            $(this).treeview({
-                collapsed: true
-            });
-        }
     });
 }
 
