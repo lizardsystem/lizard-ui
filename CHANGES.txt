@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-1.28 (unreleased)
+1.28 (2011-01-12)
 -----------------
 
 - Added setUpWorkspaceAcceptableButtons in lizard.js. The function is
