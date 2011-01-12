@@ -366,8 +366,12 @@ body
 ul.without-bullets
 { padding-left: 0;
   }
+
+/* height: 2em is necessary for icons (legend, plus, etc) not to form
+a 'stairway'*/
 ul.without-bullets li
 { list-style: none;
+  height: 2em;
   }
 
 /* 16px big icons: start them right at the bottom instead of

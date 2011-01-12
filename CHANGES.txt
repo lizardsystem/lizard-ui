@@ -5,7 +5,7 @@ Changelog of lizard-ui
 1.29 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Minor css change fixes 'stairway' icons in workspace or object list.
 
 
 1.28 (2011-01-12)
