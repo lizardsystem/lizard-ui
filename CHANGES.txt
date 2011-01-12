@@ -5,7 +5,8 @@ Changelog of lizard-ui
 1.28 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Added setUpWorkspaceAcceptableButtons in lizard.js. The function is
+  in lizard-ui because setUpAccordion needs the function as well.
 
 
 1.27 (2010-12-08)
