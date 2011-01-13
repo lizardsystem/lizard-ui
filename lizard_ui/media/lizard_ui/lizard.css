@@ -371,7 +371,6 @@ ul.without-bullets
 a 'stairway'*/
 ul.without-bullets li
 { list-style: none;
-  height: 2em;
   }
 
 /* 16px big icons: start them right at the bottom instead of

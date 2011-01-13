@@ -7,8 +7,6 @@ Changelog of lizard-ui
 
 - Added &nbsp; to workspace acceptable button.
 
-- Minor css change fixes 'stairway' icons in workspace or object list.
-
 
 1.28 (2011-01-12)
 -----------------
