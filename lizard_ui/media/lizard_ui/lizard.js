@@ -266,7 +266,7 @@ function setUpWorkspaceAcceptableButtons() {
     $(".workspace-acceptable").each(function () {
         var html;
         html = $(this).html();
-        html = html + '<span class="ss_sprite ss_add sidebarbox-action-icon add-workspace-item" title="Add layer to workspace"></span>';
+        html = html + '<span class="ss_sprite ss_add sidebarbox-action-icon add-workspace-item" title="Voeg laag toe aan workspace">&nbsp;</span>';
         $(this).html(html);
     });
 }
