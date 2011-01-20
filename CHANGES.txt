@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-1.32 (unreleased)
+1.32 (2011-01-20)
 -----------------
 
 - Still trying to fix logout bug.
