@@ -401,7 +401,8 @@ function setUpLogin() {
         $.post(
             url,
             {},
-            function () {
+            function (event) {
+                event.preventDefault();
                 window.location = "/";
                 return false;
             }

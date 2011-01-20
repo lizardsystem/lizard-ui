@@ -1,6 +1,6 @@
 {% if user.is_authenticated %}
 Ingelogd als {{ user }}.
-<a href="" id="logout-button" class="ss_sprite ss_user_red" data-url="{% url lizard_ui.logout %}">Log uit</a>
+<a id="logout-button" class="ss_sprite ss_user_red" data-url="{% url lizard_ui.logout %}">Log uit</a>
 {% else %}
 <a class="popup-trigger ss_sprite ss_user"
    rel="#login-form"
