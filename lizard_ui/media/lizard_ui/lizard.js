@@ -379,15 +379,20 @@ function setUpLogin() {
             url,
             $form.serialize(),
             function (data) {
-                if (data === "true") {
+                if (data.success === true) {
                     // Login successful.
-                    window.location.reload();
+                    if (data.next === "") {
+                        window.location.reload();
+                    } else {
+                        window.location = data.next;
+                    }
                 } else {
                     // Login unsuccessful.
                     $("#login-form").find(".close").click();
                     $("#wrong-login").overlay({load: true });
                 }
-            });
+            },
+            'json');
         return false;  // Prevents propagation to original form submit.
     });
     $("#logout-button").click(function () {

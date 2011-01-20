@@ -3,23 +3,40 @@ from django.contrib.auth import authenticate
 from django.contrib.auth import login
 from django.contrib.auth import logout
 from django.http import HttpResponse
+from django.http import HttpResponseRedirect
+from django.shortcuts import render_to_response
+from django.template import RequestContext
 from django.utils import simplejson as json
 
 
-def simple_login(request):
+def simple_login(request, next=None, template='lizard_ui/login.html'):
     """
-    Logs a user in, replies success or failure in json success: 0 or
-    1.
+    Logs a user in, replies success or failure in json success:
+    {'success': success, 'next': next}
+
+    If no username and password provided, you'll get a login screen.
     """
-    username = request.POST['username']
-    password = request.POST['password']
+    post = request.POST
+    if 'next' in post and post['next']:
+        next = post['next']
+        print 'post next: %s' % next
+    if 'next' in request.GET:
+        next = request.GET['next']
+        print 'get next: %s' % next
+    if 'username' not in post or 'password' not in post:
+        return render_to_response(
+            template,
+            {'next': next},
+            context_instance=RequestContext(request))
+    username = post['username']
+    password = post['password']
     user = authenticate(username=username, password=password)
     success = False
     if user is not None:
         if user.is_active:
             login(request, user)
             success = True
-    return HttpResponse(json.dumps(success))
+    return HttpResponse(json.dumps({'success': success, 'next': next}))
 
 
 def simple_logout(request):

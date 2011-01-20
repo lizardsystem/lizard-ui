@@ -2,7 +2,9 @@
 Ingelogd als {{ user }}.
 <a id="logout-button" class="ss_sprite ss_user_red" data-url="{% url lizard_ui.logout %}">Log uit</a>
 {% else %}
-<a class="popup-trigger ss_sprite ss_user" rel="#login-form">Log in</a>
+<a class="popup-trigger ss_sprite ss_user"
+   rel="#login-form"
+   id="login-button">Log in</a>
 <div class="popup noprint" id="login-form">
   <h1>Log in</h1>
   <div>
@@ -21,6 +23,11 @@ Ingelogd als {{ user }}.
         <input type="password"
                name="password"
                tabindex="2" />
+      </div>
+      <div>
+        <input type="hidden"
+               name="next"
+               value="{{ next }}"/>
       </div>
       <div>
         <input id="login-button"

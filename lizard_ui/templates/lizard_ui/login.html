@@ -1,0 +1,14 @@
+{# Empty login page, where login box pops up. #}
+{% extends 'lizard_ui/lizardbase.html' %}
+
+{# Reminder: if javascript is getting bigger than 1 line, #}
+{# move to separate js file #}
+
+{% block javascript %}
+{{ block.super }}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#login-button").click();
+    });
+</script>
+{% endblock javascript %}
