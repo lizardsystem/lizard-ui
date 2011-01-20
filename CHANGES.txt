@@ -5,6 +5,8 @@ Changelog of lizard-ui
 1.30 (unreleased)
 -----------------
 
+- Added turtle app icon.
+
 - After logging out one goes back to "/".
 
 - Improved login function.
