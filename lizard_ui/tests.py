@@ -1,5 +1,6 @@
 from django.test import TestCase
 from django.contrib.auth.models import User
+import json
 
 from lizard_ui.middleware import TracebackLoggingMiddleware
 from lizard_ui.templatetags.utility import dutch_timedelta
@@ -15,11 +16,11 @@ class TestLoginLogout(TestCase):
                                  password='horses')
 
     def test_smoke(self):
-        # No parameters.
-        self.assertRaises(
-            KeyError,  # MultiValueDictKeyError
-            self.client.get,
-            '/accounts/login/')
+        # No parameters: return code 200.
+        # Login page must have "login-button".
+        response = self.client.post('/accounts/login/', {})
+        self.assertEquals(response.status_code, 200)
+        self.assertTrue("login-button" in response.content)
 
     def test_invalid_user(self):
         response = self.client.post('/accounts/login/',
@@ -28,7 +29,8 @@ class TestLoginLogout(TestCase):
         # The response is always 200.
         self.assertEquals(response.status_code, 200)
         # But the value is the json dump of False.
-        self.assertEquals(response.content, 'false')
+        self.assertEquals(json.loads(response.content),
+                          {u'success': False, u'next': None})
 
     def test_valid_user(self):
         response = self.client.post('/accounts/login/',
@@ -37,7 +39,8 @@ class TestLoginLogout(TestCase):
         # The response is always 200.
         self.assertEquals(response.status_code, 200)
         # But the value is the json dump of False.
-        self.assertEquals(response.content, 'true')
+        self.assertEquals(json.loads(response.content),
+                          {u'success': True, u'next': None})
 
     def test_logout(self):
         self.client.login(username='atilla', password='horses')

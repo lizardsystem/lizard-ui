@@ -3,7 +3,6 @@ from django.contrib.auth import authenticate
 from django.contrib.auth import login
 from django.contrib.auth import logout
 from django.http import HttpResponse
-from django.http import HttpResponseRedirect
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils import simplejson as json
@@ -19,10 +18,10 @@ def simple_login(request, next=None, template='lizard_ui/login.html'):
     post = request.POST
     if 'next' in post and post['next']:
         next = post['next']
-        print 'post next: %s' % next
-    if 'next' in request.GET:
+        # print 'post next: %s' % next
+    if 'next' in request.GET and request.GET['next']:
         next = request.GET['next']
-        print 'get next: %s' % next
+        # print 'get next: %s' % next
     if 'username' not in post or 'password' not in post:
         return render_to_response(
             template,

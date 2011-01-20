@@ -381,7 +381,7 @@ function setUpLogin() {
             function (data) {
                 if (data.success === true) {
                     // Login successful.
-                    if (data.next === "") {
+                    if ((data.next === "") || (data.next === null)) {
                         window.location.reload();
                     } else {
                         window.location = data.next;
