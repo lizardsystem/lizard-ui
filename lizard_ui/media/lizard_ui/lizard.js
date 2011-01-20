@@ -400,7 +400,12 @@ function setUpLogin() {
         url = $(this).attr("data-url");
         $.post(
             url,
-            {});
+            {},
+            function () {
+                window.location = "/";
+                return false;
+            }
+        );
     });
 }
 
