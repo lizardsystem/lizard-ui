@@ -402,7 +402,6 @@ function setUpLogin() {
             url,
             {},
             function (event) {
-                event.preventDefault();
                 window.location = "/";
                 return false;
             }

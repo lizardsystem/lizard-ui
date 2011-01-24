@@ -5,7 +5,7 @@ Changelog of lizard-ui
 1.33 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Removed preventDefault in logout function.
 
 
 1.32 (2011-01-20)
