@@ -55,4 +55,6 @@ if settings.DEBUG:  # Pragma: nocover
          {'template': 'lizard_ui/example_accordion3.html'}),
         (r'^examples/icons/$', 'direct_to_template',
          {'template': 'lizard_ui/example_icons.html'}),
+        (r'^examples/portaltabs/$', 'direct_to_template',
+         {'template': 'lizard_ui/example-portaltabs.html'}),
         )

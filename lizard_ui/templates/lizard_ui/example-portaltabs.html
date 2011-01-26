@@ -1,0 +1,34 @@
+{% extends "lizard_ui/lizardbase.html" %}
+
+{% block title %}Portal tabs{% endblock %}
+
+{% block portal-tabs %}
+{# Add "selected" to the selected class. #}
+{# Make sure you add {{ block.super }} in pages with this block. #}
+<ul id="portal-tabs">
+  <li id="portal-tab-one"><a href="">Tab one</a></li
+><li id="portal-tab-two" class="last"><a href="">Tab two</a></li>
+</ul>
+<div id="portal-tab-selected-default" data-selected="#portal-tab-one"></div>
+{# add: <div id="portal-tab-selected" data-selected="#portal-tab-one"></div> #}
+{% endblock portal-tabs %}
+
+{% block content %}
+<div id="textual">
+<p>
+See Tab one and Tab two on top of this page. Define the block "portal-tabs" in your version of lizard_ui/lizardbase.html. The tabs only have to be defined once.
+</p>
+
+<p>
+Define your portal tabs in ul, li. In the last tab, add class "last".
+</p>
+
+<p>
+Next define portal-tab-selected-default, with attribute data-selected. i.e. "#portal-tab-one".
+</p>
+
+<p>
+In every page where you want a different portal-tab selected than the default, add block portal-tabs, add block.super on top and define portal-tab-selected with attribute data-selected.
+</p>
+</div>
+{% endblock %}

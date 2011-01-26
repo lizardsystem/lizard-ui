@@ -422,6 +422,17 @@ function setUpScreen() {
 }
 
 
+function setUpPortalTabs() {
+    var selected_tab;
+    selected_tab = $("#portal-tab-selected").attr("data-selected");
+    if (selected_tab === undefined) {
+        selected_tab = $("#portal-tab-selected-default")
+            .attr("data-selected");
+    }
+    $(selected_tab).addClass("selected");
+}
+
+
 /* Fill the screen (again) when we open the page and when the window is
    resized.
 */
@@ -456,6 +467,8 @@ $(document).ready(function () {
     setUpPrintButton();
 
     setUpWorkspaceAcceptableButtons();
+    // Light up the selected tab, if available.
+    setUpPortalTabs();
 
     // Set up legend.
     setUpTooltips(); // The edit function is on the tooltip.
