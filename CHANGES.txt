@@ -5,6 +5,8 @@ Changelog of lizard-ui
 1.34 (unreleased)
 -----------------
 
+- Added new breadcrumbs method. See examples.
+
 - Added protovis library.
 
 - Added support for portal-tabs, see also the examples page.

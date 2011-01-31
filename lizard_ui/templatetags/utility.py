@@ -81,3 +81,16 @@ def dutch_timedelta(seconds):
         result.append("%d seconden" % seconds)
 
     return ', '.join(result[:2])
+
+
+@register.inclusion_tag('lizard_ui/tag_breadcrumbs.html')
+def breadcrumbs(crumbs):
+    """
+    returns nice breadcrumbs layout.
+
+    crumbs is a list of dicts. each dict has:
+    - name
+    - url (optional): link to page
+    - classes (optional): list of classes to be added to the link
+    """
+    return {'crumbs': crumbs}
