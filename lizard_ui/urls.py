@@ -58,3 +58,10 @@ if settings.DEBUG:  # Pragma: nocover
         (r'^examples/portaltabs/$', 'direct_to_template',
          {'template': 'lizard_ui/example-portaltabs.html'}),
         )
+    urlpatterns += patterns(
+        '',
+        url(r'^examples/breadcrumbs/$',
+            'lizard_ui.views.example_breadcrumbs',
+            {'template': 'lizard_ui/example-breadcrumbs.html'},
+            name='lizard_ui.example_breadcrumbs'),
+        )

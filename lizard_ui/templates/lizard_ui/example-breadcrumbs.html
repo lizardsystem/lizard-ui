@@ -1,0 +1,29 @@
+{% extends "lizard_ui/lizardbase.html" %}
+
+{% block title %}Breadcrumbs{% endblock %}
+
+{% block content %}
+<div id="textual">
+<p>
+In your view, include the keyword 'crumbs' in your dictionary van values to add to the template context. When left out, you simply see no breadcrumbs.
+</p>
+
+<p>
+The crumbs contain a list of dictionaries, where each dictionary represent a single item in the breadcrumb list.
+</p>
+
+<p>
+The dictionary has the following keys:
+<ul>
+<li>name: name of the item</li>
+<li>url (optional): url where the crumb should point to</li>
+<li>classes (optional): list of strings to add to the html class field</li>
+</ul>
+</p>
+
+<p>
+See the view in views.py to see how it works.
+</p>
+
+</div>
+{% endblock %}

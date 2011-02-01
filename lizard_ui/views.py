@@ -45,3 +45,11 @@ def simple_logout(request):
     """
     logout(request)
     return HttpResponse("")
+
+
+def example_breadcrumbs(request, template=None):
+    crumbs = [{'name': 'name', 'url': 'url'},
+              {'name': 'name2', 'url': 'url2'}]
+    return render_to_response(
+        template, {'crumbs': crumbs},
+        context_instance=RequestContext(request))
