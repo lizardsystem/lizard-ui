@@ -432,6 +432,13 @@ function setUpPortalTabs() {
     $(selected_tab).addClass("selected");
 }
 
+function restretchExistingElements() {
+    fillScreen();
+    divideVerticalSpaceEqually();
+    stretchOneSidebarBox();
+    reloadGraphs();    
+}
+
 
 /* Fill the screen (again) when we open the page and when the window is
    resized.
@@ -442,13 +449,8 @@ $(window).resize(function () {
         clearTimeout(resizeTimer);
     }
     resizeTimer = setTimeout(
-        function () {
-            fillScreen();
-            divideVerticalSpaceEqually();
-            stretchOneSidebarBox();
-            reloadGraphs();
-        },
-        300);
+            restretchExistingElements, 300
+    );
 });
 
 
