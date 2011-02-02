@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-1.35 (unreleased)
+1.35 (2011-02-02)
 -----------------
 
 - Refactored the window.resize function in lizard.js [Gijs].
