@@ -130,6 +130,9 @@
              class="clear">
           <div id="sidebar">
             {% block sidebar %}
+            {% if application_screen_slug %}
+            {% application_icons application_screen_slug %}
+            {% endif %}
             {% endblock sidebar %}
           </div>
           {# End of sidebar #}

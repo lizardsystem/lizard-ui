@@ -14,6 +14,9 @@ urlpatterns = patterns(
     url(r'^accounts/logout/$',
         'lizard_ui.views.simple_logout',
         name='lizard_ui.logout'),
+    url(r'^screen/(?P<application_screen_slug>.*)/$',
+        'lizard_ui.views.application_screen',
+        name='lizard_ui.application_screen'),
     )
 
 

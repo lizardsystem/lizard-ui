@@ -53,3 +53,20 @@ def example_breadcrumbs(request, template=None):
     return render_to_response(
         template, {'crumbs': crumbs},
         context_instance=RequestContext(request))
+
+
+###### Views with complete screens ######
+
+def application_screen(
+    request,
+    application_screen_slug=None,
+    template="lizard_ui/application_screen.html",
+    crumbs_prepend=None):
+    """
+    Renders a screen with apps.
+    """
+
+    return render_to_response(
+        template,
+        {'application_screen_slug': application_screen_slug},
+        context_instance=RequestContext(request))

@@ -5,7 +5,7 @@ Changelog of lizard-ui
 1.36 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Added application screens and icons support: added models and views.
 
 
 1.35 (2011-02-02)

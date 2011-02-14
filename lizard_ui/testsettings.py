@@ -9,6 +9,7 @@ INSTALLED_APPS = [
     'lizard_ui',
     'compressor',
     'staticfiles',
+    'south',
     'django_nose',
     'django.contrib.admin',
     'django.contrib.auth',

@@ -16,6 +16,7 @@ install_requires = [
     'django-nose',
     'django-staticfiles',
     'django_compressor',  # Yes, underscore.
+    'south',
     ],
 
 tests_require = [

@@ -1,7 +1,10 @@
 # utilities for making life easier
 
 from django import template
+from django.shortcuts import get_object_or_404
 from django.utils.safestring import mark_safe
+
+from lizard_ui.models import ApplicationScreen
 
 register = template.Library()
 
@@ -94,3 +97,18 @@ def breadcrumbs(crumbs):
     - classes (optional): list of classes to be added to the link
     """
     return {'crumbs': crumbs}
+
+
+@register.inclusion_tag(
+    'lizard_ui/tag_application_icons.html',
+    takes_context=True)
+def application_icons(context, application_screen_slug):
+    """
+    Returns list of application icons, with surrounding header and ul.
+    """
+    application_screen = get_object_or_404(
+        ApplicationScreen, slug=application_screen_slug)
+    static_url = context['STATIC_URL']
+
+    return {'application_screen': application_screen,
+            'STATIC_URL': static_url}
