@@ -28,7 +28,8 @@ function scrollbarWidth() {
 function reloadGraphs(max_image_width) {
     $('a.replace-with-image').each(
         function (index) {
-            var url, url_click, timestamp, width, height, amp_or_questionmark, html_img;
+            var url, url_click, timestamp, width, height, amp_or_questionmark, html_img, image, $main_tag;
+            $main_tag = $(this);
             width = $(this).parent('.img-use-my-size').innerWidth();
             height = $(this).parent('.img-use-my-size').innerHeight();
             if (width === null) {
@@ -63,11 +64,23 @@ function reloadGraphs(max_image_width) {
                 '&height=' + height +
                 '&random=' + timestamp + '" ' +
                 '/>';
-            // place <a href></a> around image
+            // Add progress animation.
+            $(this).after('<img src="/static_media/lizard_ui/ajax-loader2.gif" class="auto-inserted progress-animation"/>');
+
+            // Preload image.
+            image = $(html_img);
+
+            // Place <a href></a> around image tag.
             if (url_click !== undefined) {
-                html_img = '<a href="' + url_click + '">' + html_img + '</a>';
+                html_img = '<a href="' + url_click + '" class="auto-inserted">' + html_img + '</a>';
             }
-            $(this).after(html_img);
+
+            image.load(function() {
+                // After preloading.
+                // Remove progress animation and possibly old images.
+                $main_tag.parent().find(".auto-inserted").remove();
+                $main_tag.after(html_img);
+            });
         }
     );
 }
@@ -436,7 +449,7 @@ function restretchExistingElements() {
     fillScreen();
     divideVerticalSpaceEqually();
     stretchOneSidebarBox();
-    reloadGraphs();    
+    reloadGraphs();
 }
 
 
