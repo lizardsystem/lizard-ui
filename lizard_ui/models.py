@@ -29,7 +29,9 @@ class ApplicationIcon(models.Model):
 
     name = models.CharField(max_length=40)
     icon = models.CharField(max_length=200)
-    url = models.CharField(max_length=200)
+
+    # If not filled in, the link gets class "notworking"
+    url = models.CharField(max_length=200, blank=True, null=True)
 
     application_screen = models.ForeignKey(ApplicationScreen)
     index = models.IntegerField(default=1000)

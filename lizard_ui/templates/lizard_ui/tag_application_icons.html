@@ -1,0 +1,14 @@
+<div id="iconbox" class="sidebarbox sidebarbox-stretched iconlist">
+  <h2>{% firstof application_screen.name 'Error' %}</h2>
+  {% if error %}{{ error }}{% endif %}
+  <ul>
+    {% for application_icon in application_screen.applicationicon_set.all %}
+    <li>
+      <a {% if application_icon.url %}href="{{ application_icon.url }}"{% else %}class="notworking"{% endif %}>
+        <img src="{{ STATIC_URL }}{{ application_icon.icon }}" />
+        <div>{{ application_icon.name }}</div>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+</div>

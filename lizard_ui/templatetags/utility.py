@@ -106,9 +106,21 @@ def application_icons(context, application_screen_slug):
     """
     Returns list of application icons, with surrounding header and ul.
     """
-    application_screen = get_object_or_404(
-        ApplicationScreen, slug=application_screen_slug)
-    static_url = context['STATIC_URL']
 
-    return {'application_screen': application_screen,
+    # Default screen slug.
+    if application_screen_slug is None:
+        application_screen_slug = 'home'
+
+    application_screens = ApplicationScreen.objects.filter(
+        slug=application_screen_slug)
+    if len(application_screens) == 0:
+        return {'error': ('ApplicationScreen with slug "%s" does not exist. '
+                          'Create it or choose another screen.')
+                % application_screen_slug}
+
+    static_url = ''
+    if 'STATIC_URL' in context:
+        static_url = context['STATIC_URL']
+
+    return {'application_screen': application_screens[0],
             'STATIC_URL': static_url}
