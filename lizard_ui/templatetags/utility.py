@@ -1,7 +1,6 @@
 # utilities for making life easier
 
 from django import template
-from django.shortcuts import get_object_or_404
 from django.utils.safestring import mark_safe
 
 from lizard_ui.models import ApplicationScreen

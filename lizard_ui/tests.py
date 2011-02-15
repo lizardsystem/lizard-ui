@@ -68,8 +68,10 @@ class TestUtility(TestCase):
         self.assertEquals(u'1 minuut, 5 seconden', dutch_timedelta(65))
         self.assertEquals(u'2 minuten, 5 seconden', dutch_timedelta(125))
         self.assertEquals(u'1 uur', dutch_timedelta(3600))
-        self.assertEquals(u'1 uur, 1 minuut', dutch_timedelta(3700))  # Rounded off
-        self.assertEquals(u'1 dag, 1 minuut', dutch_timedelta(86500))  # Rounded off
+        # Rounded off
+        self.assertEquals(u'1 uur, 1 minuut', dutch_timedelta(3700))
+        # Rounded off
+        self.assertEquals(u'1 dag, 1 minuut', dutch_timedelta(86500))
         dutch_timedelta(None)  # Should not crash
 
     def test_application_icons(self):
