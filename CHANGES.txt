@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-1.51 (unreleased)
+1.51 (2011-02-15)
 -----------------
 
 - Added progress animation to vertical-item / img-use-my-size /
