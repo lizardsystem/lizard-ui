@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-1.37 (unreleased)
+1.50 (2011-02-15)
 -----------------
 
 - Added icons dike and controlnext.
