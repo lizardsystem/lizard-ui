@@ -60,6 +60,8 @@ if settings.DEBUG:  # Pragma: nocover
          {'template': 'lizard_ui/example_icons.html'}),
         (r'^examples/portaltabs/$', 'direct_to_template',
          {'template': 'lizard_ui/example-portaltabs.html'}),
+        (r'^examples/appscreens/$', 'direct_to_template',
+         {'template': 'lizard_ui/example-appscreens.html'}),
         )
     urlpatterns += patterns(
         '',

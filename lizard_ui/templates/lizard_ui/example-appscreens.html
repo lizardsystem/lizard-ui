@@ -1,0 +1,25 @@
+{% extends "lizard_ui/lizardbase.html" %}
+{% load utility %}
+
+{% block title %}Application Screens{% endblock %}
+
+{% block sidebar %}
+{% application_icons 'home' %}
+{% endblock sidebar %}
+
+{% block content %}
+<div id="textual">
+<p>
+In your view, load 'utility' and call the template tag application_icons with application_screen_slug as parameter.
+</p>
+
+<p>
+Application Screens have Application Icons and they are defined in lizard_ui.models.
+</p>
+
+<p>
+See the template to see how it works.
+</p>
+
+</div>
+{% endblock %}
