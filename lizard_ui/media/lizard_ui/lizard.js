@@ -62,7 +62,7 @@ function reloadGraphs(max_image_width) {
             html_img = '<img src="' + url +
                 amp_or_questionmark + 'width=' + width +
                 '&height=' + height +
-                '&random=' + timestamp + '" ' +
+                '&random=' + timestamp + '" class="auto-inserted" ' +
                 '/>';
             // Add progress animation.
             $(this).after('<img src="/static_media/lizard_ui/ajax-loader2.gif" class="auto-inserted progress-animation"/>');
