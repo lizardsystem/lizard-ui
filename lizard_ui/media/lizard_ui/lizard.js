@@ -28,7 +28,7 @@ function scrollbarWidth() {
 function reloadGraphs(max_image_width) {
     $('a.replace-with-image').each(
         function (index) {
-            var url, url_click, timestamp, width, height, amp_or_questionmark, html_img, image, $main_tag;
+            var url, url_click, timestamp, width, height, amp_or_questionmark, html_img, image, $main_tag, html_src;
             $main_tag = $(this);
             width = $(this).parent('.img-use-my-size').innerWidth();
             height = $(this).parent('.img-use-my-size').innerHeight();
@@ -59,13 +59,14 @@ function reloadGraphs(max_image_width) {
             // Remove a previous image that's already there.
             $('~ img', this).remove();
             timestamp = new Date().getTime();  // No cached images.
-            html_img = '<img src="' + url +
+            html_url = url +
                 amp_or_questionmark + 'width=' + width +
                 '&height=' + height +
-                '&random=' + timestamp + '" class="auto-inserted" ' +
+                '&random=' + timestamp;
+            html_img = '<img src="' + html_url + '" class="auto-inserted" ' +
                 '/>';
             // Add progress animation.
-            $(this).after('<img src="/static_media/lizard_ui/ajax-loader2.gif" class="auto-inserted progress-animation"/>');
+            $(this).after('<img src="/static_media/lizard_ui/ajax-loader2.gif" class="auto-inserted progress-animation" data-src="' + html_url + '" />');
 
             // Preload image.
             image = $(html_img);

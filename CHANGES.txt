@@ -5,7 +5,7 @@ Changelog of lizard-ui
 1.52 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Added data-src to progress animation (for debugging purposes).
 
 
 1.51 (2011-02-15)
