@@ -529,6 +529,16 @@ table.generic-table .button
   margin-left: 1em;
   }
 
+/* Negative margins compensate for icon size. */
 .progress-animation
-{ padding: 1em;
+{ position: relative;
+  top: 50%;
+  left: 50%;
+  margin-top: -16px;
+  margin-left: -16px;
+}
+
+.auto-inserted
+{ width: 100%;
+  height: 100%;
 }

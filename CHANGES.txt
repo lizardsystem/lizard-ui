@@ -5,6 +5,8 @@ Changelog of lizard-ui
 1.52 (unreleased)
 -----------------
 
+- Centered the progress animation.
+
 - Added data-src to progress animation (for debugging purposes).
 
 
