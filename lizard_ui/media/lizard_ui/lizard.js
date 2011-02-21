@@ -65,6 +65,8 @@ function reloadGraphs(max_image_width) {
                 '&random=' + timestamp;
             html_img = '<img src="' + html_url + '" class="auto-inserted" ' +
                 '/>';
+            // Remove progress animation and possibly old images.
+            $main_tag.parent().find(".auto-inserted").remove();
             // Add progress animation.
             $(this).after('<div class="auto-inserted"><img src="/static_media/lizard_ui/ajax-loader.gif" class="progress-animation" data-src="' + html_url + '" /></div>');
 
