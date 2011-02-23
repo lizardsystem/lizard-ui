@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-1.52 (unreleased)
+1.52 (2011-02-23)
 -----------------
 
 - Centered the progress animation.
