@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-1.53 (unreleased)
+1.53 (2011-03-09)
 -----------------
 
 - Removed setUpWorkspaceAcceptableButtons. The button is now added
