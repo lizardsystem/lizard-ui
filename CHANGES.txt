@@ -8,6 +8,9 @@ Changelog of lizard-ui
 - Removed setUpWorkspaceAcceptableButtons. The button is now added
   when a workspace-acceptable is clicked (lizard-map 1.58 and higher).
 
+- Adding error message when a "replace-with-image" image is loaded and
+  there's an error. Instead of an ever-spinning "loading..." icon.
+
 
 1.52 (2011-02-23)
 -----------------

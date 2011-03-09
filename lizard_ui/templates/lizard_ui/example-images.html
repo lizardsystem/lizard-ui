@@ -38,6 +38,26 @@
     parameter to the image's url.
   </p>
 
+  <p>
+    If the image fails to load, we remove the "loading..." spinner and
+    display a generic error message:
+  </p>
+  <div>
+    <a href="/does/definitively/not/exist.jpgndkgoi"
+       class="replace-with-image">image</a>
+  </div>
+
+  <p>
+    If you want a customized error message, add a "data-errormsg"
+    attribute on the "a href":
+  </p>
+  <div>
+    <a href="/does/definitively/not/exist.jpgndkgoi"
+       data-errormsg="Yep, this one does not exist"
+       class="replace-with-image">image</a>
+  </div>
+  
+
 </div>
 
 {% endblock %}

@@ -28,10 +28,16 @@ function scrollbarWidth() {
 function reloadGraphs(max_image_width) {
     $('a.replace-with-image').each(
         function (index) {
-            var url, url_click, timestamp, width, height, amp_or_questionmark, html_img, image, $main_tag, html_src, html_url;
+            var url, url_click, timestamp, width, height, amp_or_questionmark, 
+            html_img, image, $main_tag, html_src, html_url, errormsg;
             $main_tag = $(this);
             width = $(this).parent('.img-use-my-size').innerWidth();
             height = $(this).parent('.img-use-my-size').innerHeight();
+            if ($(this).attr('data-errormsg')) {
+                errormsg = $(this).attr('data-errormsg');
+            } else {
+                errormsg = 'An error occurred';
+            }
             if (width === null) {
                 width = '';
                 height = '';
@@ -83,6 +89,15 @@ function reloadGraphs(max_image_width) {
                 // Remove progress animation and possibly old images.
                 $main_tag.parent().find(".auto-inserted").remove();
                 $main_tag.after(html_img);
+            });
+            image.error(function () {
+                // After preloading.
+                // Remove progress animation and possibly old images.
+                $main_tag.parent().find(".auto-inserted").remove();
+                $main_tag.after(
+                    '<p class="auto-inserted">' +
+                        errormsg +
+                        '</p>');
             });
         }
     );
