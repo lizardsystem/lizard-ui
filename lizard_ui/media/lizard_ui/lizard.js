@@ -269,25 +269,6 @@ function setUpCollapsibleSidebar() {
 }
 
 
-/* Add action buttons to workspace acceptables. The workspace
-acceptables are generated in different apps and we want all apps to
-have these buttons, therefore we add the buttons in this function.
-
-If you wonder why the function is in lizard-ui and not in lizard-map:
-the function must be called in setUpAccordion in order to add the
-button in accordions. Furthermore, it does not hurt because the
-function only affects class workspace-acceptable.
-*/
-function setUpWorkspaceAcceptableButtons() {
-    $(".workspace-acceptable").each(function () {
-        var html;
-        html = $(this).html();
-        html = html + '<span class="ss_sprite ss_add sidebarbox-action-icon add-workspace-item" title="Voeg laag toe aan workspace">&nbsp;</span>';
-        $(this).html(html);
-    });
-}
-
-
 /* Initializes and shows (legend) tooltip. Must be re-initialized
 after lizard-map workspace update.  */
 function setUpTooltips() {
@@ -361,7 +342,6 @@ function setUpAccordion() {
             });
             setUpTooltips();
             setUpTree(true);
-            setUpWorkspaceAcceptableButtons();
         });
         $("li.selected", pane).removeClass("selected");
         $(this).parent("li").addClass("selected");
@@ -484,7 +464,7 @@ $(document).ready(function () {
     setUpLogin();
     setUpPrintButton();
 
-    setUpWorkspaceAcceptableButtons();
+    //setUpWorkspaceAcceptableButtons();
     // Light up the selected tab, if available.
     setUpPortalTabs();
 
