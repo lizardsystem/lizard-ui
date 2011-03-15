@@ -5,7 +5,10 @@ Changelog of lizard-ui
 1.54 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Allowing a div with a class "not-evenly-spaced" in the
+  divideVerticalSpaceEqually() method: this one gets half the
+  available space and the vertical items get the rest.  Intended for
+  displaying an edit form underneath the graphs.
 
 
 1.53 (2011-03-09)

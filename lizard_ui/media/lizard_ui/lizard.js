@@ -240,10 +240,10 @@ function divideVerticalSpaceEqually() {
     Handy for forms underneath the graphs.
     */
     var numberOfItems = $('#evenly-spaced-vertical > .vertical-item').length;
-    $("#evenly-spaced-vertical .not-evenly-spaced").height(
+    $(".not-evenly-spaced").height(
         Math.floor(mainContentHeight / 2));
     verticalItemHeight = Math.floor(
-        (mainContentHeight - $("#evenly-spaced-vertical .not-evenly-spaced").height()) /
+        (mainContentHeight - $(".not-evenly-spaced").height()) /
             numberOfItems) - 1;
     $('#evenly-spaced-vertical > .vertical-item').height(verticalItemHeight);
 }
