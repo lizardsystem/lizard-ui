@@ -233,10 +233,18 @@ function showExampleMap() {
 
 function divideVerticalSpaceEqually() {
     /* For #evenly-spaced-vertical, divide the vertical space evenly between
-    the .vertical-item elements.  Take note of the 4px border between them.
+    the .vertical-item elements.  Take note of the 4px border between
+    them.
+    Note that a "not-evenly-spaced" element will be given half the
+    space.
+    Handy for forms underneath the graphs.
     */
     var numberOfItems = $('#evenly-spaced-vertical > .vertical-item').length;
-    verticalItemHeight = Math.floor(mainContentHeight / numberOfItems) - 1;
+    $("#evenly-spaced-vertical .not-evenly-spaced").height(
+        Math.floor(mainContentHeight / 2));
+    verticalItemHeight = Math.floor(
+        (mainContentHeight - $("#evenly-spaced-vertical .not-evenly-spaced").height()) /
+            numberOfItems) - 1;
     $('#evenly-spaced-vertical > .vertical-item').height(verticalItemHeight);
 }
 
