@@ -5,6 +5,9 @@ Changelog of lizard-ui
 1.54 (unreleased)
 -----------------
 
+- Removed css for .auto-inserted. It works fine without it. Before the
+  image was slightly scaled.
+
 - Allowing a div with a class "not-evenly-spaced" in the
   divideVerticalSpaceEqually() method: this one gets half the
   available space and the vertical items get the rest.  Intended for
