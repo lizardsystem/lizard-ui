@@ -537,3 +537,7 @@ table.generic-table .button
   margin-top: -16px;
   margin-left: -16px;
 }
+
+.auto-inserted
+{ height: 100%;
+}
