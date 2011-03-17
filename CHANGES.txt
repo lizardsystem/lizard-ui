@@ -8,10 +8,10 @@ Changelog of lizard-ui
 - Removed width: 100% css for .auto-inserted. It works fine without
   it. Before the image was slightly scaled horizontally.
 
-- Allowing a div with a class "not-evenly-spaced" in the
-  divideVerticalSpaceEqually() method: this one gets half the
-  available space and the vertical items get the rest.  Intended for
-  displaying an edit form underneath the graphs.
+- Added possibility for a double-height item in the
+  divideVerticalSpaceEqually() method.  Just add a
+  "double-vertical-item" class instead of "vertical-item" to the item
+  you want to give double the height.
 
 
 1.53 (2011-03-09)

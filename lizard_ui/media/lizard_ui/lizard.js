@@ -239,13 +239,13 @@ function divideVerticalSpaceEqually() {
     space.
     Handy for forms underneath the graphs.
     */
-    var numberOfItems = $('#evenly-spaced-vertical > .vertical-item').length;
-    $(".not-evenly-spaced").height(
-        Math.floor(mainContentHeight / 2));
+    var numberOfItems, numberOfDoubleItems;
+    numberOfItems = $('#evenly-spaced-vertical > .vertical-item').length;
+    numberOfDoubleItems = $('#evenly-spaced-vertical > .double-vertical-item').length;
     verticalItemHeight = Math.floor(
-        (mainContentHeight - $(".not-evenly-spaced").height()) /
-            numberOfItems) - 1;
+        (mainContentHeight / (numberOfItems + 2 * numberOfDoubleItems))) - 1;
     $('#evenly-spaced-vertical > .vertical-item').height(verticalItemHeight);
+    $('#evenly-spaced-vertical > .double-vertical-item').height(2 * verticalItemHeight);
 }
 
 
