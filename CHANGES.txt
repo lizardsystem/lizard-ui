@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-1.54 (unreleased)
+1.54 (2011-03-18)
 -----------------
 
 - Removed width: 100% css for .auto-inserted. It works fine without
