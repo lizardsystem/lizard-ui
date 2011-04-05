@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-1.55 (unreleased)
+1.55 (2011-04-05)
 -----------------
 
 - Added 3di icon.
