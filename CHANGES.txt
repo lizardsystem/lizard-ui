@@ -13,6 +13,8 @@ Changelog of lizard-ui
 
 - Added 3di icon.
 
+- Added Waterbalance icon.
+
 
 1.54 (2011-03-18)
 -----------------
