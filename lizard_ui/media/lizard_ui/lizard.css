@@ -344,6 +344,17 @@ body
   margin-right: 2px;
   }
 
+.sidebarbox-action-progress
+{ float: right;
+  display: block;
+  font-weight: normal;
+  margin-top: 5px;
+  margin-right: 5px;
+  position: relative;
+
+}
+
+
 /* Feedback when hovering over droppable. */
 .drophover
 { background-color: yellow ! important;
@@ -536,6 +547,16 @@ table.generic-table .button
   left: 50%;
   margin-top: -16px;
   margin-left: -16px;
+}
+
+.progress-animation-small
+{ position: relative;
+  top: 50%;
+  left: 50%;
+  margin-top: -20px;
+  margin-left: -20px;
+  width: 10px;
+  heigth: 10px;
 }
 
 .auto-inserted

@@ -5,7 +5,7 @@ Changelog of lizard-ui
 1.56 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Added css class for progress animation image
 
 
 1.55 (2011-04-05)
