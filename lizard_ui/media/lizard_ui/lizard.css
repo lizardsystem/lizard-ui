@@ -37,10 +37,12 @@ body
    And floated right portal actions. */
 #logo
 { float: left;
-  padding-left: 1em;
   width: 19em;
   height: 4em;
   overflow: hidden;
+  }
+#logo-img
+{ padding-left: 6em;
   }
 #portal-actions
 { text-align: right;
