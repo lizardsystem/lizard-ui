@@ -5,6 +5,8 @@ Changelog of lizard-ui
 1.56 (unreleased)
 -----------------
 
+- Updated Lizard logo.
+
 - Added jQuery tools tabs.css.
 
 - Updated jQuery from 1.4.2 to 1.5.2, jQuery UI from 1.8.2 to 1.8.11,
