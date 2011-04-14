@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-1.56 (unreleased)
+1.56 (2011-04-14)
 -----------------
 
 - Updated Lizard logo.
