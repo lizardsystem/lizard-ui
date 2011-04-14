@@ -127,13 +127,17 @@ function calculateHiddenStuffHeight() {
 
 function stretchOneSidebarBox() {
     /* Stretch out one sidebarbox so that the sidebar is completely filled. */
-    var stillAvailable, includeMargin;
-    $("#sidebar .sidebarbox-stretched").height('0');
+    var stillAvailable, includeMargin, minHeight, autoHeight, newHeight;
+    minHeight = 100; // not smaller than this
+    $("#sidebar .sidebarbox-stretched").height('auto');
+    autoHeight = $("#sidebar .sidebarbox-stretched").height();
     stillAvailable = $("#sidebar").innerHeight();
     $("#sidebar > *").each(function () {
         stillAvailable -= $(this).outerHeight(includeMargin = true);
     });
-    $("#sidebar .sidebarbox-stretched").height(stillAvailable);
+    newHeight = autoHeight + stillAvailable;
+    newHeight = newHeight < minHeight ? minHeight : newHeight;
+    $("#sidebar .sidebarbox-stretched").height(newHeight);
 }
 
 

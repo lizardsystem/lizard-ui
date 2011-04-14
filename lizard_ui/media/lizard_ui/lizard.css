@@ -396,6 +396,8 @@ ul.without-bullets li
 
 .workspace
 { min-height: 6em;
+  max-height: 18em;
+  overflow: auto;
   }
 
 .workspace-acceptable
