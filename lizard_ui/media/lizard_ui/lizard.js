@@ -28,7 +28,7 @@ function scrollbarWidth() {
 function reloadGraphs(max_image_width) {
     $('a.replace-with-image').each(
         function (index) {
-            var url, url_click, timestamp, width, height, amp_or_questionmark, 
+            var url, url_click, timestamp, width, height, amp_or_questionmark,
             html_img, image, $main_tag, html_src, html_url, errormsg;
             $main_tag = $(this);
             width = $(this).parent('.img-use-my-size').innerWidth();
@@ -348,9 +348,10 @@ function setUpAccordion() {
     $("#accordion").tabs(
         "#accordion .pane",
         {tabs: "h2, h3",
-         effect: "slide"});
+         effect: "slide",
+        });
     /* Set up a global 'accordion' variable to later steer the animation. */
-    accordion = $("#accordion").tabs();
+    accordion = $("#accordion").data("tabs");
     $(".accordion-load-next a").live('click', function (event) {
         var pane, nextPaneId, url, newTitle;
         event.preventDefault();
