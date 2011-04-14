@@ -1,13 +1,13 @@
-Jquery ui + "smoothness" theme downloaded from http://tinyurl.com/qv2vv3
+Jquery ui + "smoothness" theme downloaded from http://jqueryui.com/download
 
 Note: disable the "tabs" component as we use jquerytools' version for that as
-that one fits way better with our own css styling.
+that one fits way better with our own css styling. Just cut the Tabs part.
 
-Later updated with version 1.8.2, including the non-minified version for
+Later updated with version 1.8.11, including the non-minified version for
 debugging purposes.
 
 Unzip the ....custom.zip and, assuming the css hasn't really changed, copy the
 following two files::
 
- cp development-bundle/ui/jquery-ui-1.8.2.custom.js jqueryui.js
- cp js/jquery-ui-1.8.2.custom.min.js jqueryui.min.js
+ cp development-bundle/ui/jquery-ui-1.8.11.custom.js jqueryui.js
+ cp js/jquery-ui-1.8.11.custom.min.js jqueryui.min.js
