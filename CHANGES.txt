@@ -7,7 +7,7 @@ Changelog of lizard-ui
 
 - Updated Lizard logo.
 
-- Added jQuery tools tabs.css.
+- Added lizard_ui/tabs.css.
 
 - Updated jQuery from 1.4.2 to 1.5.2, jQuery UI from 1.8.2 to 1.8.11,
   jQueryTools from 1.2.2 to 1.2.5. Treeview from 1.4 to 1.4.1.
