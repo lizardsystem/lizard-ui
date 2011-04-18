@@ -348,8 +348,7 @@ function setUpAccordion() {
     $("#accordion").tabs(
         "#accordion .pane",
         {tabs: "h2, h3",
-         effect: "slide",
-        });
+         effect: "slide"});
     /* Set up a global 'accordion' variable to later steer the animation. */
     accordion = $("#accordion").data("tabs");
     $(".accordion-load-next a").live('click', function (event) {

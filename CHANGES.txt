@@ -1,11 +1,11 @@
-Changelog of lizard-ui
+\Changelog of lizard-ui
 ======================
 
 
 1.57 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Jslint lizard.js.
 
 
 1.56 (2011-04-14)
