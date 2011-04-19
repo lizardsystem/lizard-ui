@@ -5,6 +5,8 @@
 1.57 (unreleased)
 -----------------
 
+- Updated OpenLayers from 2.8 to 2.10.
+
 - Jslint lizard.js.
 
 
