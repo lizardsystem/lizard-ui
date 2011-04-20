@@ -1,9 +1,11 @@
-\Changelog of lizard-ui
+Changelog of lizard-ui
 ======================
 
 
 1.57 (unreleased)
 -----------------
+
+- Added new flooding icon flooding2.png.
 
 - Updated OpenLayers from 2.8 to 2.10.
 
