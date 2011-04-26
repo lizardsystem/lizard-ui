@@ -197,6 +197,9 @@ function fillScreen() {
     $('#graph-popup-content').css(
         'max-height',
         mainContentHeight - 30);
+    $('.popup-content').css(
+        'max-height',
+        mainContentHeight - 30);
 }
 
 
