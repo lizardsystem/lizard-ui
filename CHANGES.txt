@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-1.58 (unreleased)
+1.58 (2011-04-27)
 -----------------
 
 - Added dacom icon.
