@@ -5,6 +5,8 @@ Changelog of lizard-ui
 1.58 (unreleased)
 -----------------
 
+- Added dacom icon.
+
 - Updated tabs css (needed for lizard-map >= 1.71).
 
 
