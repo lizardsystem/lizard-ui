@@ -566,3 +566,10 @@ table.generic-table .button
 .auto-inserted
 { height: 100%;
 }
+
+/* Explicitly set img-use-my-size margins and paddings */
+
+div.img-use-my-size
+{ padding: 0;
+  margin: 0;
+}
