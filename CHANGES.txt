@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-1.59 (unreleased)
+1.59 (2011-04-28)
 -----------------
 
 - Deleted 'Copyright @ Nelen ...' text.
