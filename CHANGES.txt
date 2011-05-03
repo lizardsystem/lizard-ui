@@ -6,6 +6,7 @@ Changelog of lizard-ui
 -----------------
 
 - Changed CSS of .workspace (#2659).
+- Added five custom icons. (Gijs, req. by Dave)
 
 
 1.59 (2011-04-28)
