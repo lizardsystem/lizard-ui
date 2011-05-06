@@ -6,7 +6,12 @@ Changelog of lizard-ui
 -----------------
 
 - Changed CSS of .workspace (#2659).
+
 - Added five custom icons. (Gijs, req. by Dave)
+
+- Downgraded to jQuery 1.5.1 due to IE8 bug in 1.5.2.
+  See https://office.nelen-schuurmans.nl/trac/ticket/2656#comment:5
+  See http://bugs.jquery.com/ticket/8755
 
 
 1.59 (2011-04-28)
