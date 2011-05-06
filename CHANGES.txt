@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-1.60 (unreleased)
+1.60 (2011-05-06)
 -----------------
 
 - Changed CSS of .workspace (#2659).
