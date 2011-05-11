@@ -296,6 +296,10 @@ body
   margin-right: 0em;
   }
 
+#sidebar .sidebarbox#accordion h2{
+  cursor: pointer;
+}
+
 /* Nice background for h2/h3 headers in the sidebar. */
 #sidebar .sidebarbox h2,
 #sidebar .sidebarbox h3
