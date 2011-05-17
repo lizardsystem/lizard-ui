@@ -83,5 +83,5 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.media",
     # Needs to be added for django-staticfiles to allow you
     # to use {{ STATIC_URL }}myapp/my.css in your templates.
-    #'staticfiles.context_processors.static_url',
+    'staticfiles.context_processors.static_url',
     )
