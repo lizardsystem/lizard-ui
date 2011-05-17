@@ -8,6 +8,10 @@ Changelog of lizard-ui
 - Fixing menubar at 2em height to keep longer content from overflowing the
   bar.
 
+- Added favicon image in ``media/lizard_ui/favicon.ico``. So if you want a
+  different favicon in your project, place an updated icon in your site's
+  ``media/lizardui/`` folder.
+
 
 1.60 (2011-05-06)
 -----------------
