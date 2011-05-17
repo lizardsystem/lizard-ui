@@ -5,7 +5,8 @@ Changelog of lizard-ui
 1.61 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Fixing menubar at 2em height to keep longer content from overflowing the
+  bar.
 
 
 1.60 (2011-05-06)

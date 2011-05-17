@@ -161,12 +161,14 @@ body
   }
 
 /* The horizontal menubar needs a bit of padding top/bottom and a background.
-   The desired height is 24px.  This is achieved with line-height.  */
+   The desired height is 24px.  This is achieved with line-height.
+   Overflow is hidden to keep the bar at a fixed height. */
 #menubar
 { background-color: #eeeeee;
   background-image: url(bar_background.png);
   background-repeat: repeat-x;
   line-height: 2em;
+  overflow: hidden;
   width: 100%;
   }
 
