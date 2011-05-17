@@ -39,6 +39,16 @@
   </p>
 
   <p>
+    If you want the image to link to something, add a "data-href-click"
+    attribute with the target url.
+  </p>
+  <div>
+    <a href="{{ STATIC_URL }}lizard_ui/logo.png"
+       data-href-click="http://www.nelen-schuurmans.nl"
+       class="replace-with-image">image</a>
+  </div>
+
+  <p>
     If the image fails to load, we remove the "loading..." spinner and
     display a generic error message:
   </p>
@@ -56,7 +66,7 @@
        data-errormsg="Yep, this one does not exist"
        class="replace-with-image">image</a>
   </div>
-  
+
 
 </div>
 
