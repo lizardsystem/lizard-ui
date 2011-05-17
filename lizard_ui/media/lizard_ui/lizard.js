@@ -63,7 +63,7 @@ function reloadGraphs(max_image_width) {
             }
             url_click = $(this).attr('data-href-click');
             // Remove a previous image that's already there.
-            $('~ img', this).remove();
+            // PROBABLY NOT NEEDED $('~ img', this).remove();
             timestamp = new Date().getTime();  // No cached images.
             html_url = url +
                 amp_or_questionmark + 'width=' + width +
@@ -73,32 +73,38 @@ function reloadGraphs(max_image_width) {
                 '/>';
             // Remove progress animation and possibly old images.
             $main_tag.parent().find(".auto-inserted").remove();
-            // Add progress animation.
-            $(this).after('<div class="auto-inserted"><img src="/static_media/lizard_ui/ajax-loader.gif" class="progress-animation" data-src="' + html_url + '" /></div>');
 
-            // Preload image.
-            image = $(html_img);
+            if ($.browser.msie && $.browser.version.substr(0, 1) < 8) {
+                // Just insert the image. Weird loop bug.
+                $(this).after(html_img);
+            } else {
+                // Add progress animation.
+                $(this).after('<div class="auto-inserted"><img src="/static_media/lizard_ui/ajax-loader.gif" class="progress-animation" data-src="' + html_url + '" /></div>');
 
-            // Place <a href></a> around image tag.
-            if (url_click !== undefined) {
-                html_img = '<a href="' + url_click + '" class="auto-inserted">' + html_img + '</a>';
+                // Preload image.
+                image = $(html_img);
+
+                // Place <a href></a> around image tag.
+                if (url_click !== undefined) {
+                    html_img = '<a href="' + url_click + '" class="auto-inserted">' + html_img + '</a>';
+                }
+
+                image.load(function () {
+                    // After preloading.
+                    // Remove progress animation and possibly old images.
+                    $main_tag.parent().find(".auto-inserted").remove();
+                    $main_tag.after(html_img);
+                });
+                image.error(function () {
+                    // After preloading.
+                    // Remove progress animation and possibly old images.
+                    $main_tag.parent().find(".auto-inserted").remove();
+                    $main_tag.after(
+                        '<p class="auto-inserted">' +
+                            errormsg +
+                            '</p>');
+                });
             }
-
-            image.load(function () {
-                // After preloading.
-                // Remove progress animation and possibly old images.
-                $main_tag.parent().find(".auto-inserted").remove();
-                $main_tag.after(html_img);
-            });
-            image.error(function () {
-                // After preloading.
-                // Remove progress animation and possibly old images.
-                $main_tag.parent().find(".auto-inserted").remove();
-                $main_tag.after(
-                    '<p class="auto-inserted">' +
-                        errormsg +
-                        '</p>');
-            });
         }
     );
 }
