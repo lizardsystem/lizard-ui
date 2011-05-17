@@ -339,7 +339,6 @@ body
   }
 
 /* Floating icons next to a h2/h3 header. */
-/* TODO: they drop a line in IE: perhaps line height instead of margins? */
 .sidebarbox-action-icon
 { float: right;
   display: block;
