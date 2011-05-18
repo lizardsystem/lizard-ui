@@ -74,37 +74,32 @@ function reloadGraphs(max_image_width) {
             // Remove progress animation and possibly old images.
             $main_tag.parent().find(".auto-inserted").remove();
 
-            if ($.browser.msie && $.browser.version.substr(0, 1) < 8) {
-                // Just insert the image. Weird loop bug.
-                $(this).after(html_img);
-            } else {
-                // Add progress animation.
-                $(this).after('<div class="auto-inserted"><img src="/static_media/lizard_ui/ajax-loader.gif" class="progress-animation" data-src="' + html_url + '" /></div>');
+            // Add progress animation.
+            $(this).after('<div class="auto-inserted"><img src="/static_media/lizard_ui/ajax-loader.gif" class="progress-animation" data-src="' + html_url + '" /></div>');
 
-                // Preload image.
-                image = $(html_img);
+            // Preload image.
+            image = $(html_img);
 
-                // Place <a href></a> around image tag.
-                if (url_click !== undefined) {
-                    html_img = '<a href="' + url_click + '" class="auto-inserted">' + html_img + '</a>';
-                }
-
-                image.load(function () {
-                    // After preloading.
-                    // Remove progress animation and possibly old images.
-                    $main_tag.parent().find(".auto-inserted").remove();
-                    $main_tag.after(html_img);
-                });
-                image.error(function () {
-                    // After preloading.
-                    // Remove progress animation and possibly old images.
-                    $main_tag.parent().find(".auto-inserted").remove();
-                    $main_tag.after(
-                        '<p class="auto-inserted">' +
-                            errormsg +
-                            '</p>');
-                });
+            // Place <a href></a> around image tag.
+            if (url_click !== undefined) {
+                html_img = '<a href="' + url_click + '" class="auto-inserted">' + html_img + '</a>';
             }
+
+            image.load(function () {
+                // After preloading.
+                // Remove progress animation and possibly old images.
+                $main_tag.parent().find(".auto-inserted").remove();
+                $main_tag.after(html_img);
+            });
+            image.error(function () {
+                // After preloading.
+                // Remove progress animation and possibly old images.
+                $main_tag.parent().find(".auto-inserted").remove();
+                $main_tag.after(
+                    '<p class="auto-inserted">' +
+                        errormsg +
+                        '</p>');
+            });
         }
     );
 }
