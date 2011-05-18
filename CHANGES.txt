@@ -5,7 +5,7 @@ Changelog of lizard-ui
 1.62 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Fixed vertical location of workspaceitem icons that aren't part of a header.
 
 
 1.61 (2011-05-17)
