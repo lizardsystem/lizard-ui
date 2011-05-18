@@ -340,15 +340,20 @@ body
   text-align: center;
   }
 
-/* Floating icons next to a h2/h3 header. */
+/* Floating icons. */
 .sidebarbox-action-icon
 { float: right;
   display: block;
   cursor: pointer;
   font-weight: normal;
-  margin-top: 3px;
   /* Right margin for a-href icons bug */
   margin-right: 2px;
+  }
+
+/* Floating icons next to a h2/h3 header. */
+h2 .sidebarbox-action-icon,
+h3 .sidebarbox-action-icon
+{ margin-top: 3px;
   }
 
 .sidebarbox-action-progress
