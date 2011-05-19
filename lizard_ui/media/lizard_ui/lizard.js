@@ -6,10 +6,14 @@
 
 // Globals that we ourselves define.
 var hiddenStuffHeight, mainContentHeight, sidebarHeight, mainContentWidth,
-    verticalItemHeight, accordion, resizeTimer;
+    verticalItemHeight, accordion, resizeTimer, cachedScrollbarWidth;
 
 
 function scrollbarWidth() {
+    return cachedScrollbarWidth;
+}
+
+function calculateScrollbarWidth() {
     // Copied from http://jdsharp.us/jQuery/minute/calculate-scrollbar-width.php
     var div, w1, w2;
     div = $('<div style="width:50px;height:50px;overflow:hidden;' +
@@ -21,9 +25,8 @@ function scrollbarWidth() {
     div.css('overflow-y', 'scroll');
     w2 = $('div', div).innerWidth();
     $(div).remove();
-    return (w1 - w2);
+    cachedScrollbarWidth = (w1 - w2);
 }
-
 
 function reloadGraphs(max_image_width) {
     $('a.replace-with-image').each(
@@ -448,7 +451,6 @@ function setUpScreen() {
     stretchOneSidebarBox();
 }
 
-
 function setUpPortalTabs() {
     var selected_tab;
     selected_tab = $("#portal-tab-selected").attr("data-selected");
@@ -480,8 +482,8 @@ $(window).resize(function () {
     );
 });
 
-
 $(document).ready(function () {
+    calculateScrollbarWidth();
     calculateHiddenStuffHeight();
     fillScreen();
     divideVerticalSpaceEqually();
