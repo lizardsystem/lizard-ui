@@ -524,7 +524,7 @@ table.generic-table .button
   }
 
 
-#login-form
+#login-form, #wrong-login
 { text-align: left;
   }
 
