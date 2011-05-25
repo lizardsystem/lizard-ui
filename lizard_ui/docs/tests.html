@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>tests.py</title>
+  <link rel="stylesheet" href="pycco.css">
+</head>
+<body>
+<div id="background"></div>
+<div id='container'>
+  
+  <div class='section'>
+    <div class='docs'><h1>tests.py</h1></div>
+  </div>
+  <div class='clearall'>
+  <div class='section' id='section-0'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-0'>#</a>
+      </div>
+      <p>Create sample user.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="k">def</span> <span class="nf">setUp</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-1'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-1'>#</a>
+      </div>
+      <p>User.objects.create_user('atilla',
+<pre>'atilla@thehun.mn',
+password='horses')
+</pre>
+def test_smoke(self):</p>
+<h1>No parameters: return code 200.</h1>
+<h1>Login page must have "login-button".</h1>
+<p>response = self.client.post('/accounts/login/', {})
+self.assertEquals(response.status_code, 200)
+self.assertTrue("login-button" in response.content)</p>
+<p>def test_invalid_user(self):
+response = self.client.post('/accounts/login/',
+<pre>{'username': 'rianne',
+'password': 'pony'})</p>
+<h1>The response is always 200.</h1>
+<p>self.assertEquals(response.status_code, 200)</p>
+<h1>But the value is the json dump of False.</h1>
+<p>self.assertEquals(json.loads(response.content),
+{u'success': False, u'next': None})
+</pre>
+def test_valid_user(self):
+response = self.client.post('/accounts/login/',
+{'username': 'atilla',
+'password': 'horses'})</p>
+<h1>The response is always 200.</h1>
+<p>self.assertEquals(response.status_code, 200)</p>
+<h1>But the value is the json dump of False.</h1>
+<p>self.assertEquals(json.loads(response.content),
+{u'success': True, u'next': None})</p>
+<p>def test_logout(self):
+self.client.login(username='atilla', password='horses')
+response = self.client.get('/accounts/logout/')</p>
+<h1>The response is always 200.</h1>
+<p>self.assertEquals(response.status_code, 200)</p>
+<h1>And empty.</h1>
+<p>self.assertEquals(response.content, '')</p>
+<p>class TestUtility(TestCase):</p>
+<p>def test_euro(self):
+self.assertEquals(u'&euro; 10,-', euro(10.0))
+self.assertEquals(u'&euro; 10,-', euro(10))
+self.assertEquals(u'&euro; 10.000,-', euro(10000))
+self.assertEquals(u'&euro; 1.234.567,-', euro(1234567))
+self.assertEquals(u'&euro; 1.234.567,-', euro(1234567.0))
+euro(None)  # Should not crash</p>
+<p>def test_dutch_timedelta(self):
+self.assertEquals(u'1 minuut', dutch_timedelta(60))
+self.assertEquals(u'1 minuut, 5 seconden', dutch_timedelta(65))
+self.assertEquals(u'2 minuten, 5 seconden', dutch_timedelta(125))
+self.assertEquals(u'1 uur', dutch_timedelta(3600))</p>
+<h1>Rounded off</h1>
+<p>self.assertEquals(u'1 uur, 1 minuut', dutch_timedelta(3700))</p>
+<h1>Rounded off</h1>
+<p>self.assertEquals(u'1 dag, 1 minuut', dutch_timedelta(86500))
+dutch_timedelta(None)  # Should not crash</p>
+<p>def test_application_icons(self):</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="n">The</span> <span class="n">application_icons</span> <span class="n">template</span> <span class="n">tag</span> <span class="n">should</span> <span class="n">never</span> <span class="n">crash</span><span class="o">.</span> <span class="n">It</span>
+        <span class="n">should</span> <span class="n">give</span> <span class="n">a</span> <span class="n">nice</span> <span class="n">error</span> <span class="k">if</span> <span class="n">something</span> <span class="n">goes</span> <span class="n">wrong</span><span class="o">.</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-2'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-2'>#</a>
+      </div>
+      <p>context = {'STATIC_URL': '/static_media/'}</p>
+<h1>ApplicationScreen 'home' does not exist.</h1>
+<p>result = application_icons(context, 'home')
+self.assertTrue('error' in result)</p>
+<h1>Add a screen called 'home'.</h1>
+<p>appscreen = ApplicationScreen(name='Apps', slug='home')
+appscreen.save()
+appscreen.applicationicon_set.create(
+<pre>name='Amplivibe',
+icon='lizard_ui/app_icons/maatregelen.png',
+url='http://amplivibe.com')
+</pre></p>
+<h1>Now the screen 'home' does exist.</h1>
+<p>result = application_icons(context, 'home')
+self.assertTrue('application_screen' in result)</p>
+<h1>Revert to 'home' if None is given.</h1>
+<p>result = application_icons(context, None)
+self.assertTrue('application_screen' in result)</p>
+<p>def test_application_icons2(self):</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="n">The</span> <span class="n">application_icons</span> <span class="n">template</span> <span class="n">tag</span> <span class="n">should</span> <span class="n">never</span> <span class="n">crash</span><span class="o">.</span> <span class="n">Missing</span>
+        <span class="n">STATIC_URL</span><span class="o">.</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-3'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-3'>#</a>
+      </div>
+      <p>context = {}  # Should contain STATIC_URL, but you never know.</p>
+<h1>Add a screen called 'home'.</h1>
+<p>appscreen = ApplicationScreen(name='Apps', slug='home')
+appscreen.save()
+appscreen.applicationicon_set.create(
+<pre>name='Amplivibe',
+icon='lizard_ui/app_icons/maatregelen.png',
+url='http://amplivibe.com')
+</pre></p>
+<h1>Just ignore missing STATIC_URL</h1>
+<p>result = application_icons(context, 'home')
+self.assertTrue('application_screen' in result)</p>
+<p>class TestTracebackLoggingMiddleware(TestCase):</p>
+<p>def setUp(self):
+self.request = 'mock request'
+self.exception = Exception('Mock exception')</p>
+<p>def test_smoke(self):
+Just test that it doesn't crash.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>        <span class="n">middleware</span> <span class="o">=</span> <span class="n">TracebackLoggingMiddleware</span><span class="p">()</span>
+        <span class="n">middleware</span><span class="o">.</span><span class="n">process_exception</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">request</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">exception</span><span class="p">)</span>
+
+</pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+</div>
+</body>

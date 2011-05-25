@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>urls.py</title>
+  <link rel="stylesheet" href="pycco.css">
+</head>
+<body>
+<div id="background"></div>
+<div id='container'>
+  
+  <div class='section'>
+    <div class='docs'><h1>urls.py</h1></div>
+  </div>
+  <div class='clearall'>
+  <div class='section' id='section-0'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-0'>#</a>
+      </div>
+      <p>Add this also to the projects that use lizard-ui</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="n">urlpatterns</span> <span class="o">+=</span> <span class="n">patterns</span><span class="p">(</span>
+        <span class="s">&#39;&#39;</span><span class="p">,</span>
+        <span class="p">(</span><span class="s">r&#39;&#39;</span><span class="p">,</span> <span class="n">include</span><span class="p">(</span><span class="s">&#39;staticfiles.urls&#39;</span><span class="p">)),</span>
+        <span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-1'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-1'>#</a>
+      </div>
+      <p>Online documentation, mount it for example in the settings.DEBUG section
+to get the documentation in your project while developing.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="n">urlpatterns</span> <span class="o">+=</span> <span class="n">patterns</span><span class="p">(</span>
+        <span class="s">&#39;django.views.generic.simple&#39;</span><span class="p">,</span>
+        <span class="p">(</span><span class="s">r&#39;^examples/$&#39;</span><span class="p">,</span> <span class="s">&#39;direct_to_template&#39;</span><span class="p">,</span>
+         <span class="p">{</span><span class="s">&#39;template&#39;</span><span class="p">:</span> <span class="s">&#39;lizard_ui/lizard-ui-introduction.html&#39;</span><span class="p">}),</span>
+        <span class="p">(</span><span class="s">r&#39;^examples/id-locations/$&#39;</span><span class="p">,</span> <span class="s">&#39;direct_to_template&#39;</span><span class="p">,</span>
+         <span class="p">{</span><span class="s">&#39;template&#39;</span><span class="p">:</span> <span class="s">&#39;lizard_ui/example.html&#39;</span><span class="p">}),</span>
+        <span class="p">(</span><span class="s">r&#39;^examples/textual/$&#39;</span><span class="p">,</span> <span class="s">&#39;direct_to_template&#39;</span><span class="p">,</span>
+         <span class="p">{</span><span class="s">&#39;template&#39;</span><span class="p">:</span> <span class="s">&#39;lizard_ui/example-textual.html&#39;</span><span class="p">}),</span>
+        <span class="p">(</span><span class="s">r&#39;^examples/images/$&#39;</span><span class="p">,</span> <span class="s">&#39;direct_to_template&#39;</span><span class="p">,</span>
+         <span class="p">{</span><span class="s">&#39;template&#39;</span><span class="p">:</span> <span class="s">&#39;lizard_ui/example-images.html&#39;</span><span class="p">}),</span>
+        <span class="p">(</span><span class="s">r&#39;^examples/tree/$&#39;</span><span class="p">,</span> <span class="s">&#39;direct_to_template&#39;</span><span class="p">,</span>
+         <span class="p">{</span><span class="s">&#39;template&#39;</span><span class="p">:</span> <span class="s">&#39;lizard_ui/example_tree.html&#39;</span><span class="p">}),</span>
+        <span class="p">(</span><span class="s">r&#39;^examples/vertical/$&#39;</span><span class="p">,</span> <span class="s">&#39;direct_to_template&#39;</span><span class="p">,</span>
+         <span class="p">{</span><span class="s">&#39;template&#39;</span><span class="p">:</span> <span class="s">&#39;lizard_ui/example_vertical.html&#39;</span><span class="p">}),</span>
+        <span class="p">(</span><span class="s">r&#39;^examples/jqueryui/$&#39;</span><span class="p">,</span> <span class="s">&#39;direct_to_template&#39;</span><span class="p">,</span>
+         <span class="p">{</span><span class="s">&#39;template&#39;</span><span class="p">:</span> <span class="s">&#39;lizard_ui/example_jqueryui.html&#39;</span><span class="p">}),</span>
+        <span class="p">(</span><span class="s">r&#39;^examples/collapsible/$&#39;</span><span class="p">,</span> <span class="s">&#39;direct_to_template&#39;</span><span class="p">,</span>
+         <span class="p">{</span><span class="s">&#39;template&#39;</span><span class="p">:</span> <span class="s">&#39;lizard_ui/example_collapsible.html&#39;</span><span class="p">}),</span>
+        <span class="p">(</span><span class="s">r&#39;^examples/sidebarstretch/$&#39;</span><span class="p">,</span> <span class="s">&#39;direct_to_template&#39;</span><span class="p">,</span>
+         <span class="p">{</span><span class="s">&#39;template&#39;</span><span class="p">:</span> <span class="s">&#39;lizard_ui/example_sidebarstretch.html&#39;</span><span class="p">}),</span>
+        <span class="p">(</span><span class="s">r&#39;^examples/printbutton/$&#39;</span><span class="p">,</span> <span class="s">&#39;direct_to_template&#39;</span><span class="p">,</span>
+         <span class="p">{</span><span class="s">&#39;template&#39;</span><span class="p">:</span> <span class="s">&#39;lizard_ui/example-printbutton.html&#39;</span><span class="p">}),</span>
+        <span class="p">(</span><span class="s">r&#39;^examples/accordion/$&#39;</span><span class="p">,</span> <span class="s">&#39;direct_to_template&#39;</span><span class="p">,</span>
+         <span class="p">{</span><span class="s">&#39;template&#39;</span><span class="p">:</span> <span class="s">&#39;lizard_ui/example_accordion1.html&#39;</span><span class="p">}),</span>
+        <span class="p">(</span><span class="s">r&#39;^examples/accordion2/$&#39;</span><span class="p">,</span> <span class="s">&#39;direct_to_template&#39;</span><span class="p">,</span>
+         <span class="p">{</span><span class="s">&#39;template&#39;</span><span class="p">:</span> <span class="s">&#39;lizard_ui/example_accordion2.html&#39;</span><span class="p">}),</span>
+        <span class="p">(</span><span class="s">r&#39;^examples/accordion3/$&#39;</span><span class="p">,</span> <span class="s">&#39;direct_to_template&#39;</span><span class="p">,</span>
+         <span class="p">{</span><span class="s">&#39;template&#39;</span><span class="p">:</span> <span class="s">&#39;lizard_ui/example_accordion3.html&#39;</span><span class="p">}),</span>
+        <span class="p">(</span><span class="s">r&#39;^examples/icons/$&#39;</span><span class="p">,</span> <span class="s">&#39;direct_to_template&#39;</span><span class="p">,</span>
+         <span class="p">{</span><span class="s">&#39;template&#39;</span><span class="p">:</span> <span class="s">&#39;lizard_ui/example_icons.html&#39;</span><span class="p">}),</span>
+        <span class="p">(</span><span class="s">r&#39;^examples/portaltabs/$&#39;</span><span class="p">,</span> <span class="s">&#39;direct_to_template&#39;</span><span class="p">,</span>
+         <span class="p">{</span><span class="s">&#39;template&#39;</span><span class="p">:</span> <span class="s">&#39;lizard_ui/example-portaltabs.html&#39;</span><span class="p">}),</span>
+        <span class="p">(</span><span class="s">r&#39;^examples/appscreens/$&#39;</span><span class="p">,</span> <span class="s">&#39;direct_to_template&#39;</span><span class="p">,</span>
+         <span class="p">{</span><span class="s">&#39;template&#39;</span><span class="p">:</span> <span class="s">&#39;lizard_ui/example-appscreens.html&#39;</span><span class="p">}),</span>
+        <span class="p">)</span>
+    <span class="n">urlpatterns</span> <span class="o">+=</span> <span class="n">patterns</span><span class="p">(</span>
+        <span class="s">&#39;&#39;</span><span class="p">,</span>
+        <span class="n">url</span><span class="p">(</span><span class="s">r&#39;^examples/breadcrumbs/$&#39;</span><span class="p">,</span>
+            <span class="s">&#39;lizard_ui.views.example_breadcrumbs&#39;</span><span class="p">,</span>
+            <span class="p">{</span><span class="s">&#39;template&#39;</span><span class="p">:</span> <span class="s">&#39;lizard_ui/example-breadcrumbs.html&#39;</span><span class="p">},</span>
+            <span class="n">name</span><span class="o">=</span><span class="s">&#39;lizard_ui.example_breadcrumbs&#39;</span><span class="p">),</span>
+        <span class="p">)</span>
+
+</pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+</div>
+</body>

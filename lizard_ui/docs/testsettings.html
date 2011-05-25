@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=utf-8">
+  <title>testsettings.py</title>
+  <link rel="stylesheet" href="pycco.css">
+</head>
+<body>
+<div id="background"></div>
+<div id='container'>
+  
+  <div class='section'>
+    <div class='docs'><h1>testsettings.py</h1></div>
+  </div>
+  <div class='clearall'>
+  <div class='section' id='section-0'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-0'>#</a>
+      </div>
+      <p>Note: the below settings are more elaborate than needed,
+but we want to test django_compressor's compressing which
+needs a media url and root and so.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-1'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-1'>#</a>
+      </div>
+      <p>Set COMPRESS to True if you want to test compression when
+DEBUG == True.  (By default, COMPRESS is the opposite of
+DEBUG).</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="n">COMPRESS</span> <span class="o">=</span> <span class="bp">False</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-2'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-2'>#</a>
+      </div>
+      <p>SETTINGS_DIR allows media paths and so to be relative to
+this settings file instead of hardcoded to
+c:onlyonmycomputer.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="n">SETTINGS_DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="n">__file__</span><span class="p">))</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-3'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-3'>#</a>
+      </div>
+      <p>BUILDOUT_DIR is for access to the "surrounding" buildout,
+for instance for BUILDOUT_DIR/var/static files to give
+django-staticfiles a proper place to place all collected
+static files.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="n">BUILDOUT_DIR</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">SETTINGS_DIR</span><span class="p">,</span> <span class="s">&#39;..&#39;</span><span class="p">))</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-4'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-4'>#</a>
+      </div>
+      <p>Absolute path to the directory that holds user-uploaded
+media.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="n">MEDIA_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">BUILDOUT_DIR</span><span class="p">,</span> <span class="s">&#39;var&#39;</span><span class="p">,</span> <span class="s">&#39;media&#39;</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-5'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-5'>#</a>
+      </div>
+      <p>Absolute path to the directory where django-staticfiles'
+"bin/django build_static" places all collected static
+files from all applications' /media directory.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="n">STATIC_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">BUILDOUT_DIR</span><span class="p">,</span> <span class="s">&#39;var&#39;</span><span class="p">,</span> <span class="s">&#39;static&#39;</span><span class="p">)</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-6'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-6'>#</a>
+      </div>
+      <p>URL that handles the media served from MEDIA_ROOT. Make
+sure to use a trailing slash if there is a path component
+(optional in other cases).</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="n">MEDIA_URL</span> <span class="o">=</span> <span class="s">&#39;/media/&#39;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-7'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-7'>#</a>
+      </div>
+      <p>URL for the per-application /media static files collected
+by django-staticfiles.  Use it in templates like "{{
+MEDIA_URL }}mypackage/my.css".</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="n">STATIC_URL</span> <span class="o">=</span> <span class="s">&#39;/static_media/&#39;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-8'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-8'>#</a>
+      </div>
+      <p>URL prefix for admin media -- CSS, JavaScript and
+images. Make sure to use a trailing slash.  Uses
+STATIC_URL as django-staticfiles nicely collects admin's
+static media into STATIC_ROOT/admin.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="n">ADMIN_MEDIA_PREFIX</span> <span class="o">=</span> <span class="n">STATIC_URL</span> <span class="o">+</span> <span class="s">&#39;admin/&#39;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-9'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-9'>#</a>
+      </div>
+      <p>Storage engine to be used during compression</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="n">COMPRESS_STORAGE</span> <span class="o">=</span> <span class="s">&quot;staticfiles.storage.StaticFileStorage&quot;</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-10'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-10'>#</a>
+      </div>
+      <p>The URL that linked media will be read from and compressed
+media will be written to.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="n">COMPRESS_URL</span> <span class="o">=</span> <span class="n">STATIC_URL</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-11'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-11'>#</a>
+      </div>
+      <p>The absolute file path that linked media will be read from
+and compressed media will be written to.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="n">COMPRESS_ROOT</span> <span class="o">=</span> <span class="n">STATIC_ROOT</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-12'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-12'>#</a>
+      </div>
+      <p>Used for django-staticfiles</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre><span class="n">TEMPLATE_CONTEXT_PROCESSORS</span> <span class="o">=</span> <span class="p">(</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-13'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-13'>#</a>
+      </div>
+      <p>Default items.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="s">&quot;django.core.context_processors.auth&quot;</span><span class="p">,</span>
+    <span class="s">&quot;django.core.context_processors.debug&quot;</span><span class="p">,</span>
+    <span class="s">&quot;django.core.context_processors.i18n&quot;</span><span class="p">,</span>
+    <span class="s">&quot;django.core.context_processors.media&quot;</span><span class="p">,</span></pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div><div class='section' id='section-14'>
+    <div class='docs'>
+      <div class='octowrap'>
+        <a class='octothorpe' href='#section-14'>#</a>
+      </div>
+      <p>Needs to be added for django-staticfiles to allow you
+to use myapp/my.css in your templates.</p>
+    </div>
+    <div class='code'>
+      <div class="highlight"><pre>    <span class="s">&#39;staticfiles.context_processors.static_url&#39;</span><span class="p">,</span>
+    <span class="p">)</span>
+
+</pre></div>
+    </div>
+  </div>
+  <div class='clearall'></div>
+</div>
+</body>
