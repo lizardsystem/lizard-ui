@@ -52,7 +52,6 @@ padding-right: 1em;
 #portal-tabs {
     position: relative;
     text-align: center;
-    
 }
 ul#portal-tabs li{
     padding: 5px 15px 5px 15px;
@@ -511,6 +510,7 @@ cursor: pointer;
 /* TODO: remove different variations on popups */
 
 .date-popup .close,
+.save-popup .close,
 .popup .close,
 #not_found_popup .close,
 #graph-popup .close {
