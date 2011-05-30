@@ -2,10 +2,18 @@ Changelog of lizard-ui
 ======================
 
 
-1.63 (unreleased)
+1.63 (2011-05-30)
 -----------------
 
-- Nothing changed yet.
+- Removed relative positioning on #portal-tabs. See ticket #2827.
+- Reverted my changes made to .sidebarbox-action-icon in changeset:21174. Even
+  added 1px extra to better vertically align workspace items. See ticket #2750
+  for screenshots.
+- Added a extra class name for save_form.
+- Bigger portal-tabs with rounded corners.
+- Corrected text-align of wrong-login.
+- "Log in" and "Log uit" links have the same cursor: they were different and
+  "Log uit" had an illogical one, viz. cursor:text.
 
 
 1.62 (2011-05-18)
