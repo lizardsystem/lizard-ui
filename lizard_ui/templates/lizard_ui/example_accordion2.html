@@ -6,12 +6,16 @@
 {% block sidebar %}
 <div class="sidebarbox"
      id="accordion">
-  <h2>First choice</h2>
+  <h2>First choice (title has changed)</h2>
   <ul class="pane without-bullets accordion-load-next"
       data-next-pane-id="#accordion2"
       id="accordion1">
     <li><a href="../accordion2">One</a></li>
     <li><a href="../accordion2">Two</a></li>
+    <li>Note: in this second example page, this is an extra list item.
+      When looking at the regular demo, you should not see this as the first
+      pane's content is not reloaded.
+    </li>
   </ul>
   <h2>Second choice</h2>
   <ul class="pane without-bullets accordion-load-next"

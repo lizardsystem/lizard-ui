@@ -359,20 +359,24 @@ function setUpAccordion() {
     /* Set up a global 'accordion' variable to later steer the animation. */
     accordion = $("#accordion").data("tabs");
     $(".accordion-load-next a").live('click', function (event) {
-        var pane, nextPaneId, url, newTitle;
+        var pane, nextPaneId, url, newTitle, ourId;
         event.preventDefault();
         pane = $(this).parents(".accordion-load-next");
         nextPaneId = pane.attr("data-next-pane-id");
         url = $(this).attr("href");
         $(nextPaneId).html('<div class="loading" />');
         $.get(url, {}, function (data) {
-            // Update all panes. Data is the whole (new) html page.
+            // Update all pane titles and the new pane. Data is the whole
+            // (new) html page.
             $(".pane").each(function () {
                 // Title of current pane.
                 newTitle = $(data).find("#" + $(this).attr("id")).prev().html();
                 $(this).prev().html(newTitle);
-                // Content of current pane.
-                $(this).html($(data).find("#" + $(this).attr("id")).html());
+                // Refresh target pane contents only.
+                ourId = "#" + $(this).attr("id");
+                if (ourId === nextPaneId) {
+                    $(this).html($(data).find(ourId));
+                }
             });
             setUpTooltips();
             setUpTree(true);

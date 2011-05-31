@@ -5,7 +5,11 @@ Changelog of lizard-ui
 1.64 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Changed accordion behaviour. All titles are refreshed, but we don't refresh
+  all pane contents anymore: only the new one. This makes sure trees stay
+  expanded. And it reduces re-rendering time for big trees. And we
+  theoretically don't need to send over all the panes' data in case that's
+  prohibitive for performance.
 
 
 1.63 (2011-05-30)
