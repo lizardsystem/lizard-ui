@@ -379,7 +379,7 @@ function setUpAccordion() {
                 }
             });
             setUpTooltips();
-            setUpTree(true);
+            setUpTree();
         });
         $("li.selected", pane).removeClass("selected");
         $(this).parent("li").addClass("selected");
