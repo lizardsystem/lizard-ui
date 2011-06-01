@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-1.64 (unreleased)
+1.64 (2011-06-01)
 -----------------
 
 - Changed accordion behaviour. All titles are refreshed, but we don't refresh
