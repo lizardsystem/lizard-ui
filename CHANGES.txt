@@ -5,7 +5,41 @@ Changelog of lizard-ui
 1.65 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Added Tipsy (Facebook/Github-style tooltips https://github.com/jaz303/tipsy)
+
+- Added buttons.css (from https://github.com/ubuwaits/css3-buttons)
+
+- Some repeatable backgrounds. (from http://subtlepatterns.com/)
+
+- Some icons from http://glyphicons.com/, added/implemented seperately.
+  (TODO: integrate properly in sprite.png and the stylesheet of silk)
+
+- OpenLayers 'Dark' theme.
+
+- Re-exported several icon PNG's (meldingen, kaarten) with an alphachannel 
+  drop-shadow.
+
+- Added extra field to ApplicationScreen model. (description, for display in
+  tipsy tooltips)
+
+- Centered the icons in the 'iphonesque' app-screen.
+
+- Added inset drop-shadows to the app-screen.
+
+- Changed the app-screen font to helvetica-light. (TODO: Try out Google
+  Webfonts instead)
+
+- Changed gray H2 bars' bevel to a higher contrast, expressing more depth.
+
+- Aligned lizard logo to the outmost left.
+.
+- Added tooltips to several interface elements.
+
+- Improved appearance of the breadcrumb. (TODO: position is still a bit
+  awkward?)
+
+- Changed OpenLayers javascript + css so that the layer chooser's
+  background color matches the rest of the dark theme.
 
 
 1.64 (2011-06-01)
