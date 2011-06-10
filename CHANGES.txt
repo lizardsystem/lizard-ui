@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-1.65 (unreleased)
+1.65 (2011-06-10)
 -----------------
 
 - Added reloadLocalizedGraphs() in addition to reloadGraphs() to reload only
