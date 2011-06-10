@@ -5,6 +5,9 @@ Changelog of lizard-ui
 1.65 (unreleased)
 -----------------
 
+- Added reloadLocalizedGraphs() in addition to reloadGraphs() to reload only
+  graphs inside a certain div. (Used in lizard-map popups with tabs).
+
 - Added Tipsy (Facebook/Github-style tooltips https://github.com/jaz303/tipsy)
 
 - Added buttons.css (from https://github.com/ubuwaits/css3-buttons)
@@ -16,7 +19,7 @@ Changelog of lizard-ui
 
 - OpenLayers 'Dark' theme.
 
-- Re-exported several icon PNG's (meldingen, kaarten) with an alphachannel 
+- Re-exported several icon PNG's (meldingen, kaarten) with an alphachannel
   drop-shadow.
 
 - Added extra field to ApplicationScreen model. (description, for display in
