@@ -501,10 +501,41 @@ $(document).ready(function () {
     setUpLogin();
     setUpPrintButton();
 
+    // Initialize Tipsy
+    $('a[rel=tipsy]').tipsy({
+        delayIn: 200,
+        delayOut: 200,
+        fade: false,
+        gravity: 'w'
+    });
+    $('a#logo-img').tipsy({
+        delayIn: 200,
+        delayOut: 200,
+        fade: false,
+        gravity: 'n'
+    });
+    $('span[rel=tipsy]').tipsy({
+        delayIn: 200,
+        delayOut: 200,
+        fade: false,
+        gravity: 's'
+    });
+    $('#summary-datepicker-a').tipsy({
+        delayIn: 200,
+        delayOut: 200,
+        fade: false,
+        gravity: 's'
+    });
+
     //setUpWorkspaceAcceptableButtons();
     // Light up the selected tab, if available.
     setUpPortalTabs();
 
     // Set up legend.
     setUpTooltips(); // The edit function is on the tooltip.
+});
+
+
+$('#toggle_button').click(function() {
+    console.log("test");
 });

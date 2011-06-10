@@ -1,4 +1,4 @@
-{% load utility %}
+{% load utility i18n %}
 <!DOCTYPE html>
 <html>
   <head>
@@ -39,6 +39,11 @@
           href="{{ STATIC_URL }}jquery-treeview/jquery.treeview.css"
           rel="stylesheet"
           media="screen, projection" />
+    {# Tipsy #}
+    <link type="text/css"
+          href="{{ STATIC_URL }}tipsy/stylesheets/tipsy.css"
+          rel="stylesheet"
+          media="screen, projection" />
     {# Our own css comes last #}
     <link rel="stylesheet"
           href="{{ STATIC_URL }}lizard_ui/lizard.css"
@@ -52,6 +57,11 @@
           media="screen"
           type="text/css"
           href="{{ STATIC_URL }}colorpicker/css/colorpicker.css" />
+    {# CSS Buttons #}
+    <link type="text/css"
+          href="{{ STATIC_URL }}lizard_ui/buttons.css"
+          rel="stylesheet"
+          media="screen, projection" />
     {% endblock css %}
     {% endcompress %}
 
@@ -74,6 +84,8 @@
     {# TODO ^^^ use non-minified version #}
     <script type="text/javascript"
             src="{{ STATIC_URL }}jqueryui/jqueryui.min.js"></script>
+    <script type="text/javascript"
+            src="{{ STATIC_URL }}tipsy/javascripts/jquery.tipsy.js"></script>
     <script type="text/javascript"
             src="{{ STATIC_URL }}jqueryui/jquery.ui.datepicker-nl.js"></script>
     <script type="text/javascript"
@@ -106,7 +118,7 @@
           <div id="logo">
             {% block logo %}
             {# Watch out: keep the tags next to each other without spaces #}
-            <a href="/" id="logo-img"><img
+            <a href="/" id="logo-img" title="{% trans "Naar de voorpagina" %}"><img
             src="{{ STATIC_URL }}lizard_ui/logo.png"
             alt="Lizard" /></a>
             {% endblock logo %}
@@ -123,7 +135,7 @@
           </div>
           <div id="breadcrumbs">
             {% block breadcrumbs %}
-            {% if crumbs %}{% breadcrumbs crumbs %}{% endif %}
+            {% if crumbs %}&raquo;{% breadcrumbs crumbs %}{% endif %}
             {% endblock breadcrumbs %}
           </div>
         </div>

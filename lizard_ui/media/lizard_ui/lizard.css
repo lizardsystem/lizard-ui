@@ -9,6 +9,7 @@ background-repeat: repeat-x;
 margin: 0;
 background-color: #f5f4f5;
 overflow: hidden;
+font-family: 'Helvetica', 'sans-serif';
 }
 
 /* #page wraps everything, only for adding a margin l/b/r */
@@ -42,7 +43,7 @@ height: 4em;
 overflow: hidden;
 }
 #logo-img {
-padding-left: 6em;
+/*padding-left: 6em;*/
 }
 #portal-actions {
 text-align: right;
@@ -53,7 +54,7 @@ padding-right: 1em;
     text-align: center;
 }
 ul#portal-tabs li{
-    padding: 5px 15px 5px 15px;
+    padding: 5px 5px 5px 5px;
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
     border-radius: 10px; /* future proofing */
@@ -85,7 +86,7 @@ border: 1px solid black;
 background-color: white;
   /* CSS3 styling for latest browsers */
   -moz-box-shadow:0 0 10px 5px #aaa;
--webkit-box-shadow: 0 0 10px #aaa;
+  -webkit-box-shadow: 0 0 10px #aaa;
 }
 
 /* Horizontal alignment of sidebar, collapser and main content.
@@ -122,6 +123,28 @@ background-repeat: no-repeat;
 cursor: pointer;
 }
 
+/* positioning and styling the icons */
+div#iconbox{
+/*    background: url('/static_media/lizard_ui/white_carbon.png');*/
+/*    background: url('/static_media/lizard_ui/leather_1.png');*/
+/*    background: url('/static_media/lizard_ui/fabric_1.png');*/
+/*    background: url('/static_media/lizard_ui/old_mathematics.png');*/
+}
+div#iconbox a{
+    font-family: 'Helvetica';
+    font-weight: lighter;
+    font-size: 1.1em;
+    color: #000;
+    text-decoration: none;
+}
+div#iconbox a:hover{
+    text-decoration: underline;
+}
+div#iconbox ul{
+    position: relative;
+    top: 15px;
+    left: 10px;
+}
 /* Feedback that not only the little triangle is clickable, but the
    entire height of the collapser div. */
 #collapser:hover {
@@ -171,7 +194,7 @@ margin: 0px;
 border: 1px solid #aaaaaa;
 }
 #content {
-border-width: 0 1px;
+border-width: 1px;
 border-style: solid;
 border-color: #aaaaaa;
 }
@@ -234,8 +257,8 @@ display: inline;
 #above-content li,
 #portal-tabs li {
 display: inline;
-padding-right: 0.5em;
-padding-left: 0.5em;
+/*padding-right: 0.5em;*/
+/*padding-left: 0.5em;*/
 }
 #portal-tabs li {
 border-color: #aaaaaa;
@@ -262,10 +285,21 @@ width: 100%;
 #breadcrumbs {
 float: left;
 padding-left: 8em;  /* 25 sidebar - 17 logo */
-  padding-top: 0.5em;
+padding-top: 0.5em;
 color: #666;
 }
-
+#breadcrumbs a{
+    font-size: 0.9em;
+    font-weight: lighter;
+    color: #000;
+    text-decoration: underline;
+}
+#breadcrumbs a:last-child{
+    text-decoration: none;
+}
+#breadcrumbs a:hover{
+    text-decoration: underline;
+}
 /* Give vertical items in #evenly-spaced-vertical a thick bottom border. */
 #evenly-spaced-vertical .vertical-item {
 border-bottom: 1px solid #eeeeee;
@@ -290,10 +324,26 @@ float: left;
 
 /* Sidebar styling */
 #sidebar .sidebarbox {
-padding-bottom: 1px;
+    -moz-box-shadow: 0 0 7px rgba(0,0,0,0.4) inset;
+    -webkit-box-shadow: 0 0 7px rgba(0,0,0,0.4) inset;
+    box-shadow: 0 0 7px rgba(0,0,0,0.4) inset;
+
+/*    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";*/
+    /* For IE 5.5 - 7 */
+/*    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');*/
+	
+    overflow: hidden;
+    padding-bottom: 1px;
   /* 1px bottom padding hack to prevent margin collapse which can wreak the
      layout when the bottommost item has a margin. */
 }
+
+#sidebar .sidebarbox h2{
+    -moz-box-shadow: 0 0 7px rgba(0,0,0,0.4);
+    -webkit-box-shadow: 0 0 7px rgba(0,0,0,0.4);
+    box-shadow: 0 0 7px rgba(0,0,0,0.4);    
+}
+
 
 /* Give non-header items a bit of left/right room in the sidebar. */
 #sidebar .sidebarbox > div,
@@ -343,7 +393,7 @@ border-top-width: 0;
 }
 
 #sidebar .selected {
-background-color: #ffffe0;
+background-color: #DFF3FD;
 }
 
 .sidebarbox-stretched {
@@ -568,7 +618,7 @@ z-index: 10000;
 cursor: pointer;
 float: left;
 margin-top: 0.3em;
-margin-left: 1em;
+margin-left: 0.5em;
 }
 
 /* Negative margins compensate for icon size. */
@@ -599,4 +649,34 @@ height: 100%;
 div.img-use-my-size {
 padding: 0;
 margin: 0;
+}
+
+
+
+
+span.map-location-icon{
+    margin-top: 3px;
+    height: 18px;
+    width: 18px;
+    background-image: url('/static_media/sprites/location-light.png');
+}
+
+
+.datepicker-icon{
+    margin-top: 3px;
+    height: 18px;
+    width: 18px;
+    background-image: url('/static_media/sprites/clock-light.png');   
+}
+
+span.empty-temp-workspace-icon{
+    margin-top: 3px;
+    height: 18px;
+    width: 13px;
+    background-image: url('/static_media/sprites/trashbin-light.png');
+}
+
+
+ul.filetree, ul.without-bullets{
+    margin: 5px 0px 0px 0px;
 }

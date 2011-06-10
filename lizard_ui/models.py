@@ -29,6 +29,7 @@ class ApplicationIcon(models.Model):
 
     name = models.CharField(max_length=40)
     icon = models.CharField(max_length=200)
+    description = models.TextField(blank=True, null=True)
 
     # If not filled in, the link gets class "notworking"
     url = models.CharField(max_length=200, blank=True, null=True)
