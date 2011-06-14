@@ -294,7 +294,9 @@ color: #666;
     color: #000;
     text-decoration: underline;
 }
-#breadcrumbs a:last-child{
+/* Last child can be either a hyperlink or just text,
+hence #breadcrumbs a:last-child is not used here */
+#breadcrumbs:last-child{
     text-decoration: none;
 }
 #breadcrumbs a:hover{
