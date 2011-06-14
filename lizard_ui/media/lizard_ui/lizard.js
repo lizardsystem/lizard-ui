@@ -543,6 +543,20 @@ $(document).ready(function () {
         fade: false,
         gravity: 's'
     });
+    $('#transparency-slider').tipsy({
+        delayIn: 200,
+        delayOut: 200,
+        fade: false,
+        gravity: 's'        
+    });
+    
+    
+    // For collapsible tables in popups
+    $('.toggle_button').live('click', function(event) {
+        console.log("hahaha");
+        $('div.pane:visible table').slideDown('fast');        
+    });
+    
 
     //setUpWorkspaceAcceptableButtons();
     // Light up the selected tab, if available.
