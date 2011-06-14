@@ -5,7 +5,7 @@ Changelog of lizard-ui
 1.66 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Added error message when next accordion pane fails to load.
 
 
 1.65 (2011-06-10)

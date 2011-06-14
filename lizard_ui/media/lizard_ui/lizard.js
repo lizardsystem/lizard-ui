@@ -374,21 +374,29 @@ function setUpAccordion() {
         nextPaneId = pane.attr("data-next-pane-id");
         url = $(this).attr("href");
         $(nextPaneId).html('<div class="loading" />');
-        $.get(url, {}, function (data) {
-            // Update all pane titles and the new pane. Data is the whole
-            // (new) html page.
-            $(".pane").each(function () {
-                // Title of current pane.
-                newTitle = $(data).find("#" + $(this).attr("id")).prev().html();
-                $(this).prev().html(newTitle);
-                // Refresh target pane contents only.
-                ourId = "#" + $(this).attr("id");
-                if (ourId === nextPaneId) {
-                    $(this).html($(data).find(ourId));
-                }
-            });
-            setUpTooltips();
-            setUpTree();
+        $.ajax({
+            type: "GET",
+            url: url,
+            success: function (data) {
+                // Update all pane titles and the new pane. Data is the whole
+                // (new) html page.
+                $(".pane").each(function () {
+                    // Title of current pane.
+                    newTitle = $(data).find("#" + $(this).attr("id")).prev().html();
+                    $(this).prev().html(newTitle);
+                    // Refresh target pane contents only.
+                    ourId = "#" + $(this).attr("id");
+                    if (ourId === nextPaneId) {
+                        $(this).html($(data).find(ourId));
+                    }
+                });
+                setUpTooltips();
+                setUpTree();
+            },
+            error: function (e) {
+                $(nextPaneId).html('<div class="ss_error ss_sprite" />' +
+                                   'Fout bij laden paginaonderdeel.');
+            }
         });
         $("li.selected", pane).removeClass("selected");
         $(this).parent("li").addClass("selected");
