@@ -287,10 +287,11 @@ float: left;
 padding-left: 8em;  /* 25 sidebar - 17 logo */
 padding-top: 0.5em;
 color: #666;
+font-size: 0.9em;
+font-weight: lighter;
+color: #000;
 }
 #breadcrumbs a{
-    font-size: 0.9em;
-    font-weight: lighter;
     color: #000;
     text-decoration: underline;
 }
