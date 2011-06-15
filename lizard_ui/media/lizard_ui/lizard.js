@@ -547,16 +547,15 @@ $(document).ready(function () {
         delayIn: 200,
         delayOut: 200,
         fade: false,
-        gravity: 's'        
+        gravity: 's'
     });
-    
-    
+
+
     // For collapsible tables in popups
-    $('.toggle_button').live('click', function(event) {
-        console.log("hahaha");
-        $('div.pane:visible table').slideDown('fast');        
+    $('.toggle_button').live('click', function (event) {
+        $('div.pane:visible table').slideDown('fast');
     });
-    
+
 
     //setUpWorkspaceAcceptableButtons();
     // Light up the selected tab, if available.
