@@ -8,6 +8,32 @@
 var hiddenStuffHeight, mainContentHeight, sidebarHeight, mainContentWidth,
     verticalItemHeight, accordion, resizeTimer, cachedScrollbarWidth;
 
+// Generic set/read/delete cookie functions.
+// From http://www.quirksmode.org/js/cookies.html
+function createCookie(name,value,days) {
+	if (days) {
+		var date = new Date();
+		date.setTime(date.getTime()+(days*24*60*60*1000));
+		var expires = "; expires="+date.toGMTString();
+	}
+	else var expires = "";
+	document.cookie = name+"="+value+expires+"; path=/";
+}
+
+function readCookie(name) {
+	var nameEQ = name + "=";
+	var ca = document.cookie.split(';');
+	for(var i=0;i < ca.length;i++) {
+		var c = ca[i];
+		while (c.charAt(0)==' ') c = c.substring(1,c.length);
+		if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length,c.length);
+	}
+	return null;
+}
+
+function eraseCookie(name) {
+	createCookie(name,"",-1);
+}
 
 function scrollbarWidth() {
     return cachedScrollbarWidth;
@@ -504,6 +530,26 @@ $(window).resize(function () {
 });
 
 $(document).ready(function () {
+
+    var no_popup = readCookie("no_popup");
+    if (!no_popup) {
+        // Show popup
+        $("#intro_popup").overlay({
+        	// custom top position
+        	top: 200,
+        	mask: {
+        		color: '#fff',
+        		loadSpeed: 200,
+        		opacity: 0.5
+        	},
+        	closeOnClick: true,
+            load: true
+        });        
+        
+        // Set cookie to prevent popup for one day
+        createCookie("no_popup", "true", 1);
+    }
+    
     calculateScrollbarWidth();
     calculateHiddenStuffHeight();
     fillScreen();
