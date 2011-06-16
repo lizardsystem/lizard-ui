@@ -5,7 +5,7 @@ Changelog of lizard-ui
 1.67 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Fixed #2882: changed css to make some parts overflow: auto.
 
 
 1.66 (2011-06-16)

@@ -110,9 +110,8 @@ width: 10em;  /* Just some figure, will be set via javascript. */
 
 /* Layout of sidebar, collapser and main content. */
 #sidebar {
-overflow: auto;
-background-color: white;
-border: 1px solid #aaaaaa;
+  background-color: white;
+  border: 1px solid #aaaaaa;
 }
 .sidebar-closed #sidebar {
 border: 0;
@@ -335,7 +334,6 @@ float: left;
     /* For IE 5.5 - 7 */
 /*    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');*/
 
-    overflow: hidden;
     padding-bottom: 1px;
   /* 1px bottom padding hack to prevent margin collapse which can wreak the
      layout when the bottommost item has a margin. */
@@ -400,7 +398,8 @@ background-color: #DFF3FD;
 }
 
 .sidebarbox-stretched {
-overflow: auto;
+overflow-y: auto;
+overflow-x: hidden;
 }
 
 /* Currently: only the trash. */
@@ -434,7 +433,6 @@ margin-top: 5px;
 margin-right: 5px;
 position: relative;
 }
-
 
 /* Feedback when hovering over droppable. */
 .drophover {
@@ -682,4 +680,38 @@ span.empty-temp-workspace-icon{
 
 ul.filetree, ul.without-bullets{
     margin: 5px 0px 0px 0px;
+}
+
+
+#intro_popup {
+	/* overlay is hidden before loading */
+	display:none;
+
+	/* standard decorations */
+	width:525px;
+	border:10px solid #666;
+
+	/* for modern browsers use semi-transparent color on the border. nice! */
+	border:10px solid rgba(82, 82, 82, 0.698);
+
+	/* hot CSS3 features for mozilla and webkit-based browsers (rounded borders) */
+	-moz-border-radius:8px;
+	-webkit-border-radius:8px;
+}
+
+#intro_popup div {
+	padding:10px;
+	border:1px solid #3B5998;
+	background-color:#fff;
+	font-family:"lucida grande",tahoma,verdana,arial,sans-serif
+}
+
+#intro_popup h2 {
+	margin:-11px;
+	margin-bottom:0px;
+	color:#fff;
+	background-color:#6D84B4;
+	padding:5px 10px;
+	border:1px solid #3B5998;
+	font-size:20px;
 }
