@@ -7,12 +7,6 @@ Changelog of lizard-ui
 
 - Added error message when next accordion pane fails to load.
 
-- Added cookie functions to lizard.js (set, read, erase)
-
-- Added video popup styling to lizard.css (#intro_popup)
-
-- Added div #intro_popup (in a conditional) to realbase.html
-
 
 1.65 (2011-06-10)
 -----------------

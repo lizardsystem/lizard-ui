@@ -140,7 +140,7 @@
           </div>
         </div>
         {# End of header #}
-        
+
         <div id="main_area"
              class="clear">
           <div id="sidebar">
@@ -170,11 +170,6 @@
             {# End of menubar #}
 
             <div id="content">
-             {% if popup_video_url %}
-              <div id="intro_popup">
-                  <iframe width="525" height="360" src="{{ popup_video_url }}" frameborder="0" allowfullscreen></iframe>
-              </div>
-             {% endif %}
               {% block content %}
               {% endblock content %}
             </div>

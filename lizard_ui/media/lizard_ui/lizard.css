@@ -334,7 +334,7 @@ float: left;
 /*    -ms-filter: "progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000')";*/
     /* For IE 5.5 - 7 */
 /*    filter: progid:DXImageTransform.Microsoft.Shadow(Strength=4, Direction=135, Color='#000000');*/
-	
+
     overflow: hidden;
     padding-bottom: 1px;
   /* 1px bottom padding hack to prevent margin collapse which can wreak the
@@ -344,7 +344,7 @@ float: left;
 #sidebar .sidebarbox h2{
     -moz-box-shadow: 0 0 7px rgba(0,0,0,0.4);
     -webkit-box-shadow: 0 0 7px rgba(0,0,0,0.4);
-    box-shadow: 0 0 7px rgba(0,0,0,0.4);    
+    box-shadow: 0 0 7px rgba(0,0,0,0.4);
 }
 
 
@@ -669,7 +669,7 @@ span.map-location-icon{
     margin-top: 3px;
     height: 18px;
     width: 18px;
-    background-image: url('/static_media/sprites/clock-light.png');   
+    background-image: url('/static_media/sprites/clock-light.png');
 }
 
 span.empty-temp-workspace-icon{
@@ -682,38 +682,4 @@ span.empty-temp-workspace-icon{
 
 ul.filetree, ul.without-bullets{
     margin: 5px 0px 0px 0px;
-}
-
-
-#intro_popup {
-	/* overlay is hidden before loading */
-	display:none;
-
-	/* standard decorations */
-	width:525px;
-	border:10px solid #666;
-
-	/* for modern browsers use semi-transparent color on the border. nice! */
-	border:10px solid rgba(82, 82, 82, 0.698);
-
-	/* hot CSS3 features for mozilla and webkit-based browsers (rounded borders) */
-	-moz-border-radius:8px;
-	-webkit-border-radius:8px;
-}
-
-#intro_popup div {
-	padding:10px;
-	border:1px solid #3B5998;
-	background-color:#fff;
-	font-family:"lucida grande",tahoma,verdana,arial,sans-serif
-}
-
-#intro_popup h2 {
-	margin:-11px;
-	margin-bottom:0px;
-	color:#fff;
-	background-color:#6D84B4;
-	padding:5px 10px;
-	border:1px solid #3B5998;
-	font-size:20px;
 }
