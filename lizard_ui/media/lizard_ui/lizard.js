@@ -551,12 +551,6 @@ $(document).ready(function () {
     });
 
 
-    // For collapsible tables in popups
-    $('.toggle_button').live('click', function (event) {
-        $('div.pane:visible table').slideDown('fast');
-    });
-
-
     //setUpWorkspaceAcceptableButtons();
     // Light up the selected tab, if available.
     setUpPortalTabs();
