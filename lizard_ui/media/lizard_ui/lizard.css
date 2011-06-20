@@ -112,6 +112,8 @@ width: 10em;  /* Just some figure, will be set via javascript. */
 #sidebar {
   background-color: white;
   border: 1px solid #aaaaaa;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 .sidebar-closed #sidebar {
 border: 0;
