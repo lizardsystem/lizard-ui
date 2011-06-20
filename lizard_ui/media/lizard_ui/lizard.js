@@ -36,7 +36,7 @@ function reloadGraph($graph, max_image_width) {
     if ($graph.attr('data-errormsg')) {
         errormsg = $graph.attr('data-errormsg');
     } else {
-        errormsg = 'An error occurred';
+        errormsg = 'De data is niet beschikbaar';
     }
     if (width === null) {
         width = '';
