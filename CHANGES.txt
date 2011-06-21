@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-1.69 (unreleased)
+1.69 (2011-06-21)
 -----------------
 
 - Made popups more consistent (shadow color and size).
