@@ -5,13 +5,13 @@ Changelog of lizard-ui
 1.69 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Made popups more consistent (shadow color and size).
 
 
 1.68 (2011-06-17)
 -----------------
 
-- Nothing changed yet.
+- Fixed .gif image that was a wrong file type.
 
 
 1.67 (2011-06-16)
