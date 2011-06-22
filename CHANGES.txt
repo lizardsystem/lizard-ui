@@ -5,7 +5,10 @@ Changelog of lizard-ui
 1.70 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Newer lizard logo (without the gray background as that conflicts with our
+  own gray gradient), but that's ok for now.
+
+- More app icons with shadows.
 
 
 1.69 (2011-06-21)
