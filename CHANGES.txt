@@ -5,7 +5,7 @@ Changelog of lizard-ui
 1.71 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Fixed logo (it was slightly to high).
 
 
 1.70 (2011-06-22)
