@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-1.70 (unreleased)
+1.70 (2011-06-22)
 -----------------
 
 - Newer lizard logo (without the gray background as that conflicts with our
