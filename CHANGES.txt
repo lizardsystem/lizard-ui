@@ -5,7 +5,7 @@ Changelog of lizard-ui
 2.1 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Added 'play' icon.
 
 
 2.0 (2011-06-22)
