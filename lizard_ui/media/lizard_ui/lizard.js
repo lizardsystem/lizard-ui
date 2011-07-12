@@ -139,7 +139,8 @@ function calculateHiddenStuffHeight() {
 
 function stretchOneSidebarBox() {
     /* Stretch out one sidebarbox so that the sidebar is completely filled. */
-    var minHeight, stillAvailable, newHeight, sidebarboxStretched;
+    var minHeight, stillAvailable, newHeight, sidebarboxStretched,
+        includeMargin;
     minHeight = 100; // not smaller than this
     newHeight = $("#sidebar").height();  // Start with total available
     // Subtract other box sizes.
