@@ -145,8 +145,6 @@ function stretchOneSidebarBox() {
     // Subtract other box sizes.
     $("#sidebar > *").not(".sidebarbox-stretched").each(function () {
         newHeight -= $(this).outerHeight(includeMargin = true);
-        console.log(newHeight);
-        console.log(this);
     });
     // Now remove margin from sidebarbox-stretched, 1px
     sidebarboxStretched = $("#sidebar .sidebarbox-stretched");
