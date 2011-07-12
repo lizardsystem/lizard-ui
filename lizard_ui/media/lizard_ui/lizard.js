@@ -139,15 +139,19 @@ function calculateHiddenStuffHeight() {
 
 function stretchOneSidebarBox() {
     /* Stretch out one sidebarbox so that the sidebar is completely filled. */
-    var stillAvailable, includeMargin, minHeight, autoHeight, newHeight;
+    var minHeight, stillAvailable, newHeight, sidebarboxStretched;
     minHeight = 100; // not smaller than this
-    $("#sidebar .sidebarbox-stretched").height('auto');
-    autoHeight = $("#sidebar .sidebarbox-stretched").height();
-    stillAvailable = $("#sidebar").innerHeight();
-    $("#sidebar > *").each(function () {
-        stillAvailable -= $(this).outerHeight(includeMargin = true);
+    newHeight = $("#sidebar").height();  // Start with total available
+    // Subtract other box sizes.
+    $("#sidebar > *").not(".sidebarbox-stretched").each(function () {
+        newHeight -= $(this).outerHeight(includeMargin = true);
+        console.log(newHeight);
+        console.log(this);
     });
-    newHeight = autoHeight + stillAvailable;
+    // Now remove margin from sidebarbox-stretched, 1px
+    sidebarboxStretched = $("#sidebar .sidebarbox-stretched");
+    newHeight -= ($(sidebarboxStretched).outerHeight(includeMargin = true) -
+                  $(sidebarboxStretched).height());
     newHeight = newHeight < minHeight ? minHeight : newHeight;
     $("#sidebar .sidebarbox-stretched").height(newHeight);
 }

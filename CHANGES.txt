@@ -5,7 +5,9 @@ Changelog of lizard-ui
 2.1.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Rewritten stretchOneSidebarbox: the old one used to stretch big
+  first and then shrink to the correct size. The problem was that the
+  scroll focus for large lists would change. #3030.
 
 
 2.1.1 (2011-06-30)
