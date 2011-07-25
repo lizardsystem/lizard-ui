@@ -474,6 +474,7 @@ function setUpScreen() {
     stretchOneSidebarBox();
 }
 
+
 function setUpPortalTabs() {
     var selected_tab;
     selected_tab = $("#portal-tab-selected").attr("data-selected");
@@ -483,6 +484,42 @@ function setUpPortalTabs() {
     }
     $(selected_tab).addClass("selected");
 }
+
+
+// Initialize Tipsy
+function setUpTipsy() {
+    $('a[rel=tipsy]').tipsy({
+        delayIn: 200,
+        delayOut: 200,
+        fade: false,
+        gravity: 'w'
+    });
+    $('a#logo-img').tipsy({
+        delayIn: 200,
+        delayOut: 200,
+        fade: false,
+        gravity: 'n'
+    });
+    $('span[rel=tipsy]').tipsy({
+        delayIn: 200,
+        delayOut: 200,
+        fade: false,
+        gravity: 's'
+    });
+    $('#summary-datepicker-a').tipsy({
+        delayIn: 200,
+        delayOut: 200,
+        fade: false,
+        gravity: 's'
+    });
+    $('#transparency-slider').tipsy({
+        delayIn: 200,
+        delayOut: 200,
+        fade: false,
+        gravity: 's'
+    });
+}
+
 
 function restretchExistingElements() {
     fillScreen();
@@ -520,39 +557,7 @@ $(document).ready(function () {
     setUpOverlays();
     setUpLogin();
     setUpPrintButton();
-
-    // Initialize Tipsy
-    $('a[rel=tipsy]').tipsy({
-        delayIn: 200,
-        delayOut: 200,
-        fade: false,
-        gravity: 'w'
-    });
-    $('a#logo-img').tipsy({
-        delayIn: 200,
-        delayOut: 200,
-        fade: false,
-        gravity: 'n'
-    });
-    $('span[rel=tipsy]').tipsy({
-        delayIn: 200,
-        delayOut: 200,
-        fade: false,
-        gravity: 's'
-    });
-    $('#summary-datepicker-a').tipsy({
-        delayIn: 200,
-        delayOut: 200,
-        fade: false,
-        gravity: 's'
-    });
-    $('#transparency-slider').tipsy({
-        delayIn: 200,
-        delayOut: 200,
-        fade: false,
-        gravity: 's'
-    });
-
+    setUpTipsy();
 
     //setUpWorkspaceAcceptableButtons();
     // Light up the selected tab, if available.
