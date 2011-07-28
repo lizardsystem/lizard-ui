@@ -512,7 +512,7 @@ function setUpTipsy() {
         fade: false,
         gravity: 's'
     });
-    $('#transparency-slider').tipsy({
+    $('[rel=tipsy-south]').tipsy({
         delayIn: 200,
         delayOut: 200,
         fade: false,
