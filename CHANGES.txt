@@ -5,7 +5,7 @@ Changelog of lizard-ui
 2.1.6 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Added projecten.png.
 
 
 2.1.5 (2011-08-01)
@@ -13,7 +13,7 @@ Changelog of lizard-ui
 
 - Added ApplicationScreen.crumb.
 
-- Added oevers_icon.png.
+- Added oevers.png.
 
 
 2.1.4 (2011-07-28)
