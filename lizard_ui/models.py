@@ -20,6 +20,18 @@ class ApplicationScreen(models.Model):
             'lizard_ui.application_screen',
             kwargs={'application_screen_slug': self.slug})
 
+    def crumb(self, url_base=""):
+        """
+        Return self in crumb format: dict with keys name, title, url.
+
+        Uses custom url, because self.get_absolute_url() will not give
+        the wanted url.
+        """
+        return {
+            'name': self.name,
+            'title': self.description,
+            'url': '%s?screen=%s' % (url_base, self.slug)}
+
 
 class ApplicationIcon(models.Model):
     """
