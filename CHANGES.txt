@@ -5,7 +5,8 @@ Changelog of lizard-ui
 2.1.6 (unreleased)
 ------------------
 
-- Added projecten.png.
+- Added projecten.png, oppervlaktewater.png, grondwater.png,
+  riolering.png.
 
 
 2.1.5 (2011-08-01)
