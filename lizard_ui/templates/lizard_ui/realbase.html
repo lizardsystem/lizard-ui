@@ -135,7 +135,9 @@
           </div>
           <div id="breadcrumbs">
             {% block breadcrumbs %}
-            {% if crumbs %}&raquo;{% breadcrumbs crumbs %}{% endif %}
+            {% if crumbs %}&raquo;{% breadcrumbs crumbs %}
+            {% else %}&raquo; <A HREF="javascript:history.go(-1)">terug</a>
+            {% endif %}
             {% endblock breadcrumbs %}
           </div>
         </div>
