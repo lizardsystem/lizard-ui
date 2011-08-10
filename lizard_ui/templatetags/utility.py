@@ -45,6 +45,8 @@ def dutch_timedelta(seconds):
     """
     Make friendly looking duration in dutch.
 
+    None -> "-"
+    0 -> "0 seconde"
     60 -> "1 minuut"
     65 -> "1 minuut, 5 seconden"
     125 -> "2 minuten, 5 seconden"
@@ -52,8 +54,10 @@ def dutch_timedelta(seconds):
     3700 -> "1 uur, 1 minuut" (rounded off)
     86400 -> "1 dag"
     """
-    if not seconds:  # Either seconds is None, or 0, or 0.0..
+    if seconds is None:
         return "-"
+    if seconds == 0:
+        return "0 seconde"
 
     seconds = int(seconds)  # Make sure input is int
     days, hours, minutes = None, None, None

@@ -64,6 +64,8 @@ class TestUtility(TestCase):
         euro(None)  # Should not crash
 
     def test_dutch_timedelta(self):
+        self.assertEquals(u'0 seconde', dutch_timedelta(0))
+        self.assertEquals(u'-', dutch_timedelta(None))
         self.assertEquals(u'1 minuut', dutch_timedelta(60))
         self.assertEquals(u'1 minuut, 5 seconden', dutch_timedelta(65))
         self.assertEquals(u'2 minuten, 5 seconden', dutch_timedelta(125))
