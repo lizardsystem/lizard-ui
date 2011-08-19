@@ -95,11 +95,6 @@ own filesystem setup::
   # but we want to test django_compressor's compressing which
   # needs a media url and root and so.
 
-  # Set COMPRESS to True if you want to test compression when
-  # DEBUG == True.  (By default, COMPRESS is the opposite of
-  # DEBUG).
-  COMPRESS = False
-
   # SETTINGS_DIR allows media paths and so to be relative to
   # this settings file instead of hardcoded to
   # c:\only\on\my\computer.
@@ -133,27 +128,6 @@ own filesystem setup::
   # static media into STATIC_ROOT/admin.
   ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
 
-  # Storage engine to be used during compression
-  COMPRESS_STORAGE = "staticfiles.storage.StaticFileStorage"
-  # The URL that linked media will be read from and compressed
-  # media will be written to.
-  COMPRESS_URL = STATIC_URL
-  # The absolute file path that linked media will be read from
-  # and compressed media will be written to.
-  COMPRESS_ROOT = STATIC_ROOT
-
-
-  # Used for django-staticfiles
-  TEMPLATE_CONTEXT_PROCESSORS = (
-      # Default items.
-      "django.core.context_processors.auth",
-      "django.core.context_processors.debug",
-      "django.core.context_processors.i18n",
-      "django.core.context_processors.media",
-      # Needs to be added for django-staticfiles to allow you
-      # to use {{ STATIC_URL }}myapp/my.css in your templates.
-      'staticfiles.context_processors.static_url',
-      )
 
 And a suitable apache config hint::
 
@@ -176,6 +150,34 @@ And a suitable apache config hint::
   Alias /media/ ${buildout:directory}/var/media/
   # django-staticfiles: STATIC_URL = '/static_media/'
   Alias /static_media/ ${buildout:directory}/var/static/
+
+
+Upgrading to Django 1.3
+-----------------------
+
+Lizard-ui 3.0 requires Django 1.3 as we want to start using class based views
+and some of the other 1.3 goodies. For that, you need to make some changes.
+
+- Add ``LOGGING``, for instance with::
+
+        from lizard_ui.settingshelper import setup_logging
+        LOGGING = setup_logging(BUILDOUT_DIR)
+        # For production, use for instance:
+        # LOGGING = setup_logging(BUILDOUT_DIR, console_level=None)
+
+- And remove any by-hand logging setup, for instance with
+  ``logging.basicConfig()``.
+
+- Import ``STATICFILES_FINDERS`` from lizard_ui, this adds a finder that also
+  finds static media in /media in addition to the new /static::
+
+        from lizard_ui.settingshelper import STATICFILES_FINDERS
+
+- ``COMPRESS_STORAGE``, ``COMPRESS_URL`` and ``COMPRESS_ROOT`` can now be
+  removed from your settings as the defaults are now fine.
+
+- Switch from using ``bin/django build_static`` to ``bin/django
+  collectstatic``.
 
 
 Usage

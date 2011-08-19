@@ -2,7 +2,9 @@ from django.conf.urls.defaults import *
 from django.conf import settings
 from django.contrib import admin
 
+import lizard_ui.configchecker
 
+lizard_ui.configchecker  # Pyflakes...
 admin.autodiscover()
 
 urlpatterns = patterns(

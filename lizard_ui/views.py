@@ -55,17 +55,14 @@ def example_breadcrumbs(request, template=None):
         context_instance=RequestContext(request))
 
 
-###### Views with complete screens ######
-
 def application_screen(
     request,
     application_screen_slug=None,
     template="lizard_ui/lizardbase.html",
     crumbs_prepend=None):
     """
-    Renders a screen with app icons. Not very useful, except for testing.
+    Render a screen with app icons. Not very useful, except for testing.
     """
-
     return render_to_response(
         template,
         {'application_screen_slug': application_screen_slug},

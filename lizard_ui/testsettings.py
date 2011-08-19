@@ -1,15 +1,20 @@
 import os
 
+from lizard_ui.settingshelper import setup_logging
+from lizard_ui.settingshelper import STATICFILES_FINDERS
+
 DEBUG = True
 TEMPLATE_DEBUG = True
-DATABASE_ENGINE = 'sqlite3'
-DATABASE_NAME = 'test.db'
+DATABASES = {
+    'default': {'ENGINE': 'django.db.backends.sqlite3',
+                'NAME': 'test.db'},
+    }
 SITE_ID = 1
 INSTALLED_APPS = [
     'lizard_ui',
+    'south',
     'compressor',
     'staticfiles',
-    'south',
     'django_extensions',
     'django_nose',
     'django.contrib.admin',
@@ -26,10 +31,9 @@ TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 # but we want to test django_compressor's compressing which
 # needs a media url and root and so.
 
-# Set COMPRESS to True if you want to test compression when
-# DEBUG == True.  (By default, COMPRESS is the opposite of
-# DEBUG).
-COMPRESS = False
+# We switch off compression so that the automated tests also can get the full
+# javascript.
+COMPRESS_ENABLED = False
 
 # SETTINGS_DIR allows media paths and so to be relative to
 # this settings file instead of hardcoded to
@@ -64,24 +68,4 @@ STATIC_URL = '/static_media/'
 # static media into STATIC_ROOT/admin.
 ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
 
-# Storage engine to be used during compression
-COMPRESS_STORAGE = "staticfiles.storage.StaticFileStorage"
-# The URL that linked media will be read from and compressed
-# media will be written to.
-COMPRESS_URL = STATIC_URL
-# The absolute file path that linked media will be read from
-# and compressed media will be written to.
-COMPRESS_ROOT = STATIC_ROOT
-
-
-# Used for django-staticfiles
-TEMPLATE_CONTEXT_PROCESSORS = (
-    # Default items.
-    "django.core.context_processors.auth",
-    "django.core.context_processors.debug",
-    "django.core.context_processors.i18n",
-    "django.core.context_processors.media",
-    # Needs to be added for django-staticfiles to allow you
-    # to use {{ STATIC_URL }}myapp/my.css in your templates.
-    'staticfiles.context_processors.static_url',
-    )
+LOGGING = setup_logging(BUILDOUT_DIR)
