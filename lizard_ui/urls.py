@@ -1,5 +1,7 @@
-from django.conf.urls.defaults import *
 from django.conf import settings
+from django.conf.urls.defaults import include
+from django.conf.urls.defaults import patterns
+from django.conf.urls.defaults import url
 from django.contrib import admin
 
 import lizard_ui.configchecker
@@ -23,11 +25,6 @@ urlpatterns = patterns(
 
 
 if settings.DEBUG:  # Pragma: nocover
-    # Add this also to the projects that use lizard-ui
-    urlpatterns += patterns(
-        '',
-        (r'', include('staticfiles.urls')),
-        )
     # Online documentation, mount it for example in the settings.DEBUG section
     # to get the documentation in your project while developing.
     urlpatterns += patterns(
