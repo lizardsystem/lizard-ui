@@ -5,7 +5,10 @@ Changelog of lizard-ui
 3.1 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- TracebackLoggingMiddleware isn't needed anymore, so the config checker now
+  tells you that if you still have it in your MIDDLEWARE_CLASSES.
+
+- Switched off sql statement logging by default.
 
 
 3.0 (2011-08-19)
