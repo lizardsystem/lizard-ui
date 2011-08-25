@@ -81,3 +81,9 @@ def checker():
                 'django.contrib.sites']:
         if app not in settings.INSTALLED_APPS:
             logger.error("%s is missing from INSTALLED_APPS.", app)
+    if ('lizard_ui.middleware.TracebackLoggingMiddleware' in
+        settings.MIDDLEWARE_CLASSES):
+        logger.warn("You can remove "
+                    "'lizard_ui.middleware.TracebackLoggingMiddleware' "
+                    "from MIDDLEWARE_CLASSES, the new logging setup handles "
+                    "that automatically.")
