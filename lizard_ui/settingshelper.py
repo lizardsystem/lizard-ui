@@ -10,8 +10,21 @@ STATICFILES_FINDERS = (
     )
 
 
-def setup_logging(buildout_dir, console_level='DEBUG', file_level='WARN'):
-    """Return configuration dict for logging."""
+def setup_logging(buildout_dir,
+                  console_level='DEBUG',
+                  file_level='WARN',
+                  sql=False):
+    """Return configuration dict for logging.
+
+    Some keyword arguments can be used to configure the logging.
+
+    - ``console_level='DEBUG'`` sets the console level. None means quiet.
+
+    - ``file_level='WARN'`` sets the var/log/django.log level. None means quiet.
+
+    - ``sql=False`` switches sql statement logging on or off.
+
+    """
     result = {
         'version': 1,
         'disable_existing_loggers': True,
@@ -24,6 +37,10 @@ def setup_logging(buildout_dir, console_level='DEBUG', file_level='WARN'):
                 },
             },
         'handlers': {
+            'null': {
+                'level':'DEBUG',
+                'class':'django.utils.log.NullHandler',
+                },
             'console':{
                 'level': console_level,
                 'class': 'logging.StreamHandler',
@@ -43,10 +60,18 @@ def setup_logging(buildout_dir, console_level='DEBUG', file_level='WARN'):
                 'propagate': True,
                 'level':'DEBUG',
                 },
+            'django.db.backends': {
+                'handlers': ['null'],  # Quiet by default!
+                'propagate': False,
+                'level':'DEBUG',
+                },
             },
         }
     if console_level is not None:
         result['loggers']['']['handlers'].append('console')
     if file_level is not None:
         result['loggers']['']['handlers'].append('logfile')
+    if sql:
+        result['loggers']['django.db.backends']['handlers'] = [
+            'console', 'logfile']
     return result
