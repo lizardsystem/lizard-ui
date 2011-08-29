@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-3.1 (unreleased)
+3.1 (2011-08-29)
 ----------------
 
 - TracebackLoggingMiddleware isn't needed anymore, so the config checker now
