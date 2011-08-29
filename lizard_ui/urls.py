@@ -2,12 +2,22 @@ from django.conf import settings
 from django.conf.urls.defaults import include
 from django.conf.urls.defaults import patterns
 from django.conf.urls.defaults import url
+from django.conf.urls.static import static
 from django.contrib import admin
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 import lizard_ui.configchecker
 
 lizard_ui.configchecker  # Pyflakes...
 admin.autodiscover()
+
+def debugmode_urlpatterns():
+    prefix = settings.MEDIA_URL
+    root = settings.MEDIA_ROOT
+    patterns = static(prefix, document_root=root)
+    patterns += staticfiles_urlpatterns()
+    return patterns
+
 
 urlpatterns = patterns(
     '',
@@ -23,6 +33,7 @@ urlpatterns = patterns(
         name='lizard_ui.application_screen'),
     )
 
+urlpatterns += debugmode_urlpatterns()
 
 if settings.DEBUG:  # Pragma: nocover
     # Online documentation, mount it for example in the settings.DEBUG section

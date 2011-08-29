@@ -10,6 +10,10 @@ Changelog of lizard-ui
 
 - Switched off sql statement logging by default.
 
+- Added url patterns for showing static/ and media/ files in debug mode. Use
+  it by importing ``debugmode_urlpatterns`` from ``lizard_ui.urls`` and
+  calling ``urlpatterns += debugmode_urlpatterns()``.
+
 
 3.0 (2011-08-19)
 ----------------
