@@ -87,3 +87,11 @@ def checker():
                     "'lizard_ui.middleware.TracebackLoggingMiddleware' "
                     "from MIDDLEWARE_CLASSES, the new logging setup handles "
                     "that automatically.")
+
+    urlconf = __import__(settings.ROOT_URLCONF)
+    if not hasattr(urlconf, 'debugmode_urlpatterns'):
+        logger.warn(
+            "You didn't import the debug url patterns. Suggested usage:\n"
+            "from lizard_ui.urls import debugmode_urlpatterns\n"
+            "...\n"
+            "urlpatterns += debugmode_urlpatterns()")

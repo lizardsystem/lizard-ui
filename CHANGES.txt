@@ -5,7 +5,7 @@ Changelog of lizard-ui
 3.2 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Adding checker that warns if the debugmode_urlpatterns isn't being imported.
 
 
 3.1 (2011-08-29)
