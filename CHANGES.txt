@@ -5,7 +5,7 @@ Changelog of lizard-ui
 3.2 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Fixed debugmode_urlpatterns checker.
 
 
 3.1.1 (2011-08-29)

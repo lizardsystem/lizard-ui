@@ -1,5 +1,5 @@
 import logging
-from pprint import pprint
+import sys
 
 from django.conf import settings
 
@@ -88,7 +88,8 @@ def checker():
                     "from MIDDLEWARE_CLASSES, the new logging setup handles "
                     "that automatically.")
 
-    urlconf = __import__(settings.ROOT_URLCONF)
+    __import__(settings.ROOT_URLCONF)
+    urlconf = sys.modules[settings.ROOT_URLCONF]
     if not hasattr(urlconf, 'debugmode_urlpatterns'):
         logger.warn(
             "You didn't import the debug url patterns. Suggested usage:\n"
