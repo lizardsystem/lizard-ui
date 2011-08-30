@@ -8,6 +8,28 @@ from lizard_ui.configchecker import checker
 from lizard_ui.templatetags.utility import dutch_timedelta
 from lizard_ui.templatetags.utility import euro
 from lizard_ui.templatetags.utility import application_icons
+import lizard_ui.views
+
+
+class TestViewContextMixin(TestCase):
+
+    def test_alone(self):
+        """ViewContextMixin should work on its own."""
+        view = lizard_ui.views.ViewContextMixin()
+        self.assertEquals(view.get_context_data(),
+                          {'view': view})
+
+    def test_with_inheritance(self):
+        """ViewContextMixin should work with a parent."""
+        class Parent(object):
+            def get_context_data(self, **kwargs):
+                return {'parent': 'daddy'}
+        class Child(lizard_ui.views.ViewContextMixin, Parent):
+            pass
+        view = Child()
+        self.assertEquals(view.get_context_data(),
+                          {'view': view,
+                           'parent': 'daddy'})
 
 
 class TestLoginLogout(TestCase):

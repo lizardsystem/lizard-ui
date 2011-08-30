@@ -8,6 +8,28 @@ from django.template import RequestContext
 from django.utils import simplejson as json
 
 
+class ViewContextMixin(object):
+    """View mixin that adds the view object to the context.
+
+    Make sure this is near the front of the inheritance list: it should come
+    before other mixins that (re-)define ``get_context_data()``.
+
+    When you use this mixin in your view, you can do ``{{ view.some_method
+    }}`` or ``{{ view.some_attribute }}`` in your class and it will call those
+    methods or attributes on your view object: no more need to pass in
+    anything in a context dictionary, just stick it on ``self``!
+
+    """
+    def get_context_data(self, **kwargs):
+        """Return context with view object available as 'view'."""
+        try:
+            context = super(ViewContextMixin, self).get_context_data(**kwargs)
+        except AttributeError:
+            context = {}
+        context.update({'view': self})
+        return context
+
+
 def simple_login(request, next=None, template='lizard_ui/login.html'):
     """
     Logs a user in, replies success or failure in json success:

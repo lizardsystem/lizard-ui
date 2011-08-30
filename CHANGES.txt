@@ -5,7 +5,9 @@ Changelog of lizard-ui
 3.2 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Added ViewContextMixin mixin class for class based views that adds {'view':
+  self} to your view's context dict. This should be all you need to have in
+  your context.
 
 
 3.1.2 (2011-08-29)
