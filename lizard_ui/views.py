@@ -64,7 +64,8 @@ def simple_logout(request):
     return HttpResponse("")
 
 
-def example_breadcrumbs(request, template=None):
+def example_breadcrumbs(request,
+                        template='lizard_ui/example-breadcrumbs.html'):
     crumbs = [{'name': 'name', 'url': 'url'},
               {'name': 'name2', 'url': 'url2'}]
     return render(request, template, {'crumbs': crumbs})

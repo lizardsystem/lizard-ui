@@ -78,6 +78,6 @@ if settings.DEBUG:  # Pragma: nocover
         '',
         url(r'^examples/breadcrumbs/$',
             'lizard_ui.views.example_breadcrumbs',
-            {'template': 'lizard_ui/example-breadcrumbs.html'},
+            {},
             name='lizard_ui.example_breadcrumbs'),
         )

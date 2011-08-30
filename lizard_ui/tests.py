@@ -1,15 +1,17 @@
 import datetime
-from django.test import TestCase
-from django.contrib.auth.models import User
-import json
 
+from django.contrib.auth.models import User
+from django.test import TestCase
+from django.test.client import RequestFactory
+from django.utils import simplejson as json
+
+from lizard_ui.configchecker import checker
 from lizard_ui.middleware import TracebackLoggingMiddleware
 from lizard_ui.models import ApplicationScreen
-from lizard_ui.configchecker import checker
-from lizard_ui.templatetags.utility import dutch_timedelta
-from lizard_ui.templatetags.utility import short_timedelta
-from lizard_ui.templatetags.utility import euro
 from lizard_ui.templatetags.utility import application_icons
+from lizard_ui.templatetags.utility import dutch_timedelta
+from lizard_ui.templatetags.utility import euro
+from lizard_ui.templatetags.utility import short_timedelta
 import lizard_ui.views
 
 
@@ -185,3 +187,22 @@ class TestConfigChecker(TestCase):
     def test_smoke(self):
         """Just test that it doesn't crash and burn."""
         checker()
+
+
+class TestExampleBreadcrumbs(TestCase):
+
+    def test_smoke(self):
+        """Just test that it doesn't crash and burn."""
+        request = RequestFactory().get('/example/')
+        response = lizard_ui.views.example_breadcrumbs(request)
+        self.assertEquals(response.status_code, 200)
+
+
+class TestExampleApplicationScreen(TestCase):
+
+    def test_smoke(self):
+        """Just test that it doesn't crash and burn."""
+        request = RequestFactory().get('/example/')
+        response = lizard_ui.views.application_screen(request)
+        self.assertEquals(response.status_code, 200)
+
