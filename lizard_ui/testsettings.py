@@ -68,4 +68,6 @@ STATIC_URL = '/static_media/'
 # static media into STATIC_ROOT/admin.
 ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
 
+STATICFILES_FINDERS = STATICFILES_FINDERS
+
 LOGGING = setup_logging(BUILDOUT_DIR)
