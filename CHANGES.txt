@@ -5,7 +5,7 @@ Changelog of lizard-ui
 3.3 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Re-did login view as a class based view.
 
 
 3.2 (2011-08-30)

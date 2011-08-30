@@ -7,6 +7,7 @@ from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 import lizard_ui.configchecker
+import lizard_ui.views
 
 lizard_ui.configchecker  # Pyflakes...
 admin.autodiscover()
@@ -23,7 +24,7 @@ urlpatterns = patterns(
     '',
     (r'^admin/', include(admin.site.urls)),
     url(r'^accounts/login/$',
-        'lizard_ui.views.simple_login',
+        lizard_ui.views.LoginView.as_view(),
         name='lizard_ui.login'),
     url(r'^accounts/logout/$',
         'lizard_ui.views.simple_logout',

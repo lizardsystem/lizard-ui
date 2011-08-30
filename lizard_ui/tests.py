@@ -34,7 +34,7 @@ class TestViewContextMixin(TestCase):
                            'parent': 'daddy'})
 
 
-class TestLoginLogout(TestCase):
+class TestLoginLogoutIntegration(TestCase):
 
     def setUp(self):
         """Create sample user."""
@@ -45,7 +45,7 @@ class TestLoginLogout(TestCase):
     def test_smoke(self):
         # No parameters: return code 200.
         # Login page must have "login-button".
-        response = self.client.post('/accounts/login/', {})
+        response = self.client.get('/accounts/login/', {})
         self.assertEquals(response.status_code, 200)
         self.assertTrue("#login-button" in response.content)
         # ^^^ That's inside the inline javascript, btw.

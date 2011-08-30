@@ -1,5 +1,10 @@
 {# Empty login page, where login box pops up. #}
 {% extends 'lizard_ui/lizardbase.html' %}
+{% load login %}
+
+{% block portal-actions %}
+{% display_login %}
+{% endblock %}
 
 {# Reminder: if javascript is getting bigger than 1 line, #}
 {# move to separate js file #}

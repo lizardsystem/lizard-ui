@@ -6,6 +6,9 @@ from django.http import HttpResponse
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 from django.utils import simplejson as json
+from django.views.generic.edit import FormView
+
+from lizard_ui.forms import LoginForm
 
 
 class ViewContextMixin(object):
@@ -30,34 +33,27 @@ class ViewContextMixin(object):
         return context
 
 
-def simple_login(request, next=None, template='lizard_ui/login.html'):
-    """
-    Logs a user in, replies success or failure in json success:
-    {'success': success, 'next': next}
+class LoginView(ViewContextMixin, FormView):
+    template_name = 'lizard_ui/login.html'
+    form_class = LoginForm
 
-    If no username and password provided, you'll get a login screen.
-    """
-    post = request.POST
-    if 'next' in post and post['next']:
-        next = post['next']
-        # print 'post next: %s' % next
-    if 'next' in request.GET and request.GET['next']:
-        next = request.GET['next']
-        # print 'get next: %s' % next
-    if 'username' not in post or 'password' not in post:
-        return render_to_response(
-            template,
-            {'next': next},
-            context_instance=RequestContext(request))
-    username = post['username']
-    password = post['password']
-    user = authenticate(username=username, password=password)
-    success = False
-    if user is not None:
-        if user.is_active:
-            login(request, user)
-            success = True
-    return HttpResponse(json.dumps({'success': success, 'next': next}))
+    def post(self, request, *args, **kwargs):
+        """Return json with 'success' and 'next' parameters."""
+        form_class = self.get_form_class()
+        form = self.get_form(form_class)
+        success = False
+        post = request.POST
+        next = post.get('next')
+        if form.is_valid():
+            username = post['username']
+            password = post['password']
+            user = authenticate(username=username, password=password)
+            if user is not None:
+                if user.is_active:
+                    login(request, user)
+                    success = True
+        return HttpResponse(json.dumps({'success': success,
+                                        'next': next}))
 
 
 def simple_logout(request):
