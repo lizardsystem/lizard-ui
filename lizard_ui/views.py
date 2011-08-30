@@ -3,8 +3,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth import login
 from django.contrib.auth import logout
 from django.http import HttpResponse
-from django.shortcuts import render_to_response
-from django.template import RequestContext
+from django.shortcuts import render
 from django.utils import simplejson as json
 from django.views.generic.edit import FormView
 
@@ -68,9 +67,8 @@ def simple_logout(request):
 def example_breadcrumbs(request, template=None):
     crumbs = [{'name': 'name', 'url': 'url'},
               {'name': 'name2', 'url': 'url2'}]
-    return render_to_response(
-        template, {'crumbs': crumbs},
-        context_instance=RequestContext(request))
+    return render(
+        template, {'crumbs': crumbs})
 
 
 def application_screen(
@@ -81,7 +79,5 @@ def application_screen(
     """
     Render a screen with app icons. Not very useful, except for testing.
     """
-    return render_to_response(
-        template,
-        {'application_screen_slug': application_screen_slug},
-        context_instance=RequestContext(request))
+    return render(template,
+                  {'application_screen_slug': application_screen_slug})
