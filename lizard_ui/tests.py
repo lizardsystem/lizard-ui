@@ -1,3 +1,4 @@
+import datetime
 from django.test import TestCase
 from django.contrib.auth.models import User
 import json
@@ -6,6 +7,7 @@ from lizard_ui.middleware import TracebackLoggingMiddleware
 from lizard_ui.models import ApplicationScreen
 from lizard_ui.configchecker import checker
 from lizard_ui.templatetags.utility import dutch_timedelta
+from lizard_ui.templatetags.utility import short_timedelta
 from lizard_ui.templatetags.utility import euro
 from lizard_ui.templatetags.utility import application_icons
 import lizard_ui.views
@@ -99,6 +101,25 @@ class TestUtility(TestCase):
         # Rounded off
         self.assertEquals(u'1 dag, 1 minuut', dutch_timedelta(86500))
         dutch_timedelta(None)  # Should not crash
+
+    def test_short_timedelta(self):
+        self.assertEquals(u'4 dagen', short_timedelta(
+                datetime.timedelta(days=4)))
+        self.assertEquals(u'1 dag', short_timedelta(
+                datetime.timedelta(days=1, seconds=5)))
+        self.assertEquals(u'1 dag', short_timedelta(
+                datetime.timedelta(days=1)))
+        self.assertEquals(u'5 uur', short_timedelta(
+                datetime.timedelta(seconds=3600*5 + 300)))
+        self.assertEquals(u'5 uur', short_timedelta(
+                datetime.timedelta(seconds=3600*5)))
+        self.assertEquals(u'5 minuten', short_timedelta(
+                datetime.timedelta(seconds=60*5 + 4)))
+        self.assertEquals(u'5 minuten', short_timedelta(
+                datetime.timedelta(seconds=60*5)))
+        self.assertEquals(u'36 seconde', short_timedelta(
+                datetime.timedelta(seconds=36)))
+        short_timedelta(None)  # Should not crash
 
     def test_application_icons(self):
         """

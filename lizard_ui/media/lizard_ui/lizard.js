@@ -198,7 +198,7 @@ function stretchOneSidebarBox() {
 
 function fillSidebar() {
     /* Basically only an alias to have a simpler name: fill up the sidebar by
-    streching  the appropriate box. */
+    stretching the appropriate box. */
     stretchOneSidebarBox();
 }
 
@@ -583,7 +583,7 @@ $(window).resize(function () {
 });
 
 $(document).ready(function () {
-
+    // Do not change the order.
     calculateScrollbarWidth();
     calculateHiddenStuffHeight();
     fillScreen();

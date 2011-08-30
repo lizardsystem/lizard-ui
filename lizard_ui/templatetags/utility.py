@@ -89,6 +89,23 @@ def dutch_timedelta(seconds):
     return ', '.join(result[:2])
 
 
+@register.filter
+def short_timedelta(td):
+    if td is None:
+        return '-'
+    elif td.days == 1:
+        return '%d dag' % td.days
+    elif td.days > 1:
+        return '%d dagen' % td.days
+    else:
+        seconds = td.seconds
+        if seconds >= 3600:
+            return '%s uur' % (seconds / 3600)
+        if seconds >= 60:
+            return '%s minuten' % (seconds / 60)
+        return '%s seconde' % seconds
+
+
 @register.inclusion_tag('lizard_ui/tag_breadcrumbs.html')
 def breadcrumbs(crumbs):
     """
