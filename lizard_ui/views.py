@@ -67,8 +67,7 @@ def simple_logout(request):
 def example_breadcrumbs(request, template=None):
     crumbs = [{'name': 'name', 'url': 'url'},
               {'name': 'name2', 'url': 'url2'}]
-    return render(
-        template, {'crumbs': crumbs})
+    return render(request, template, {'crumbs': crumbs})
 
 
 def application_screen(
@@ -79,5 +78,6 @@ def application_screen(
     """
     Render a screen with app icons. Not very useful, except for testing.
     """
-    return render(template,
+    return render(request,
+                  template,
                   {'application_screen_slug': application_screen_slug})
