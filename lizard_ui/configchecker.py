@@ -42,7 +42,7 @@ def checkers():
 
 
 @register
-def checker():
+def checker():  # Pragma: nocover
     """Verify lizard_ui's demands on settings.py."""
     if not '' in settings.LOGGING['loggers'].keys():
         print "Setting LOGGING is missing a root ('') log handler."
