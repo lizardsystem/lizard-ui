@@ -8,6 +8,10 @@
 var hiddenStuffHeight, mainContentHeight, sidebarHeight, mainContentWidth,
     verticalItemHeight, accordion, resizeTimer, cachedScrollbarWidth;
 
+/* Set to the number of graphs to reload. This variable is used to be able to
+ * detect when he last graph is reloaded. */
+ var graphCount = 0;
+
 function scrollbarWidth() {
     return cachedScrollbarWidth;
 }
@@ -27,7 +31,7 @@ function calculateScrollbarWidth() {
     cachedScrollbarWidth = (w1 - w2);
 }
 
-function reloadGraph($graph, max_image_width) {
+function reloadGraph($graph, max_image_width, callback) {
     var url, url_click, timestamp, width, height, amp_or_questionmark,
     html_img, image, $main_tag, html_src, html_url, errormsg;
     $main_tag = $graph;
@@ -90,6 +94,9 @@ function reloadGraph($graph, max_image_width) {
         // Remove progress animation and possibly old images.
         $main_tag.parent().find(".auto-inserted").remove();
         $main_tag.after(html_img);
+	if (undefined != callback) {
+	    callback();
+	}
     });
     image.error(function () {
         // After preloading.
@@ -99,12 +106,22 @@ function reloadGraph($graph, max_image_width) {
             '<p class="auto-inserted">' +
                 errormsg +
                 '</p>');
+	if (undefined != callback) {
+	    callback();
+	}
     });
 }
 
-function reloadGraphs(max_image_width) {
+/**
+ * Resize the graphs to the given maximum width and reload them.
+ *
+ * @param {number} max_image_width maximum width to resize each graph to
+ * @param {function} callback function to call when a graph has been reloaded
+ */
+function reloadGraphs(max_image_width, callback) {
+    graphCount = $('a.replace-with-image').length
     $('a.replace-with-image').each(function () {
-        reloadGraph($(this), max_image_width);
+        reloadGraph($(this), max_image_width, callback);
     });
 }
 
@@ -116,18 +133,33 @@ function reloadLocalizedGraphs($location, max_image_width) {
 }
 
 
+/**
+ * Prints the current window when all graphs have been reloaded.
+ */
+function actualPrint() {
+    graphCount -= 1;
+    if (0 == graphCount) {
+	// All graphs have been reloaded so display the print dialog.
+	window.print();
+	/* We hid the Print link as soon as the user clicked it. Now it is safe
+	 * to be clicked again. */
+	$("a.ss_printer").show();
+    }
+}
+
+
 function printPage() {
-    var max_image_width;
-    max_image_width = 850;
-    // Resize the main window to get a smaller map.
+    /* Hide the print link to avoid multiple clicks on it while the first click
+     * is still being handled. */
+    $("a.ss_printer").hide();
+    /* Resize the main window to get an image that is better suited for
+     * printing. The image will be printed as soon as all graphs have
+     * reloaded.*/
+    var max_image_width = 850;
     if ($("#main").width() > max_image_width) {
         $("#main").width(max_image_width);
     }
-    // Make images smaller
-    reloadGraphs(max_image_width);
-    setTimeout(function () {
-        window.print();
-    }, 500);
+    reloadGraphs(max_image_width, actualPrint);
 }
 
 
