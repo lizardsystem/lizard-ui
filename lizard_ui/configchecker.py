@@ -88,6 +88,18 @@ def checker():  # Pragma: nocover
                     "from MIDDLEWARE_CLASSES, the new logging setup handles "
                     "that automatically.")
 
+    if hasattr(settings, 'SENTRY_REMOTE_URL'):
+        if not hasattr(settings, 'SENTRY_KEY'):
+            logger.error("You have a SENTRY_REMOTE_URL, but no SENTRY_KEY.")
+        if not 'sentry' in settings.LOGGING['loggers']['']['handlers']:
+            logger.warn("You're missing a sentry log handler. Pass "
+                        "sentry_level='WARN' to setup_logging().")
+    else:
+        logger.info(
+            "You haven't set up sentry yet. Do it, if this is a site. "
+            "Add SENTRY_REMOTE_URL for that.")
+
+
     __import__(settings.ROOT_URLCONF)
     urlconf = sys.modules[settings.ROOT_URLCONF]
     if not hasattr(urlconf, 'debugmode_urlpatterns'):

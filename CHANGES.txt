@@ -5,6 +5,8 @@ Changelog of lizard-ui
 3.3 (unreleased)
 ----------------
 
+- Added optional sentry setup.
+
 - Re-did login view as a class based view.
 
 - Fixed the problem that the print of the web page showed a progress icon

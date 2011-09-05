@@ -15,6 +15,7 @@ INSTALLED_APPS = [
     'south',
     'compressor',
     'staticfiles',
+    'sentry.client',
     'django_extensions',
     'django_nose',
     'django.contrib.admin',
@@ -69,5 +70,4 @@ STATIC_URL = '/static_media/'
 ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
 
 STATICFILES_FINDERS = STATICFILES_FINDERS
-
 LOGGING = setup_logging(BUILDOUT_DIR)

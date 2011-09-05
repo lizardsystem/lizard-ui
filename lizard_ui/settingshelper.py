@@ -13,6 +13,7 @@ STATICFILES_FINDERS = (
 def setup_logging(buildout_dir,
                   console_level='DEBUG',
                   file_level='WARN',
+                  sentry_level=None,
                   sql=False):
     """Return configuration dict for logging.
 
@@ -21,6 +22,8 @@ def setup_logging(buildout_dir,
     - ``console_level='DEBUG'`` sets the console level. None means quiet.
 
     - ``file_level='WARN'`` sets the var/log/django.log level. None means quiet.
+
+    - ``sentry_level=None`` sets the sentry level. None means quiet.
 
     - ``sql=False`` switches sql statement logging on or off.
 
@@ -53,6 +56,11 @@ def setup_logging(buildout_dir,
                 'filename': os.path.join(buildout_dir,
                                          'var', 'log', 'django.log'),
                 },
+            'sentry': {
+                'level': sentry_level,
+                'class': 'sentry.client.handlers.SentryHandler',
+                'formatter': 'verbose'
+                },
             },
         'loggers': {
             '': {
@@ -71,6 +79,8 @@ def setup_logging(buildout_dir,
         result['loggers']['']['handlers'].append('console')
     if file_level is not None:
         result['loggers']['']['handlers'].append('logfile')
+    if sentry_level is not None:
+        result['loggers']['']['handlers'].append('sentry')
     if sql:
         result['loggers']['django.db.backends']['handlers'] = [
             'console', 'logfile']

@@ -17,6 +17,7 @@ install_requires = [
     'django-extensions',
     'django-staticfiles >= 1.0',
     'django_compressor >= 0.9.2',  # Yes, underscore.
+    'django-sentry',
     'south',
     ],
 
