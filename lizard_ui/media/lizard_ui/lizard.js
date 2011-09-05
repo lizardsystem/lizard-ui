@@ -10,7 +10,7 @@ var hiddenStuffHeight, mainContentHeight, sidebarHeight, mainContentWidth,
 
 /* Set to the number of graphs to reload. This variable is used to be able to
  * detect when he last graph is reloaded. */
- var graphCount = 0;
+ var graphsToReload = 0;
 
 function scrollbarWidth() {
     return cachedScrollbarWidth;
@@ -119,7 +119,7 @@ function reloadGraph($graph, max_image_width, callback) {
  * @param {function} callback function to call when a graph has been reloaded
  */
 function reloadGraphs(max_image_width, callback) {
-    graphCount = $('a.replace-with-image').length
+    graphsToReload = $('a.replace-with-image').length
     $('a.replace-with-image').each(function () {
         reloadGraph($(this), max_image_width, callback);
     });
@@ -137,9 +137,8 @@ function reloadLocalizedGraphs($location, max_image_width) {
  * Prints the current window when all graphs have been reloaded.
  */
 function actualPrint() {
-    graphCount -= 1;
-    if (0 == graphCount) {
-	// All graphs have been reloaded so display the print dialog.
+    graphsToReload -= 1;
+    if (0 == graphsToReload) {
 	window.print();
 	/* We hid the Print link as soon as the user clicked it. Now it is safe
 	 * to be clicked again. */
