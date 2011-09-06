@@ -566,7 +566,8 @@ cursor: pointer;
 .save-popup .close,
 .popup .close,
 #not_found_popup .close,
-#graph-popup .close {
+#graph-popup .close,
+#dialog .close {
 background-image: url(close.png);
 position: absolute;
 right: -15px;
