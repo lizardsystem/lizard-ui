@@ -1,4 +1,5 @@
 import logging
+import os
 import sys
 
 from django.conf import settings
@@ -62,10 +63,14 @@ def checker():  # Pragma: nocover
             # Not available or empty.
             logger.error("Setting %s is missing. Example value: %s",
                          setting, getattr(example_settings, setting))
+
     if not ('compressor.finders.CompressorFinder'
             in settings.STATICFILES_FINDERS):
         logger.error("'compressor.finders.CompressorFinder' is missing "
-                     "from STATICFILES_FINDERS.")
+                     "from STATICFILES_FINDERS. Suggestion:\n"
+                     "from lizard_ui.settingshelper import STATICFILES_FINDERS\n"
+                     "STATICFILES_FINDERS = STATICFILES_FINDERS")
+
     for old_setting in ['COMPRESS_STORAGE', 'COMPRESS_URL', 'COMPRESS_ROOT']:
         if hasattr(settings, old_setting):
             logger.error("Old django_compressor setting %s found: remove it.",
@@ -91,9 +96,13 @@ def checker():  # Pragma: nocover
     if hasattr(settings, 'SENTRY_REMOTE_URL'):
         if not hasattr(settings, 'SENTRY_KEY'):
             logger.error("You have a SENTRY_REMOTE_URL, but no SENTRY_KEY.")
-        if not 'sentry' in settings.LOGGING['loggers']['']['handlers']:
-            logger.warn("You're missing a sentry log handler. Pass "
-                        "sentry_level='WARN' to setup_logging().")
+        production_settings_file = os.path.join(settings.SETTINGS_DIR,
+                                                'settings.py')
+        if os.path.exists(production_settings_file):
+            if not 'sentry_level' in open(production_settings_file,
+                                          'r').read():
+                logger.warn("You're missing a sentry log handler. Pass "
+                            "sentry_level='WARN' to setup_logging().")
     else:
         logger.info(
             "You haven't set up sentry yet. Do it, if this is a site. "
