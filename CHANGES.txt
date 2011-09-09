@@ -5,7 +5,8 @@ Changelog of lizard-ui
 3.4 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Renamed ``media/`` directory into ``static/`` as that's django-staticfiles'
+  sane default now.
 
 
 3.3 (2011-09-05)
