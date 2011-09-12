@@ -1,5 +1,6 @@
 from django.core.urlresolvers import reverse
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
 
 
 class ApplicationScreen(models.Model):
@@ -8,12 +9,12 @@ class ApplicationScreen(models.Model):
     icons in it.
     """
 
-    name = models.CharField(max_length=40)
+    name = models.CharField(_('name'), max_length=40)
     slug = models.SlugField(max_length=40)
-    description = models.TextField(blank=True, null=True)
+    description = models.TextField(_('description'), blank=True, null=True)
 
     def __unicode__(self):
-        return '%s (%s)' % (self.name, self.slug)
+        return u'%s (%s)' % (self.name, self.slug)
 
     def get_absolute_url(self):
         return reverse(
@@ -39,18 +40,22 @@ class ApplicationIcon(models.Model):
     name, an icon and an url.
     """
 
-    name = models.CharField(max_length=40)
-    icon = models.CharField(max_length=200)
-    description = models.TextField(blank=True, null=True)
+    name = models.CharField(_('name'), max_length=40)
+    icon = models.CharField(_('icon'), max_length=200)
+    description = models.TextField(_('description'), blank=True, null=True)
 
     # If not filled in, the link gets class "notworking"
-    url = models.CharField(max_length=200, blank=True, null=True)
+    url = models.CharField(_('url'), max_length=200, blank=True, null=True)
 
     application_screen = models.ForeignKey(ApplicationScreen)
-    index = models.IntegerField(default=1000)
+    index = models.IntegerField(
+        _('index'),
+        default=1000,
+        help_text=_('Number used for ordering icons relative to each other.'),
+        )
 
     class Meta:
         ordering = ('index', )
 
     def __unicode__(self):
-        return '%s' % self.name
+        return u'%s' % self.name
