@@ -5,6 +5,7 @@ from django.contrib.auth import logout
 from django.http import HttpResponse
 from django.shortcuts import render
 from django.utils import simplejson as json
+#from django.utils.translation import ugettext as _
 from django.views.generic.edit import FormView
 
 from lizard_ui.forms import LoginForm

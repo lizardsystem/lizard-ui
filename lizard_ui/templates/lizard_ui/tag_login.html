@@ -1,25 +1,27 @@
 {% if user.is_authenticated %}
-Ingelogd als {{ user }}.
-<a id="logout-button" class="ss_sprite ss_user_red" data-url="{% url lizard_ui.logout %}">Log uit</a>
+{% blocktrans %}Logged in as {{ user }}.{% endblocktrans %}
+<a id="logout-button"
+   class="ss_sprite ss_user_red"
+   data-url="{% url lizard_ui.logout %}">{% trans "Logout" %}</a>
 {% else %}
 <a class="popup-trigger ss_sprite ss_user"
    rel="#login-form"
-   id="login-button">Log in</a>
+   id="login-button">{% Login %}</a>
 <div class="popup noprint" id="login-form">
-  <h1>Log in</h1>
+  <h1>{% Login %}</h1>
   <div>
     <form data-url="{% url lizard_ui.login %}"
           method="post"
           id="popup-login-form">
       {% csrf_token %}
       <div>
-        <label>Naam</label>
+        <label>{% trans "Name" %}</label>
         <input type="text"
                name="username"
                tabindex="1"/>
       </div>
       <div>
-        <label>Wachtwoord</label>
+        <label>{% trans "Password" %}</label>
         <input type="password"
                name="password"
                tabindex="2" />
@@ -34,19 +36,18 @@ Ingelogd als {{ user }}.
         <input id="login-button"
                type="submit"
                tabindex="3"
-               value="Log in" />
+               value="{% trans "Login" %}" />
       </div>
     </form>
   </div>
 </div>
 <div class="popup noprint" id="wrong-login">
-  <h1>Fout</h1>
+  <h1>{% trans "Error" %}</h1>
   <div>
-    Inloggegevens zijn onjuist, probeer het nogmaals of neem contact op met de
-    beheerder.
+    {% trans "Login data is incorrect. Try again or contact the system administrator." %}
   </div>
   <form action="/">
-    <input type="submit" value="Ok" />
+    <input type="submit" value="{% Ok %}" />
   </form>
 </div>
 {% endif %}

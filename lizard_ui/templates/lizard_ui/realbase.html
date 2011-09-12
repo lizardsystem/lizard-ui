@@ -136,7 +136,8 @@
           <div id="breadcrumbs">
             {% block breadcrumbs %}
             {% if crumbs %}&raquo;{% breadcrumbs crumbs %}
-            {% else %}&raquo; <A HREF="javascript:history.go(-1)">terug</a>
+            {% else %}&raquo;
+            <a href="javascript:history.go(-1)">{% trans "back" %}</a>
             {% endif %}
             {% endblock breadcrumbs %}
           </div>
