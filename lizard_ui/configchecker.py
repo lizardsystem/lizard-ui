@@ -108,6 +108,17 @@ def checker():  # Pragma: nocover
             "You haven't set up sentry yet. Do it, if this is a site. "
             "Add SENTRY_REMOTE_URL for that.")
 
+    if not getattr(settings, 'USE_I18N', False):
+        logger.error("Set USE_I18N to True: we're using translations now.")
+    if settings.LANGUAGE_CODE == 'en-us':
+        logger.warn("LANGUAGE_CODE is set to the default 'en-us', is that "
+                    "what you want as default fallback language?")
+    if len(settings.LANGUAGES) > 40:
+        logger.warn("You haven't restricted 'LANGUAGES'. You probably want "
+                    "something like:\n"
+                    "LANGUAGES = (\n"
+                    "    ('nl', 'Nederlands'),\n"
+                    "    ('en', 'English'),\n)")
 
     __import__(settings.ROOT_URLCONF)
     urlconf = sys.modules[settings.ROOT_URLCONF]

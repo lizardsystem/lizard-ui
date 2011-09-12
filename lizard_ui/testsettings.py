@@ -28,6 +28,12 @@ ROOT_URLCONF = 'lizard_ui.urls'
 
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
+LANGUAGE_CODE = 'nl-nl'
+LANGUAGES = (
+    ('nl', 'Nederlands'),
+    ('en', 'English'),
+)
+
 # Note: the below settings are more elaborate than needed,
 # but we want to test django_compressor's compressing which
 # needs a media url and root and so.
