@@ -8,6 +8,13 @@ Changelog of lizard-ui
 - Renamed ``media/`` directory into ``static/`` as that's django-staticfiles'
   sane default now.
 
+- Added 'i18n' management command for easier translation.
+
+- Added config checks for i18n settings now that default strings slowly become
+  English instead of the Dutch we've been implicitly expecting...
+
+- Added translation markers + Dutch translations for several strings.
+
 
 3.3 (2011-09-05)
 ----------------
