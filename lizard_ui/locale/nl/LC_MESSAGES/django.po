@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-09-12 09:51-0500\n"
+"POT-Creation-Date: 2011-09-16 04:46-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
-#: forms.py:6
+#: forms.py:8
 msgid "Username"
 msgstr "Naam"
 
-#: forms.py:9 templates/lizard_ui/tag_login.html:24
+#: forms.py:12 templates/lizard_ui/tag_login.html:25
 msgid "Password"
 msgstr "Wachtwoord"
 
@@ -58,33 +58,33 @@ msgstr "Naar de voorpagina"
 msgid "back"
 msgstr "Terug"
 
-#: templates/lizard_ui/tag_login.html:2
+#: templates/lizard_ui/tag_login.html:3
 #, fuzzy, python-format
 msgid "Logged in as %(user)s."
 msgstr "Ingelogd als $(user)s."
 
-#: templates/lizard_ui/tag_login.html:5
+#: templates/lizard_ui/tag_login.html:6
 msgid "Logout"
 msgstr "Log uit"
 
-#: templates/lizard_ui/tag_login.html:18
-msgid "Name"
-msgstr "Naam"
-
-#: templates/lizard_ui/tag_login.html:39
+#: templates/lizard_ui/tag_login.html:12 templates/lizard_ui/tag_login.html:40
 msgid "Login"
 msgstr "Log in"
 
-#: templates/lizard_ui/tag_login.html:45
+#: templates/lizard_ui/tag_login.html:19
+msgid "Name"
+msgstr "Naam"
+
+#: templates/lizard_ui/tag_login.html:46
 msgid "Error"
 msgstr "Fout"
 
-#: templates/lizard_ui/tag_login.html:47
+#: templates/lizard_ui/tag_login.html:48
 msgid "Login data is incorrect. Try again or contact the system administrator."
 msgstr ""
 "Inloggegevens zijn onjuist, probeer het nogmaals of neem contact op met de "
 "beheerder."
 
-#, fuzzy
-#~ msgid "password"
-#~ msgstr "Wachtwoord"
+#: templates/lizard_ui/tag_login.html:51
+msgid "Ok"
+msgstr "Ok"
