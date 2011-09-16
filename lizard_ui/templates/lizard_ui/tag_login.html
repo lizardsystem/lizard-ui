@@ -1,3 +1,4 @@
+{% load i18n %}
 {% if user.is_authenticated %}
 {% blocktrans %}Logged in as {{ user }}.{% endblocktrans %}
 <a id="logout-button"
@@ -6,9 +7,9 @@
 {% else %}
 <a class="popup-trigger ss_sprite ss_user"
    rel="#login-form"
-   id="login-button">{% Login %}</a>
+   id="login-button">{% trans Login %}</a>
 <div class="popup noprint" id="login-form">
-  <h1>{% Login %}</h1>
+  <h1>{% trans "Login" %}</h1>
   <div>
     <form data-url="{% url lizard_ui.login %}"
           method="post"
@@ -47,7 +48,7 @@
     {% trans "Login data is incorrect. Try again or contact the system administrator." %}
   </div>
   <form action="/">
-    <input type="submit" value="{% Ok %}" />
+    <input type="submit" value="{% trans "Ok" %}" />
   </form>
 </div>
 {% endif %}
