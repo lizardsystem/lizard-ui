@@ -103,6 +103,9 @@ def checker():  # Pragma: nocover
                                           'r').read():
                 logger.warn("You're missing a sentry log handler. Pass "
                             "sentry_level='WARN' to setup_logging().")
+        if not 'sentry.client' in settings.INSTALLED_APPS:
+            logger.warn("You're missing 'sentry.client' in your ",
+                        "INSTALLED_APPS list.")
     else:
         logger.info(
             "You haven't set up sentry yet. Do it, if this is a site. "
