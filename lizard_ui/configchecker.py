@@ -66,10 +66,11 @@ def checker():  # Pragma: nocover
 
     if not ('compressor.finders.CompressorFinder'
             in settings.STATICFILES_FINDERS):
-        logger.error("'compressor.finders.CompressorFinder' is missing "
-                     "from STATICFILES_FINDERS. Suggestion:\n"
-                     "from lizard_ui.settingshelper import STATICFILES_FINDERS\n"
-                     "STATICFILES_FINDERS = STATICFILES_FINDERS")
+        logger.error(
+            "'compressor.finders.CompressorFinder' is missing "
+            "from STATICFILES_FINDERS. Suggestion:\n"
+            "from lizard_ui.settingshelper import STATICFILES_FINDERS\n"
+            "STATICFILES_FINDERS = STATICFILES_FINDERS")
 
     for old_setting in ['COMPRESS_STORAGE', 'COMPRESS_URL', 'COMPRESS_ROOT']:
         if hasattr(settings, old_setting):

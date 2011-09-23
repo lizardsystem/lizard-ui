@@ -21,7 +21,8 @@ def setup_logging(buildout_dir,
 
     - ``console_level='DEBUG'`` sets the console level. None means quiet.
 
-    - ``file_level='WARN'`` sets the var/log/django.log level. None means quiet.
+    - ``file_level='WARN'`` sets the var/log/django.log level. None means
+      quiet.
 
     - ``sentry_level=None`` sets the sentry level. None means quiet.
 
@@ -41,7 +42,7 @@ def setup_logging(buildout_dir,
             },
         'handlers': {
             'null': {
-                'level':'DEBUG',
+                'level': 'DEBUG',
                 'class':'django.utils.log.NullHandler',
                 },
             'console':{

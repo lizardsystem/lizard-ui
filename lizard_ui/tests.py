@@ -28,6 +28,7 @@ class TestViewContextMixin(TestCase):
         class Parent(object):
             def get_context_data(self, **kwargs):
                 return {'parent': 'daddy'}
+
         class Child(lizard_ui.views.ViewContextMixin, Parent):
             pass
         view = Child()
@@ -112,13 +113,13 @@ class TestUtility(TestCase):
         self.assertEquals(u'1 dag', short_timedelta(
                 datetime.timedelta(days=1)))
         self.assertEquals(u'5 uur', short_timedelta(
-                datetime.timedelta(seconds=3600*5 + 300)))
+                datetime.timedelta(seconds=3600 * 5 + 300)))
         self.assertEquals(u'5 uur', short_timedelta(
-                datetime.timedelta(seconds=3600*5)))
+                datetime.timedelta(seconds=3600 * 5)))
         self.assertEquals(u'5 minuten', short_timedelta(
-                datetime.timedelta(seconds=60*5 + 4)))
+                datetime.timedelta(seconds=60 * 5 + 4)))
         self.assertEquals(u'5 minuten', short_timedelta(
-                datetime.timedelta(seconds=60*5)))
+                datetime.timedelta(seconds=60 * 5)))
         self.assertEquals(u'36 seconde', short_timedelta(
                 datetime.timedelta(seconds=36)))
         short_timedelta(None)  # Should not crash
@@ -205,4 +206,3 @@ class TestExampleApplicationScreen(TestCase):
         request = RequestFactory().get('/example/')
         response = lizard_ui.views.application_screen(request)
         self.assertEquals(response.status_code, 200)
-

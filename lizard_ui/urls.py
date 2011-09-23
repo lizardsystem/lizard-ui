@@ -12,6 +12,7 @@ import lizard_ui.views
 lizard_ui.configchecker  # Pyflakes...
 admin.autodiscover()
 
+
 def debugmode_urlpatterns():
     prefix = settings.MEDIA_URL
     root = settings.MEDIA_ROOT
