@@ -3,11 +3,10 @@ from setuptools import setup
 version = '3.5dev'
 
 long_description = '\n\n'.join([
-    open('README.txt').read(),
-    # open(os.path.join('lizard_ui', 'USAGE.txt')).read(),
-    open('TODO.txt').read(),
-    open('CREDITS.txt').read(),
-    open('CHANGES.txt').read(),
+    open('README.rst').read(),
+    open('TODO.rst').read(),
+    open('CREDITS.rst').read(),
+    open('CHANGES.rst').read(),
     ])
 
 install_requires = [
