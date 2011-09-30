@@ -5,7 +5,8 @@ Changelog of lizard-ui
 3.5 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Moved from company-internal svn to github:
+  https://github.com/lizardsystem/lizard-ui .
 
 
 3.4 (2011-09-23)
