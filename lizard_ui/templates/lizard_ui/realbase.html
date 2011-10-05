@@ -110,6 +110,7 @@
 
   </head>
   <body>
+    {% block page %}
     <div id="page"
          class="sidebar-open">
       <div class="container">
@@ -144,6 +145,7 @@
         </div>
         {# End of header #}
 
+        {% block main_area %}
         <div id="main_area"
              class="clear">
           <div id="sidebar">
@@ -182,11 +184,12 @@
           {# End of main #}
         </div>
         {# End of main_area #}
+        {% endblock main_area %}
       </div>
       {# End of container #}
     </div>
     {# End of page #}
-
+    {% endblock page %}
   </body>
   {% if google_tracking_code %}
 <script type="text/javascript">
