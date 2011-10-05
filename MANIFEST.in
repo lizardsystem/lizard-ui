@@ -1,2 +1,4 @@
+# Include docs in the root.
 include *.rst
-recursive-include lizard_ui *.rst *.py *.html *.css *.js *.jpg *.png *.gif *.pdf
+# Include everything in our project directory.
+graft-dir lizard_ui
