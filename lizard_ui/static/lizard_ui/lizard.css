@@ -239,8 +239,9 @@ text-align: right;
 float: right;
 padding-right: 1em;
 }
-#object-actions a {
-text-decoration: none;
+#object-actions a, #portal-actions a {
+color: black;
+text-decoration: underline;
 }
 
 #print-button {

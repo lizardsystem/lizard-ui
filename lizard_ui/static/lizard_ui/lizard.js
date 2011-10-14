@@ -8,21 +8,17 @@
 var hiddenStuffHeight, mainContentHeight, sidebarHeight, mainContentWidth,
     verticalItemHeight, accordion, resizeTimer, cachedScrollbarWidth;
 
-/* Set to the number of graphs to reload. This variable is used to be able to
- * detect when he last graph is reloaded. */
- var graphsToReload = 0;
-
 // Csrf-for-ajax fix suggested in
 // https://docs.djangoproject.com/en/1.3/ref/contrib/csrf/#ajax
-$(document).ajaxSend(function(event, xhr, settings) {
+$(document).ajaxSend(function (event, xhr, settings) {
     function getCookie(name) {
-        var cookieValue = null;
-        if (document.cookie && document.cookie != '') {
-            var cookies = document.cookie.split(';');
-            for (var i = 0; i < cookies.length; i++) {
-                var cookie = jQuery.trim(cookies[i]);
+        var cookie, cookies, cookieValue = null, i;
+        if (document.cookie && document.cookie !== '') {
+            cookies = document.cookie.split(';');
+            for (i = 0; i < cookies.length; i++) {
+                cookie = $.trim(cookies[i]);
                 // Does this cookie string begin with the name we want?
-                if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                if (cookie.substring(0, name.length + 1) === (name + '=')) {
                     cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
                     break;
                 }
@@ -32,13 +28,14 @@ $(document).ajaxSend(function(event, xhr, settings) {
     }
     function sameOrigin(url) {
         // url could be relative or scheme relative or absolute
-        var host = document.location.host; // host + port
-        var protocol = document.location.protocol;
-        var sr_origin = '//' + host;
-        var origin = protocol + sr_origin;
+        var host, protocol, sr_origin, origin;
+        host = document.location.host; // host + port
+        protocol = document.location.protocol;
+        sr_origin = '//' + host;
+        origin = protocol + sr_origin;
         // Allow absolute or scheme relative URLs to same origin
-        return (url == origin || url.slice(0, origin.length + 1) == origin + '/') ||
-            (url == sr_origin || url.slice(0, sr_origin.length + 1) == sr_origin + '/') ||
+        return (url === origin || url.slice(0, origin.length + 1) === origin + '/') ||
+            (url === sr_origin || url.slice(0, sr_origin.length + 1) === sr_origin + '/') ||
             // or any other URL that isn't scheme relative or absolute i.e relative.
             !(/^(\/\/|http:|https:).*/.test(url));
     }
@@ -134,9 +131,9 @@ function reloadGraph($graph, max_image_width, callback) {
         // Remove progress animation and possibly old images.
         $main_tag.parent().find(".auto-inserted").remove();
         $main_tag.after(html_img);
-	if (undefined != callback) {
-	    callback();
-	}
+	    if (undefined !== callback) {
+	        callback();
+	    }
     });
     image.error(function () {
         // After preloading.
@@ -146,9 +143,9 @@ function reloadGraph($graph, max_image_width, callback) {
             '<p class="auto-inserted">' +
                 errormsg +
                 '</p>');
-	if (undefined != callback) {
-	    callback();
-	}
+	    if (undefined !== callback) {
+	        callback();
+	    }
     });
 }
 
@@ -159,7 +156,6 @@ function reloadGraph($graph, max_image_width, callback) {
  * @param {function} callback function to call when a graph has been reloaded
  */
 function reloadGraphs(max_image_width, callback) {
-    graphsToReload = $('a.replace-with-image').length
     $('a.replace-with-image').each(function () {
         reloadGraph($(this), max_image_width, callback);
     });
@@ -174,31 +170,32 @@ function reloadLocalizedGraphs($location, max_image_width) {
 
 
 /**
- * Prints the current window when all graphs have been reloaded.
+ * Resize the main window to get an image that is better suited for printing.
+ * The image will be printed as soon as all graphs have reloaded.
+ * 
+ * BTW, in Google Chrome too frequent calls to window.print() are ignored:
+ * stackoverflow.com/questions/5282719/javascript-print-blocked-by-chrome
  */
-function actualPrint() {
-    graphsToReload -= 1;
-    if (0 == graphsToReload) {
-	window.print();
-	/* We hid the Print link as soon as the user clicked it. Now it is safe
-	 * to be clicked again. */
-	$("a.ss_printer").show();
-    }
-}
-
-
 function printPage() {
-    /* Hide the print link to avoid multiple clicks on it while the first click
-     * is still being handled. */
-    $("a.ss_printer").hide();
-    /* Resize the main window to get an image that is better suited for
-     * printing. The image will be printed as soon as all graphs have
-     * reloaded.*/
-    var max_image_width = 850;
+    var max_image_width = 850, graphsToReload;
     if ($("#main").width() > max_image_width) {
         $("#main").width(max_image_width);
+        graphsToReload = $('a.replace-with-image').length;
+        if (graphsToReload > 0) {
+            reloadGraphs(max_image_width, function () {
+                graphsToReload -= 1;
+                if (graphsToReload < 1) {
+                    window.print();
+                }
+            });
+        } else {
+            // No graphs to reload.
+            window.print();
+        }
+    } else {
+        // Already proper size.
+        window.print();
     }
-    reloadGraphs(max_image_width, actualPrint);
 }
 
 
@@ -297,14 +294,14 @@ function setUpPrintButton() {
             printPage();
             $('#print-button').removeClass('ss_printer');
             $('#print-button').addClass('ss_arrow_right');
-            $('#print-button').data("text", $('#print-button').text());
+            $('#print-button').data("html", $('#print-button').html());
             $('#print-button').html('&nbsp;&nbsp;');
             return false;
         },
         function () {
             $('#print-button').removeClass('ss_arrow_right');
             $('#print-button').addClass('ss_printer');
-            $('#print-button').text($('#print-button').data("text"));
+            $('#print-button').html($('#print-button').data("html"));
             fillScreen();
             reloadGraphs();
             return false;
