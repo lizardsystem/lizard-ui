@@ -172,7 +172,7 @@ function reloadLocalizedGraphs($location, max_image_width) {
 /**
  * Resize the main window to get an image that is better suited for printing.
  * The image will be printed as soon as all graphs have reloaded.
- * 
+ *
  * BTW, in Google Chrome too frequent calls to window.print() are ignored:
  * stackoverflow.com/questions/5282719/javascript-print-blocked-by-chrome
  */
@@ -589,6 +589,21 @@ function setUpTipsy() {
 }
 
 
+function setUpSortableTables() {
+    $(".sortable-table").each(function () {
+        if (!$(this).data("table-initialized")) {
+            $(this).data("table-initialized", true);
+            $(this).dataTable({
+                "bPaginate": false,
+                "bLengthChange": false,
+                "bFilter": false,
+                "bSort": true,
+                "bInfo": false,
+                "bAutoWidth": false});
+        }
+    });
+}
+
 function restretchExistingElements() {
     fillScreen();
     divideVerticalSpaceEqually();
@@ -626,7 +641,7 @@ $(document).ready(function () {
     setUpLogin();
     setUpPrintButton();
     setUpTipsy();
-
+    setUpSortableTables();
     //setUpWorkspaceAcceptableButtons();
     // Light up the selected tab, if available.
     setUpPortalTabs();

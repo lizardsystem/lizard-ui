@@ -685,3 +685,7 @@ span.empty-temp-workspace-icon{
 ul.filetree, ul.without-bullets{
     margin: 5px 0px 0px 0px;
 }
+
+table.sortable-table {
+    clear: both;
+}
