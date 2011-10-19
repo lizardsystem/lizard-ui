@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-3.5 (unreleased)
+3.5 (2011-10-19)
 ----------------
 
 - Using django-staticfiles' urls instead of django's build-in
