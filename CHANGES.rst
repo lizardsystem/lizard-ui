@@ -11,6 +11,8 @@ Changelog of lizard-ui
 
 - Added experimental table sorter javascript.
 
+- Print improvements (hiding openlayers controls, for instance).
+
 - Moved from company-internal svn to github:
   https://github.com/lizardsystem/lizard-ui .
 
