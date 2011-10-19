@@ -5,7 +5,7 @@ Changelog of lizard-ui
 3.5 (unreleased)
 ----------------
 
-
+- Added experimental table sorter javascript.
 
 - Moved from company-internal svn to github:
   https://github.com/lizardsystem/lizard-ui .
