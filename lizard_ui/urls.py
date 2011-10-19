@@ -4,7 +4,7 @@ from django.conf.urls.defaults import patterns
 from django.conf.urls.defaults import url
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from staticfiles.urls import staticfiles_urlpatterns
 
 import lizard_ui.configchecker
 import lizard_ui.views

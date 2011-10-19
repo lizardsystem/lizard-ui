@@ -5,6 +5,10 @@ Changelog of lizard-ui
 3.5 (unreleased)
 ----------------
 
+- Using django-staticfiles' urls instead of django's build-in
+  contrib.staticfiles'. This works with "runserver" but fails with
+  "run_gunicorn" (if you enabled gunicorn in your project).
+
 - Added experimental table sorter javascript.
 
 - Moved from company-internal svn to github:
