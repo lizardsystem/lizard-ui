@@ -16,75 +16,72 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
 #: forms.py:8
 msgid "Username"
-msgstr "Naam"
+msgstr ""
 
 #: forms.py:12 templates/lizard_ui/tag_login.html:25
 msgid "Password"
-msgstr "Wachtwoord"
+msgstr ""
 
 #: models.py:12 models.py:43
 msgid "name"
-msgstr "naam"
+msgstr ""
 
 #: models.py:14 models.py:45
 msgid "description"
-msgstr "omschrijving"
+msgstr ""
 
 #: models.py:44
 msgid "icon"
-msgstr "icoon"
+msgstr ""
 
 #: models.py:48
 msgid "url"
-msgstr "url"
+msgstr ""
 
 #: models.py:52
 msgid "index"
-msgstr "index"
+msgstr ""
 
 #: models.py:54
 msgid "Number used for ordering icons relative to each other."
-msgstr "Nummer om iconen relatief t.o.v. elkaar te op volgorde te zetten."
+msgstr ""
 
 #: templates/lizard_ui/realbase.html:131
 msgid "Back to homepage"
-msgstr "Naar de voorpagina"
+msgstr ""
 
 #: templates/lizard_ui/realbase.html:150
 msgid "back"
-msgstr "Terug"
+msgstr ""
 
 #: templates/lizard_ui/tag_login.html:3
-#, fuzzy, python-format
+#, python-format
 msgid "Logged in as %(user)s."
-msgstr "Ingelogd als $(user)s."
+msgstr ""
 
 #: templates/lizard_ui/tag_login.html:6
 msgid "Logout"
-msgstr "Log uit"
+msgstr ""
 
 #: templates/lizard_ui/tag_login.html:12 templates/lizard_ui/tag_login.html:40
 msgid "Login"
-msgstr "Log in"
+msgstr ""
 
 #: templates/lizard_ui/tag_login.html:19
 msgid "Name"
-msgstr "Naam"
+msgstr ""
 
 #: templates/lizard_ui/tag_login.html:46
 msgid "Error"
-msgstr "Fout"
+msgstr ""
 
 #: templates/lizard_ui/tag_login.html:48
 msgid "Login data is incorrect. Try again or contact the system administrator."
 msgstr ""
-"Inloggegevens zijn onjuist, probeer het nogmaals of neem contact op met de "
-"beheerder."
 
 #: templates/lizard_ui/tag_login.html:51
 msgid "Ok"
-msgstr "Ok"
+msgstr ""
