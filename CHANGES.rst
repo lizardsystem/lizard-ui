@@ -5,7 +5,8 @@ Changelog of lizard-ui
 3.6 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Made debugmode_urlpatterns() more robust. It crashed without MEDIA_URL and
+  MEDIA_ROOT settings in the settings.py
 
 
 3.5 (2011-10-19)
