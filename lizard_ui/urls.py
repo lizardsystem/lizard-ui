@@ -1,3 +1,5 @@
+import logging
+
 from django.conf import settings
 from django.conf.urls.defaults import include
 from django.conf.urls.defaults import patterns
@@ -9,15 +11,22 @@ from staticfiles.urls import staticfiles_urlpatterns
 import lizard_ui.configchecker
 import lizard_ui.views
 
+logger = logging.getLogger(__name__)
 lizard_ui.configchecker  # Pyflakes...
 admin.autodiscover()
 
 
 def debugmode_urlpatterns():
+    # Staticfiles url patterns.
+    patterns = staticfiles_urlpatterns()
+    # User-uploaded media patterns. Used to be arranged by django-staticfiles.
     prefix = settings.MEDIA_URL
     root = settings.MEDIA_ROOT
-    patterns = static(prefix, document_root=root)
-    patterns += staticfiles_urlpatterns()
+    if prefix and root:
+        patterns += static(prefix, document_root=root)
+    else:
+        logger.warn("Can't find MEDIA_URL (%s) and/or MEDIA_ROOT (%s).",
+                    prefix, root)
     return patterns
 
 
