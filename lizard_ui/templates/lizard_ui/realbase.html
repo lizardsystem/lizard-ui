@@ -114,6 +114,7 @@
     <div id="page"
          class="sidebar-open">
       <div class="container">
+        {% block header %}
         <div id="header"
              class="clearfix">
           <div id="logo">
@@ -143,6 +144,7 @@
             {% endblock breadcrumbs %}
           </div>
         </div>
+        {% endblock header %}
         {# End of header #}
 
         {% block main_area %}
