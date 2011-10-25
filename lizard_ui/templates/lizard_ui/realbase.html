@@ -62,6 +62,12 @@
           href="{{ STATIC_URL }}lizard_ui/buttons.css"
           rel="stylesheet"
           media="screen, projection" />
+    {# Styling from datatables #}
+    <link type="text/css"
+          href="{{ STATIC_URL }}datatables/media/css/demo_table.css"
+          rel="stylesheet"
+          media="screen, projection" />
+
     {% endblock css %}
     {% endcompress %}
 
@@ -94,6 +100,9 @@
             src="{{ STATIC_URL }}lizard_ui/lizard.js"></script>
     <script type="text/javascript"
             src="{{ STATIC_URL }}colorpicker/js/colorpicker.js"></script>
+    <script type="text/javascript"
+            src="{{ STATIC_URL }}datatables/media/js/jquery.dataTables.min.js"></script>
+
     {% endblock javascript %}
     {% endcompress %}
 

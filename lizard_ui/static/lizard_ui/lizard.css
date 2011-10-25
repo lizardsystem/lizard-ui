@@ -239,8 +239,9 @@ text-align: right;
 float: right;
 padding-right: 1em;
 }
-#object-actions a {
-text-decoration: none;
+#object-actions a, #portal-actions a {
+color: black;
+text-decoration: underline;
 }
 
 #print-button {
@@ -683,4 +684,8 @@ span.empty-temp-workspace-icon{
 
 ul.filetree, ul.without-bullets{
     margin: 5px 0px 0px 0px;
+}
+
+table.sortable-table {
+    clear: both;
 }

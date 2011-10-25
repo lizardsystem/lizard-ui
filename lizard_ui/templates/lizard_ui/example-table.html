@@ -1,0 +1,67 @@
+{% extends "lizard_ui/lizardbase.html" %}
+
+{% block title %}Table content{% endblock %}
+
+{% block content %}
+<div id="textual">
+  <h1>Table content in the main area</h1>
+
+
+  <p>
+    To get a sortable table, make sure the table is nice and valid html with a
+    proper "thead" and "tbody". And add a class "sortable-table" to it.
+  </p>
+
+  <p>
+    If you add a table on the fly, you'll have to call
+    <code>setUpSortableTables()</code>.
+  </p>
+
+  <table class="sortable-table">
+    <thead>
+      <tr>
+        <th>Area</th>
+        <th>Size</th>
+        <th>Color</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          Utrecht
+        </td>
+        <td>
+          120.4
+        </td>
+        <td>
+          Red
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Gelderland
+        </td>
+        <td>
+          400
+        </td>
+        <td>
+          Blue
+        </td>
+      </tr>
+      <tr>
+        <td>
+          Overijssel
+        </td>
+        <td>
+          80.56
+        </td>
+        <td>
+          Orange
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+</div>
+
+{% endblock %}

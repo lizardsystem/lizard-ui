@@ -1,23 +1,32 @@
+import logging
+
 from django.conf import settings
 from django.conf.urls.defaults import include
 from django.conf.urls.defaults import patterns
 from django.conf.urls.defaults import url
 from django.conf.urls.static import static
 from django.contrib import admin
-from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+from staticfiles.urls import staticfiles_urlpatterns
 
 import lizard_ui.configchecker
 import lizard_ui.views
 
+logger = logging.getLogger(__name__)
 lizard_ui.configchecker  # Pyflakes...
 admin.autodiscover()
 
 
 def debugmode_urlpatterns():
+    # Staticfiles url patterns.
+    patterns = staticfiles_urlpatterns()
+    # User-uploaded media patterns. Used to be arranged by django-staticfiles.
     prefix = settings.MEDIA_URL
     root = settings.MEDIA_ROOT
-    patterns = static(prefix, document_root=root)
-    patterns += staticfiles_urlpatterns()
+    if prefix and root:
+        patterns += static(prefix, document_root=root)
+    else:
+        logger.warn("Can't find MEDIA_URL (%s) and/or MEDIA_ROOT (%s).",
+                    prefix, root)
     return patterns
 
 
@@ -48,6 +57,8 @@ if settings.DEBUG:  # Pragma: nocover
          {'template': 'lizard_ui/example.html'}),
         (r'^examples/textual/$', 'direct_to_template',
          {'template': 'lizard_ui/example-textual.html'}),
+        (r'^examples/table/$', 'direct_to_template',
+         {'template': 'lizard_ui/example-table.html'}),
         (r'^examples/images/$', 'direct_to_template',
          {'template': 'lizard_ui/example-images.html'}),
         (r'^examples/tree/$', 'direct_to_template',

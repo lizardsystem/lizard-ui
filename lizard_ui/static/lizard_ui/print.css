@@ -6,6 +6,8 @@
 #collapser,
 #menubar,
 #footer,
+.olControlLayerSwitcher,
+.olControlPanZoomBar,
 .noprint
 { display: none;
   }

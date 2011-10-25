@@ -2,8 +2,23 @@ Changelog of lizard-ui
 ======================
 
 
-3.5 (unreleased)
+3.6 (unreleased)
 ----------------
+
+- Made debugmode_urlpatterns() more robust. It crashed without MEDIA_URL and
+  MEDIA_ROOT settings in the settings.py
+
+
+3.5 (2011-10-19)
+----------------
+
+- Using django-staticfiles' urls instead of django's build-in
+  contrib.staticfiles'. This works with "runserver" but fails with
+  "run_gunicorn" (if you enabled gunicorn in your project).
+
+- Added experimental table sorter javascript.
+
+- Print improvements (hiding openlayers controls, for instance).
 
 - Moved from company-internal svn to github:
   https://github.com/lizardsystem/lizard-ui .
