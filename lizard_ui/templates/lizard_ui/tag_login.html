@@ -1,6 +1,6 @@
 {% load i18n %}
 {% if user.is_authenticated %}
-{% blocktrans %}Logged in as {{ user }}.{% endblocktrans %}
+{% blocktrans with user as usr %}Logged in as {{ usr }}.{% endblocktrans %}
 <a id="logout-button"
    class="ss_sprite ss_user_red"
    data-url="{% url lizard_ui.logout %}">{% trans "Logout" %}</a>

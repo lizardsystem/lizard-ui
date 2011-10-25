@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-20 06:46-0500\n"
+"POT-Creation-Date: 2011-10-25 08:07-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -59,15 +59,16 @@ msgid "back"
 msgstr "Terug"
 
 #: templates/lizard_ui/tag_login.html:3
-#, fuzzy, python-format
-msgid "Logged in as %(user)s."
-msgstr "Ingelogd als $(user)s."
+#, python-format
+msgid "Logged in as %(usr)s."
+msgstr "Ingelogd als %(usr)s."
 
 #: templates/lizard_ui/tag_login.html:6
 msgid "Logout"
 msgstr "Log uit"
 
-#: templates/lizard_ui/tag_login.html:12 templates/lizard_ui/tag_login.html:40
+#: templates/lizard_ui/tag_login.html:10 templates/lizard_ui/tag_login.html:12
+#: templates/lizard_ui/tag_login.html:40
 msgid "Login"
 msgstr "Log in"
 

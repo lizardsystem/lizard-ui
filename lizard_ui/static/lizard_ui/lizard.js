@@ -586,6 +586,12 @@ function setUpTipsy() {
         fade: false,
         gravity: 's'
     });
+    $('[rel=tipsy-southwest]').tipsy({
+        delayIn: 200,
+        delayOut: 200,
+        fade: false,
+        gravity: 'sw'
+    });
 }
 
 

@@ -8,6 +8,8 @@ Changelog of lizard-ui
 - Made debugmode_urlpatterns() more robust. It crashed without MEDIA_URL and
   MEDIA_ROOT settings in the settings.py
 
+- Improved i18n and tipsy tooltips.
+
 
 3.5 (2011-10-19)
 ----------------
