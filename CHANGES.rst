@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-3.6 (unreleased)
+3.6 (2011-10-28)
 ----------------
 
 - Swapped order of datatable and colorpicker in the js list as
