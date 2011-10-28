@@ -5,6 +5,9 @@ Changelog of lizard-ui
 3.6 (unreleased)
 ----------------
 
+- Swapped order of datatable and colorpicker in the js list as
+  django-compressor chokes on them a bit.
+
 - Made debugmode_urlpatterns() more robust. It crashed without MEDIA_URL and
   MEDIA_ROOT settings in the settings.py
 
