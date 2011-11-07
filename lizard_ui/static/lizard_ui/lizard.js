@@ -665,20 +665,3 @@ $(document).ready(function () {
     setUpTooltips(); // The edit function is on the tooltip.
 });
 
-var lizard_ui_util = function () {
-
-    var replace_content = function(element, newhtml) {
-	// If there are any tipsy tooltips, hide them first
-	$(".tipsy").each(function (i) { $(this).hide(); });
-
-	// Actually replace content
-	element.html(newhtml);
-
-	// This needs to be called again, there may be new elements requiring tooltips
-	setUpTipsy();
-    };
-
-    return { 
-	'replace_content': replace_content,
-    };
-}();
