@@ -560,37 +560,46 @@ function setUpTipsy() {
         delayIn: 200,
         delayOut: 200,
         fade: false,
-        gravity: 'w'
+        gravity: 'w',
+	live: true,
     });
+
+    $('[rel=tipsy-south]').tipsy({
+        delayIn: 200,
+        delayOut: 200,
+        fade: false,
+        gravity: 's',
+	live: true,
+    });
+
     $('a#logo-img').tipsy({
         delayIn: 200,
         delayOut: 200,
         fade: false,
-        gravity: 'n'
+        gravity: 'n',
+	live: true,
     });
     $('span[rel=tipsy]').tipsy({
         delayIn: 200,
         delayOut: 200,
         fade: false,
-        gravity: 's'
+        gravity: 's',
+	live: true,
     });
+
     $('#summary-datepicker-a').tipsy({
         delayIn: 200,
         delayOut: 200,
         fade: false,
-        gravity: 's'
-    });
-    $('[rel=tipsy-south]').tipsy({
-        delayIn: 200,
-        delayOut: 200,
-        fade: false,
-        gravity: 's'
+        gravity: 's',
+	live: true,
     });
     $('[rel=tipsy-southwest]').tipsy({
         delayIn: 200,
         delayOut: 200,
         fade: false,
-        gravity: 'sw'
+        gravity: 'sw',
+	live: true,
     });
 }
 
@@ -655,3 +664,21 @@ $(document).ready(function () {
     // Set up legend.
     setUpTooltips(); // The edit function is on the tooltip.
 });
+
+var lizard_ui_util = function () {
+
+    var replace_content = function(element, newhtml) {
+	// If there are any tipsy tooltips, hide them first
+	$(".tipsy").each(function (i) { $(this).hide(); });
+
+	// Actually replace content
+	element.html(newhtml);
+
+	// This needs to be called again, there may be new elements requiring tooltips
+	setUpTipsy();
+    };
+
+    return { 
+	'replace_content': replace_content,
+    };
+}();
