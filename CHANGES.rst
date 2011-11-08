@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-3.7 (unreleased)
+3.7 (2011-11-08)
 ----------------
 
 - Added ``live: true`` to tipsy tooltips so that elements created later can also get tooltips
