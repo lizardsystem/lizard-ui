@@ -130,7 +130,7 @@ function reloadGraph($graph, max_image_width, callback) {
         // After preloading.
         // Remove progress animation and possibly old images.
         $main_tag.parent().find(".auto-inserted").remove();
-        $main_tag.after(html_img);
+        $main_tag.after($(this));
 	    if (undefined !== callback) {
 	        callback();
 	    }
