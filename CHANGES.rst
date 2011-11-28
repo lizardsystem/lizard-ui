@@ -2,8 +2,8 @@ Changelog of lizard-ui
 ======================
 
 
-3.8 (unreleased)
-----------------
+3.7.1 (2011-11-28)
+------------------
 
 - Fix incorrect syntax in lizard.js.
 
