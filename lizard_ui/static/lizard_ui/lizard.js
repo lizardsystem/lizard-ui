@@ -131,9 +131,9 @@ function reloadGraph($graph, max_image_width, callback) {
         // Remove progress animation and possibly old images.
         $main_tag.parent().find(".auto-inserted").remove();
         $main_tag.after(html_img);
-	    if (undefined !== callback) {
-	        callback();
-	    }
+        if (undefined !== callback) {
+            callback();
+        }
     });
     image.error(function () {
         // After preloading.
@@ -143,9 +143,9 @@ function reloadGraph($graph, max_image_width, callback) {
             '<p class="auto-inserted">' +
                 errormsg +
                 '</p>');
-	    if (undefined !== callback) {
-	        callback();
-	    }
+        if (undefined !== callback) {
+            callback();
+        }
     });
 }
 
@@ -561,7 +561,7 @@ function setUpTipsy() {
         delayOut: 200,
         fade: false,
         gravity: 'w',
-	live: true,
+	live: true
     });
 
     $('[rel=tipsy-south]').tipsy({
@@ -569,7 +569,7 @@ function setUpTipsy() {
         delayOut: 200,
         fade: false,
         gravity: 's',
-	live: true,
+	live: true
     });
 
     $('a#logo-img').tipsy({
@@ -577,14 +577,14 @@ function setUpTipsy() {
         delayOut: 200,
         fade: false,
         gravity: 'n',
-	live: true,
+	live: true
     });
     $('span[rel=tipsy]').tipsy({
         delayIn: 200,
         delayOut: 200,
         fade: false,
         gravity: 's',
-	live: true,
+	live: true
     });
 
     $('#summary-datepicker-a').tipsy({
@@ -592,14 +592,14 @@ function setUpTipsy() {
         delayOut: 200,
         fade: false,
         gravity: 's',
-	live: true,
+	live: true
     });
     $('[rel=tipsy-southwest]').tipsy({
         delayIn: 200,
         delayOut: 200,
         fade: false,
         gravity: 'sw',
-	live: true,
+	live: true
     });
 }
 
