@@ -37,6 +37,10 @@ class LoginView(ViewContextMixin, FormView):
     template_name = 'lizard_ui/login.html'
     form_class = LoginForm
 
+    def next(self):
+        # Used to fill the hidden field in the LoginForm
+        return self.request.GET.get('next', None)
+
     def post(self, request, *args, **kwargs):
         """Return json with 'success' and 'next' parameters."""
         form_class = self.get_form_class()
