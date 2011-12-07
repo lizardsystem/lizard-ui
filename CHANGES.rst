@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-3.8 (unreleased)
+3.8 (2011-12-07)
 ----------------
 
 - Added narrowcasting.png icon as on heerhugowaard sites.
