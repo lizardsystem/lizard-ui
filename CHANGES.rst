@@ -5,13 +5,12 @@ Changelog of lizard-ui
 3.9 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Fix bug where loginform didn't redirect.
 
-
-3.8 (2011-12-08)
+3.8 (2011-12-07)
 ----------------
 
-- Fix bug where loginform didn't redirect.
+- Added narrowcasting.png icon as on heerhugowaard sites.
 
 
 3.7.1 (2011-11-28)
