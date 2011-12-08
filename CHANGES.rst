@@ -2,10 +2,10 @@ Changelog of lizard-ui
 ======================
 
 
-3.8 (unreleased)
+3.8 (2011-12-08)
 ----------------
 
-- Nothing changed yet.
+- Fix bug where loginform didn't redirect.
 
 
 3.7.1 (2011-11-28)
