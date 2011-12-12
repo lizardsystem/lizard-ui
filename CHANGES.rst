@@ -2,10 +2,10 @@ Changelog of lizard-ui
 ======================
 
 
-3.9 (unreleased)
+3.9 (2011-12-12)
 ----------------
 
-- Nothing changed yet.
+- Fix bug where Ajax calls failed because they didn't have a CSRF cookie.
 
 
 3.8.1 (2011-12-08)
