@@ -217,4 +217,7 @@
 
 </script>
   {% endif %}
+
+{# Ajax calls need a CSRF token cookie, and this line sends one as a side effect #}
+<!-- {{ csrf_token }} -->
 </html>
