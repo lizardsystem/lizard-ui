@@ -43,9 +43,9 @@ def setup_logging(buildout_dir,
         'handlers': {
             'null': {
                 'level': 'DEBUG',
-                'class':'django.utils.log.NullHandler',
+                'class': 'django.utils.log.NullHandler',
                 },
-            'console':{
+            'console': {
                 'level': console_level,
                 'class': 'logging.StreamHandler',
                 'formatter': 'simple'
@@ -67,12 +67,12 @@ def setup_logging(buildout_dir,
             '': {
                 'handlers': [],
                 'propagate': True,
-                'level':'DEBUG',
+                'level': 'DEBUG',
                 },
             'django.db.backends': {
                 'handlers': ['null'],  # Quiet by default!
                 'propagate': False,
-                'level':'DEBUG',
+                'level': 'DEBUG',
                 },
             },
         }
