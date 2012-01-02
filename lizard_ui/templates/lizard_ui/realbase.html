@@ -145,12 +145,8 @@
             {% endblock portal-tabs %}
           </div>
           <div id="breadcrumbs">
-            {% block breadcrumbs %}
-            {% if crumbs %}&raquo;{% breadcrumbs crumbs %}
-            {% else %}&raquo;
-            <a href="javascript:history.go(-1)">{% trans "back" %}</a>
-            {% endif %}
-            {% endblock breadcrumbs %}
+	    {# Currently just a link back to the homepage #}
+	    <a href="/" rel="tipsy-south" title="{% trans "Back to homepage" %}">home</a>
           </div>
         </div>
         {% endblock header %}
