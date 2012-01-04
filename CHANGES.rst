@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-3.10 (unreleased)
+3.10 (2012-01-04)
 -----------------
 
 - Changed confusing breadcrumbs into a simple "home" link.
