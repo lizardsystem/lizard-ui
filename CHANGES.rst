@@ -5,7 +5,9 @@ Changelog of lizard-ui
 3.11 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Made breadcrumbs configurable
+
+- Added helper functions for breadcrumbs to application screens
 
 
 3.10 (2012-01-04)

@@ -144,10 +144,9 @@
             &nbsp;
             {% endblock portal-tabs %}
           </div>
-          <div id="breadcrumbs">
-	    {# Currently just a link back to the homepage #}
-	    <a href="/" rel="tipsy-south" title="{% trans "Back to homepage" %}">home</a>
-          </div>
+          <div id="breadcrumbs">{% block breadcrumbs %}»
+	    <a href="/" rel="tipsy-south" title="{% trans "Back to homepage" %}">Home</a>
+            {% endblock breadcrumbs %}</div>
         </div>
         {% endblock header %}
         {# End of header #}
