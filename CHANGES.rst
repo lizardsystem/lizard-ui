@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-3.11 (unreleased)
+3.11 (2012-01-17)
 -----------------
 
 - Made breadcrumbs configurable
