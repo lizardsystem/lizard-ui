@@ -1,17 +1,17 @@
 {% load utility i18n %}
+{% load compress %}
 <!DOCTYPE html>
 <html>
   <head>
     <title>
       {% block title %}
-      {% block subtitle %}
-      {% endblock subtitle %}
-      {% block sitetitle %}
-      Lizard
-      {% endblock sitetitle %}
+        {% block subtitle %}
+        {% endblock subtitle %}
+        {% block sitetitle %}
+        Lizard
+        {% endblock sitetitle %}
       {% endblock title %}
     </title>
-    {% load compress %}
     {% compress css %}
     {% block css %}
     {# Blueprint css framework. #}

@@ -5,7 +5,12 @@ Changelog of lizard-ui
 3.12 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Remove protovis. Not generally used. And it is superseded by
+  http://mbostock.github.com/d3/ .
+
+- Added source distribution of twitter-bootstrap. You need node.js and its
+  package manager npm installed to install lessc and uglify-js (only needed if
+  you need to rebuild twitter-bootstrap).
 
 
 3.11 (2012-01-17)
