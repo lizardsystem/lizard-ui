@@ -1,0 +1,227 @@
+{% load utility i18n %}
+{% load compress %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      {% block title %}
+        {% block subtitle %}
+        {% endblock subtitle %}
+        {% block sitetitle %}
+        Lizard
+        {% endblock sitetitle %}
+      {% endblock title %}
+    </title>
+    {% compress css %}
+      {% block css %}
+        {# Twitter bootstrap #}
+        <style type="text/less">
+
+        </style>
+        <link rel="stylesheet"
+              href="{{ STATIC_URL }}bootstrap/less/bootstrap.less"
+              type="text/less"
+              media="screen, projection" />
+        {# Sprites: all icons (print, info, etc) in one cacheable image. #}
+        <link rel="stylesheet"
+              href="{{ STATIC_URL }}sprites/sprite.css"
+              type="text/css"
+              media="screen, projection" />
+        {# CSS for jqueryui: "smoothness" theme #}
+        <link type="text/css"
+              href="{{ STATIC_URL }}jqueryui/smoothness/jquery-ui-1.8.11.custom.css"
+              rel="stylesheet"
+              media="screen, projection" />
+        {# CSS for jquery-treeview #}
+        <link type="text/css"
+              href="{{ STATIC_URL }}jquery-treeview/jquery.treeview.css"
+              rel="stylesheet"
+              media="screen, projection" />
+        {# Our own css comes last #}
+        <!--
+        <link rel="stylesheet"
+              href="{{ STATIC_URL }}lizard_ui/lizard.css"
+              type="text/css"
+              media="screen, projection" />
+        <link rel="stylesheet"
+              href="{{ STATIC_URL }}lizard_ui/print.css"
+              type="text/css"
+              media="print" />
+        -->
+      {% endblock css %}
+    {% endcompress %}
+
+    <!--[if IE]>
+      {% compress css %}
+
+      {% endcompress %}
+    <![endif]-->
+
+
+    {% block head-extras %}
+    {# Your own totally-unmanaged per-template extra css/javascript/links #}
+    {% endblock head-extras %}
+
+    <link rel="icon" href="{{ STATIC_URL }}lizard_ui/favicon.ico" type="images/x-icon" />
+    <link rel="SHORTCUT ICON" href="{{ STATIC_URL }}lizard_ui/favicon.ico" />
+
+    {% compress js %}
+      {% block javascript-in-head %}
+
+      {% endblock javascript-in-head %}
+    {% endcompress %}
+
+  </head>
+  <body>
+    {% block page %}
+    <div id="page"
+         class="sidebar-open">
+      <div class="container">
+        {% block header %}
+
+    <header class="navbar">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </a>
+          <a class="brand" href="/">
+            Lizard
+          </a>
+          <div class="nav-collapse">
+            <ul class="nav">
+              <li><a href="/ui/examples/">UI examples</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!--
+        <div id="header"
+             class="clearfix">
+          <div id="logo">
+            {% block logo %}
+            {# Watch out: keep the tags next to each other without spaces #}
+            <a href="/" id="logo-img" title="{% trans "Back to homepage" %}"><img
+            src="{{ STATIC_URL }}lizard_ui/logo.png"
+            alt="Lizard" /></a>
+            {% endblock logo %}
+          </div>
+          <div id="portal-actions">
+            {% block portal-actions %}
+            &nbsp;
+            {% endblock portal-actions %}
+          </div>
+          <div id="portal-tabs">
+            {% block portal-tabs %}
+            &nbsp;
+            {% endblock portal-tabs %}
+          </div>
+          <div id="breadcrumbs">{% block breadcrumbs %}»
+	    <a href="/" rel="tipsy-south" title="{% trans "Back to homepage" %}">Home</a>
+            {% endblock breadcrumbs %}</div>
+        </div>
+        {% endblock header %}
+        {# End of header #}
+     -->
+
+        {% block main_area %}
+        <div id="main_area"
+             class="container-fluid">
+          <div class="row-fluid">
+            <div id="sidebar" class="span4">
+              {% block sidebar %}
+              {% if application_screen_slug %}
+              {% application_icons application_screen_slug %}
+              {% endif %}
+              {% endblock sidebar %}
+            </div>
+            {# End of sidebar #}
+
+            <div id="collapser"></div>
+
+            <div id="main" class="span8">
+              <div id="menubar">
+              <div id="object-actions">
+                {% block object-actions %}
+                &nbsp;
+                {% endblock object-actions %}
+              </div>
+              <div id="above-content">
+                {% block above-content %}
+                {% endblock above-content %}
+                &nbsp;
+              </div>
+            </div>
+            {# End of menubar #}
+
+            <div id="content">
+              {% block content %}
+              {% endblock content %}
+            </div>
+            {# End of content #}
+
+          </div>
+          {# End of main #}
+        </div>
+        {# End of main_area #}
+        {% endblock main_area %}
+      </div>
+      {# End of container #}
+    </div>
+    {# End of page #}
+    {% endblock page %}
+  </body>
+  {% if google_tracking_code %}
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', '{{ google_tracking_code }}']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+  {% endif %}
+
+{# Ajax calls need a CSRF token cookie, and this line sends one as a side effect #}
+<!-- {{ csrf_token }} -->
+
+
+
+    {% compress js %}
+    {% block javascript %}
+    {# Jquery, jqueryui jquerytools and jstree #}
+    <script type="text/javascript"
+            src="{{ STATIC_URL }}jquery/jquery.js"></script>
+    <script type="text/javascript"
+            src="{{ STATIC_URL }}jqueryui/jqueryui.min.js"></script>
+    <script type="text/javascript"
+            src="{{ STATIC_URL }}jqueryui/jquery.ui.datepicker-nl.js"></script>
+    <script type="text/javascript"
+            src="{{ STATIC_URL }}jquery-treeview/jquery.treeview.js"></script>
+    <!--
+    <script type="text/javascript"
+            src="{{ STATIC_URL }}lizard_ui/lizard.js"></script>
+    -->
+    <script type="text/javascript"
+            src="{{ STATIC_URL }}datatables/media/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript"
+            src="{{ STATIC_URL }}colorpicker/js/colorpicker.js"></script>
+
+    {% endblock javascript %}
+    {% endcompress %}
+
+    {% block map-javascript %}
+    {# For lizard-map's wms handling #}
+    {% endblock map-javascript %}
+
+
+</html>
