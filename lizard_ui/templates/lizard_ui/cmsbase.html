@@ -3,23 +3,27 @@
 
 {% block header %}
   <header class="container">
-    <div class="span3">
-      {% block logo %}
-        <a href="/"
-           class="brand"
-           title="{% trans 'Back to homepage' %}"
-           ><img src="{{ STATIC_URL }}lizard_ui/logo.png"
-                 alt="Lizard" /></a>
-      {% endblock logo %}
-    </div>
-    <div class="span9">
-      <div class="row">
-        {% block header_top_row %}
-        {% endblock header_top_row %}
+    <div class="row">
+      <div class="span3">
+        {% block logo %}
+          <a href="/"
+             class="brand"
+             title="{% trans 'Back to homepage' %}"
+             ><img src="{{ STATIC_URL }}lizard_ui/logo.png"
+                   alt="Lizard" /></a>
+        {% endblock logo %}
       </div>
-      <div class="row">
-        {% block header_bottom_row %}
-        {% endblock header_bottom_row %}
+      <div class="span9">
+        <div class="row">
+          {% block header_top_row %}
+            {{ block.super }}
+          {% endblock header_top_row %}
+        </div>
+        <div class="row">
+          {% block header_bottom_row %}
+            {{ block.super }}
+          {% endblock header_bottom_row %}
+        </div>
       </div>
     </div>
   </header>

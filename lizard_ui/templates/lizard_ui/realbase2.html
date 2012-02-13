@@ -82,23 +82,25 @@
     {% block page %}
       {% block header %}
         <header class="container-fluid">
-          <div class="span3">
-            {% block logo %}
-              <a href="/"
-                 class="brand"
-                 title="{% trans "Back to homepage" %}"
-                 ><img src="{{ STATIC_URL }}lizard_ui/logo.png"
-                       alt="Lizard" /></a>
-            {% endblock logo %}
-          </div>
-          <div class="span9">
-            <div class="row-fluid">
-              {% block header_top_row %}
-              {% endblock header_top_row %}
+          <div class="row-fluid">
+            <div class="span3">
+              {% block logo %}
+                <a href="/"
+                   class="brand"
+                   title="{% trans "Back to homepage" %}"
+                   ><img src="{{ STATIC_URL }}lizard_ui/logo.png"
+                         alt="Lizard" /></a>
+              {% endblock logo %}
             </div>
-            <div class="row-fluid">
-              {% block header_bottom_row %}
-              {% endblock header_bottom_row %}
+            <div class="span9">
+              <div class="row-fluid">
+                {% block header_top_row %}
+                {% endblock header_top_row %}
+              </div>
+              <div class="row-fluid">
+                {% block header_bottom_row %}
+                {% endblock header_bottom_row %}
+              </div>
             </div>
           </div>
         </header>
