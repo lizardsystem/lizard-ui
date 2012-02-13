@@ -17,6 +17,7 @@ install_requires = [
     'django-staticfiles >= 1.0',
     'django_compressor >= 0.9.2',  # Yes, underscore.
     'django-sentry',
+    'docutils',  # For the admin docs.
     'south',
     ],
 

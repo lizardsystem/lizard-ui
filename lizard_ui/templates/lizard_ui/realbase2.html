@@ -5,19 +5,27 @@
   <head>
     <title>
       {% block title %}
+        {# You can override the whole title, but it handier to set a #}
+        {# sitetitle and, per page, a subtitle. #}
         {% block subtitle %}
         {% endblock subtitle %}
         {% block sitetitle %}
-        Lizard
+          Lizard
         {% endblock sitetitle %}
       {% endblock title %}
     </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="{{ STATIC_URL }}lizard_ui/favicon.ico" type="images/x-icon" />
+    <link rel="SHORTCUT ICON" href="{{ STATIC_URL }}lizard_ui/favicon.ico" />
+
+    <!-- HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
     {% compress css %}
       {% block css %}
-        {# Twitter bootstrap #}
-        <style type="text/less">
-
-        </style>
+        {# Twitter bootstrap, but with an included #}
+        {# lizard_ui/lizard-bootstrap.less to overrides bootstrap defaults. #}
         <link rel="stylesheet"
               href="{{ STATIC_URL }}bootstrap/less/bootstrap.less"
               type="text/less"
@@ -50,131 +58,79 @@
         -->
       {% endblock css %}
     {% endcompress %}
-
     <!--[if IE]>
       {% compress css %}
 
       {% endcompress %}
     <![endif]-->
 
-
-    {% block head-extras %}
-    {# Your own totally-unmanaged per-template extra css/javascript/links #}
-    {% endblock head-extras %}
-
-    <link rel="icon" href="{{ STATIC_URL }}lizard_ui/favicon.ico" type="images/x-icon" />
-    <link rel="SHORTCUT ICON" href="{{ STATIC_URL }}lizard_ui/favicon.ico" />
-
     {% compress js %}
       {% block javascript-in-head %}
-
+        {# Actually, what is this doing here? #}
       {% endblock javascript-in-head %}
     {% endcompress %}
+    {% block head-extras %}
+      {# Your own totally-unmanaged per-template extra css/javascript/links #}
+    {% endblock head-extras %}
 
   </head>
   <body>
     {% block page %}
-    <div id="page"
-         class="sidebar-open">
-      <div class="container">
-        {% block header %}
-
-    <header class="navbar">
-      <div class="navbar-inner">
-        <div class="container-fluid">
-          <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <a class="brand" href="/">
-            Lizard
-          </a>
-          <div class="nav-collapse">
-            <ul class="nav">
-              <li><a href="/ui/examples/">UI examples</a></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </header>
-
-    <!--
-        <div id="header"
-             class="clearfix">
-          <div id="logo">
+      {% block header %}
+        <header class="container-fluid">
+          <div class="span3">
             {% block logo %}
-            {# Watch out: keep the tags next to each other without spaces #}
-            <a href="/" id="logo-img" title="{% trans "Back to homepage" %}"><img
-            src="{{ STATIC_URL }}lizard_ui/logo.png"
-            alt="Lizard" /></a>
+              <a href="/"
+                 class="brand"
+                 title="{% trans "Back to homepage" %}"
+                 ><img src="{{ STATIC_URL }}lizard_ui/logo.png"
+                       alt="Lizard" /></a>
             {% endblock logo %}
           </div>
-          <div id="portal-actions">
-            {% block portal-actions %}
-            &nbsp;
-            {% endblock portal-actions %}
+          <div class="span9">
+            <div class="row-fluid">
+              {% block header_top_row %}
+              {% endblock header_top_row %}
+            </div>
+            <div class="row-fluid">
+              {% block header_bottom_row %}
+              {% endblock header_bottom_row %}
+            </div>
           </div>
-          <div id="portal-tabs">
-            {% block portal-tabs %}
-            &nbsp;
-            {% endblock portal-tabs %}
-          </div>
-          <div id="breadcrumbs">{% block breadcrumbs %}»
-	    <a href="/" rel="tipsy-south" title="{% trans "Back to homepage" %}">Home</a>
-            {% endblock breadcrumbs %}</div>
-        </div>
-        {% endblock header %}
-        {# End of header #}
-     -->
+        </header>
+      {% endblock header %}
 
-        {% block main_area %}
+      {% block main_area %}
         <div id="main_area"
              class="container-fluid">
           <div class="row-fluid">
-            <div id="sidebar" class="span4">
+            <div id="sidebar" class="span3">
               {% block sidebar %}
-              {% if application_screen_slug %}
-              {% application_icons application_screen_slug %}
-              {% endif %}
+                {% if application_screen_slug %}
+                  {% application_icons application_screen_slug %}
+                {% endif %}
               {% endblock sidebar %}
             </div>
             {# End of sidebar #}
 
-            <div id="collapser"></div>
+            <div id="main" class="span9">
+              {% block menubar %}
+              {% endblock menubar %}
 
-            <div id="main" class="span8">
-              <div id="menubar">
-              <div id="object-actions">
-                {% block object-actions %}
-                &nbsp;
-                {% endblock object-actions %}
-              </div>
-              <div id="above-content">
-                {% block above-content %}
-                {% endblock above-content %}
-                &nbsp;
-              </div>
+              {% block content_block %}
+                <div class="row-fluid"
+                     id="content">
+                  {% block content %}
+                  {% endblock content %}
+                </div>
+              {% endblock content_block %}
             </div>
-            {# End of menubar #}
-
-            <div id="content">
-              {% block content %}
-              {% endblock content %}
-            </div>
-            {# End of content #}
-
           </div>
-          {# End of main #}
         </div>
         {# End of main_area #}
-        {% endblock main_area %}
-      </div>
-      {# End of container #}
-    </div>
-    {# End of page #}
+      {% endblock main_area %}
     {% endblock page %}
-  </body>
+
   {% if google_tracking_code %}
 <script type="text/javascript">
 
@@ -222,6 +178,9 @@
     {% block map-javascript %}
     {# For lizard-map's wms handling #}
     {% endblock map-javascript %}
+    {% block bottom-extras %}
+    {# Your own totally-unmanaged per-template extra css/javascript/links #}
+    {% endblock bottom-extras %}
 
-
+  </body>
 </html>

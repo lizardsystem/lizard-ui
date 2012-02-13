@@ -59,6 +59,8 @@ if settings.DEBUG:  # Pragma: nocover
          {'template': 'lizard_ui/example-textual.html'}),
         (r'^examples/table/$', 'direct_to_template',
          {'template': 'lizard_ui/example-table.html'}),
+        (r'^examples/cms/$', 'direct_to_template',
+         {'template': 'lizard_ui/example-cms-layout.html'}),
         (r'^examples/images/$', 'direct_to_template',
          {'template': 'lizard_ui/example-images.html'}),
         (r'^examples/tree/$', 'direct_to_template',
