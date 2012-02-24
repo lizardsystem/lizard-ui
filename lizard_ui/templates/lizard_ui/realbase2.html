@@ -45,16 +45,6 @@
               rel="stylesheet"
               media="screen, projection" />
         {# Our own css comes last #}
-        <!--
-        <link rel="stylesheet"
-              href="{{ STATIC_URL }}lizard_ui/lizard.css"
-              type="text/css"
-              media="screen, projection" />
-        <link rel="stylesheet"
-              href="{{ STATIC_URL }}lizard_ui/print.css"
-              type="text/css"
-              media="print" />
-        -->
       {% endblock css %}
     {% endcompress %}
     <!--[if IE]>
@@ -77,24 +67,32 @@
     {% block page %}
       {% block header %}
         <header class="container-fluid">
-          <div class="row-fluid">
+          <div class="row-fluid" id="logo-row">
             <div class="span3">
               {% block logo %}
                 <a href="/"
-                   class="brand"
                    title="{% trans "Back to homepage" %}"
-                   ><img src="{{ STATIC_URL }}lizard_ui/logo.png"
+                   ><img src="{{ STATIC_URL }}lizard_ui/logo2.png"
                          alt="Lizard" /></a>
               {% endblock logo %}
             </div>
             <div class="span9">
-              <div class="row-fluid">
-                {% block header_top_row %}
-                {% endblock header_top_row %}
-              </div>
-              <div class="row-fluid">
-                {% block header_bottom_row %}
-                {% endblock header_bottom_row %}
+              {% block header_top_row %}
+              {% endblock header_top_row %}
+            </div>
+          </div>
+
+          <div class="navbar">
+            <div class="navbar-inner">
+              <div class="row-fluid" id="breadcrumb-row">
+                <div class="span6">
+                  {% block breadcrumbs %}
+                  {% endblock breadcrumbs %}
+                </div>
+                <div class="span6">
+                  {% block actions %}
+                  {% endblock actions %}
+                </div>
               </div>
             </div>
           </div>
