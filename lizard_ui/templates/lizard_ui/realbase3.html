@@ -1,0 +1,181 @@
+{% load utility i18n compress %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      {% block title %}
+        {# You can override the whole title, but it handier to set a #}
+        {# sitetitle and, per page, a subtitle. #}
+        {% block subtitle %}
+        {% endblock subtitle %}
+        {% block sitetitle %}
+          Lizard
+        {% endblock sitetitle %}
+      {% endblock title %}
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="{{ STATIC_URL }}lizard_ui/favicon.ico" type="images/x-icon" />
+    <link rel="SHORTCUT ICON" href="{{ STATIC_URL }}lizard_ui/favicon.ico" />
+
+    <!-- HTML5 shim, for IE6-8 support of HTML elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    {% compress css %}
+      {% block css %}
+        {# Twitter bootstrap, but with an included #}
+        {# lizard_ui/lizard-bootstrap.less to overrides bootstrap defaults. #}
+        <link rel="stylesheet"
+              href="{{ STATIC_URL }}bootstrap/less/bootstrap.less"
+              type="text/less"
+              media="screen, projection" />
+        {# Sprites: all icons (print, info, etc) in one cacheable image. #}
+        <link rel="stylesheet"
+              href="{{ STATIC_URL }}sprites/sprite.css"
+              type="text/css"
+              media="screen, projection" />
+        {# CSS for jqueryui: "smoothness" theme #}
+        <link type="text/css"
+              href="{{ STATIC_URL }}jqueryui/smoothness/jquery-ui-1.8.11.custom.css"
+              rel="stylesheet"
+              media="screen, projection" />
+        {# CSS for jquery-treeview #}
+        <link type="text/css"
+              href="{{ STATIC_URL }}jquery-treeview/jquery.treeview.css"
+              rel="stylesheet"
+              media="screen, projection" />
+        {# Our own css comes last #}
+      {% endblock css %}
+    {% endcompress %}
+    <!--[if IE]>
+      {% compress css %}
+
+      {% endcompress %}
+    <![endif]-->
+
+    {% compress js %}
+      {% block javascript-in-head %}
+        {# Actually, what is this doing here? #}
+      {% endblock javascript-in-head %}
+    {% endcompress %}
+    {% block head-extras %}
+      {# Your own totally-unmanaged per-template extra css/javascript/links #}
+    {% endblock head-extras %}
+
+  </head>
+  <body>
+    {% block page %}
+      {% block header %}
+        <header class="container-fluid">
+          <div class="row-fluid" id="logo-row">
+            <div class="span3">
+              {% block logo %}
+                <a href="/"
+                   title="{% trans "Back to homepage" %}"
+                   ><img src="{{ STATIC_URL }}lizard_ui/logo2.png"
+                         alt="Lizard" /></a>
+              {% endblock logo %}
+            </div>
+            <div class="span9">
+              {% block header_top_row %}
+              {% endblock header_top_row %}
+            </div>
+          </div>
+
+          <div class="navbar">
+            <div class="navbar-inner">
+              <div class="row-fluid" id="breadcrumb-row">
+                <div class="span6">
+                  {% block breadcrumbs %}
+                  {% endblock breadcrumbs %}
+                </div>
+                <div class="span6">
+                  {% block actions %}
+                  {% endblock actions %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </header>
+      {% endblock header %}
+
+      {% block main_area %}
+        <div id="main_area"
+             class="container-fluid">
+          <div class="row-fluid">
+            <div id="sidebar" class="span3">
+              {% block sidebar %}
+                {% if application_screen_slug %}
+                  {% application_icons application_screen_slug %}
+                {% endif %}
+              {% endblock sidebar %}
+            </div>
+            {# End of sidebar #}
+
+            <div id="main" class="span9">
+              {% block menubar %}
+              {% endblock menubar %}
+
+              {% block content_block %}
+                <div id="content">
+                  {% block content %}
+                  {% endblock content %}
+                </div>
+              {% endblock content_block %}
+            </div>
+          </div>
+        </div>
+        {# End of main_area #}
+      {% endblock main_area %}
+    {% endblock page %}
+
+     {# Ajax calls need a CSRF token cookie, and this line sends one as a side effect #}
+     <!-- {{ csrf_token }} -->
+
+    {% compress js %}
+      {% block javascript %}
+        {# Jquery, jqueryui jquerytools and jstree #}
+        <script type="text/javascript"
+                src="{{ STATIC_URL }}jquery/jquery.js"></script>
+        <script type="text/javascript"
+                src="{{ STATIC_URL }}jqueryui/jqueryui.min.js"></script>
+        <script type="text/javascript"
+                src="{{ STATIC_URL }}jqueryui/jquery.ui.datepicker-nl.js"></script>
+        <!--
+        <script type="text/javascript"
+                src="{{ STATIC_URL
+                }}jquery-treeview/jquery.treeview.js"></script>
+        <script type="text/javascript"
+                src="{{ STATIC_URL }}lizard_ui/lizard.js"></script>
+        -->
+        <script type="text/javascript"
+                src="{{ STATIC_URL }}datatables/media/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript"
+                src="{{ STATIC_URL }}colorpicker/js/colorpicker.js"></script>
+
+      {% endblock javascript %}
+    {% endcompress %}
+
+    {% block map-javascript %}
+      {# For lizard-map's wms handling #}
+    {% endblock map-javascript %}
+
+    {% if google_tracking_code %}
+      <script type="text/javascript">
+        var _gaq = _gaq || [];
+        _gaq.push(['_setAccount', '{{ google_tracking_code }}']);
+        _gaq.push(['_trackPageview']);
+        (function() {
+          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+        })();
+      </script>
+    {% endif %}
+
+    {% block bottom-extras %}
+      {# Your own totally-unmanaged per-template extra css/javascript/links #}
+    {% endblock bottom-extras %}
+
+  </body>
+</html>
