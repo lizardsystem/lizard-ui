@@ -66,67 +66,68 @@
   <body>
     {% block page %}
       {% block header %}
-        <header class="container-fluid">
-          <div class="row-fluid" id="logo-row">
-            <div class="span3">
+        <header>
+          <div id="logo-row">
+            <div id="logo">
               {% block logo %}
                 <a href="/"
-                   title="{% trans "Back to homepage" %}"
+                   title='{% trans "Back to homepage" %}'
                    ><img src="{{ STATIC_URL }}lizard_ui/logo2.png"
                          alt="Lizard" /></a>
               {% endblock logo %}
             </div>
-            <div class="span9">
-              {% block header_top_row %}
-              {% endblock header_top_row %}
+            <div id="site-actions">
+              {% block site_actions %}
+              {% endblock site_actions %}
             </div>
           </div>
 
-          <div class="navbar">
-            <div class="navbar-inner">
-              <div class="row-fluid" id="breadcrumb-row">
-                <div class="span6">
-                  {% block breadcrumbs %}
-                  {% endblock breadcrumbs %}
-                </div>
-                <div class="span6">
-                  {% block actions %}
-                  {% endblock actions %}
-                </div>
-              </div>
+          <div id="breadcrumb-row">
+            <div id="breadcrumbs">
+              {% block breadcrumbs %}
+              {% endblock breadcrumbs %}
+            </div>
+            <div id="content-actions">
+              {% block content_actions %}
+              {% endblock content_actions %}
             </div>
           </div>
+
         </header>
       {% endblock header %}
 
       {% block main_area %}
-        <div id="main_area"
-             class="container-fluid">
-          <div class="row-fluid">
-            <div id="sidebar" class="span3">
-              {% block sidebar %}
-                {% if application_screen_slug %}
-                  {% application_icons application_screen_slug %}
-                {% endif %}
-              {% endblock sidebar %}
-            </div>
-            {# End of sidebar #}
-
-            <div id="main" class="span9">
-              {% block menubar %}
-              {% endblock menubar %}
-
-              {% block content_block %}
-                <div id="content">
-                  {% block content %}
-                  {% endblock content %}
-                </div>
-              {% endblock content_block %}
-            </div>
+        <div id="sidebar">
+          <div id="sidebar-inner">
+            {% block sidebar %}
+              {% if application_screen_slug %}
+                {% application_icons application_screen_slug %}
+              {% endif %}
+            {% endblock sidebar %}
           </div>
         </div>
-        {# End of main_area #}
+
+        <div id="content">
+          {% block content %}
+          {% endblock content %}
+        </div>
+
+        <div id="footer">
+          <div id="below-sidebar">
+            {% block below_sidebar %}
+              <a class="btn" href="">
+                <i class="icon-arrow-left"></i>
+                Collapse sidebar
+              </a>
+            {% endblock below_sidebar %}
+          </div>
+          <div id="orthogonal-selection">
+            {% block orthogonal_selection %}
+            {% endblock orthogonal_selection %}
+          </div>
+        </div>
       {% endblock main_area %}
+
     {% endblock page %}
 
      {# Ajax calls need a CSRF token cookie, and this line sends one as a side effect #}

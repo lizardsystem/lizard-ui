@@ -1,25 +1,147 @@
-// Dark and middle green; light is gray..
+// Our colors. Dark and middle green; light is gray.
 @dark: #115e67;
 @middle: #7fa9ae;
 @light: #d9d9d6;
 
-// A green navbar.
+// Border color for bars that we colors with our light color.
+@lightBorderColor: darken(@light, 10%);
+
+// A green navbar. We customize bootstrap's navbar colors here.
 @navbarBackground:                @dark;
 @navbarBackgroundHighlight:       @middle;
 @navbarText:                      @grayLight;
 @navbarLinkColor:                 @grayLight;
 
-// Link color is used in a lot of places. I'd rather keep it blue, but
-// just making it @dark is easier for customization.
+// Bootstrap's link color is used in a lot of places. I'd rather keep it blue,
+// but just making it @dark is easier for customization.
 @linkColor: @dark;
 
-html,
-body {
-  height: 100%;
+// Horizontal bar height. This 40px is somehow what comes out of bootstrap's
+// calculations, but we just set it here. We need it for placement of the main
+// elements.
+@barHeight: 40px;
+
+// Our horizontal bar class is basically the same as bootstrap's navbar, but
+// without the bottom margin. And with the right height explicitly set.
+.horizontal-bar {
+  .navbar;
+  margin-bottom: 0;  // Overrides .navbar's bottom margin.
+  height: @barHeight;
+  div {
+    // Divs nested inside us get the right height, too.
+    height: @barHeight;
+  }
 }
 
-#logo-row,
+// Blocks inside a horizontal bar (like the logo or below-sidebar) get a
+// proper padding.
+.block-in-bar {
+  padding-left: @baseFontSize;
+  padding-right: @baseFontSize;
+}
+
+// Arrangement of sidebar, content and footer.
+// See http://blog.stevensanderson.com/2011/10/05/
+// full-height-app-layouts-a-css-trick-to-make-it-easier/
+.row, .col {
+  overflow: hidden;
+  position: absolute;
+}
+.row {
+  left: 0;
+  right: 0;
+}
+.col {
+  top: 0;
+  bottom: 0;
+}
+.scroll-y {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+// Two variables to help with positioning. They include the 1px border.
+@belowTopBars: 2 * @barHeight + 1;
+@aboveFooter: @barHeight + 1;
+// And we need the sidebar's width, too, for positioning.
+@sidebarWidth: 300px;
+
+// Top-most bar.
+#logo-row {
+  .horizontal-bar;
+  #gradient > .vertical(lighten(@dark, 10%), @dark);
+}
+
+// Second bar, below the logo one.
 #breadcrumb-row {
-  height: 40px;
+  .horizontal-bar;
+  #gradient > .vertical(lighten(@light, 10%), @light);
+  border-bottom: 1px solid @lightBorderColor;
 }
 
+// Bar at the bottom.
+#footer {
+  .horizontal-bar;
+  #gradient > .vertical(@light, lighten(@light, 10%));
+  border-top: 1px solid @lightBorderColor;
+  // Placement. Full width and stuck to the bottom.
+  .row;
+  bottom: 0;
+}
+
+// The sidebar sits beween the horizontal bars on the left. It is scrollable.
+// TODO: do we actually want the full sidebar to be scrollable?? Or just a
+// part of it?
+#sidebar {
+  .col;
+  .scroll-y;
+  top: @belowTopBars;
+  bottom: @aboveFooter;
+  width: @sidebarWidth;
+  #gradient > .vertical(lighten(@light, 10%), #fff);
+  border-right: 1px solid @lightBorderColor;
+}
+
+// Keep the sidebar content out of the margins. It is all text, by definition.
+#sidebar-inner {
+  padding: @baseFontSize;
+}
+
+// The main content area sits between the horizontal bars, next to the
+// sidebar.
+#content {
+  .row;
+  top: @belowTopBars;
+  left: @sidebarWidth;
+  bottom: @aboveFooter;
+}
+
+// Every bar is divided into two; the following parts are floated to the left.
+#logo,
+#breadcrumbs,
+#below-sidebar {
+  .block-in-bar;
+  float: left;
+}
+
+// The actions in the two bars at the top are floated right.
+#site-actions,
+#content-actions {
+  .block-in-bar;
+  float: right;
+}
+
+// The stuff in the bottom bar below the content is for orthogonal selection
+//of settings related to the content, for example the date of the data that's
+// displayed. It really belongs to the other selection choices that are made
+// in the sidebar. So we want it to float left near the sidebar.
+#orthogonal-selection {
+  .block-in-bar;
+  float: left;
+}
+
+// The orthogonal-selection floats left, so we need to give the below-sidebar
+// some width to compensate. Sidebar width minus twice the padding.
+#below-sidebar {
+  width: @sidebarWidth - 2 * @baseFontSize;
+}
