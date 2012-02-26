@@ -4,20 +4,29 @@
 {% block sitetitle %}- Block "sitetitle"{% endblock sitetitle%}
 
 
-{% block portal-tabs %}
-<ul>
-  <li class="selected">Block</li
-  ><li class="last">"portal-tabs"</li>
-</ul>
+{% block logo %}
+  Block LOGO
 {% endblock %}
 
-
-{% block portal-actions %}
-<span class="ss_sprite ss_user">Block "portal-actions"</span>
+{% block site-actions %}
+  <ul class="nav">
+    <li><a href="#">site-actions block</a></li>
+    <li><a href="#">login</a></li>
+  </ul>
 {% endblock %}
 
 {% block breadcrumbs %}
-home &rarr; Block &rarr; "breadcrumbs"
+  <ul>
+    <li>
+      <a href="#">Block</a> &rarr;
+    </li>
+    <li>
+      <a href="#">Breadcrumbs</a> &rarr;
+    </li>
+    <li class="active">
+      <a href="#">Tadaaah</a>
+    </li>
+  </ul>
 {% endblock %}
 
 

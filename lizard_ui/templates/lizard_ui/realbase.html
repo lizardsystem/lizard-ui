@@ -67,7 +67,8 @@
     {% block page %}
       {% block header %}
         <header>
-          <div id="logo-row">
+          <div id="logo-row"
+               class="navbar">
             <div id="logo">
               {% block logo %}
                 <a href="/"
@@ -76,20 +77,21 @@
                          alt="Lizard" /></a>
               {% endblock logo %}
             </div>
-            <div id="site-actions">
-              {% block site_actions %}
-              {% endblock site_actions %}
+            <div id="site-actions" class="navbar">
+              {% block site-actions %}
+              {% endblock site-actions %}
             </div>
           </div>
 
-          <div id="breadcrumb-row">
+          <div id="breadcrumb-row"
+               class="navbar">
             <div id="breadcrumbs">
               {% block breadcrumbs %}
               {% endblock breadcrumbs %}
             </div>
             <div id="content-actions">
-              {% block content_actions %}
-              {% endblock content_actions %}
+              {% block content-actions %}
+              {% endblock content-actions %}
             </div>
           </div>
 

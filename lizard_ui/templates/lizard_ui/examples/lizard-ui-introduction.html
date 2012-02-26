@@ -12,7 +12,7 @@ Navigation
   <h2>Lizard-ui documentation</h2>
   <dl>
     <dt>
-      <a href="id-locations">Block IDs</a>
+      <a href="blocks">Block IDs</a>
     </dt>
     <dd>
       Explanation of the various blocks you can override in templates.
@@ -121,17 +121,20 @@ Navigation
 {% endblock %}
 
 {% block content %}
-<div id="textual">
-  <p>
-    Lizard-ui provides the main user interface for the various lizard django
-    sites.  (At least, it's intended to).
-  </p>
-  <p>
-    On the left side, you see examples of lizard-ui provided layouts that you
-    can typically get the benefit of by using a simple html structure with a
-    class or an ID.
-  </p>
-
+<div class="textual-content">
+  <div class="hero-unit">
+    <h1>Lizard UI</h1>
+    <p>
+      Lizard-ui provides the main user interface for the various lizard django
+      sites. It is based, since early 2012,
+      on <a href="http://twitter.github.com/bootstrap/">twitter bootstrap</a>.
+    </p>
+    <p>
+      On the left side, you see examples of lizard-ui provided layouts that
+      you can typically get the benefit of by using a simple html structure
+      with a class or an ID.
+    </p>
+  </div>
 </div>
 
 {% endblock %}

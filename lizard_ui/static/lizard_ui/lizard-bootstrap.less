@@ -27,7 +27,7 @@
   .navbar;
   margin-bottom: 0;  // Overrides .navbar's bottom margin.
   height: @barHeight;
-  div {
+  div, ul {
     // Divs nested inside us get the right height, too.
     height: @barHeight;
   }
@@ -104,7 +104,8 @@
 
 // Keep the sidebar content out of the margins. It is all text, by definition.
 #sidebar-inner {
-  padding: @baseFontSize;
+  padding-left: @baseFontSize;
+  padding-right: @baseFontSize;
 }
 
 // The main content area sits between the horizontal bars, next to the
@@ -144,4 +145,45 @@
 // some width to compensate. Sidebar width minus twice the padding.
 #below-sidebar {
   width: @sidebarWidth - 2 * @baseFontSize;
+}
+
+
+// Lizard-specific stuff.
+
+// In the sidebar, the headers are smaller and have the middle background
+// color.
+#sidebar {
+  h2, h3 {
+    font-size: @baseFontSize;
+    #gradient > .vertical(lighten(@middle, 10%), @middle);
+    margin-left: -@baseFontSize;
+    margin-right: -@baseFontSize;
+    padding-left: @baseFontSize;
+    padding-right: @baseFontSize;
+    line-height: 2 * @baseLineHeight;
+    font-weight: bold;
+  }
+  h3 {
+    #gradient > .vertical(lighten(@light, 10%), @light);
+  }
+}
+
+// Textual content. #textual is for backwards compatibility.
+#textual,
+.textual-content {
+  padding: @baseFontSize;
+}
+
+// Breadcrumbs fixes.
+#breadcrumbs ul {
+  margin-left: 0;
+  li {
+    display: inline;
+    line-height: @barHeight;
+    & .active {
+      a {
+        font-color: black;
+      }
+    }
+  }
 }
