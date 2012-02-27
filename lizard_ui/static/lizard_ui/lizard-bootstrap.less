@@ -44,15 +44,15 @@
 // Arrangement of sidebar, content and footer.
 // See http://blog.stevensanderson.com/2011/10/05/
 // full-height-app-layouts-a-css-trick-to-make-it-easier/
-.row, .col {
+.fullRow, .fullCol {
   overflow: hidden;
   position: absolute;
 }
-.row {
+.fullRow {
   left: 0;
   right: 0;
 }
-.col {
+.fullCol {
   top: 0;
   bottom: 0;
 }
@@ -86,7 +86,7 @@
   #gradient > .vertical(@light, lighten(@light, 10%));
   border-top: 1px solid @lightBorderColor;
   // Placement. Full width and stuck to the bottom.
-  .row;
+  .fullRow;
   bottom: 0;
 }
 
@@ -94,7 +94,7 @@
 // TODO: do we actually want the full sidebar to be scrollable?? Or just a
 // part of it?
 #sidebar {
-  .col;
+  .fullCol;
   .scroll-y;
   top: @belowTopBars;
   bottom: @aboveFooter;
@@ -112,7 +112,7 @@
 // The main content area sits between the horizontal bars, next to the
 // sidebar.
 #content {
-  .row;
+  .fullRow;
   top: @belowTopBars;
   left: @sidebarWidth;
   bottom: @aboveFooter;
