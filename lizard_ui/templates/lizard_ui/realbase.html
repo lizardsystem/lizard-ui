@@ -77,7 +77,7 @@
                          alt="Lizard" /></a>
               {% endblock logo %}
             </div>
-            <div id="site-actions" class="navbar">
+            <div id="site-actions">
               {% block site-actions %}
               {% endblock site-actions %}
             </div>
@@ -98,7 +98,7 @@
         </header>
       {% endblock header %}
 
-      {% block main_area %}
+      {% block main-area %}
         <div id="sidebar">
           <div id="sidebar-inner">
             {% block sidebar %}
@@ -116,19 +116,19 @@
 
         <div id="footer">
           <div id="below-sidebar">
-            {% block below_sidebar %}
+            {% block below-sidebar %}
               <a class="btn" href="">
                 <i class="icon-arrow-left"></i>
                 Collapse sidebar
               </a>
-            {% endblock below_sidebar %}
+            {% endblock below-sidebar %}
           </div>
           <div id="orthogonal-selection">
-            {% block orthogonal_selection %}
-            {% endblock orthogonal_selection %}
+            {% block orthogonal-selection %}
+            {% endblock orthogonal-selection %}
           </div>
         </div>
-      {% endblock main_area %}
+      {% endblock main-area %}
 
     {% endblock page %}
 

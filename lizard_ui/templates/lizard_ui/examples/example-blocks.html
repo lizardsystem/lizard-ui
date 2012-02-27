@@ -10,8 +10,19 @@
 
 {% block site-actions %}
   <ul class="nav">
-    <li><a href="#">site-actions block</a></li>
-    <li><a href="#">login</a></li>
+    <li><a href="#">block site-actions</a></li>
+    <li>
+      <a href="#">
+        <i class="icon-user icon-white"></i>
+        login
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <i class="icon-print icon-white"></i>
+        print
+      </a>
+    </li>
   </ul>
 {% endblock %}
 
@@ -29,32 +40,36 @@
   </ul>
 {% endblock %}
 
+{% block content-actions %}
+  <ul class="nav">
+    <li><a href="">Block</a></li>
+    <li><a href="">content-actions</a></li>
+    <li><a href="">('a' tag mandatory, btw)</a></li>
+  </ul>
+{% endblock %}
+
 
 {% block sidebar %}
-<div>Block "sidebar"</div>
+<h2>Block "sidebar" (h2)</h2>
 <ul>
   <li>This</li>
   <li>is the</li>
   <li>sidebar</li>
 </ul>
+<h3>Heading 3</h3>
 <p>
   The sidebar is for showing overview info, details, perhaps a small
   "navigator" map to indicate the current location, etc.
 </p>
 {% endblock %}
 
-{% block above-content %}
-<ul>
-  <li class="selected">Block</li
-  ><li class="last">"above-content"</li>
-</ul>
-{% endblock %}
-
-
-{% block object-actions %}
-<span class="ss_sprite ss_page_edit">Block</span> | <span class="ss_sprite ss_printer">"object-actions"</span>
-{% endblock %}
-
+{% block below-sidebar %}
+  {{ block.super }}
+  <a class="btn" href="">
+    <i class="icon-exclamation-sign"></i>
+      below-sidebar
+  </a>
+{% endblock below-sidebar %}
 
 {% block content %}
 <div id="textual">
@@ -129,6 +144,20 @@
 
 {% endblock %}
 
-{% block copyright %}
-Block "copyright"
-{% endblock copyright %}
+{% block orthogonal-selection %}
+  <div class="btn-toolbar">
+    <div class="btn-group">
+      <a class="btn" href="">
+        <i class="icon-calendar"></i>
+          1972-12-25 &mdash; 2000-11-10
+      </a>
+      {# Reinout's birth day till his wedding :-) #}
+    </div>
+
+    <div class="btn-group">
+      <a class="btn" href="#">Dry</a>
+      <a class="btn" href="#">Wet</a>
+      <a class="btn active" href="#">Soaking</a>
+    </div>
+  </div>
+{% endblock orthogonal-selection %}
