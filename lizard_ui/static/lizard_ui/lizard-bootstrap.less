@@ -9,8 +9,9 @@
 // A green navbar. We customize bootstrap's navbar colors here.
 @navbarBackground:                @dark;
 @navbarBackgroundHighlight:       @middle;
-@navbarText:                      @grayLight;
-@navbarLinkColor:                 @grayLight;
+@navbarText:                      @white;
+@navbarLinkColor:                 @white;
+@navbarLinkColorHover:            @light;
 
 // Bootstrap's link color is used in a lot of places. I'd rather keep it blue,
 // but just making it @dark is easier for customization.
@@ -195,5 +196,15 @@
 .navbar {
   .btn-toolbar {
     margin-top: 0;
+  }
+}
+
+// Black instead of white for the light second bar.
+#content-actions {
+  .nav > li > a {
+    color: @grayDark;
+  }
+  .nav > li > a:hover {
+    color: @dark;
   }
 }
