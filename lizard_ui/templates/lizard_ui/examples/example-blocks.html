@@ -105,14 +105,11 @@
     </dd>
 
     <dt>
-      javascript
+      javascript-in-head
     </dt>
     <dd>
-      Block to add javascript.  Be sure to use
-      <code>{% templatetag openvariable %} block.super
-      {% templatetag closevariable %}</code> at
-      the start of your block to get all the previously defined javascript,
-      too.
+      Javascript that should really go into the head tag. Should probably
+      remain empty!
     </dd>
 
     <dt>
@@ -125,17 +122,21 @@
     </dd>
 
     <dt>
+      javascript
+    </dt>
+    <dd>
+      Block to add javascript.  Be sure to use
+      <code>{% templatetag openvariable %} block.super
+      {% templatetag closevariable %}</code> at
+      the start of your block to get all the previously defined javascript,
+      too.
+    </dd>
+
+    <dt>
       map-javascript
     </dt>
     <dd>
       A block specifically for lizard-map's in-template javascript.
-    </dd>
-
-    <dt>
-      logo
-    </dt>
-    <dd>
-      Replaces the logo.
     </dd>
 
   </dl>
