@@ -38,9 +38,12 @@ LANGUAGES = (
 # but we want to test django_compressor's compressing which
 # needs a media url and root and so.
 
-# We switch off compression so that the automated tests also can get the full
-# javascript.
-COMPRESS_ENABLED = False
+# Compressor settings.
+COMPRESS_PRECOMPILERS = (
+    ('text/coffeescript', 'coffee --compile --stdio'),
+    ('text/less', 'lessc {infile} {outfile}'),
+)
+COMPRESS_ENABLED = True  # Needed until 1.2 is out.
 
 # SETTINGS_DIR allows media paths and so to be relative to
 # this settings file instead of hardcoded to
