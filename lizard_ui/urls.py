@@ -42,6 +42,12 @@ urlpatterns = patterns(
     url(r'^screen/(?P<application_screen_slug>.*)/$',
         'lizard_ui.views.application_screen',
         name='lizard_ui.application_screen'),
+    url(r'^/(?P<slug>.*)/$',
+        lizard_ui.views.IconView.as_view(),
+        name='lizard_ui.icons'),
+    url(r'',
+        lizard_ui.views.IconView.as_view(),
+        name='lizard_ui.icons'),
     )
 
 urlpatterns += debugmode_urlpatterns()

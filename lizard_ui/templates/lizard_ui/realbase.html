@@ -135,22 +135,27 @@
      {# Ajax calls need a CSRF token cookie, and this line sends one as a side effect #}
      <!-- {{ csrf_token }} -->
 
+     <script type="text/javascript"
+             src="{{ STATIC_URL }}jquery/jquery.min.js"></script>
+     <script type="text/javascript"
+             src="{{ STATIC_URL }}bootstrap/bootstrap.min.js"></script>
     {% compress js %}
       {% block javascript %}
         {# Jquery, jqueryui jquerytools and jstree #}
-        <script type="text/javascript"
-                src="{{ STATIC_URL }}jquery/jquery.js"></script>
+        <!--
         <script type="text/javascript"
                 src="{{ STATIC_URL }}jqueryui/jqueryui.min.js"></script>
         <script type="text/javascript"
                 src="{{ STATIC_URL }}jqueryui/jquery.ui.datepicker-nl.js"></script>
-        <!--
         <script type="text/javascript"
                 src="{{ STATIC_URL
                 }}jquery-treeview/jquery.treeview.js"></script>
         <script type="text/javascript"
                 src="{{ STATIC_URL }}lizard_ui/lizard.js"></script>
         -->
+
+        <script type="text/javascript"
+                src="{{ STATIC_URL }}lizard_ui/lizardui.js"></script>
         <script type="text/javascript"
                 src="{{ STATIC_URL }}datatables/media/js/jquery.dataTables.min.js"></script>
         <script type="text/javascript"

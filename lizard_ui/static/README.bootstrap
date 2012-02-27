@@ -1,5 +1,8 @@
 Twitter bootstrap from http://twitter.github.com/bootstrap/
 
-Downloaded: twitter-bootstrap-v2.0.0-33
+Downloaded: twitter-bootstrap-v2.0.1 master
+
+Added bootstrap.min.js from the generated doc zipfile as we've got problems
+with the yui minimizer that django-compressor uses.
 
 License: apache v2.0

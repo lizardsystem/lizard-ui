@@ -4,11 +4,14 @@ from django.contrib.auth import login
 from django.contrib.auth import logout
 from django.http import HttpResponse
 from django.shortcuts import render
+from django.shortcuts import get_object_or_404
 from django.utils import simplejson as json
 #from django.utils.translation import ugettext as _
+from django.views.generic.base import TemplateView
 from django.views.generic.edit import FormView
 
 from lizard_ui.forms import LoginForm
+from lizard_ui.models import ApplicationScreen
 
 
 class ViewContextMixin(object):
@@ -87,3 +90,17 @@ def application_screen(
     return render(request,
                   template,
                   {'application_screen_slug': application_screen_slug})
+
+
+class IconView(ViewContextMixin, TemplateView):
+    """View that shows an application screen plus icons."""
+    template_name = 'lizard_ui/icons.html'
+
+    @property
+    def application_screen(self):
+        slug = self.kwargs.get('slug', 'home')
+        return get_object_or_404(ApplicationScreen, slug=slug)
+
+    @property
+    def icons(self):
+        return self.application_screen.icons.all()

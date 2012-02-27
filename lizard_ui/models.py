@@ -82,7 +82,9 @@ class ApplicationIcon(models.Model):
     # If not filled in, the link gets class "notworking"
     url = models.CharField(_('url'), max_length=200, blank=True, null=True)
 
-    application_screen = models.ForeignKey(ApplicationScreen)
+    application_screen = models.ForeignKey(
+        ApplicationScreen,
+        related_name='icons')
     index = models.IntegerField(
         _('index'),
         default=1000,

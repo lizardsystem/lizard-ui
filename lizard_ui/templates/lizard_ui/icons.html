@@ -1,0 +1,23 @@
+{% extends "lizard_ui/lizardbase.html" %}
+
+{% block sidebar %}
+  <h2>{{ view.application_screen.name }}</h2>
+  <ul class="ui-icon-list">
+    {% for icon in view.icons %}
+    <li>
+      <a title="{{ icon.name }}"
+         data-content="{{ icon.description }}"
+         {% if icon.url %}
+           href="{{ icon.url }}"
+           class="has_popover"
+         {% else %}
+           class="has_popover notworking"
+         {% endif %}>
+        <img src="{{ icon.icon }}"
+             alt="{{ icon.name }}" />
+        <div>{{ icon.name }}</div>
+      </a>
+    </li>
+    {% endfor %}
+  </ul>
+{% endblock sidebar %}
