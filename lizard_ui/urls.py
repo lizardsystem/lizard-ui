@@ -56,6 +56,12 @@ if settings.DEBUG:  # Pragma: nocover
     # Online documentation, mount it for example in the settings.DEBUG section
     # to get the documentation in your project while developing.
     urlpatterns += patterns(
+        '',
+        url(r'^examples/$',
+            lizard_ui.views.UiView.as_view(
+                template_name='lizard_ui/examples/lizard-ui-introduction.html')),
+        )
+    urlpatterns += patterns(
         'django.views.generic.simple',
         (r'^examples/$', 'direct_to_template',
          {'template': 'lizard_ui/examples/lizard-ui-introduction.html'}),

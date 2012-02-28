@@ -1,17 +1,21 @@
 # (c) Nelen & Schuurmans.  GPL licensed, see LICENSE.txt
+from copy import copy
+
 from django.contrib.auth import authenticate
 from django.contrib.auth import login
 from django.contrib.auth import logout
+from django.core.urlresolvers import reverse
 from django.http import HttpResponse
-from django.shortcuts import render
 from django.shortcuts import get_object_or_404
+from django.shortcuts import render
 from django.utils import simplejson as json
-#from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext as _
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import FormView
 
 from lizard_ui.forms import LoginForm
 from lizard_ui.models import ApplicationScreen
+from lizard_ui import uisettings
 
 
 class ViewContextMixin(object):
@@ -92,7 +96,42 @@ def application_screen(
                   {'application_screen_slug': application_screen_slug})
 
 
-class IconView(ViewContextMixin, TemplateView):
+class UiView(ViewContextMixin, TemplateView):
+    """Base view for a lizard-ui-using view+template.
+
+    This view feeds all necessary blocks with nicely structured data. The
+    effect is that we don't need to muck around with lots of template tags
+    anymore.
+
+    """
+    template_name = 'lizard_ui/lizardbase.html'
+
+    @property
+    def page_title(self):
+        return ''
+
+    @property
+    def title(self):
+        return ' - '.join([self.page_title, uisettings.SITE_TITLE])
+
+    @property
+    def site_actions(self):
+        actions = copy(uisettings.SITE_ACTIONS)
+        if uisettings.SHOW_LOGIN:
+            action = {'icon': 'icon-user'}
+            if self.request.user.is_authenticated():
+                action['url'] = reverse('lizard_ui.logout')
+                action['name'] = self.request.user
+                action['klass'] = 'ui-logout-link'
+            else:
+                action['url'] = reverse('lizard_ui.login')
+                action['name'] = _('Login')
+                action['klass'] = 'ui-login-link'
+            actions.append(action)
+        return actions
+
+
+class IconView(UiView):
     """View that shows an application screen plus icons."""
     template_name = 'lizard_ui/icons.html'
 

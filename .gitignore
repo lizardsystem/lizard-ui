@@ -28,3 +28,5 @@ nosetests.xml
 .mr.developer.cfg
 
 .DS_Store
+test.db
+

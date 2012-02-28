@@ -4,13 +4,14 @@
   <head>
     <title>
       {% block title %}
-        {# You can override the whole title, but it handier to set a #}
-        {# sitetitle and, per page, a subtitle. #}
-        {% block subtitle %}
-        {% endblock subtitle %}
-        {% block sitetitle %}
-          Lizard
-        {% endblock sitetitle %}
+        {% if view.title %}
+          {# Managed properly by the view #}
+          {{ view.title }}
+        {% else %}
+          {# By hand in the template #}
+          {% block subtitle %}{% endblock subtitle%}
+          {% block sitetitle %}{% endblock sitetitle%}
+        {% endif %}
       {% endblock title %}
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -79,6 +80,21 @@
             </div>
             <div id="site-actions">
               {% block site-actions %}
+
+                {% if view.site_actions %}
+                  <ul class="nav">
+                    {% for action in view.site_actions %}
+                      <li>
+                        <a href="{{ action.url }}"
+                           class="{{ action.klass }}">
+                          <i class="{{ action.icon }} icon-white"></i>
+                          {{ action.name }}
+                        </a>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                {% endif %}
+
               {% endblock site-actions %}
             </div>
           </div>
