@@ -45,7 +45,7 @@ urlpatterns = patterns(
     url(r'^/(?P<slug>.*)/$',
         lizard_ui.views.IconView.as_view(),
         name='lizard_ui.icons'),
-    url(r'',
+    url(r'^$',
         lizard_ui.views.IconView.as_view(),
         name='lizard_ui.icons'),
     )
