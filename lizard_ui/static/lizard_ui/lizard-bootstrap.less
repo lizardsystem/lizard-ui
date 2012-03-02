@@ -34,7 +34,7 @@
   }
 }
 
-// Blocks inside a horizontal bar (like the logo or below-sidebar) get a
+// Blocks inside a horizontal bar (like the logo or sidebar-actions) get a
 // proper padding.
 .block-in-bar {
   padding-left: @baseFontSize;
@@ -121,7 +121,7 @@
 // Every bar is divided into two; the following parts are floated to the left.
 #logo,
 #breadcrumbs,
-#below-sidebar {
+#sidebar-actions {
   .block-in-bar;
   float: left;
 }
@@ -137,14 +137,14 @@
 //of settings related to the content, for example the date of the data that's
 // displayed. It really belongs to the other selection choices that are made
 // in the sidebar. So we want it to float left near the sidebar.
-#orthogonal-selection {
+#orthogonal-actions {
   .block-in-bar;
   float: left;
 }
 
-// The orthogonal-selection floats left, so we need to give the below-sidebar
+// The orthogonal-actions floats left, so we need to give the sidebar-actions
 // some width to compensate. Sidebar width minus twice the padding.
-#below-sidebar {
+#sidebar-actions {
   width: @sidebarWidth - 2 * @baseFontSize;
 }
 
@@ -190,7 +190,7 @@
 }
 
 // We want button groups in the navbar (well, mostly in the
-// orthogonal-selection bar). Best way to get them next to each other if there
+// orthogonal-actions bar). Best way to get them next to each other if there
 // are multiple button groups is a toolbar. But we need to strip some margin
 // off that.
 .navbar {

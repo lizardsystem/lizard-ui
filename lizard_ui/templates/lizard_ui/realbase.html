@@ -84,10 +84,18 @@
                 {% if view.site_actions %}
                   <ul class="nav">
                     {% for action in view.site_actions %}
-                      <li>
+                      <li
+                         {% if action.description %}
+                           title="{{ action.name }}"
+                           data-content="{{ action.description }}"
+                           class="has_popover"
+                         {% endif %}
+                         >
                         <a href="{{ action.url }}"
                            class="{{ action.klass }}">
-                          <i class="{{ action.icon }} icon-white"></i>
+                          {% if action.icon %}
+                            <i class="{{ action.icon }} icon-white"></i>
+                          {% endif %}
                           {{ action.name }}
                         </a>
                       </li>
@@ -103,10 +111,59 @@
                class="navbar">
             <div id="breadcrumbs">
               {% block breadcrumbs %}
+
+                {% if view.breadcrumbs %}
+                  <ul>
+                    {% for action in view.breadcrumbs %}
+                      <li
+                         {% if action.description %}
+                           title="{{ action.name }}"
+                           data-content="{{ action.description }}"
+                           class="has_popover"
+                         {% endif %}
+                         >
+                        <a href="{{ action.url }}"
+                           class="{{ action.klass }}">
+                          {% if action.icon %}
+                            <i class="{{ action.icon }}"></i>
+                          {% endif %}
+                          {{ action.name }}
+                        </a>
+                        {% if not forloop.last %}
+                          &rarr;
+                        {% endif %}
+                      </li>
+                    {% endfor %}
+                  </ul>
+                {% endif %}
+
               {% endblock breadcrumbs %}
             </div>
             <div id="content-actions">
               {% block content-actions %}
+
+                {% if view.content_actions %}
+                  <ul class="nav">
+                    {% for action in view.content_actions %}
+                      <li
+                         {% if action.description %}
+                           title="{{ action.name }}"
+                           data-content="{{ action.description }}"
+                           class="has_popover"
+                         {% endif %}
+                         >
+                        <a href="{{ action.url }}"
+                           class="{{ action.klass }}">
+                          {% if action.icon %}
+                            <i class="{{ action.icon }}"></i>
+                          {% endif %}
+                          {{ action.name }}
+                        </a>
+                      </li>
+                    {% endfor %}
+                  </ul>
+                {% endif %}
+
               {% endblock content-actions %}
             </div>
           </div>
@@ -131,17 +188,67 @@
         </div>
 
         <div id="footer">
-          <div id="below-sidebar">
-            {% block below-sidebar %}
-              <a class="btn" href="">
-                <i class="icon-arrow-left"></i>
-                Collapse sidebar
-              </a>
-            {% endblock below-sidebar %}
+          <div id="sidebar-actions">
+            {% block sidebar-actions %}
+
+              {% if view.sidebar_actions %}
+                <div class="btn-toolbar">
+                  <div class="btn-group">
+
+                    {% for action in view.sidebar_actions %}
+                      <a href="{{ action.url }}"
+                        {% if action.description %}
+                          title="{{ action.name }}"
+                          data-content="{{ action.description }}"
+                          class="has_popover btn {{ action.klass }}"
+                        {% else %}
+                          class="btn {{ action.klass }}"
+                        {% endif %}
+                        >
+                        {% if action.icon %}
+                          <i class="{{ action.icon }}"></i>
+                        {% endif %}
+                        {{ action.name }}
+                      </a>
+                    {% endfor %}
+
+                  </div>
+                </div>
+              {% endif %}
+
+            {% endblock sidebar-actions %}
           </div>
-          <div id="orthogonal-selection">
-            {% block orthogonal-selection %}
-            {% endblock orthogonal-selection %}
+          <div id="orthogonal-actions">
+            {% block orthogonal-actions %}
+
+              {% if view.orthogonal_action_groups %}
+                <div class="btn-toolbar">
+                  {% for group in view.orthogonal_action_groups %}
+                    <div class="btn-group">
+
+                      {% for action in group %}
+                        <a href="{{ action.url }}"
+                          {% if action.description %}
+                            title="{{ action.name }}"
+                            data-content="{{ action.description }}"
+                            class="has_popover btn {{ action.klass }}"
+                          {% else %}
+                            class="btn {{ action.klass }}"
+                          {% endif %}
+                          >
+                          {% if action.icon %}
+                            <i class="{{ action.icon }}"></i>
+                          {% endif %}
+                          {{ action.name }}
+                        </a>
+                      {% endfor %}
+                    {% endfor %}
+                  {% endif %}
+
+                </div>
+              </div>
+
+            {% endblock orthogonal-actions %}
           </div>
         </div>
       {% endblock main-area %}
@@ -151,10 +258,13 @@
      {# Ajax calls need a CSRF token cookie, and this line sends one as a side effect #}
      <!-- {{ csrf_token }} -->
 
+     {# Minimized jquery and bootstrap scripts. Minimizing with #}
+     {# django-compressor failed. #}
      <script type="text/javascript"
              src="{{ STATIC_URL }}jquery/jquery.min.js"></script>
      <script type="text/javascript"
              src="{{ STATIC_URL }}bootstrap/bootstrap.min.js"></script>
+
     {% compress js %}
       {% block javascript %}
         {# Jquery, jqueryui jquerytools and jstree #}

@@ -1,0 +1,24 @@
+{% extends "lizard_ui/lizardbase.html" %}
+
+{% block logo %}
+  Block LOGO, not handled in the view.
+{% endblock %}
+
+{% block sidebar %}
+<h2>Block "sidebar" (h2)</h2>
+<p>
+  At the moment the sidebar isn't handled by the view yet. Overwrite it in the
+  template. If handy, we <i>might</i> want to add a couple of helper methods,
+  though.
+</p>
+{% endblock %}
+
+{% block content %}
+<div id="textual">
+  <h1>Block "content"</h1>
+  <p>
+    This is the content area, not handled by the view.
+  </p>
+
+</div>
+{% endblock %}

@@ -14,6 +14,7 @@ from django.views.generic.base import TemplateView
 from django.views.generic.edit import FormView
 
 from lizard_ui.forms import LoginForm
+from lizard_ui.layout import Action
 from lizard_ui.models import ApplicationScreen
 from lizard_ui import uisettings
 
@@ -103,12 +104,18 @@ class UiView(ViewContextMixin, TemplateView):
     effect is that we don't need to muck around with lots of template tags
     anymore.
 
+    There are two basic ways in which to customize it:
+
+    - Apps can subclass ``UiView`` and overwrite methods to add or change UI
+      elements.
+
+    - Sites can use a subclass, but that doesn't change anything for apps that
+      already subclassed themselves or that use UiView directly. So they can
+      best customize the ``lizard_ui/lizardbase.html`` template.
+
     """
     template_name = 'lizard_ui/lizardbase.html'
-
-    @property
-    def page_title(self):
-        return ''
+    page_title = ''
 
     @property
     def title(self):
@@ -116,19 +123,81 @@ class UiView(ViewContextMixin, TemplateView):
 
     @property
     def site_actions(self):
+        """Return site actions.
+
+        ``UI_SITE_ACTIONS`` are on the left, a login link (if
+        ``UI_SHOW_LOGIN`` is True) on the right.
+
+        """
         actions = copy(uisettings.SITE_ACTIONS)
         if uisettings.SHOW_LOGIN:
-            action = {'icon': 'icon-user'}
+            action = Action(icon='icon-user')
             if self.request.user.is_authenticated():
-                action['url'] = reverse('lizard_ui.logout')
-                action['name'] = self.request.user
-                action['klass'] = 'ui-logout-link'
+                action.url = reverse('lizard_ui.logout')
+                action.name = self.request.user
+                action.klass = 'ui-logout-link'
             else:
-                action['url'] = reverse('lizard_ui.login')
-                action['name'] = _('Login')
-                action['klass'] = 'ui-login-link'
+                action.url = reverse('lizard_ui.login')
+                action.name = _('Login')
+                action.klass = 'ui-login-link'
             actions.append(action)
         return actions
+
+    @property
+    def breadcrumbs(self):
+        pass
+
+    @property
+    def content_actions(self):
+        """Return content actions.
+
+        Content actions are different for every kind of object, so by default
+        is is just empty. Customization should happen in a subclass,
+        logically.
+
+        """
+        return []
+
+    @property
+    def sidebar_actions(self):
+        """Return sidebar actions.
+
+        If ``UI_SHOW_SIDEBAR_COLLAPSE`` is True, it is shown on the
+        left. There's very limited place for actions here, so restrict
+        yourself regarding adding new ones.
+
+        """
+        actions = []
+        if uisettings.SHOW_SIDEBAR_COLLAPSE:
+            action = Action(icon='icon-arrow-left',
+                            name=_('Collapse'),
+                            klass='collapse-sidebar')
+            actions.append(action)
+        return actions
+
+    @property
+    def orthogonal_action_groups(self):
+        """Return groups of orthogonal actions.
+
+        In the bar below the content, the actions are grouped. This is a
+        difference with the other action methods: the list(s) of actions are
+        themselves inside a list.
+
+        """
+        actions = []
+        groups = [actions]
+        return groups
+
+
+class ExampleBlockView(UiView):
+    template_name = 'lizard_ui/examples/example-blocks-view.html'
+    page_title = 'view.page_title'
+    site_actions = [Action(name='view.site_actions')]
+    breadcrumbs = [Action(name='view.breadcrumbs'), Action(name='tadaah')]
+    content_actions = [Action(name='view.content_actions')]
+    sidebar_actions = [Action(name='view.sidebar_actions')]
+    orthogonal_action_groups = [
+        [Action(name='view.orthogonal_action_groups')]]
 
 
 class IconView(UiView):

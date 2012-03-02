@@ -63,13 +63,12 @@
 </p>
 {% endblock %}
 
-{% block below-sidebar %}
-  {{ block.super }}
+{% block sidebar-actions %}
   <a class="btn" href="">
     <i class="icon-exclamation-sign"></i>
-      below-sidebar
+      sidebar-actions
   </a>
-{% endblock below-sidebar %}
+{% endblock sidebar-actions %}
 
 {% block content %}
 <div id="textual">
@@ -153,7 +152,7 @@
 
 {% endblock %}
 
-{% block orthogonal-selection %}
+{% block orthogonal-actions %}
   <div class="btn-toolbar">
     <div class="btn-group">
       <a class="btn" href="">
@@ -169,4 +168,4 @@
       <a class="btn active" href="#">Soaking</a>
     </div>
   </div>
-{% endblock orthogonal-selection %}
+{% endblock orthogonal-actions %}
