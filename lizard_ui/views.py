@@ -158,7 +158,12 @@ class UiView(ViewContextMixin, TemplateView):
         icon_found = None
         best_url = None
         for icon in ApplicationIcon.objects.all():
-            icon_url = icon.url
+            icon_url = icon.get_absolute_url()
+            if not icon_url:
+                continue
+            if icon_url == '/':
+                # Pointer at a CMS page above us, probably.
+                continue
             if icon_url.startswith('http://'):
                 # External url, so it cannot match.
                 continue
@@ -191,7 +196,6 @@ class UiView(ViewContextMixin, TemplateView):
                          url=element.get_absolute_url(),
                          description=element.description)
                   for element in breadcrumb_elements]
-        print result
         return result
 
     @property
@@ -282,3 +286,21 @@ class IconView(UiView):
     def edit_link(self):
         pk = self.application_screen.id
         return '/admin/lizard_ui/applicationscreen/%s/' % pk
+
+    @property
+    def breadcrumbs(self):
+        """Return breadcrumbs.
+
+        If nothing can be found, it is because we're on the homepage. So we'll
+        just return ourselves as an action, then.
+
+        """
+        result = super(IconView, self).breadcrumbs
+        if result:
+            return result
+        home = self.application_screen
+        result = [Action(name=home.name,
+                         url=home.get_absolute_url(),
+                         description=home.description)]
+        return result
+
