@@ -6,6 +6,7 @@ from lizard_ui.models import ApplicationScreen
 
 class ApplicationIconInline(admin.TabularInline):
     model = ApplicationIcon
+    fk_name = 'application_screen'
 
 
 class ApplicationScreenAdmin(admin.ModelAdmin):

@@ -2,6 +2,8 @@ from django.core.urlresolvers import reverse
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
+SCREEN_DEFAULT_SLUG = 'home'
+
 
 class ApplicationScreen(models.Model):
     """
@@ -17,9 +19,10 @@ class ApplicationScreen(models.Model):
         return u'%s (%s)' % (self.name, self.slug)
 
     def get_absolute_url(self):
-        return reverse(
-            'lizard_ui.application_screen',
-            kwargs={'application_screen_slug': self.slug})
+        if self.slug == SCREEN_DEFAULT_SLUG:
+            return reverse('lizard_ui.icons')
+        return reverse('lizard_ui.icons',
+                       kwargs={'slug': self.slug})
 
     # Lizard 3
     def crumbs(self, seen_slugs=()):
@@ -78,13 +81,18 @@ class ApplicationIcon(models.Model):
     name = models.CharField(_('name'), max_length=40)
     icon = models.CharField(_('icon'), max_length=200)
     description = models.TextField(_('description'), blank=True, null=True)
-
-    # If not filled in, the link gets class "notworking"
     url = models.CharField(_('url'), max_length=200, blank=True, null=True)
 
     application_screen = models.ForeignKey(
         ApplicationScreen,
+        help_text=_("Application screen we're a part of"),
         related_name='icons')
+    sub_screen = models.OneToOneField(
+        ApplicationScreen,
+        help_text=_("Application screen we point at (this disables the url)"),
+        null=True,
+        blank=True,
+        related_name='parent_icon')
     index = models.IntegerField(
         _('index'),
         default=1000,
@@ -96,3 +104,28 @@ class ApplicationIcon(models.Model):
 
     def __unicode__(self):
         return u'%s' % self.name
+
+    def get_absolute_url(self):
+        """Return url or sub screen's url; the latter takes preference.
+
+        The url is not really ourselves, but what we point at. But that's
+        close enough. We don't really exist on our own.
+
+        """
+        if self.sub_screen:
+            return self.sub_screen.get_absolute_url()
+        return self.url
+
+    def parents(self):
+        """Return list of application screens that are our parents.
+
+        The order is that the top level item should come first.
+
+        """
+        parent = self.application_screen
+        try:
+            result = parent.parent_icon.parents()
+        except ApplicationIcon.DoesNotExist:
+            result = []
+        result.append(parent)
+        return result

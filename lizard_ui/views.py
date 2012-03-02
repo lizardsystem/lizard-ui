@@ -16,6 +16,7 @@ from django.views.generic.edit import FormView
 from lizard_ui.forms import LoginForm
 from lizard_ui.layout import Action
 from lizard_ui.models import ApplicationScreen
+from lizard_ui.models import ApplicationIcon
 from lizard_ui import uisettings
 
 
@@ -116,9 +117,17 @@ class UiView(ViewContextMixin, TemplateView):
     """
     template_name = 'lizard_ui/lizardbase.html'
     page_title = ''
+    edit_link = None
+    icon_url_name = 'lizard_ui.icons'  # So that we can subclass it.
 
     @property
     def title(self):
+        """Return title for use in 'head' tag.
+
+        By default it uses the ``page_title`` attribute, followed by
+        ``UI_SITE_TITLE`` (which is 'lizard' by default).
+
+        """
         return ' - '.join([self.page_title, uisettings.SITE_TITLE])
 
     @property
@@ -143,9 +152,59 @@ class UiView(ViewContextMixin, TemplateView):
             actions.append(action)
         return actions
 
+    def _best_matching_application_icon(self):
+        """Return application icon that best matches our url."""
+        page_url = self.request.path
+        icon_found = None
+        best_url = None
+        for icon in ApplicationIcon.objects.all():
+            icon_url = icon.url
+            if icon_url.startswith('http://'):
+                # External url, so it cannot match.
+                continue
+            if not icon_url.startswith('/'):
+                icon_url = '/' + icon_url
+            if page_url.startswith(icon_url):
+                if best_url and len(icon_url) < len(best_url):
+                    # It matches, but it is shorter than what we already have.
+                    continue
+                icon_found = icon
+                best_url = icon_url
+        return icon_found
+
     @property
     def breadcrumbs(self):
-        pass
+        """Return breadcrumbs (as a list of actions).
+
+        Overwrite it if you want something really different. Otherwise it
+        tries to make a best guess effort by looking at what lizard-ui itself
+        knows regarding icons and screens that point at it.
+
+        """
+        icon = self._best_matching_application_icon()
+        if not icon:
+            return
+        breadcrumb_elements = icon.parents()
+        breadcrumb_elements.append(icon)
+        print breadcrumb_elements
+        result = [Action(name=element.name,
+                         url=element.get_absolute_url(),
+                         description=element.description)
+                  for element in breadcrumb_elements]
+        print result
+        return result
+
+    @property
+    def edit_link(self):
+        """Return link to edit ourselves. (Just the link, not an action.)"""
+        return None
+
+    @property
+    def edit_action(self):
+        """Return edit link as an action, ready for content_actions."""
+        return Action(name=_('edit'),
+                      url=self.edit_link,
+                      icon='icon-edit')
 
     @property
     def content_actions(self):
@@ -155,8 +214,13 @@ class UiView(ViewContextMixin, TemplateView):
         is is just empty. Customization should happen in a subclass,
         logically.
 
+        There's one exception: if there's an edit link, display its action.
+
         """
-        return []
+        if self.edit_link:
+            return [self.edit_action]
+        else:
+            return []
 
     @property
     def sidebar_actions(self):
@@ -190,6 +254,7 @@ class UiView(ViewContextMixin, TemplateView):
 
 
 class ExampleBlockView(UiView):
+    """Example view that shows which attributes go where."""
     template_name = 'lizard_ui/examples/example-blocks-view.html'
     page_title = 'view.page_title'
     site_actions = [Action(name='view.site_actions')]
@@ -212,3 +277,8 @@ class IconView(UiView):
     @property
     def icons(self):
         return self.application_screen.icons.all()
+
+    @property
+    def edit_link(self):
+        pk = self.application_screen.id
+        return '/admin/lizard_ui/applicationscreen/%s/' % pk
