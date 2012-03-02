@@ -279,8 +279,8 @@ class IconView(UiView):
         return get_object_or_404(ApplicationScreen, slug=slug)
 
     @property
-    def icons(self):
-        return self.application_screen.icons.all()
+    def page_title(self):
+        return self.application_screen.name
 
     @property
     def edit_link(self):
@@ -303,4 +303,8 @@ class IconView(UiView):
                          url=home.get_absolute_url(),
                          description=home.description)]
         return result
+
+    @property
+    def icons(self):
+        return self.application_screen.icons.all()
 
