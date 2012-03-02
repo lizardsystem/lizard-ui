@@ -43,7 +43,7 @@ COMPRESS_PRECOMPILERS = (
     ('text/coffeescript', 'coffee --compile --stdio'),
     ('text/less', 'lessc {infile} {outfile}'),
 )
-#COMPRESS_ENABLED = True  # Needed until 1.2 is out.
+COMPRESS_ENABLED = True  # Needed until 1.2 is out.
 
 # SETTINGS_DIR allows media paths and so to be relative to
 # this settings file instead of hardcoded to
