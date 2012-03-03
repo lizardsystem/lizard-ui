@@ -307,4 +307,3 @@ class IconView(UiView):
     @property
     def icons(self):
         return self.application_screen.icons.all()
-
