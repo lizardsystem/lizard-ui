@@ -15,11 +15,12 @@
       width: 0,
       opacity: 0
     }, 300);
-    return $('div#content').animate({
+    $('div#content').animate({
       left: 0
     }, 300, function() {
       return setUpMapDimensions();
     });
+    return this;
   };
 
   openSidebar = function() {
@@ -28,11 +29,12 @@
       width: 300,
       opacity: 100
     }, 300);
-    return $('div#content').animate({
+    $('div#content').animate({
       left: 300
     }, 300, function() {
       return setUpMapDimensions();
     });
+    return this;
   };
 
   setUpMapDimensions = function() {

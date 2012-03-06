@@ -1,9 +1,9 @@
 setUpPopovers = ->
-    # Everything with a matching class gets bootstrap's popover enabled.
     $(".has_popover").popover()
     $(".has_popover_north").popover
         placement: 'top'
     @
+
 
 closeSidebar = ->
     $('.icon-arrow-left')
@@ -17,6 +17,8 @@ closeSidebar = ->
         left: 0
         ,300
         , -> setUpMapDimensions()
+    @
+
 
 openSidebar = ->
     $('.icon-arrow-right')
@@ -30,6 +32,8 @@ openSidebar = ->
         left: 300
         ,300
         , -> setUpMapDimensions()
+    @
+
 
 setUpMapDimensions = ->
     contentHeight = $("div#content").height()
@@ -38,8 +42,10 @@ setUpMapDimensions = ->
     $("#map").width contentWidth
     @
 
+
 $(document).ready ->
     window.sidebarState = "opened"
+    
     setUpPopovers()
     setUpMapDimensions()
     
