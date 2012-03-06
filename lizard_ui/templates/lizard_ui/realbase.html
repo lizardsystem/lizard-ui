@@ -181,6 +181,18 @@
                 {% application_icons application_screen_slug %}
               {% endif %}
             {% endblock sidebar %}
+            <div id="layers">
+              <h2>{% trans "Layers" %}</h2>
+              {% block layers %}
+              {% endblock layers%}
+              <ul>
+                <!-- TODO: Replace these hardcoded placeholder layers: -->
+                <li><a href="#">Layer 1</a></li>
+                <li><a href="#">Layer 2</a></li>
+                <li><a href="#">Layer 3</a></li>
+                <li><a href="#">Layer 4</a></li>
+              </ul>
+            </div>
           </div>
         </div>
 

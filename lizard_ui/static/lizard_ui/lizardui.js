@@ -1,5 +1,5 @@
 (function() {
-  var animationSpeed, closeSidebar, openSidebar, setUpMapDimensions, setUpPopovers;
+  var animationSpeed, closeLayersPane, closeSidebar, openLayersPane, openSidebar, setUpMapDimensions, setUpPopovers;
 
   animationSpeed = 150;
 
@@ -39,6 +39,20 @@
     return this;
   };
 
+  openLayersPane = function() {
+    $("div#sidebar div#layers").animate({
+      bottom: 0
+    }, animationSpeed);
+    return this;
+  };
+
+  closeLayersPane = function() {
+    $("div#sidebar div#layers").animate({
+      bottom: 0 - $("div#sidebar div#layers").height() + 35
+    }, animationSpeed);
+    return this;
+  };
+
   setUpMapDimensions = function() {
     var contentHeight, contentWidth;
     contentHeight = $("div#content").height();
@@ -50,9 +64,21 @@
 
   $(document).ready(function() {
     window.sidebarState = "opened";
+    window.layersPaneState = "closed";
+    closeLayersPane();
     setUpPopovers();
     setUpMapDimensions();
-    $('.collapse-sidebar').click(function(e) {
+    $('.btn.None').click(function(e) {
+      e.preventDefault();
+      if (window.layersPaneState === "closed") {
+        openLayersPane();
+        return window.layersPaneState = "opened";
+      } else {
+        closeLayersPane();
+        return window.layersPaneState = "closed";
+      }
+    });
+    $('.btn.collapse-sidebar').click(function(e) {
       e.preventDefault();
       if (window.sidebarState === "opened") {
         closeSidebar();

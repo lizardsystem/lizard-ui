@@ -35,7 +35,19 @@ openSidebar = ->
         ,animationSpeed
         , -> setUpMapDimensions()
     @
+    
+    
+openLayersPane = ->
+    $("div#sidebar div#layers").animate
+        bottom: 0
+        ,animationSpeed
+    @
 
+closeLayersPane = ->
+    $("div#sidebar div#layers").animate
+        bottom: 0 - $("div#sidebar div#layers").height() + 35
+        ,animationSpeed
+    @
 
 setUpMapDimensions = ->
     contentHeight = $("div#content").height()
@@ -47,14 +59,31 @@ setUpMapDimensions = ->
 
 $(document).ready ->
     window.sidebarState = "opened"
-    
+    window.layersPaneState = "closed"
+
+    closeLayersPane()
     setUpPopovers()
     setUpMapDimensions()
     
-    $('.collapse-sidebar').click (e) ->
-        e.preventDefault() # do not follow the default hyperlink
-        closeSidebar() window.sidebarState = "closed" if window.sidebarState is "opened"
-        openSidebar() if window.sidebarState = "opened"
+    $('.btn.None').click (e) ->
+    # ^^^^^ TODO: Help! Gijs couldnt figure out where this Layers button is generated!
+        e.preventDefault()
+        if window.layersPaneState is "closed"
+            openLayersPane()
+            window.layersPaneState = "opened"
+        else
+            closeLayersPane()
+            window.layersPaneState = "closed" 
+
+    
+    $('.btn.collapse-sidebar').click (e) ->
+        e.preventDefault()
+        if window.sidebarState is "opened"
+            closeSidebar()
+            window.sidebarState = "closed" 
+        else
+            openSidebar()
+            window.sidebarState = "opened" 
 
     @
 
