@@ -191,7 +191,6 @@ class UiView(ViewContextMixin, TemplateView):
             return
         breadcrumb_elements = icon.parents()
         breadcrumb_elements.append(icon)
-        print breadcrumb_elements
         result = [Action(name=element.name,
                          url=element.get_absolute_url(),
                          description=element.description)
