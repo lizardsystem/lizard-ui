@@ -1,5 +1,7 @@
 (function() {
-  var closeSidebar, openSidebar, setUpMapDimensions, setUpPopovers;
+  var animationSpeed, closeSidebar, openSidebar, setUpMapDimensions, setUpPopovers;
+
+  animationSpeed = 150;
 
   setUpPopovers = function() {
     $(".has_popover").popover();
@@ -14,10 +16,10 @@
     $('div#sidebar').animate({
       left: -300,
       opacity: 0
-    }, 300);
+    }, animationSpeed);
     $('div#content').animate({
       left: 0
-    }, 300, function() {
+    }, animationSpeed, function() {
       return setUpMapDimensions();
     });
     return this;
@@ -28,10 +30,10 @@
     $('div#sidebar').animate({
       left: 0,
       opacity: 100
-    }, 300);
+    }, animationSpeed);
     $('div#content').animate({
       left: 300
-    }, 300, function() {
+    }, animationSpeed, function() {
       return setUpMapDimensions();
     });
     return this;

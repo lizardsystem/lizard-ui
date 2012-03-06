@@ -1,3 +1,5 @@
+animationSpeed = 150
+
 setUpPopovers = ->
     $(".has_popover").popover()
     $(".has_popover_north").popover
@@ -12,10 +14,10 @@ closeSidebar = ->
     $('div#sidebar').animate
         left: -300
         opacity: 0
-        ,300
+        ,animationSpeed
     $('div#content').animate
         left: 0
-        ,300
+        ,animationSpeed
         , -> setUpMapDimensions()
     @
 
@@ -27,10 +29,10 @@ openSidebar = ->
     $('div#sidebar').animate
         left: 0
         opacity: 100
-        ,300
+        ,animationSpeed
     $('div#content').animate
         left: 300
-        ,300
+        ,animationSpeed
         , -> setUpMapDimensions()
     @
 
