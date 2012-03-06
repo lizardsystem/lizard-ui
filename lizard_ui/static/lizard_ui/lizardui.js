@@ -12,7 +12,7 @@
   closeSidebar = function() {
     $('.icon-arrow-left').removeClass('icon-arrow-left').addClass('icon-arrow-right');
     $('div#sidebar').animate({
-      width: 0,
+      left: -300,
       opacity: 0
     }, 300);
     $('div#content').animate({
@@ -26,7 +26,7 @@
   openSidebar = function() {
     $('.icon-arrow-right').removeClass('icon-arrow-right').addClass('icon-arrow-left');
     $('div#sidebar').animate({
-      width: 300,
+      left: 0,
       opacity: 100
     }, 300);
     $('div#content').animate({
