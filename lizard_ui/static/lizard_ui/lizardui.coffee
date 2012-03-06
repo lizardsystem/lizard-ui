@@ -9,17 +9,27 @@ closeSidebar = ->
     $('.icon-arrow-left')
         .removeClass('icon-arrow-left')
         .addClass('icon-arrow-right')
-    $('div#sidebar').width(0)
-    $('div#content').css("left", "0px")
-    setUpMapDimensions()
+    $('div#sidebar').animate
+        width: 0
+        opacity: 0
+        ,300
+    $('div#content').animate
+        left: 0
+        ,300
+        , -> setUpMapDimensions()
 
 openSidebar = ->
     $('.icon-arrow-right')
         .removeClass('icon-arrow-right')
         .addClass('icon-arrow-left')
-    $('div#sidebar').width(300)
-    $('div#content').css("left", "300px")
-    setUpMapDimensions()
+    $('div#sidebar').animate
+        width: 300
+        opacity: 100
+        ,300
+    $('div#content').animate
+        left: 300
+        ,300
+        , -> setUpMapDimensions()
 
 setUpMapDimensions = ->
     contentHeight = $("div#content").height()
