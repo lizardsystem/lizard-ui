@@ -154,6 +154,7 @@
 // In the sidebar, the headers are smaller and have the middle background
 // color.
 #sidebar {
+  background-color: #fff;
   h2, h3 {
     font-size: @baseFontSize;
     #gradient > .vertical(lighten(@middle, 10%), @middle);
@@ -228,13 +229,28 @@ ul.ui-icon-list {
     height: 120px;
     padding: 5px;
   }
+  li a img {
+    -webkit-box-shadow: 2px 2px 10px 5px #ccc;
+    -moz-box-shadow: 2px 2px 10px 5px #ccc;
+    box-shadow: 2px 2px 10px 5px #ccc;
+  }
 }
 
 ul.tree {
   li {
     list-style: none;
+    margin: 1px 0px 0px 0px;
   }
   &.tree-top-level {
     margin-left: 0;
   }
+}
+
+.workspace-acceptable:hover {
+    cursor: pointer;
+    border: 1px solid #fff;
+    color: @dark;
+    background-color: @light;
+    padding: 0px 0px 0px 5px;
+    margin: 0px 0px 0px -5px;
 }
