@@ -52,13 +52,10 @@ $(document).ready ->
     setUpMapDimensions()
     
     $('.collapse-sidebar').click (e) ->
-        e.preventDefault()
-        if window.sidebarState is "opened"
-            closeSidebar()
-            window.sidebarState = "closed"
-        else
-            openSidebar()
-            window.sidebarState = "opened"
+        e.preventDefault() # do not follow the default hyperlink
+        closeSidebar() window.sidebarState = "closed" if window.sidebarState is "opened"
+        openSidebar() if window.sidebarState = "opened"
+
     @
 
  
