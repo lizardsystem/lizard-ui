@@ -221,7 +221,7 @@ class UiView(ViewContextMixin, TemplateView):
         There's one exception: if there's an edit link, display its action.
 
         """
-        if self.edit_link:
+        if self.edit_link and self.request.user.is_staff:
             return [self.edit_action]
         else:
             return []
