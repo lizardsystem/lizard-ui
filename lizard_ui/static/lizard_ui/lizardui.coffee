@@ -71,7 +71,7 @@ $(document).ready ->
     setUpPopovers()
     setUpMapDimensions()
 
-    $('.slide-in-slidebar-button').click (e) ->
+    $('.slide-in-sidebar-button').click (e) ->
         e.preventDefault()
         if window.layersPaneState is "closed"
             showSlidingSidebar()
