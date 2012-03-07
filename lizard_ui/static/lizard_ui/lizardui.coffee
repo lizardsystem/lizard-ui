@@ -37,7 +37,7 @@ openSidebar = ->
     @
 
 
-openLayersPane = ->
+showSlidingSidebar = ->
     top = $("#sidebar").position().top
     bottom = $("#footer").position().top
     element = $("#slide-in-sidebar")
@@ -48,7 +48,7 @@ openLayersPane = ->
         ,(animationSpeed * 2)
     @
 
-closeLayersPane = ->
+hideSlidingSidebar = ->
     bottom = $("#footer").position().top
     element = $("#slide-in-sidebar")
     $("#slide-in-sidebar").animate
@@ -68,18 +68,16 @@ $(document).ready ->
     window.sidebarState = "opened"
     window.layersPaneState = "closed"
 
-    closeLayersPane()
     setUpPopovers()
     setUpMapDimensions()
 
-    $('.btn.None').click (e) ->
-    # ^^^^^ TODO: Help! Gijs couldnt figure out where this Layers button is generated!
+    $('.slide-in-slidebar-button').click (e) ->
         e.preventDefault()
         if window.layersPaneState is "closed"
-            openLayersPane()
+            showSlidingSidebar()
             window.layersPaneState = "opened"
         else
-            closeLayersPane()
+            hideSlidingSidebar()
             window.layersPaneState = "closed"
 
 
