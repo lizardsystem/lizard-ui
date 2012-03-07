@@ -35,18 +35,25 @@ openSidebar = ->
         ,animationSpeed
         , -> setUpMapDimensions()
     @
-    
-    
+
+
 openLayersPane = ->
-    $("div#sidebar div#layers").animate
-        bottom: 0
-        ,animationSpeed
+    top = $("#sidebar").position().top
+    bottom = $("#footer").position().top
+    element = $("#slide-in-sidebar")
+    element.css('top', bottom)
+    element.show()
+    $("#slide-in-sidebar").animate
+        top: top
+        ,(animationSpeed * 2)
     @
 
 closeLayersPane = ->
-    $("div#sidebar div#layers").animate
-        bottom: 0 - $("div#sidebar div#layers").height() + 35
-        ,animationSpeed
+    bottom = $("#footer").position().top
+    element = $("#slide-in-sidebar")
+    $("#slide-in-sidebar").animate
+        top: bottom
+        ,(animationSpeed * 2)
     @
 
 setUpMapDimensions = ->
@@ -64,7 +71,7 @@ $(document).ready ->
     closeLayersPane()
     setUpPopovers()
     setUpMapDimensions()
-    
+
     $('.btn.None').click (e) ->
     # ^^^^^ TODO: Help! Gijs couldnt figure out where this Layers button is generated!
         e.preventDefault()
@@ -73,19 +80,19 @@ $(document).ready ->
             window.layersPaneState = "opened"
         else
             closeLayersPane()
-            window.layersPaneState = "closed" 
+            window.layersPaneState = "closed"
 
-    
+
     $('.btn.collapse-sidebar').click (e) ->
         e.preventDefault()
         if window.sidebarState is "opened"
             closeSidebar()
-            window.sidebarState = "closed" 
+            window.sidebarState = "closed"
         else
             openSidebar()
-            window.sidebarState = "opened" 
+            window.sidebarState = "opened"
 
     @
 
- 
+
 $(window).bind('orientationchange pageshow resize', setUpMapDimensions)

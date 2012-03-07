@@ -175,13 +175,15 @@
 
       {% block main-area %}
         <div id="sidebar">
-          <div id="sidebar-inner">
+          <div class="sidebar-inner">
             {% block sidebar %}
-              {% if application_screen_slug %}
-                {% application_icons application_screen_slug %}
-              {% endif %}
             {% endblock sidebar %}
-            <div id="layers">
+          </div>
+        </div>
+
+        {% block slide-in-sidebar %}
+          <div id="slide-in-sidebar">
+            <div class="sidebar-inner">
               <h2>{% trans "Layers" %}</h2>
               {% block layers %}
               {% endblock layers%}
@@ -194,7 +196,7 @@
               </ul>
             </div>
           </div>
-        </div>
+        {% endblock slide-in-sidebar %}
 
         <div id="content">
           {% block content %}
@@ -295,8 +297,8 @@
         -->
         <script type="text/javascript"
                 src="{{ STATIC_URL }}lizard_ui/csrf.js"></script>
-        <script type="text/javascript"
-                src="{{ STATIC_URL }}lizard_ui/lizardui.js"></script>
+        <script type="text/coffeescript"
+                src="{{ STATIC_URL }}lizard_ui/lizardui.coffee"></script>
         <script type="text/javascript"
                 src="{{ STATIC_URL }}datatables/media/js/jquery.dataTables.min.js"></script>
         <script type="text/javascript"

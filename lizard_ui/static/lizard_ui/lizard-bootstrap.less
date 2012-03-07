@@ -93,7 +93,8 @@
 // The sidebar sits beween the horizontal bars on the left. It is scrollable.
 // TODO: do we actually want the full sidebar to be scrollable?? Or just a
 // part of it?
-#sidebar {
+#sidebar,
+#slide-in-sidebar {
   .fullCol;
   .scroll-y;
   top: @belowTopBars;
@@ -103,8 +104,14 @@
   border-right: 1px solid @lightBorderColor;
 }
 
+// The slide-in sidebar slides in from the bottom, so it starts out with
+// effectively zero height.
+#slide-in-sidebar {
+  display: none;
+}
+
 // Keep the sidebar content out of the margins. It is all text, by definition.
-#sidebar-inner {
+.sidebar-inner {
   padding-left: @baseFontSize;
   padding-right: @baseFontSize;
 }
@@ -153,9 +160,11 @@
 
 // In the sidebar, the headers are smaller and have the middle background
 // color.
-#sidebar {
-  background-color: #fff;
+#sidebar,
+#slide-in-sidebar {
+  //background-color: #fff;
   h2, h3 {
+    clear: left;
     font-size: @baseFontSize;
     #gradient > .vertical(lighten(@middle, 10%), @middle);
     margin-left: -@baseFontSize;
@@ -167,12 +176,6 @@
   }
   h3 {
     #gradient > .vertical(lighten(@light, 10%), @light);
-  }
-  #layers {
-      background-color: #fff;
-      position: absolute;
-      bottom: 0px;
-      width: 100%;
   }
 }
 
@@ -257,3 +260,6 @@ ul.tree {
     padding: 0px 0px 0px 5px;
     margin: 0px 0px 0px -5px;
 }
+
+
+
