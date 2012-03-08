@@ -1,4 +1,4 @@
-animationSpeed = 150
+animationSpeed = 300
 
 setUpPopovers = ->
     $(".has_popover").popover()
@@ -37,24 +37,28 @@ openSidebar = ->
     @
 
 
-showSlidingSidebar = ->
+showSecondarySidebar = ->
     top = $("#sidebar").position().top
     bottom = $("#footer").position().top
-    element = $("#slide-in-sidebar")
+    element = $("#secondary-sidebar")
     element.css('top', bottom)
     element.show()
-    $("#slide-in-sidebar").animate
+    element.animate
         top: top
         ,(animationSpeed * 2)
+    element.css('overflow-y', 'auto')
     @
 
-hideSlidingSidebar = ->
+
+hideSecondarySidebar = ->
     bottom = $("#footer").position().top
-    element = $("#slide-in-sidebar")
-    $("#slide-in-sidebar").animate
+    element = $("#secondary-sidebar")
+    element.css("overflow-y", "hidden")
+    $("#secondary-sidebar").animate
         top: bottom
         ,(animationSpeed * 2)
     @
+
 
 setUpMapDimensions = ->
     contentHeight = $("div#content").height()
@@ -66,20 +70,19 @@ setUpMapDimensions = ->
 
 $(document).ready ->
     window.sidebarState = "opened"
-    window.layersPaneState = "closed"
+    window.secondarySidebarState = "closed"
 
     setUpPopovers()
     setUpMapDimensions()
 
-    $('.slide-in-sidebar-button').click (e) ->
+    $('.secondary-sidebar-button').click (e) ->
         e.preventDefault()
-        if window.layersPaneState is "closed"
-            showSlidingSidebar()
-            window.layersPaneState = "opened"
+        if window.secondarySidebarState is "closed"
+            showSecondarySidebar()
+            window.secondarySidebarState = "opened"
         else
-            hideSlidingSidebar()
-            window.layersPaneState = "closed"
-
+            hideSecondarySidebar()
+            window.secondarySidebarState = "closed"
 
     $('.btn.collapse-sidebar').click (e) ->
         e.preventDefault()

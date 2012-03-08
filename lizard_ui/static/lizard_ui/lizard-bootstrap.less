@@ -94,7 +94,7 @@
 // TODO: do we actually want the full sidebar to be scrollable?? Or just a
 // part of it?
 #sidebar,
-#slide-in-sidebar {
+#secondary-sidebar {
   .fullCol;
   .scroll-y;
   top: @belowTopBars;
@@ -104,10 +104,11 @@
   border-right: 1px solid @lightBorderColor;
 }
 
-// The slide-in sidebar slides in from the bottom, so it starts out with
-// effectively zero height.
-#slide-in-sidebar {
+// The secondary sidebar slides in from the bottom. We need to keep it from
+// showing up right away.
+#secondary-sidebar {
   display: none;
+  overflow: hidden;
 }
 
 // Keep the sidebar content out of the margins. It is all text, by definition.
@@ -161,7 +162,7 @@
 // In the sidebar, the headers are smaller and have the middle background
 // color.
 #sidebar,
-#slide-in-sidebar {
+#secondary-sidebar {
   //background-color: #fff;
   h2, h3 {
     clear: left;
