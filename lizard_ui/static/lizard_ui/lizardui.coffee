@@ -39,6 +39,7 @@ openSidebar = ->
 
 showSecondarySidebar = ->
     top = $("#sidebar").position().top
+    $('.secondary-sidebar-button').button('toggle')
     bottom = $("#footer").position().top
     element = $("#secondary-sidebar")
     element.css('top', bottom)
@@ -57,6 +58,7 @@ hideSecondarySidebar = ->
     $("#secondary-sidebar").animate
         top: bottom
         ,(animationSpeed * 2)
+    $('.secondary-sidebar-button').button('toggle')
     @
 
 
