@@ -181,22 +181,12 @@
           </div>
         </div>
 
-        {% block slide-in-sidebar %}
-          <div id="secondary-sidebar">
-            <div class="sidebar-inner">
-              <h2>{% trans "Layers" %}</h2>
-              {% block layers %}
-              {% endblock layers%}
-              <ul style="list-style: none;margin:0;width:279px;">
-                <!-- TODO: Replace these hardcoded placeholder layers: -->
-                <li><a href="#"><div class="workspace-acceptable">Layer 1</div></a></li>
-                <li><a href="#"><div class="workspace-acceptable">Layer 2</div></a></li>
-                <li><a href="#"><div class="workspace-acceptable">Layer 3</div></a></li>
-                <li><a href="#"><div class="workspace-acceptable">Layer 4</div></a></li>
-              </ul>
-            </div>
+        <div id="secondary-sidebar">
+          <div class="sidebar-inner">
+            {% block secondary-sidebar %}
+            {% endblock secondary-sidebar %}
           </div>
-        {% endblock slide-in-sidebar %}
+        </div>
 
         <div id="content">
           {% block content %}
