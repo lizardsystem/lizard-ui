@@ -134,7 +134,8 @@ class UiView(ViewContextMixin, TemplateView):
         ``UI_SITE_TITLE`` (which is 'lizard' by default).
 
         """
-        return ' - '.join([self.page_title, uisettings.SITE_TITLE])
+        first_title_part = self.page_title or self.last_breadcrumb_title
+        return ' - '.join([first_title_part, uisettings.SITE_TITLE])
 
     @property
     def site_actions(self):
@@ -202,6 +203,13 @@ class UiView(ViewContextMixin, TemplateView):
                          description=element.description)
                   for element in breadcrumb_elements]
         return result
+
+    @property
+    def last_breadcrumb_title(self):
+        """Return name of latest breadcrumb for page title fallback."""
+        if not len(self.breadcrumbs):
+            return
+        return self.breadcrumbs[-1].name
 
     @property
     def edit_link(self):
