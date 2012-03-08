@@ -20,6 +20,9 @@ from lizard_ui.models import ApplicationIcon
 from lizard_ui import uisettings
 
 
+DEFAULT_APPLICATION_SCREEN = 'home'
+
+
 class ViewContextMixin(object):
     """View mixin that adds the view object to the context.
 
@@ -118,7 +121,10 @@ class UiView(ViewContextMixin, TemplateView):
     template_name = 'lizard_ui/lizardbase.html'
     page_title = ''
     edit_link = None
-    icon_url_name = 'lizard_ui.icons'  # So that we can subclass it.
+    icon_url_name = 'lizard_ui.icons'
+    # ^^^ So that we can subclass this view and still get proper urls.
+    show_secondary_sidebar_title = None
+    show_secondary_sidebar_icon = None
 
     @property
     def title(self):
@@ -234,12 +240,16 @@ class UiView(ViewContextMixin, TemplateView):
         yourself regarding adding new ones.
 
         """
-        actions = []
-        if uisettings.SHOW_SIDEBAR_COLLAPSE:
-            action = Action(icon='icon-arrow-left',
-                            name=_('Collapse'),
-                            klass='collapse-sidebar')
-            actions.append(action)
+        collapse_action = Action(icon='icon-arrow-left',
+                                 name=_('Collapse'),
+                                 klass='collapse-sidebar')
+        actions = [collapse_action]
+        if self.show_secondary_sidebar_title:
+            # Having a title means we want to show it.
+            actions.append(
+                Action(name=self.show_secondary_sidebar_title,
+                       icon=self.show_secondary_sidebar_icon,
+                       klass='secondary-sidebar-button'))
         return actions
 
     @property
@@ -263,7 +273,9 @@ class ExampleBlockView(UiView):
     site_actions = [Action(name='view.site_actions')]
     breadcrumbs = [Action(name='view.breadcrumbs'), Action(name='tadaah')]
     content_actions = [Action(name='view.content_actions')]
-    sidebar_actions = [Action(name='view.sidebar_actions')]
+    sidebar_actions = [Action(name='view.sidebar_actions'),
+                       Action(name='Show 2nd',
+                              klass='secondary-sidebar-button')]
     orthogonal_action_groups = [
         [Action(name='view.orthogonal_action_groups')]]
 
@@ -274,7 +286,7 @@ class IconView(UiView):
 
     @property
     def application_screen(self):
-        slug = self.kwargs.get('slug', 'home')
+        slug = self.kwargs.get('slug', DEFAULT_APPLICATION_SCREEN)
         return get_object_or_404(ApplicationScreen, slug=slug)
 
     @property
