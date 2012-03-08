@@ -67,172 +67,142 @@
 
   </head>
   <body>
-    {% block page %}
-      {% block header %}
-        <header>
-          <div id="logo-row"
-               class="navbar">
-            <div id="logo">
-              {% block logo %}
-                <a href="/"
-                   title='{% trans "Back to homepage" %}'
-                   ><img src="{{ STATIC_URL }}lizard_ui/logo2.png"
-                         alt="Lizard" /></a>
-              {% endblock logo %}
-            </div>
-            <div id="site-actions">
-              {% block site-actions %}
+    <div id="page">
+      {% block page %}
+        {% block header %}
+          <header>
+            <div id="logo-row"
+                 class="navbar">
+              <div id="logo">
+                {% block logo %}
+                  <a href="/"
+                     title='{% trans "Back to homepage" %}'
+                     ><img src="{{ STATIC_URL }}lizard_ui/logo2.png"
+                           alt="Lizard" /></a>
+                {% endblock logo %}
+              </div>
+              <div id="site-actions">
+                {% block site-actions %}
 
-                {% if view.site_actions %}
-                  <ul class="nav">
-                    {% for action in view.site_actions %}
-                      <li
-                         {% if action.description %}
-                           title="{{ action.name }}"
-                           data-content="{{ action.description }}"
-                           class="has_popover"
-                         {% endif %}
-                         >
-                        <a href="{{ action.url }}"
-                           class="{{ action.klass }}">
-                          {% if action.icon %}
-                            <i class="{{ action.icon }} icon-white"></i>
+                  {% if view.site_actions %}
+                    <ul class="nav">
+                      {% for action in view.site_actions %}
+                        <li
+                           {% if action.description %}
+                             title="{{ action.name }}"
+                             data-content="{{ action.description }}"
+                             class="has_popover"
+                           {% endif %}
+                           >
+                          <a href="{{ action.url }}"
+                             class="{{ action.klass }}">
+                            {% if action.icon %}
+                              <i class="{{ action.icon }} icon-white"></i>
+                            {% endif %}
+                            {{ action.name }}
+                          </a>
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  {% endif %}
+
+                {% endblock site-actions %}
+              </div>
+            </div>
+
+            <div id="breadcrumb-row"
+                 class="navbar">
+              <div id="breadcrumbs">
+                {% block breadcrumbs %}
+
+                  {% if view.breadcrumbs %}
+                    <ul>
+                      {% for action in view.breadcrumbs %}
+                        <li
+                           {% if action.description %}
+                             title="{{ action.name }}"
+                             data-content="{{ action.description }}"
+                             class="has_popover"
+                           {% endif %}
+                           >
+                          <a href="{{ action.url }}"
+                             class="{{ action.klass }}">
+                            {% if action.icon %}
+                              <i class="{{ action.icon }}"></i>
+                            {% endif %}
+                            {{ action.name }}
+                          </a>
+                          {% if not forloop.last %}
+                            &rarr;
                           {% endif %}
-                          {{ action.name }}
-                        </a>
-                      </li>
-                    {% endfor %}
-                  </ul>
-                {% endif %}
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  {% endif %}
 
-              {% endblock site-actions %}
+                {% endblock breadcrumbs %}
+              </div>
+              <div id="content-actions">
+                {% block content-actions %}
+
+                  {% if view.content_actions %}
+                    <ul class="nav">
+                      {% for action in view.content_actions %}
+                        <li
+                           {% if action.description %}
+                             title="{{ action.name }}"
+                             data-content="{{ action.description }}"
+                             class="has_popover"
+                           {% endif %}
+                           >
+                          <a href="{{ action.url }}"
+                             class="{{ action.klass }}">
+                            {% if action.icon %}
+                              <i class="{{ action.icon }}"></i>
+                            {% endif %}
+                            {{ action.name }}
+                          </a>
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  {% endif %}
+
+                {% endblock content-actions %}
+              </div>
+            </div>
+
+          </header>
+        {% endblock header %}
+
+        {% block main-area %}
+          <div id="sidebar">
+            <div class="sidebar-inner">
+              {% block sidebar %}
+              {% endblock sidebar %}
             </div>
           </div>
 
-          <div id="breadcrumb-row"
-               class="navbar">
-            <div id="breadcrumbs">
-              {% block breadcrumbs %}
-
-                {% if view.breadcrumbs %}
-                  <ul>
-                    {% for action in view.breadcrumbs %}
-                      <li
-                         {% if action.description %}
-                           title="{{ action.name }}"
-                           data-content="{{ action.description }}"
-                           class="has_popover"
-                         {% endif %}
-                         >
-                        <a href="{{ action.url }}"
-                           class="{{ action.klass }}">
-                          {% if action.icon %}
-                            <i class="{{ action.icon }}"></i>
-                          {% endif %}
-                          {{ action.name }}
-                        </a>
-                        {% if not forloop.last %}
-                          &rarr;
-                        {% endif %}
-                      </li>
-                    {% endfor %}
-                  </ul>
-                {% endif %}
-
-              {% endblock breadcrumbs %}
-            </div>
-            <div id="content-actions">
-              {% block content-actions %}
-
-                {% if view.content_actions %}
-                  <ul class="nav">
-                    {% for action in view.content_actions %}
-                      <li
-                         {% if action.description %}
-                           title="{{ action.name }}"
-                           data-content="{{ action.description }}"
-                           class="has_popover"
-                         {% endif %}
-                         >
-                        <a href="{{ action.url }}"
-                           class="{{ action.klass }}">
-                          {% if action.icon %}
-                            <i class="{{ action.icon }}"></i>
-                          {% endif %}
-                          {{ action.name }}
-                        </a>
-                      </li>
-                    {% endfor %}
-                  </ul>
-                {% endif %}
-
-              {% endblock content-actions %}
+          <div id="secondary-sidebar">
+            <div class="sidebar-inner">
+              {% block secondary-sidebar %}
+              {% endblock secondary-sidebar %}
             </div>
           </div>
 
-        </header>
-      {% endblock header %}
-
-      {% block main-area %}
-        <div id="sidebar">
-          <div class="sidebar-inner">
-            {% block sidebar %}
-            {% endblock sidebar %}
+          <div id="content">
+            {% block content %}
+            {% endblock content %}
           </div>
-        </div>
 
-        <div id="secondary-sidebar">
-          <div class="sidebar-inner">
-            {% block secondary-sidebar %}
-            {% endblock secondary-sidebar %}
-          </div>
-        </div>
+          <div id="footer">
+            <div id="sidebar-actions">
+              {% block sidebar-actions %}
 
-        <div id="content">
-          {% block content %}
-          {% endblock content %}
-        </div>
-
-        <div id="footer">
-          <div id="sidebar-actions">
-            {% block sidebar-actions %}
-
-              {% if view.sidebar_actions %}
-                <div class="btn-toolbar">
-                  <div class="btn-group">
-
-                    {% for action in view.sidebar_actions %}
-                      <button type="button"
-                        {% if action.description %}
-                          title="{{ action.name }}"
-                          data-content="{{ action.description }}"
-                          class="has_popover btn {{ action.klass }}"
-                        {% else %}
-                          class="btn {{ action.klass }}"
-                        {% endif %}
-                        >
-                        {% if action.icon %}
-                          <i class="{{ action.icon }}"></i>
-                        {% endif %}
-                        {{ action.name }}
-                      </button>
-                    {% endfor %}
-
-                  </div>
-                </div>
-              {% endif %}
-
-            {% endblock sidebar-actions %}
-          </div>
-          <div id="orthogonal-actions">
-            {% block orthogonal-actions %}
-
-              {% if view.orthogonal_action_groups %}
-                <div class="btn-toolbar">
-                  {% for group in view.orthogonal_action_groups %}
+                {% if view.sidebar_actions %}
+                  <div class="btn-toolbar">
                     <div class="btn-group">
 
-                      {% for action in group %}
+                      {% for action in view.sidebar_actions %}
                         <button type="button"
                           {% if action.description %}
                             title="{{ action.name }}"
@@ -248,75 +218,107 @@
                           {{ action.name }}
                         </button>
                       {% endfor %}
-                    {% endfor %}
-                  {% endif %}
 
+                    </div>
+                  </div>
+                {% endif %}
+
+              {% endblock sidebar-actions %}
+            </div>
+            <div id="orthogonal-actions">
+              {% block orthogonal-actions %}
+
+                {% if view.orthogonal_action_groups %}
+                  <div class="btn-toolbar">
+                    {% for group in view.orthogonal_action_groups %}
+                      <div class="btn-group">
+
+                        {% for action in group %}
+                          <button type="button"
+                            {% if action.description %}
+                              title="{{ action.name }}"
+                              data-content="{{ action.description }}"
+                              class="has_popover btn {{ action.klass }}"
+                            {% else %}
+                              class="btn {{ action.klass }}"
+                            {% endif %}
+                            >
+                            {% if action.icon %}
+                              <i class="{{ action.icon }}"></i>
+                            {% endif %}
+                            {{ action.name }}
+                          </button>
+                        {% endfor %}
+                      {% endfor %}
+                    {% endif %}
+
+                  </div>
                 </div>
-              </div>
 
-            {% endblock orthogonal-actions %}
+              {% endblock orthogonal-actions %}
+            </div>
           </div>
-        </div>
-      {% endblock main-area %}
+        {% endblock main-area %}
 
-    {% endblock page %}
+      {% endblock page %}
 
-     {# Ajax calls need a CSRF token cookie, and this line sends one as a side effect #}
-     <!-- {{ csrf_token }} -->
+       {# Ajax calls need a CSRF token cookie, and this line sends one as a side effect #}
+       <!-- {{ csrf_token }} -->
 
-     {# Minimized jquery and bootstrap scripts. Minimizing with #}
-     {# django-compressor failed. #}
-     <script type="text/javascript"
-             src="{{ STATIC_URL }}jquery/jquery.min.js"></script>
-     <script type="text/javascript"
-             src="{{ STATIC_URL }}bootstrap/bootstrap.min.js"></script>
+       {# Minimized jquery and bootstrap scripts. Minimizing with #}
+       {# django-compressor failed. #}
+       <script type="text/javascript"
+               src="{{ STATIC_URL }}jquery/jquery.min.js"></script>
+       <script type="text/javascript"
+               src="{{ STATIC_URL }}bootstrap/bootstrap.min.js"></script>
 
-    {% compress js %}
-      {% block javascript %}
-        {# Jquery, jqueryui jquerytools and jstree #}
-        <!--
-        <script type="text/javascript"
-                src="{{ STATIC_URL }}jqueryui/jqueryui.min.js"></script>
-        <script type="text/javascript"
-                src="{{ STATIC_URL }}jqueryui/jquery.ui.datepicker-nl.js"></script>
-        <script type="text/javascript"
-                src="{{ STATIC_URL
-                }}jquery-treeview/jquery.treeview.js"></script>
-        <script type="text/javascript"
-                src="{{ STATIC_URL }}lizard_ui/lizard.js"></script>
-        -->
-        <script type="text/javascript"
-                src="{{ STATIC_URL }}lizard_ui/csrf.js"></script>
-        <script type="text/coffeescript"
-                src="{{ STATIC_URL }}lizard_ui/lizardui.coffee"></script>
-        <script type="text/javascript"
-                src="{{ STATIC_URL }}datatables/media/js/jquery.dataTables.min.js"></script>
-        <script type="text/javascript"
-                src="{{ STATIC_URL }}colorpicker/js/colorpicker.js"></script>
+      {% compress js %}
+        {% block javascript %}
+          {# Jquery, jqueryui jquerytools and jstree #}
+          <!--
+          <script type="text/javascript"
+                  src="{{ STATIC_URL }}jqueryui/jqueryui.min.js"></script>
+          <script type="text/javascript"
+                  src="{{ STATIC_URL }}jqueryui/jquery.ui.datepicker-nl.js"></script>
+          <script type="text/javascript"
+                  src="{{ STATIC_URL
+                  }}jquery-treeview/jquery.treeview.js"></script>
+          <script type="text/javascript"
+                  src="{{ STATIC_URL }}lizard_ui/lizard.js"></script>
+          -->
+          <script type="text/javascript"
+                  src="{{ STATIC_URL }}lizard_ui/csrf.js"></script>
+          <script type="text/coffeescript"
+                  src="{{ STATIC_URL }}lizard_ui/lizardui.coffee"></script>
+          <script type="text/javascript"
+                  src="{{ STATIC_URL }}datatables/media/js/jquery.dataTables.min.js"></script>
+          <script type="text/javascript"
+                  src="{{ STATIC_URL }}colorpicker/js/colorpicker.js"></script>
 
-      {% endblock javascript %}
-    {% endcompress %}
+        {% endblock javascript %}
+      {% endcompress %}
 
-    {% block map-javascript %}
-      {# For lizard-map's wms handling #}
-    {% endblock map-javascript %}
+      {% block map-javascript %}
+        {# For lizard-map's wms handling #}
+      {% endblock map-javascript %}
 
-    {% if google_tracking_code %}
-      <script type="text/javascript">
-        var _gaq = _gaq || [];
-        _gaq.push(['_setAccount', '{{ google_tracking_code }}']);
-        _gaq.push(['_trackPageview']);
-        (function() {
-          var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-          ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-          var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-        })();
-      </script>
-    {% endif %}
+      {% if google_tracking_code %}
+        <script type="text/javascript">
+          var _gaq = _gaq || [];
+          _gaq.push(['_setAccount', '{{ google_tracking_code }}']);
+          _gaq.push(['_trackPageview']);
+          (function() {
+            var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+            ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+            var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+          })();
+        </script>
+      {% endif %}
 
-    {% block bottom-extras %}
-      {# Your own totally-unmanaged per-template extra css/javascript/links #}
-    {% endblock bottom-extras %}
+      {% block bottom-extras %}
+        {# Your own totally-unmanaged per-template extra css/javascript/links #}
+      {% endblock bottom-extras %}
 
+    </div>
   </body>
 </html>
