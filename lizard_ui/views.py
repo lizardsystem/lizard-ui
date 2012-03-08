@@ -270,12 +270,17 @@ class ExampleBlockView(UiView):
     """Example view that shows which attributes go where."""
     template_name = 'lizard_ui/examples/example-blocks-view.html'
     page_title = 'view.page_title'
+    show_secondary_sidebar_title = 'Show 2nd'
     site_actions = [Action(name='view.site_actions')]
     breadcrumbs = [Action(name='view.breadcrumbs'), Action(name='tadaah')]
     content_actions = [Action(name='view.content_actions')]
-    sidebar_actions = [Action(name='view.sidebar_actions'),
-                       Action(name='Show 2nd',
-                              klass='secondary-sidebar-button')]
+
+    @property
+    def sidebar_actions(self):
+        actions = super(ExampleBlockView, self).sidebar_actions
+        actions[0].name = 'view.sidebar_actions'
+        return actions
+
     orthogonal_action_groups = [
         [Action(name='view.orthogonal_action_groups')]]
 

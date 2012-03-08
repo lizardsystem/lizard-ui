@@ -9,9 +9,13 @@ setUpPopovers = ->
 
 
 closeSidebar = ->
+    if window.secondarySidebarState is "opened"
+        # First close the secondary one.
+        hideSecondarySidebar()
     $('.icon-arrow-left')
         .removeClass('icon-arrow-left')
         .addClass('icon-arrow-right')
+    $('.secondary-sidebar-button').attr('disabled', '')
     $('div#sidebar').animate
         left: -300
         opacity: 0
@@ -35,6 +39,7 @@ openSidebar = ->
         left: 300
         ,animationSpeed
         , -> setUpMapDimensions()
+    $('.secondary-sidebar-button').removeAttr('disabled')
     @
 
 
