@@ -1,5 +1,6 @@
 animationSpeed = 300
 
+
 setUpPopovers = ->
     $(".has_popover").popover()
     $(".has_popover_north").popover
@@ -46,7 +47,7 @@ showSecondarySidebar = ->
     element.show()
     element.animate
         top: top
-        ,(animationSpeed * 2)
+        ,animationSpeed
     element.css('overflow-y', 'auto')
     @
 
@@ -57,7 +58,7 @@ hideSecondarySidebar = ->
     element.css("overflow-y", "hidden")
     $("#secondary-sidebar").animate
         top: bottom
-        ,(animationSpeed * 2)
+        ,animationSpeed
     $('.secondary-sidebar-button').button('toggle')
     @
 
@@ -67,6 +68,12 @@ setUpMapDimensions = ->
     contentWidth = $("div#content").width()
     $("#map").height contentHeight
     $("#map").width contentWidth
+    # And also adjust the secondary sidebar top.
+    if window.secondarySidebarState is "closed"
+        bottom = $("#footer").position().top
+        element = $("#secondary-sidebar")
+        element.css('top', bottom)
+        element.show()  # Initially it is invisible.
     @
 
 
