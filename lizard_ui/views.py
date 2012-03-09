@@ -119,7 +119,6 @@ class UiView(ViewContextMixin, TemplateView):
 
     """
     template_name = 'lizard_ui/lizardbase.html'
-    page_title = ''
     edit_link = None
     icon_url_name = 'lizard_ui.icons'
     # ^^^ So that we can subclass this view and still get proper urls.
@@ -134,8 +133,7 @@ class UiView(ViewContextMixin, TemplateView):
         ``UI_SITE_TITLE`` (which is 'lizard' by default).
 
         """
-        first_title_part = self.page_title or self.last_breadcrumb_title
-        return ' - '.join([first_title_part, uisettings.SITE_TITLE])
+        return ' - '.join([self.page_title, uisettings.SITE_TITLE])
 
     @property
     def site_actions(self):
@@ -205,7 +203,7 @@ class UiView(ViewContextMixin, TemplateView):
         return result
 
     @property
-    def last_breadcrumb_title(self):
+    def page_title(self):
         """Return name of latest breadcrumb for page title fallback."""
         if not len(self.breadcrumbs):
             return
