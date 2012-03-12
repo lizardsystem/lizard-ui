@@ -103,6 +103,17 @@
       block to get all the previously defined css, too.
     </dd>
 
+  <dl>
+    <dt>
+      ie-css
+    </dt>
+    <dd>
+      Block to add css specific to IE. The block is wrapped in an "IE less
+      than 9" condition. Be sure to use <code>{% templatetag openvariable %}
+      block.super {% templatetag closevariable %}</code> at the start of your
+      block to get all the previously defined css, too.
+    </dd>
+
     <dt>
       javascript-in-head
     </dt>

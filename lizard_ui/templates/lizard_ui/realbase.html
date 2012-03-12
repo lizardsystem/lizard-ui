@@ -48,9 +48,10 @@
         {# Our own css comes last #}
       {% endblock css %}
     {% endcompress %}
-    <!--[if IE]>
+    <!--[if lt IE 9]>
       {% compress css %}
-
+        {% block ie-css %}
+        {% endblock ie-css %}
       {% endcompress %}
     <![endif]-->
     <!-- HTML5 shim, for IE6-8 support of HTML elements. After the styles. -->
