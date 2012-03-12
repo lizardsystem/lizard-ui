@@ -56,7 +56,8 @@ if settings.DEBUG:  # Pragma: nocover
         '',
         url(r'^examples/$',
             lizard_ui.views.UiView.as_view(
-                template_name='lizard_ui/examples/lizard-ui-introduction.html')),
+                template_name='lizard_ui/examples/lizard-ui-introduction.html'
+                )),
         url(r'^examples/blocks_via_view/$',
             lizard_ui.views.ExampleBlockView.as_view()),
         )
