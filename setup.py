@@ -19,6 +19,7 @@ install_requires = [
     'django-sentry',
     'docutils',  # For the admin docs.
     'south',
+    'werkzeug',
     ],
 
 tests_require = [
