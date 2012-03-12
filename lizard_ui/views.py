@@ -1,14 +1,13 @@
 # (c) Nelen & Schuurmans.  GPL licensed, see LICENSE.txt
 from copy import copy
+import urlparse
 
-from django.contrib.auth import authenticate
 from django.contrib.auth import login
 from django.contrib.auth import logout
 from django.core.urlresolvers import reverse
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render
-from django.utils import simplejson as json
 from django.utils.translation import ugettext as _
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import FormView
@@ -48,28 +47,34 @@ class ViewContextMixin(object):
 class LoginView(ViewContextMixin, FormView):
     template_name = 'lizard_ui/login.html'
     form_class = LoginForm
+    default_redirect = '/'
 
-    def next(self):
+    def next_url(self):
         # Used to fill the hidden field in the LoginForm
-        return self.request.GET.get('next', None)
+        return self.request.GET.get('next', self.default_redirect)
+
+    def check_url(self, next_url=default_redirect):
+        """Check if the next url is valid."""
+
+        netloc = urlparse.urlparse(next_url)[1]
+        # Security check -- don't allow redirection to a different
+        # host.
+        if netloc and netloc != self.request.get_host():
+            return self.default_redirect
+
+        return next_url
 
     def post(self, request, *args, **kwargs):
         """Return json with 'success' and 'next' parameters."""
         form_class = self.get_form_class()
         form = self.get_form(form_class)
-        success = False
-        post = request.POST
-        next = post.get('next')
         if form.is_valid():
-            username = post['username']
-            password = post['password']
-            user = authenticate(username=username, password=password)
-            if user is not None:
-                if user.is_active:
-                    login(request, user)
-                    success = True
-        return HttpResponse(json.dumps({'success': success,
-                                        'next': next}))
+            login(self.request, form.get_user())
+            if request.session.test_cookie_worked():
+                request.session.delete_test_cookie()
+            next_url = form.cleaned_data['next_url']
+            redirect_to = self.check_url(next_url)
+            return HttpResponseRedirect(redirect_to)
 
 
 def simple_logout(request):

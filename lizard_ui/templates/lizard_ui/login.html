@@ -1,19 +1,31 @@
-{# Empty login page, where login box pops up. #}
 {% extends 'lizard_ui/lizardbase.html' %}
-{% load login %}
+{% load i18n %}
 
-{% block portal-actions %}
-{% display_login %}
+{% block content %}
+<div id="container">
+<form id="login-form" class="well"
+	  action="{% url lizard_ui.login %}" method="POST">
+  {% csrf_token %}
+  <div>
+    <label>{% trans "Name" %}</label>
+    <input type="text"
+           name="username"/>
+  </div>
+  <div>
+    <label>{% trans "Password" %}</label>
+    <input type="password"
+           name="password" />
+  </div>
+  <div>
+    <input id="login-button"
+           type="submit"
+           value="{% trans "Login" %}" />
+  </div>
+  <input id="login-form-next"
+         type="hidden"
+         name="next_url"
+         value="{{ view.next_url }}"/>
+</form>
+</div>
 {% endblock %}
 
-{# Reminder: if javascript is getting bigger than 1 line, #}
-{# move to separate js file #}
-
-{% block javascript %}
-{{ block.super }}
-<script type="text/javascript">
-    $(document).ready(function () {
-        $("#login-button").click();
-    });
-</script>
-{% endblock javascript %}
