@@ -151,17 +151,27 @@ class UiView(ViewContextMixin, TemplateView):
         """
         actions = copy(uisettings.SITE_ACTIONS)
         if uisettings.SHOW_LOGIN:
-            action = Action(icon='icon-user')
-            qs = urllib.urlencode({'next': self.request.path_info})
+            query_string = urllib.urlencode({'next': self.request.path_info})
             if self.request.user.is_authenticated():
-                action.url = '%s?%s' % (reverse('lizard_ui.logout'), qs)
+                # Name of the user. TODO: link to profile page.
+                # The action is just text-with-an-icon right now.
+                action = Action(icon='icon-user')
                 action.name = self.request.user
+                actions.append(action)
+                # Separate logout action.
+                action = Action()
+                action.url = '%s?%s' % (reverse('lizard_ui.logout'),
+                                        query_string)
+                action.name = _('logout')
                 action.klass = 'ui-logout-link'
+                actions.append(action)
             else:
-                action.url = '%s?%s' % (reverse('lizard_ui.login'), qs)
+                action = Action(icon='icon-user')
+                action.url = '%s?%s' % (reverse('lizard_ui.login'),
+                                        query_string)
                 action.name = _('Login')
                 action.klass = 'ui-login-link'
-            actions.append(action)
+                actions.append(action)
         return actions
 
     def _best_matching_application_icon(self):
