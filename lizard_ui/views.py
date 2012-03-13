@@ -89,6 +89,7 @@ class LoginView(ViewContextMixin, FormView, ViewNextURLMixin):
             next_url = form.cleaned_data['next_url']
             redirect_to = self.check_url(next_url)
             return HttpResponseRedirect(redirect_to)
+        return self.form_invalid(form)
 
 
 class LogoutView(View, ViewNextURLMixin):
