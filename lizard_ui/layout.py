@@ -20,7 +20,7 @@ class Action(object):
       tie custom javascript handling to the link.
 
     """
-    def __init__(self, name=None, icon=None, url='', description=None,
+    def __init__(self, name=None, icon=None, url='#', description=None,
                  klass=None):
         self.name = name
         self.icon = icon

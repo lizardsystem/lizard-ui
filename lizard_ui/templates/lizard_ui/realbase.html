@@ -121,15 +121,16 @@
                   {% if view.breadcrumbs %}
                     <ul>
                       {% for action in view.breadcrumbs %}
-                        <li
-                           {% if action.description %}
-                             title="{{ action.name }}"
-                             data-content="{{ action.description }}"
-                             class="has_popover"
-                           {% endif %}
-                           >
+                        <li {% if action.description %}
+                              title="{{ action.name }}"
+                              data-content="{{ action.description }}"
+                              class="has_popover"
+                            {% endif %}>
                           <a href="{{ action.url }}"
-                             class="{{ action.klass }}">
+                            {% if action.klass %}
+                              class="{{ action.klass }}"
+                            {% endif %}
+                             >
                             {% if action.icon %}
                               <i class="{{ action.icon }}"></i>
                             {% endif %}
