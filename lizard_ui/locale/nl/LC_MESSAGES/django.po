@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-10-25 08:07-0500\n"
+"POT-Creation-Date: 2012-03-13 06:22-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,45 +18,74 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
-#: forms.py:8
+#: forms.py:10
 msgid "Username"
 msgstr "Naam"
 
-#: forms.py:12 templates/lizard_ui/tag_login.html:25
+#: forms.py:14 templates/lizard_ui/login.html:15
+#: templates/lizard_ui/tag_login.html:25
 msgid "Password"
 msgstr "Wachtwoord"
 
-#: models.py:12 models.py:43
+#: models.py:14 models.py:81
 msgid "name"
 msgstr "naam"
 
-#: models.py:14 models.py:45
+#: models.py:16 models.py:83
 msgid "description"
 msgstr "omschrijving"
 
-#: models.py:44
+#: models.py:82
 msgid "icon"
 msgstr "icoon"
 
-#: models.py:48
+#: models.py:84
 msgid "url"
 msgstr "url"
 
-#: models.py:52
+#: models.py:88
+msgid "Application screen we're a part of"
+msgstr "Applicatiescherm waar we in zitten"
+
+#: models.py:92
+msgid "Application screen we point at (this disables the url)"
+msgstr ""
+"Applicatiescherm waar we naar verwijzen (het URL veld wordt dan niet "
+"gebruikt)"
+
+#: models.py:97
 msgid "index"
 msgstr "index"
 
-#: models.py:54
+#: models.py:99
 msgid "Number used for ordering icons relative to each other."
 msgstr "Nummer om iconen relatief t.o.v. elkaar te op volgorde te zetten."
 
-#: templates/lizard_ui/realbase.html:131
+#: views.py:190
+msgid "logout"
+msgstr "Log uit"
+
+#: views.py:197 templates/lizard_ui/login.html:22
+#: templates/lizard_ui/tag_login.html:10 templates/lizard_ui/tag_login.html:12
+#: templates/lizard_ui/tag_login.html:40
+msgid "Login"
+msgstr "Log in"
+
+#: views.py:262
+msgid "edit"
+msgstr "bewerken"
+
+#: views.py:292
+msgid "Collapse"
+msgstr "Inklappen"
+
+#: templates/lizard_ui/cmsbase.html:11 templates/lizard_ui/realbase.html:82
 msgid "Back to homepage"
 msgstr "Naar de voorpagina"
 
-#: templates/lizard_ui/realbase.html:150
-msgid "back"
-msgstr "Terug"
+#: templates/lizard_ui/login.html:10 templates/lizard_ui/tag_login.html:19
+msgid "Name"
+msgstr "Naam"
 
 #: templates/lizard_ui/tag_login.html:3
 #, python-format
@@ -66,15 +95,6 @@ msgstr "Ingelogd als %(usr)s."
 #: templates/lizard_ui/tag_login.html:6
 msgid "Logout"
 msgstr "Log uit"
-
-#: templates/lizard_ui/tag_login.html:10 templates/lizard_ui/tag_login.html:12
-#: templates/lizard_ui/tag_login.html:40
-msgid "Login"
-msgstr "Log in"
-
-#: templates/lizard_ui/tag_login.html:19
-msgid "Name"
-msgstr "Naam"
 
 #: templates/lizard_ui/tag_login.html:46
 msgid "Error"
