@@ -10,7 +10,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render
 from django.utils.translation import ugettext as _
-from django.views.generic.base import TemplateView
+from django.views.generic.base import TemplateView, View
 from django.views.generic.edit import FormView
 
 from lizard_ui.forms import LoginForm
@@ -45,17 +45,23 @@ class ViewContextMixin(object):
         return context
 
 
-class LoginView(ViewContextMixin, FormView):
-    template_name = 'lizard_ui/login.html'
-    form_class = LoginForm
+class ViewNextURLMixin(object):
+    """View mixin that adds next url redirect parsing.
+
+    This can be used for login or logout functionality.
+    """
+
     default_redirect = '/'
 
     def next_url(self):
         # Used to fill the hidden field in the LoginForm
         return self.request.GET.get('next', self.default_redirect)
 
-    def check_url(self, next_url=default_redirect):
+    def check_url(self, next_url=None):
         """Check if the next url is valid."""
+
+        if next_url is None:
+            next_url = self.default_redirect
 
         netloc = urlparse.urlparse(next_url)[1]
         # Security check -- don't allow redirection to a different
@@ -64,6 +70,12 @@ class LoginView(ViewContextMixin, FormView):
             return self.default_redirect
 
         return next_url
+
+
+class LoginView(ViewContextMixin, FormView, ViewNextURLMixin):
+    template_name = 'lizard_ui/login.html'
+    form_class = LoginForm
+    default_redirect = '/'
 
     def post(self, request, *args, **kwargs):
         """Return json with 'success' and 'next' parameters."""
@@ -78,13 +90,22 @@ class LoginView(ViewContextMixin, FormView):
             return HttpResponseRedirect(redirect_to)
 
 
-def simple_logout(request):
+class LogoutView(View, ViewNextURLMixin):
     """
     The simplest logout script possible, call this from a javascript using GET
     or POST.
     """
-    logout(request)
-    return HttpResponse("")
+
+    def get(self, request, *args, **kwargs):
+        if request.is_ajax():
+            logout(request)
+            return HttpResponse("")
+
+        redirect_to = self.check_url(self.next_url())
+        return HttpResponseRedirect(redirect_to)
+
+    def post(self, *args, **kwargs):
+        return self.get(*args, **kwargs)
 
 
 def example_breadcrumbs(request,
