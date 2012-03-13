@@ -73,12 +73,13 @@ class ViewNextURLMixin(object):
 
 
 class LoginView(ViewContextMixin, FormView, ViewNextURLMixin):
+    """Logs the user in."""
+
     template_name = 'lizard_ui/login.html'
     form_class = LoginForm
     default_redirect = '/'
 
     def post(self, request, *args, **kwargs):
-        """Return json with 'success' and 'next' parameters."""
         form_class = self.get_form_class()
         form = self.get_form(form_class)
         if form.is_valid():
@@ -92,13 +93,16 @@ class LoginView(ViewContextMixin, FormView, ViewNextURLMixin):
 
 class LogoutView(View, ViewNextURLMixin):
     """
-    The simplest logout script possible, call this from a javascript using GET
-    or POST.
+    Logout for ajax and regualar GET/POSTS.
+
+    This View does a logout for the user,
+    redirects to the next url when it's given.
+    When the request is done via Ajax an empty response is returned.
     """
 
     def get(self, request, *args, **kwargs):
+        logout(request)
         if request.is_ajax():
-            logout(request)
             return HttpResponse("")
 
         redirect_to = self.check_url(self.next_url())
