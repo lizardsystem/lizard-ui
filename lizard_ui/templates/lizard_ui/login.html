@@ -2,20 +2,34 @@
 {% load i18n %}
 
 {% block content %}
-<div id="container">
+
+
 <form id="login-form" class="well"
 	  action="{% url lizard_ui.login %}" method="POST">
   {% csrf_token %}
   <div>
     <label>{% trans "Name" %}</label>
     <input type="text"
-           name="username"/>
+           name="username"
+		   {% if form.username.value %}
+  		     value="{{ form.username.value }}"
+		   {% endif %}
+		   />
+
   </div>
   <div>
     <label>{% trans "Password" %}</label>
     <input type="password"
            name="password" />
   </div>
+  {% if form.non_field_errors %}
+    <div class="alert alert-error">
+  	  {% for error in form.non_field_errors %}
+	    <p>{{ error }}</p>
+      {% endfor %}
+    </div>
+  {% endif %}
+
   <div>
     <input id="login-button"
            type="submit"
@@ -25,7 +39,7 @@
          type="hidden"
          name="next_url"
          value="{{ view.next_url }}"/>
+
 </form>
-</div>
 {% endblock %}
 

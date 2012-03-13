@@ -10,7 +10,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render
 from django.utils.translation import ugettext as _
-from django.views.generic.base import TemplateView
+from django.views.generic.base import TemplateView, View
 from django.views.generic.edit import FormView
 
 from lizard_ui.forms import LoginForm
@@ -45,17 +45,23 @@ class ViewContextMixin(object):
         return context
 
 
-class LoginView(ViewContextMixin, FormView):
-    template_name = 'lizard_ui/login.html'
-    form_class = LoginForm
+class ViewNextURLMixin(object):
+    """View mixin that adds next url redirect parsing.
+
+    This can be used for login or logout functionality.
+    """
+
     default_redirect = '/'
 
     def next_url(self):
         # Used to fill the hidden field in the LoginForm
         return self.request.GET.get('next', self.default_redirect)
 
-    def check_url(self, next_url=default_redirect):
+    def check_url(self, next_url=None):
         """Check if the next url is valid."""
+
+        if next_url is None:
+            next_url = self.default_redirect
 
         netloc = urlparse.urlparse(next_url)[1]
         # Security check -- don't allow redirection to a different
@@ -65,8 +71,15 @@ class LoginView(ViewContextMixin, FormView):
 
         return next_url
 
+
+class LoginView(ViewContextMixin, FormView, ViewNextURLMixin):
+    """Logs the user in."""
+
+    template_name = 'lizard_ui/login.html'
+    form_class = LoginForm
+    default_redirect = '/'
+
     def post(self, request, *args, **kwargs):
-        """Return json with 'success' and 'next' parameters."""
         form_class = self.get_form_class()
         form = self.get_form(form_class)
         if form.is_valid():
@@ -76,15 +89,28 @@ class LoginView(ViewContextMixin, FormView):
             next_url = form.cleaned_data['next_url']
             redirect_to = self.check_url(next_url)
             return HttpResponseRedirect(redirect_to)
+        return self.form_invalid(form)
 
 
-def simple_logout(request):
+class LogoutView(View, ViewNextURLMixin):
     """
-    The simplest logout script possible, call this from a javascript using GET
-    or POST.
+    Logout for ajax and regualar GET/POSTS.
+
+    This View does a logout for the user,
+    redirects to the next url when it's given.
+    When the request is done via Ajax an empty response is returned.
     """
-    logout(request)
-    return HttpResponse("")
+
+    def get(self, request, *args, **kwargs):
+        logout(request)
+        if request.is_ajax():
+            return HttpResponse("")
+
+        redirect_to = self.check_url(self.next_url())
+        return HttpResponseRedirect(redirect_to)
+
+    def post(self, *args, **kwargs):
+        return self.get(*args, **kwargs)
 
 
 def example_breadcrumbs(request,
@@ -151,17 +177,27 @@ class UiView(ViewContextMixin, TemplateView):
         """
         actions = copy(uisettings.SITE_ACTIONS)
         if uisettings.SHOW_LOGIN:
-            action = Action(icon='icon-user')
-            qs = urllib.urlencode({'next': self.request.path_info})
+            query_string = urllib.urlencode({'next': self.request.path_info})
             if self.request.user.is_authenticated():
-                action.url = '%s?%s' % (reverse('lizard_ui.logout'), qs)
+                # Name of the user. TODO: link to profile page.
+                # The action is just text-with-an-icon right now.
+                action = Action(icon='icon-user')
                 action.name = self.request.user
+                actions.append(action)
+                # Separate logout action.
+                action = Action()
+                action.url = '%s?%s' % (reverse('lizard_ui.logout'),
+                                        query_string)
+                action.name = _('logout')
                 action.klass = 'ui-logout-link'
+                actions.append(action)
             else:
-                action.url = '%s?%s' % (reverse('lizard_ui.login'), qs)
+                action = Action(icon='icon-user')
+                action.url = '%s?%s' % (reverse('lizard_ui.login'),
+                                        query_string)
                 action.name = _('Login')
                 action.klass = 'ui-login-link'
-            actions.append(action)
+                actions.append(action)
         return actions
 
     def _best_matching_application_icon(self):
