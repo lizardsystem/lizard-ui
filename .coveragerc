@@ -4,6 +4,7 @@ omit =
     */test*
     /Library/*
     /Users/*/.buildout/eggs/*
+    /Users/*/Dotfiles/buildout/eggs/*
     /home/*/.buildout/eggs/*
     /usr/*
     /var/lib/hudson/.buildout/*
