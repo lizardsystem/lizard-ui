@@ -1,6 +1,7 @@
 # (c) Nelen & Schuurmans.  GPL licensed, see LICENSE.txt
 from copy import copy
 import urlparse
+import urllib
 
 from django.contrib.auth import login
 from django.contrib.auth import logout
@@ -151,12 +152,13 @@ class UiView(ViewContextMixin, TemplateView):
         actions = copy(uisettings.SITE_ACTIONS)
         if uisettings.SHOW_LOGIN:
             action = Action(icon='icon-user')
+            qs = urllib.urlencode({'next': self.request.path_info})
             if self.request.user.is_authenticated():
-                action.url = reverse('lizard_ui.logout')
+                action.url = '%s?%s' % (reverse('lizard_ui.logout'), qs)
                 action.name = self.request.user
                 action.klass = 'ui-logout-link'
             else:
-                action.url = reverse('lizard_ui.login')
+                action.url = '%s?%s' % (reverse('lizard_ui.login'), qs)
                 action.name = _('Login')
                 action.klass = 'ui-login-link'
             actions.append(action)
