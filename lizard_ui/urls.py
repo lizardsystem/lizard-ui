@@ -37,7 +37,7 @@ urlpatterns = patterns(
         lizard_ui.views.LoginView.as_view(),
         name='lizard_ui.login'),
     url(r'^accounts/logout/$',
-        'lizard_ui.views.simple_logout',
+        lizard_ui.views.LogoutView.as_view(),
         name='lizard_ui.logout'),
     url(r'^screen/(?P<slug>.*)/$',
         lizard_ui.views.IconView.as_view(),
