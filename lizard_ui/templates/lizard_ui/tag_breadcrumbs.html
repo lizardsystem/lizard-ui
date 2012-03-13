@@ -1,8 +1,0 @@
-{# template for breadcrumbs #}
-{% for crumb in crumbs %}
-  {% if crumb.url %}
-    <a href="{{ crumb.url }}"{% if crumb.title%} title="{{ crumb.title }}"{% endif %}{% if crumb.classes %} class="{{ crumb.classes|join:" " }}"{% endif %}>
-  {% endif %}
-{{ crumb.name }}{% if crumb.url %}</a>{% endif %}
-{% if not forloop.last %}&rarr;{% endif %}
-{% endfor %}
