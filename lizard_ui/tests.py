@@ -66,19 +66,14 @@ class TestLoginLogoutIntegration(TestCase):
         response = self.client.post(reverse('lizard_ui.login'),
                                     {'username': 'atilla',
                                      'password': 'horses'})
-        # The response is always 200.
-        self.assertEquals(response.status_code, 200)
-        # But the value is the json dump of False.
-        self.assertEquals(json.loads(response.content),
-                          {u'success': True, u'next': None})
+        # The response is always a redirect to where we came from.
+        self.assertEquals(response.status_code, 302)
 
     def test_logout(self):
         self.client.login(username='atilla', password='horses')
         response = self.client.get(reverse('lizard_ui.logout'))
-        # The response is always 200.
-        self.assertEquals(response.status_code, 200)
-        # And empty.
-        self.assertEquals(response.content, '')
+        # The response redirects us to where we came from.
+        self.assertEquals(response.status_code, 302)
 
 
 class TestUtility(TestCase):
