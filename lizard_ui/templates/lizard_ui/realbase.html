@@ -377,8 +377,8 @@
 		                  if (data.success == true){
 		                      $('#login-modal').modal('hide');
     		              } else {
-	    	                  $('#login-error').html(data.error_message).show();
-
+	    	                  $('#login-error').html(
+		                          data.error_message).show();
 		              }
                      }
 		          });
