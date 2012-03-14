@@ -10,8 +10,10 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render
 from django.utils.translation import ugettext as _
+from django.utils import simplejson as json
 from django.views.generic.base import TemplateView, View
 from django.views.generic.edit import FormView
+
 
 from lizard_ui.forms import LoginForm
 from lizard_ui.layout import Action
@@ -86,9 +88,19 @@ class LoginView(ViewContextMixin, FormView, ViewNextURLMixin):
             login(self.request, form.get_user())
             if request.session.test_cookie_worked():
                 request.session.delete_test_cookie()
+            if request.is_ajax():
+                return HttpResponse(json.dumps({'success': True}),
+                                    mimetype='application/json')
+
             next_url = form.cleaned_data['next_url']
             redirect_to = self.check_url(next_url)
             return HttpResponseRedirect(redirect_to)
+
+        if request.is_ajax():
+            errors = ' '.join(form.non_field_errors())
+            return HttpResponse(json.dumps({'success': False,
+                                            'error_message': errors}),
+                                mimetype='application/json')
         return self.form_invalid(form)
 
 
