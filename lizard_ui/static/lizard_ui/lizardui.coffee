@@ -81,6 +81,24 @@ setUpMapDimensions = ->
         element.show()  # Initially it is invisible.
     @
 
+handleLogin = ->
+    username = $('input[name=username]').val()
+    password = $('input[name=password]').val()
+    url = $('input[name=login-url]').val()
+
+    $.ajax(
+        url: url
+        type: "POST"
+        data:
+            username: username
+            password: password
+        success: (data) ->
+            if data.success
+                window.location.reload()
+            else
+                $('#login-error').html(data.error_message).show()
+    )
+
 
 $(document).ready ->
     window.sidebarState = "opened"
@@ -107,6 +125,12 @@ $(document).ready ->
             openSidebar()
             window.sidebarState = "opened"
 
+    $('.ui-login-link').click (e) ->
+        e.preventDefault()
+        $('#login-modal').modal('toggle');
+
+    $('#modal-login-form').click ->
+        handleLogin()
     @
 
 

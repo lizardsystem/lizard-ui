@@ -71,38 +71,7 @@
   </head>
   <body>
 	{% block modal %}
-	  <div class="modal hide" id="login-modal">
-		<div class="modal-header">
-		  <a class="close" data-dismiss="modal">×</a>
-		  <h3>{% trans 'Login' %}</h3>
-		</div>
-		  <div class="modal-body">
-			<div id="login-error" class="alert alert-error">
-			</div>
-
-			<form id="ajax-login-form"
-				  action="{% url lizard_ui.login %}" method="POST">
-			  {% csrf_token %}
-			  <fieldset>
-				<label>{% trans "Name" %}</label>
-				<input type="text"
-					   name="username"
-					   {% if form.username.value %}
-  				       value="{{ form.username.value }}"
-					   {% endif %}
-					   />
-
-				<label>{% trans "Password" %}</label>
-				<input type="password"
-					   name="password" />
-				</fieldset>
-			</form>
-		  </div>
-		  <div class="modal-footer">
-			<a id="submit-login-form" href="#" class="btn btn-primary">
-			  {% trans 'Login' %}</a>
-		  </div>
-	  </div>
+	  {% include 'lizard_ui/modal_login.html' %}
 	{% endblock %}
     <div id="page">
       {% block page %}
@@ -356,35 +325,6 @@
       {% block bottom-extras %}
         {# Your own totally-unmanaged per-template extra css/javascript/links #}
       {% endblock bottom-extras %}
-
-		<script type="text/javascript">
-		  $(document).ready(function() {
- 		      $('#login-error').hide();
-		      $('.ui-login-link').click(function() {
- 		        $('#login-modal').modal('toggle');
-    		    return false;
-	    	  });
-    		  $('#submit-login-form').click(function() {
-	    	      var username = $('input[name=username]').val();
-		          var password = $('input[name=password]').val();
-
-		          $.ajax({
-		              url: "{% url lizard_ui.login %}",
-        	          type: "POST"    ,
-        	          data: {'username': username,
-		                     'password': password},
-		              success: function(data) {
-		                  if (data.success == true){
-		                      $('#login-modal').modal('hide');
-    		              } else {
-	    	                  $('#login-error').html(
-		                          data.error_message).show();
-		              }
-                     }
-		          });
-    		  });
-		  });
-		</script>
 
     </div>
   </body>
