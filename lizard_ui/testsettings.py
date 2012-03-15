@@ -16,6 +16,7 @@ INSTALLED_APPS = [
     'compressor',
     'staticfiles',
     'sentry.client',
+    'lizard_security',
     'django_extensions',
     'django_nose',
     'django.contrib.admin',
@@ -25,6 +26,20 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     ]
 ROOT_URLCONF = 'lizard_ui.urls'
+
+MIDDLEWARE_CLASSES = (
+    'django.middleware.common.CommonMiddleware',
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'django.contrib.messages.middleware.MessageMiddleware',
+    'lizard_security.middleware.SecurityMiddleware',
+    'tls.TLSRequestMiddleware',
+    )
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    'lizard_security.backends.LizardPermissionBackend',)
 
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 

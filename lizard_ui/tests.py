@@ -1,14 +1,14 @@
 import datetime
 
 from django.contrib.auth.models import User
+from django.core.urlresolvers import reverse
 from django.test import TestCase
 from django.test.client import RequestFactory
 from django.utils import simplejson as json
 
+# from lizard_ui.models import ApplicationScreen
 from lizard_ui.configchecker import checker
 from lizard_ui.middleware import TracebackLoggingMiddleware
-from lizard_ui.models import ApplicationScreen
-from lizard_ui.templatetags.utility import application_icons
 from lizard_ui.templatetags.utility import dutch_timedelta
 from lizard_ui.templatetags.utility import euro
 from lizard_ui.templatetags.utility import short_timedelta
@@ -46,40 +46,34 @@ class TestLoginLogoutIntegration(TestCase):
                                  password='horses')
 
     def test_smoke(self):
-        # No parameters: return code 200.
-        # Login page must have "login-button".
-        response = self.client.get('/accounts/login/', {})
+        """Login page must just display a proper html form."""
+        response = self.client.get(reverse('lizard_ui.login'), {})
         self.assertEquals(response.status_code, 200)
-        self.assertTrue("#login-button" in response.content)
-        # ^^^ That's inside the inline javascript, btw.
+        self.assertTrue("form" in response.content)
+        self.assertTrue('name="password"' in response.content)
 
-    def test_invalid_user(self):
-        response = self.client.post('/accounts/login/',
-                                    {'username': 'rianne',
-                                     'password': 'pony'})
-        # The response is always 200.
-        self.assertEquals(response.status_code, 200)
-        # But the value is the json dump of False.
-        self.assertEquals(json.loads(response.content),
-                          {u'success': False, u'next': None})
+    # def test_invalid_user(self):
+    #     response = self.client.post(reverse('lizard_ui.login'),
+    #                                 {'username': 'rianne',
+    #                                  'password': 'pony'})
+    #     # The response is always 200.
+    #     self.assertEquals(response.status_code, 200)
+    #     # But the value is the json dump of False.
+    #     self.assertEquals(json.loads(response.content),
+    #                       {u'success': False, u'next': None})
 
     def test_valid_user(self):
-        response = self.client.post('/accounts/login/',
+        response = self.client.post(reverse('lizard_ui.login'),
                                     {'username': 'atilla',
                                      'password': 'horses'})
-        # The response is always 200.
-        self.assertEquals(response.status_code, 200)
-        # But the value is the json dump of False.
-        self.assertEquals(json.loads(response.content),
-                          {u'success': True, u'next': None})
+        # The response is always a redirect to where we came from.
+        self.assertEquals(response.status_code, 302)
 
     def test_logout(self):
         self.client.login(username='atilla', password='horses')
-        response = self.client.get('/accounts/logout/')
-        # The response is always 200.
-        self.assertEquals(response.status_code, 200)
-        # And empty.
-        self.assertEquals(response.content, '')
+        response = self.client.get(reverse('lizard_ui.logout'))
+        # The response redirects us to where we came from.
+        self.assertEquals(response.status_code, 302)
 
 
 class TestUtility(TestCase):
@@ -124,52 +118,6 @@ class TestUtility(TestCase):
                 datetime.timedelta(seconds=36)))
         short_timedelta(None)  # Should not crash
 
-    def test_application_icons(self):
-        """
-        The application_icons template tag should never crash. It
-        should give a nice error if something goes wrong.
-        """
-        context = {'STATIC_URL': '/static_media/'}
-
-        # ApplicationScreen 'home' does not exist.
-        result = application_icons(context, 'home')
-        self.assertTrue('error' in result)
-
-        # Add a screen called 'home'.
-        appscreen = ApplicationScreen(name='Apps', slug='home')
-        appscreen.save()
-        appscreen.applicationicon_set.create(
-            name='Amplivibe',
-            icon='lizard_ui/app_icons/maatregelen.png',
-            url='http://amplivibe.com')
-
-        # Now the screen 'home' does exist.
-        result = application_icons(context, 'home')
-        self.assertTrue('application_screen' in result)
-
-        # Revert to 'home' if None is given.
-        result = application_icons(context, None)
-        self.assertTrue('application_screen' in result)
-
-    def test_application_icons2(self):
-        """
-        The application_icons template tag should never crash. Missing
-        STATIC_URL.
-        """
-        context = {}  # Should contain STATIC_URL, but you never know.
-
-        # Add a screen called 'home'.
-        appscreen = ApplicationScreen(name='Apps', slug='home')
-        appscreen.save()
-        appscreen.applicationicon_set.create(
-            name='Amplivibe',
-            icon='lizard_ui/app_icons/maatregelen.png',
-            url='http://amplivibe.com')
-
-        # Just ignore missing STATIC_URL
-        result = application_icons(context, 'home')
-        self.assertTrue('application_screen' in result)
-
 
 class TestTracebackLoggingMiddleware(TestCase):
 
@@ -188,15 +136,6 @@ class TestConfigChecker(TestCase):
     def test_smoke(self):
         """Just test that it doesn't crash and burn."""
         checker()
-
-
-class TestExampleBreadcrumbs(TestCase):
-
-    def test_smoke(self):
-        """Just test that it doesn't crash and burn."""
-        request = RequestFactory().get('/example/')
-        response = lizard_ui.views.example_breadcrumbs(request)
-        self.assertEquals(response.status_code, 200)
 
 
 class TestExampleApplicationScreen(TestCase):
