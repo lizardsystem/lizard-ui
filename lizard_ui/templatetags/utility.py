@@ -143,4 +143,5 @@ def application_icons(context, application_screen_slug):
         static_url = context['STATIC_URL']
 
     return {'application_screen': application_screens[0],
+            'user': context['view'].request.user,
             'STATIC_URL': static_url}
