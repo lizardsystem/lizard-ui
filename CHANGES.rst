@@ -5,7 +5,9 @@ Changelog of lizard-ui
 3.13 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Added user to the context of the template that renders application
+  icons, so that it is possible to make them depend on the currently
+  logged in user.
 
 
 3.12 (2012-02-16)

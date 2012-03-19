@@ -2,6 +2,7 @@
 
 from django import template
 from django.utils.safestring import mark_safe
+from django.contrib.auth.models import AnonymousUser
 
 from lizard_ui.models import ApplicationScreen
 
@@ -138,10 +139,20 @@ def application_icons(context, application_screen_slug):
                           'Create it or choose another screen.')
                 % application_screen_slug}
 
-    static_url = ''
     if 'STATIC_URL' in context:
         static_url = context['STATIC_URL']
+    else:
+        static_url = ''
+
+    # Add currently logged in user to the context so that the displayed icons
+    # may depend on the user. At the time of writing this, lizard-ui itself doesn't
+    # do that, but at least one site (HDSR) overrides the template to hide an
+    # icon from some users.
+    if 'view' in context:
+        user = context['view'].request.user
+    else:
+        user = AnonymousUser()
 
     return {'application_screen': application_screens[0],
-            'user': context['view'].request.user,
+            'user': user,
             'STATIC_URL': static_url}
