@@ -75,7 +75,7 @@ class ViewNextURLMixin(object):
 
 
 class LoginView(ViewContextMixin, FormView, ViewNextURLMixin):
-    """Logs the user in."""
+    """Logs in the user."""
 
     template_name = 'lizard_ui/login.html'
     form_class = LoginForm
