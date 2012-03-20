@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-3.13 (unreleased)
+3.13 (2012-03-20)
 -----------------
 
 - Added user to the context of the template that renders application
