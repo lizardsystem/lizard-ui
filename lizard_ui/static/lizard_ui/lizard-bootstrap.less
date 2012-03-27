@@ -60,12 +60,19 @@
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
 }
+// And to make sure there are no scrollbars when we slide a sidebar out, the
+// page needs to have overflow hidden.
+#page,
+body {
+  overflow: hidden;
+}
 
 // Two variables to help with positioning. They include the 1px border.
 @belowTopBars: 2 * @barHeight + 1;
 @aboveFooter: @barHeight + 1;
-// And we need the sidebar's width, too, for positioning.
+// And we need the sidebar width, too, for positioning.
 @sidebarWidth: 300px;
+@rightbarWidth: 200px;
 
 // Top-most bar.
 #logo-row {
@@ -94,6 +101,7 @@
 // TODO: do we actually want the full sidebar to be scrollable?? Or just a
 // part of it?
 #sidebar,
+#rightbar,
 #secondary-sidebar {
   .fullCol;
   .scroll-y;
@@ -102,6 +110,11 @@
   width: @sidebarWidth;
   #gradient > .vertical(lighten(@light, 10%), #fff);
   border-right: 1px solid @lightBorderColor;
+}
+#rightbar {
+  width: @rightbarWidth;
+  right: -@rightbarWidth;
+  display: none;
 }
 
 // The secondary sidebar slides in from the bottom. We need to keep it from
@@ -134,9 +147,10 @@
   float: left;
 }
 
-// The actions in the two bars at the top are floated right.
+// The  following actions are floated right.
 #site-actions,
-#content-actions {
+#content-actions,
+#rightbar-actions {
   .block-in-bar;
   float: right;
 }
@@ -156,12 +170,18 @@
   width: @sidebarWidth - 2 * @baseFontSize;
 }
 
+// The rightbar actions need some space, too.
+#rightbar-actions {
+  width: @rightbarWidth - 2 * @baseFontSize;
+}
+
 
 // Lizard-specific stuff.
 
 // In the sidebar, the headers are smaller and have the middle background
 // color.
 #sidebar,
+#rightbar,
 #secondary-sidebar {
   //background-color: #fff;
   h2, h3 {

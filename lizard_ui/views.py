@@ -168,6 +168,7 @@ class UiView(ViewContextMixin, TemplateView):
     # ^^^ So that we can subclass this view and still get proper urls.
     show_secondary_sidebar_title = None
     show_secondary_sidebar_icon = None
+    show_rightbar_title = None
 
     @property
     def title(self):
@@ -311,6 +312,23 @@ class UiView(ViewContextMixin, TemplateView):
                 Action(name=self.show_secondary_sidebar_title,
                        icon=self.show_secondary_sidebar_icon,
                        klass='secondary-sidebar-button'))
+        return actions
+
+    @property
+    def rightbar_actions(self):
+        """Return rightbar actions.
+
+        By default, the only action is a open/collapse one if its title is
+        specified.
+
+        """
+        actions = []
+        if self.show_rightbar_title:
+            # Having a title means we want to show it.
+            actions.append(
+                Action(name=self.show_rightbar_title,
+                       icon='icon-arrow-left',
+                       klass='collapse-rightbar'))
         return actions
 
     @property

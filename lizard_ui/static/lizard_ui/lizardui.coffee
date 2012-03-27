@@ -12,7 +12,7 @@ closeSidebar = ->
     if window.secondarySidebarState is "opened"
         # First close the secondary one.
         hideSecondarySidebar()
-    $('.icon-arrow-left')
+    $('#sidebar-actions .icon-arrow-left')
         .removeClass('icon-arrow-left')
         .addClass('icon-arrow-right')
     $('.secondary-sidebar-button').attr('disabled', '')
@@ -28,7 +28,7 @@ closeSidebar = ->
 
 
 openSidebar = ->
-    $('.icon-arrow-right')
+    $('#sidebar-actions .icon-arrow-right')
         .removeClass('icon-arrow-right')
         .addClass('icon-arrow-left')
     $('div#sidebar').animate
@@ -40,6 +40,40 @@ openSidebar = ->
         ,animationSpeed
         , -> setUpMapDimensions()
     $('.secondary-sidebar-button').removeAttr('disabled')
+    @
+
+
+closeRightbar = ->
+    if window.secondaryRightbarState is "opened"
+        # First close the secondary one.
+        hideSecondaryRightbar()
+    $('#rightbar-actions .icon-arrow-right')
+        .removeClass('icon-arrow-right')
+        .addClass('icon-arrow-left')
+    $('div#rightbar').animate
+        right: -200
+        opacity: 0
+        ,animationSpeed
+    $('div#content').animate
+        right: 0
+        ,animationSpeed
+        , -> setUpMapDimensions()
+    @
+
+
+openRightbar = ->
+    $('#rightbar-actions .icon-arrow-left')
+        .removeClass('icon-arrow-left')
+        .addClass('icon-arrow-right')
+    $('div#rightbar').show()
+    $('div#rightbar').animate
+        right: 0
+        opacity: 100
+        ,animationSpeed
+    $('div#content').animate
+        right: 200
+        ,animationSpeed
+        , -> setUpMapDimensions()
     @
 
 
@@ -103,6 +137,7 @@ handleLogin = ->
 $(document).ready ->
     window.sidebarState = "opened"
     window.secondarySidebarState = "closed"
+    window.rightbarState = "closed"
 
     setUpPopovers()
     setUpMapDimensions()
@@ -125,6 +160,15 @@ $(document).ready ->
         else
             openSidebar()
             window.sidebarState = "opened"
+
+    $('.btn.collapse-rightbar').click (e) ->
+        e.preventDefault()
+        if window.rightbarState is "opened"
+            closeRightbar()
+            window.rightbarState = "closed"
+        else
+            openRightbar()
+            window.rightbarState = "opened"
 
     $('.ui-login-link').click (e) ->
         e.preventDefault()
