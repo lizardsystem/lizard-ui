@@ -106,6 +106,7 @@ $(document).ready ->
 
     setUpPopovers()
     setUpMapDimensions()
+    window.setUpMapDimensions = setUpMapDimensions
 
     $('.secondary-sidebar-button').click (e) ->
         e.preventDefault()
