@@ -5,6 +5,8 @@ setUpPopovers = ->
     $(".has_popover").popover()
     $(".has_popover_north").popover
         placement: 'top'
+    $(".has_popover_south").popover
+        placement: 'bottom'
     @
 
 
