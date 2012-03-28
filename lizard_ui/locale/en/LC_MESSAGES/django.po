@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-13 06:22-0500\n"
+"POT-Creation-Date: 2012-03-28 03:40-0500\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,86 +21,65 @@ msgstr ""
 msgid "Username"
 msgstr ""
 
-#: forms.py:14 templates/lizard_ui/login.html:15
-#: templates/lizard_ui/tag_login.html:25
+#: forms.py:14 templates/lizard_ui/login.html:21
+#: templates/lizard_ui/modal_login.html:19
 msgid "Password"
 msgstr ""
 
-#: models.py:14 models.py:81
+#: models.py:17 models.py:85
 msgid "name"
 msgstr ""
 
-#: models.py:16 models.py:83
+#: models.py:19 models.py:87
 msgid "description"
 msgstr ""
 
-#: models.py:82
+#: models.py:86
 msgid "icon"
 msgstr ""
 
-#: models.py:84
+#: models.py:88
 msgid "url"
 msgstr ""
 
-#: models.py:88
+#: models.py:91
 msgid "Application screen we're a part of"
 msgstr ""
 
-#: models.py:92
+#: models.py:95
 msgid "Application screen we point at (this disables the url)"
 msgstr ""
 
-#: models.py:97
+#: models.py:100
 msgid "index"
 msgstr ""
 
-#: models.py:99
+#: models.py:102
 msgid "Number used for ordering icons relative to each other."
 msgstr ""
 
-#: views.py:190
+#: views.py:204
 msgid "logout"
 msgstr ""
 
-#: views.py:197 templates/lizard_ui/login.html:22
-#: templates/lizard_ui/tag_login.html:10 templates/lizard_ui/tag_login.html:12
-#: templates/lizard_ui/tag_login.html:40
+#: views.py:211 templates/lizard_ui/login.html:36
+#: templates/lizard_ui/modal_login.html:5
+#: templates/lizard_ui/modal_login.html:29
 msgid "Login"
 msgstr ""
 
-#: views.py:262
+#: views.py:276
 msgid "edit"
 msgstr ""
 
-#: views.py:292
+#: views.py:306
 msgid "Collapse"
 msgstr ""
 
-#: templates/lizard_ui/cmsbase.html:11 templates/lizard_ui/realbase.html:82
+#: templates/lizard_ui/cmsbase.html:11 templates/lizard_ui/realbase.html:85
 msgid "Back to homepage"
 msgstr ""
 
-#: templates/lizard_ui/login.html:10 templates/lizard_ui/tag_login.html:19
+#: templates/lizard_ui/login.html:11 templates/lizard_ui/modal_login.html:11
 msgid "Name"
-msgstr ""
-
-#: templates/lizard_ui/tag_login.html:3
-#, python-format
-msgid "Logged in as %(usr)s."
-msgstr ""
-
-#: templates/lizard_ui/tag_login.html:6
-msgid "Logout"
-msgstr ""
-
-#: templates/lizard_ui/tag_login.html:46
-msgid "Error"
-msgstr ""
-
-#: templates/lizard_ui/tag_login.html:48
-msgid "Login data is incorrect. Try again or contact the system administrator."
-msgstr ""
-
-#: templates/lizard_ui/tag_login.html:51
-msgid "Ok"
 msgstr ""

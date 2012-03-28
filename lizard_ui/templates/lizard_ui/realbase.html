@@ -97,7 +97,7 @@
                            {% if action.description %}
                              title="{{ action.name }}"
                              data-content="{{ action.description }}"
-                             class="has_popover"
+                             class="has_popover_south"
                            {% endif %}
                            >
                           <a href="{{ action.url }}"
@@ -159,7 +159,7 @@
                            {% if action.description %}
                              title="{{ action.name }}"
                              data-content="{{ action.description }}"
-                             class="has_popover"
+                             class="has_popover_south"
                            {% endif %}
                            >
                           <a href="{{ action.url }}"
@@ -199,6 +199,13 @@
           <div id="content">
             {% block content %}
             {% endblock content %}
+          </div>
+
+          <div id="rightbar">
+            <div class="sidebar-inner">
+              {% block rightbar %}
+              {% endblock rightbar %}
+            </div>
           </div>
 
           <div id="footer">
@@ -258,11 +265,41 @@
                         {% endfor %}
                       {% endfor %}
                     {% endif %}
-
                   </div>
                 </div>
 
               {% endblock orthogonal-actions %}
+            </div>
+
+            <div id="rightbar-actions">
+              {% block rightbar-actions %}
+
+                {% if view.rightbar_actions %}
+                  <div class="btn-toolbar">
+                    <div class="btn-group">
+
+                      {% for action in view.rightbar_actions %}
+                        <button type="button"
+                          {% if action.description %}
+                            title="{{ action.name }}"
+                            data-content="{{ action.description }}"
+                            class="has_popover btn {{ action.klass }}"
+                          {% else %}
+                            class="btn {{ action.klass }}"
+                          {% endif %}
+                          >
+                          {% if action.icon %}
+                            <i class="{{ action.icon }}"></i>
+                          {% endif %}
+                          {{ action.name }}
+                        </button>
+                      {% endfor %}
+
+                    </div>
+                  </div>
+                {% endif %}
+
+              {% endblock rightbar-actions %}
             </div>
           </div>
         {% endblock main-area %}
