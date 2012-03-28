@@ -194,7 +194,7 @@ body {
 #sidebar,
 #rightbar,
 #secondary-sidebar {
-  h2, h3 {
+  h2, h3, h4 {
     clear: left;
     font-size: @baseFontSize;
     line-height: @baseLineHeight;
@@ -206,8 +206,11 @@ body {
     .padded-sidebar-item;
     font-weight: bold;
   }
-  h3 {
+  h3, h4 {
     #gradient > .horizontal(lighten(@light, 10%), @light);
+  }
+  h4 {
+    font-weight: normal;
   }
 }
 
