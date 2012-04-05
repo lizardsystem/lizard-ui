@@ -19,11 +19,16 @@ class Action(object):
     - **klass**: optional CSS class to give to the link. This allows you to
       tie custom javascript handling to the link.
 
+    - **data_attributes**: optional dictionary to set data-xyz attributes on
+      the action that can be used by css that reacts on the actions.
+
     """
     def __init__(self, name=None, icon=None, url='#', description=None,
-                 klass=None):
+                 klass=None, data_attributes=None):
         self.name = name
         self.icon = icon
         self.url = url
         self.description = description
         self.klass = klass
+        self.data_attributes = data_attributes
+

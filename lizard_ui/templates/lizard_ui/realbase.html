@@ -161,13 +161,18 @@
                              data-content="{{ action.description }}"
                              class="has_popover_south"
                            {% endif %}
+                           {% for item in action.data_attributes.items %}
+                             data-{{ item.0 }}="{{ item.1 }}"
+                           {% endfor %}
                            >
                           <a href="{{ action.url }}"
                              class="{{ action.klass }}">
                             {% if action.icon %}
                               <i class="{{ action.icon }}"></i>
                             {% endif %}
-                            {{ action.name }}
+                            <span class="action-text">
+                              {{ action.name }}
+                            </span>
                           </a>
                         </li>
                       {% endfor %}
