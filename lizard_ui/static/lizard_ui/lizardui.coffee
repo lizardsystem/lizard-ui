@@ -107,16 +107,29 @@ hideSecondarySidebar = ->
 setUpMapDimensions = ->
     contentHeight = $("div#content").height()
     contentWidth = $("div#content").width()
-    $("#map").height contentHeight
+    # Restrict the sidebar-inners.
     $(".sidebar-inner").height contentHeight
-    $("#map").width contentWidth
-    # And also adjust the secondary sidebar top.
+
+    # Collect items with .give-me-height class and give them equal room.
+    # First for the main content.
+    items = $("#content .give-me-height")
+    heightPerItem = contentHeight / items.length
+    items.each ->
+        console.log "Giving height " + heightPerItem + " to " + @
+        $(@).height(heightPerItem)
+        $(@).width(contentWidth)
+
+    # Special case for secondary sidebar
     if window.secondarySidebarState is "closed"
         bottom = $("#footer").position().top
         element = $("#secondary-sidebar")
         element.css('top', bottom)
         element.show()  # Initially it is invisible.
+
+    # TODO: manage sidebar items, too, with .give-me-height.
+
     @
+
 
 handleLogin = ->
     username = $('input[name=username]').val()
