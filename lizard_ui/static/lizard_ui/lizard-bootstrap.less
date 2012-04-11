@@ -200,7 +200,6 @@ body {
     clear: left;
     font-size: @baseFontSize;
     line-height: @baseLineHeight;
-    #gradient > .horizontal(lighten(@middle, 10%), @middle);
     margin-left: -@baseFontSize;
     margin-right: -@baseFontSize;
     padding-left: @baseFontSize;
@@ -208,8 +207,13 @@ body {
     .padded-sidebar-item;
     font-weight: bold;
   }
+  h2 {
+    #gradient > .horizontal(lighten(@middle, 10%), @middle);
+    border-bottom: 1px solid @middle;
+  }
   h3, h4 {
     #gradient > .horizontal(lighten(@light, 10%), @light);
+    border-bottom: 1px solid @light;
   }
   h4 {
     font-weight: normal;
