@@ -105,7 +105,6 @@ body {
 #rightbar,
 #secondary-sidebar {
   .fullCol;
-  .scroll-y;
   top: @belowTopBars;
   bottom: @aboveFooter;
   width: @sidebarWidth;
@@ -127,6 +126,7 @@ body {
 
 // Keep the sidebar content out of the margins. It is all text, by definition.
 .sidebar-inner {
+  .scroll-y;
   padding-left: @baseFontSize;
   padding-right: @baseFontSize;
 }

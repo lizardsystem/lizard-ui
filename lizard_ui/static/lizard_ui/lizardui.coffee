@@ -108,6 +108,7 @@ setUpMapDimensions = ->
     contentHeight = $("div#content").height()
     contentWidth = $("div#content").width()
     $("#map").height contentHeight
+    $(".sidebar-inner").height contentHeight
     $("#map").width contentWidth
     # And also adjust the secondary sidebar top.
     if window.secondarySidebarState is "closed"
