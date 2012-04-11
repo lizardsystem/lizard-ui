@@ -115,7 +115,6 @@ setUpMapDimensions = ->
     items = $("#content .give-me-height")
     heightPerItem = contentHeight / items.length
     items.each ->
-        console.log "Giving height " + heightPerItem + " to " + @
         $(@).height(heightPerItem)
         $(@).width(contentWidth)
 
