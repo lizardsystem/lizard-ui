@@ -111,9 +111,16 @@ setUpMapDimensions = ->
     $(".sidebar-inner").height contentHeight
 
     # Collect items with .give-me-height class and give them equal room.
+    # But do this after subtracting the items with .i-have-height .
     # First for the main content.
+    alreadySized = $("#content .i-have-height")
+    remainingHeight = contentHeight
+    alreadySized.each ->
+        remainingHeight = remainingHeight - $(@).height()
+        $(@).width(contentWidth)
+
     items = $("#content .give-me-height")
-    heightPerItem = contentHeight / items.length
+    heightPerItem = remainingHeight / items.length
     items.each ->
         $(@).height(heightPerItem)
         $(@).width(contentWidth)
