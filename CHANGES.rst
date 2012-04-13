@@ -5,7 +5,7 @@ Changelog of lizard-ui
 3.14 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Updated Openlayers to 2.11.
 
 
 3.13 (2012-03-20)
