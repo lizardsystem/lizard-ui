@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-3.15 (unreleased)
+3.15 (2012-04-13)
 -----------------
 
 - A missing comma at the end of colorpicker.js broke the demo site. It
