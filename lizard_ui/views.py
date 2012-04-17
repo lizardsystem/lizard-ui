@@ -169,6 +169,7 @@ class UiView(ViewContextMixin, TemplateView):
     show_secondary_sidebar_title = None
     show_secondary_sidebar_icon = None
     show_rightbar_title = None
+    gauges_site_id = uisettings.GAUGES_SITE_ID  # gaug.es tracking
 
     @property
     def title(self):
