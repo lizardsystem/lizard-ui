@@ -17,6 +17,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="{{ STATIC_URL }}lizard_ui/favicon.ico" type="images/x-icon" />
     <link rel="SHORTCUT ICON" href="{{ STATIC_URL }}lizard_ui/favicon.ico" />
+    <!-- HTML5 shim, for IE6-8 support of HTML elements. After the styles. -->
+    <!--[if lt IE 9]>
+      <script src="{{ STATIC_URL }}html5shiv/html5shiv.js"></script>
+    <![endif]-->
 
     {% compress css %}
       {% block css %}
@@ -53,10 +57,6 @@
         {% block ie-css %}
         {% endblock ie-css %}
       {% endcompress %}
-    <![endif]-->
-    <!-- HTML5 shim, for IE6-8 support of HTML elements. After the styles. -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
 
     {% compress js %}
@@ -310,39 +310,40 @@
         {% endblock main-area %}
 
       {% endblock page %}
+    </div>
 
-       {# Ajax calls need a CSRF token cookie, and this line sends one as a side effect #}
-       <!-- {{ csrf_token }} -->
+    {# Ajax calls need a CSRF token cookie, and this line sends one as a side effect #}
+    <!-- {{ csrf_token }} -->
 
-       {# Minimized jquery and bootstrap scripts. Minimizing with #}
-       {# django-compressor failed. #}
-       <script type="text/javascript"
-               src="{{ STATIC_URL }}jquery/jquery.min.js"></script>
-       <script type="text/javascript"
-               src="{{ STATIC_URL }}bootstrap/bootstrap.min.js"></script>
+    {# Minimized jquery and bootstrap scripts. Minimizing with #}
+    {# django-compressor failed. #}
+    <script type="text/javascript"
+            src="{{ STATIC_URL }}jquery/jquery.min.js"></script>
+    <script type="text/javascript"
+            src="{{ STATIC_URL }}bootstrap/bootstrap.min.js"></script>
 
-      {% compress js %}
-        {% block javascript %}
-          {# Jquery, jqueryui jquerytools and jstree #}
-          <script type="text/javascript"
-                  src="{{ STATIC_URL }}lizard_ui/csrf.js"></script>
-          <script type="text/coffeescript"
-                  src="{{ STATIC_URL }}lizard_ui/lizardui.coffee"></script>
-          <!--
-          <script type="text/javascript"
-                  src="{{ STATIC_URL }}datatables/media/js/jquery.dataTables.min.js"></script>
-          <script type="text/javascript"
-                  src="{{ STATIC_URL }}colorpicker/js/colorpicker.js"></script>
-          -->
-        {% endblock javascript %}
-      {% endcompress %}
+    {% compress js %}
+      {% block javascript %}
+        {# Jquery, jqueryui jquerytools and jstree #}
+        <script type="text/javascript"
+                src="{{ STATIC_URL }}lizard_ui/csrf.js"></script>
+        <script type="text/coffeescript"
+                src="{{ STATIC_URL }}lizard_ui/lizardui.coffee"></script>
+        <!--
+        <script type="text/javascript"
+                src="{{ STATIC_URL }}datatables/media/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript"
+                src="{{ STATIC_URL }}colorpicker/js/colorpicker.js"></script>
+        -->
+      {% endblock javascript %}
+    {% endcompress %}
 
-      {% block map-javascript %}
-        {# For lizard-map's wms handling #}
-      {% endblock map-javascript %}
+    {% block map-javascript %}
+      {# For lizard-map's wms handling #}
+    {% endblock map-javascript %}
 
-      {% if google_tracking_code %}
-        <script type="text/javascript">
+    {% if google_tracking_code %}
+      <script type="text/javascript">
           var _gaq = _gaq || [];
           _gaq.push(['_setAccount', '{{ google_tracking_code }}']);
           _gaq.push(['_trackPageview']);
@@ -351,29 +352,28 @@
             ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
           var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
           })();
-        </script>
-      {% endif %}
+      </script>
+    {% endif %}
 
-      {% if view.gauges_site_id %}
-        <script type="text/javascript">
-          var _gauges = _gauges || [];
-          (function() {
-            var t   = document.createElement('script');
-            t.type  = 'text/javascript';
-            t.async = true;
-            t.id    = 'gauges-tracker';
-            t.setAttribute('data-site-id', '{{ view.gauges_site_id }}');
-            t.src = '//secure.gaug.es/track.js';
-            var s = document.getElementsByTagName('script')[0];
-            s.parentNode.insertBefore(t, s);
-          })();
-        </script>
-      {% endif %}
+    {% if view.gauges_site_id %}
+      <script type="text/javascript">
+        var _gauges = _gauges || [];
+        (function() {
+          var t   = document.createElement('script');
+          t.type  = 'text/javascript';
+          t.async = true;
+          t.id    = 'gauges-tracker';
+          t.setAttribute('data-site-id', '{{ view.gauges_site_id }}');
+          t.src = '//secure.gaug.es/track.js';
+          var s = document.getElementsByTagName('script')[0];
+          s.parentNode.insertBefore(t, s);
+        })();
+      </script>
+    {% endif %}
 
-      {% block bottom-extras %}
-        {# Your own totally-unmanaged per-template extra css/javascript/links #}
-      {% endblock bottom-extras %}
+    {% block bottom-extras %}
+      {# Your own totally-unmanaged per-template extra css/javascript/links #}
+    {% endblock bottom-extras %}
 
-    </div>
   </body>
 </html>
