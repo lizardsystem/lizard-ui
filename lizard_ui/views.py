@@ -1,19 +1,20 @@
 # (c) Nelen & Schuurmans.  GPL licensed, see LICENSE.txt
 from copy import copy
+import logging
 import urlparse
 import urllib
 
 from django.contrib.auth import login
 from django.contrib.auth import logout
 from django.core.urlresolvers import reverse
+from django.http import Http404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render
-from django.utils.translation import ugettext as _
 from django.utils import simplejson as json
+from django.utils.translation import ugettext as _
 from django.views.generic.base import TemplateView, View
 from django.views.generic.edit import FormView
-
 
 from lizard_ui.forms import LoginForm
 from lizard_ui.layout import Action
@@ -23,6 +24,8 @@ from lizard_ui import uisettings
 
 
 DEFAULT_APPLICATION_SCREEN = 'home'
+
+logger = logging.getLogger(__name__)
 
 
 class ViewContextMixin(object):
@@ -170,6 +173,18 @@ class UiView(ViewContextMixin, TemplateView):
     show_secondary_sidebar_icon = None
     show_rightbar_title = None
     gauges_site_id = uisettings.GAUGES_SITE_ID  # gaug.es tracking
+    require_application_icon_with_permission = False
+    # ^^^ If there's no visible application icon, we don't have the necessary
+    # permission. At least, that's what this is intended for.
+
+    def get_context_data(self, **kwargs):
+        if self.require_application_icon_with_permission:
+            if not self.best_matching_application_icon:
+                logger.warn(
+                    "Accessing view without required application icon.")
+                raise Http404
+        return super(UiView, self).get_context_data(**kwargs)
+
 
     @property
     def title(self):
@@ -214,7 +229,8 @@ class UiView(ViewContextMixin, TemplateView):
                 actions.append(action)
         return actions
 
-    def _best_matching_application_icon(self):
+    @property
+    def best_matching_application_icon(self):
         """Return application icon that best matches our url."""
         page_url = self.request.path
         icon_found = None
@@ -248,7 +264,7 @@ class UiView(ViewContextMixin, TemplateView):
         knows regarding icons and screens that point at it.
 
         """
-        icon = self._best_matching_application_icon()
+        icon = self.best_matching_application_icon
         if not icon:
             return
         breadcrumb_elements = icon.parents()
