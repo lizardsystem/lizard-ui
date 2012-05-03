@@ -182,6 +182,7 @@ class UiView(ViewContextMixin, TemplateView):
             if not self.best_matching_application_icon:
                 logger.warn(
                     "Accessing view without required application icon.")
+                # TODO: change to 403 (forbidden) with Django 1.4.
                 raise Http404
         return super(UiView, self).get_context_data(**kwargs)
 
