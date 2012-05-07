@@ -186,7 +186,6 @@ class UiView(ViewContextMixin, TemplateView):
                 raise Http404
         return super(UiView, self).get_context_data(**kwargs)
 
-
     @property
     def title(self):
         """Return title for use in 'head' tag.
@@ -308,8 +307,7 @@ class UiView(ViewContextMixin, TemplateView):
         """
         if self.edit_link and self.request.user.is_staff:
             return [self.edit_action]
-        else:
-            return []
+        return []
 
     @property
     def sidebar_actions(self):
