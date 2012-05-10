@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-3.16 (unreleased)
+3.16 (2012-05-10)
 -----------------
 
 - Added 1 new ap icon.
