@@ -2,6 +2,7 @@
 
 from django import template
 from django.utils.safestring import mark_safe
+from django.contrib.auth.models import AnonymousUser
 
 from lizard_ui.models import ApplicationScreen
 
@@ -104,3 +105,54 @@ def short_timedelta(td):
         if seconds >= 60:
             return '%s minuten' % (seconds / 60)
         return '%s seconde' % seconds
+
+
+@register.inclusion_tag('lizard_ui/tag_breadcrumbs.html')
+def breadcrumbs(crumbs):
+    """
+    returns nice breadcrumbs layout.
+
+    crumbs is a list of dicts. each dict has:
+    - name
+    - url (optional): link to page
+    - classes (optional): list of classes to be added to the link
+    """
+    return {'crumbs': crumbs}
+
+
+@register.inclusion_tag(
+    'lizard_ui/tag_application_icons.html',
+    takes_context=True)
+def application_icons(context, application_screen_slug):
+    """
+    Returns list of application icons, with surrounding header and ul.
+    """
+
+    # Default screen slug.
+    if application_screen_slug is None:
+        application_screen_slug = 'home'
+
+    application_screens = ApplicationScreen.objects.filter(
+        slug=application_screen_slug)
+    if len(application_screens) == 0:
+        return {'error': ('ApplicationScreen with slug "%s" does not exist. '
+                          'Create it or choose another screen.')
+                % application_screen_slug}
+
+    if 'STATIC_URL' in context:
+        static_url = context['STATIC_URL']
+    else:
+        static_url = ''
+
+    # Add currently logged in user to the context so that the displayed icons
+    # may depend on the user. At the time of writing this, lizard-ui itself doesn't
+    # do that, but at least one site (HDSR) overrides the template to hide an
+    # icon from some users.
+    if 'view' in context:
+        user = context['view'].request.user
+    else:
+        user = AnonymousUser()
+
+    return {'application_screen': application_screens[0],
+            'user': user,
+            'STATIC_URL': static_url}

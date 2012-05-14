@@ -1,6 +1,6 @@
 - Changed darkBlue to #3B3B39
 
-- Downloaded version of openlayers: 2.10.
+- Downloaded version of openlayers: 2.11.
 
 - I did not include the whole distribution, but just the js and the img/ and
 theme/ directories, as suggested by openlayers.

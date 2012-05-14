@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-3.12 (unreleased)
+3.16 (unreleased)
 -----------------
 
 - Remove protovis. Not generally used. And it is superseded by
@@ -11,6 +11,33 @@ Changelog of lizard-ui
 - Added source distribution of twitter-bootstrap. You need node.js and its
   package manager npm installed to install lessc and uglify-js (only needed if
   you need to rebuild twitter-bootstrap).
+
+
+3.15 (2012-04-13)
+-----------------
+
+- A missing comma at the end of colorpicker.js broke the demo site. It
+  really did. This blockbuster release adds one.
+
+
+3.14 (2012-04-13)
+-----------------
+
+- Updated Openlayers to 2.11.
+
+
+3.13 (2012-03-20)
+-----------------
+
+- Added user to the context of the template that renders application
+  icons, so that it is possible to make them depend on the currently
+  logged in user.
+
+
+3.12 (2012-02-16)
+-----------------
+
+- Added two icons.
 
 
 3.11 (2012-01-17)
