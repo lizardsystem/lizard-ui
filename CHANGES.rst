@@ -5,7 +5,7 @@ Changelog of lizard-ui
 3.17 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Add zettingen icon (copied from demo site)
 
 
 3.16 (2012-05-10)
