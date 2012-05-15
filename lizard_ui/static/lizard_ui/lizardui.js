@@ -103,11 +103,22 @@
   };
 
   setUpMapDimensions = function() {
-    var bottom, contentHeight, contentWidth, element;
+    var alreadySized, bottom, contentHeight, contentWidth, element, heightPerItem, items, remainingHeight;
     contentHeight = $("div#content").height();
     contentWidth = $("div#content").width();
-    $("#map").height(contentHeight);
-    $("#map").width(contentWidth);
+    $(".sidebar-inner").height(contentHeight);
+    alreadySized = $("#content .i-have-height");
+    remainingHeight = contentHeight;
+    alreadySized.each(function() {
+      remainingHeight = remainingHeight - $(this).height();
+      return $(this).width(contentWidth);
+    });
+    items = $("#content .give-me-height");
+    heightPerItem = remainingHeight / items.length;
+    items.each(function() {
+      $(this).height(heightPerItem);
+      return $(this).width(contentWidth);
+    });
     if (window.secondarySidebarState === "closed") {
       bottom = $("#footer").position().top;
       element = $("#secondary-sidebar");

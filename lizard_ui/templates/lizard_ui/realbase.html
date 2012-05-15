@@ -28,8 +28,8 @@
         {# Twitter bootstrap, but with an included #}
         {# lizard_ui/lizard-bootstrap.less to overrides bootstrap defaults. #}
         <link rel="stylesheet"
-              href="{{ STATIC_URL }}bootstrap/less/bootstrap.less"
-              type="text/less"
+              href="{{ STATIC_URL }}bootstrap/less/bootstrap.css"
+              type="text/css"
               media="screen, projection" />
         {# Sprites: all icons (print, info, etc) in one cacheable image. #}
         <link rel="stylesheet"
@@ -328,8 +328,8 @@
         {# Jquery, jqueryui jquerytools and jstree #}
         <script type="text/javascript"
                 src="{{ STATIC_URL }}lizard_ui/csrf.js"></script>
-        <script type="text/coffeescript"
-                src="{{ STATIC_URL }}lizard_ui/lizardui.coffee"></script>
+        <script type="text/javascript"
+                src="{{ STATIC_URL }}lizard_ui/lizardui.js"></script>
         <!--
         <script type="text/javascript"
                 src="{{ STATIC_URL }}datatables/media/js/jquery.dataTables.min.js"></script>
