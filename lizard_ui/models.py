@@ -27,7 +27,6 @@ class ApplicationScreen(models.Model):
         return reverse('lizard_ui.icons',
                        kwargs={'slug': self.slug})
 
-    # Lizard 3
     def crumbs(self, seen_slugs=()):
         if self.slug == 'home':
             # Home is already handled elsewhere, nothing we need to
