@@ -7,11 +7,20 @@ Changelog of lizard-ui
 
 - Add zettingen icon (copied from demo site)
 
+- Merged reinout-bootstrap branch ("the deltaportaal layout").
+
+- Added source distribution of twitter-bootstrap. You need node.js and its
+  package manager npm installed to install lessc and uglify-js (only needed if
+  you need to rebuild twitter-bootstrap).
+
 
 3.16 (2012-05-10)
 -----------------
 
 - Added 1 new ap icon.
+
+- Remove protovis. Not generally used. And it is superseded by
+  http://mbostock.github.com/d3/ .
 
 
 3.15 (2012-04-13)

@@ -16,4 +16,4 @@ class TracebackLoggingMiddleware(object):
     """
 
     def process_exception(self, request, exception):
-        logger.exception(repr(request))
+        logger.exception("Error 500 in %s", request.path)

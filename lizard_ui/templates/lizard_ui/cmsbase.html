@@ -1,0 +1,56 @@
+{% extends "lizard_ui/lizardbase.html" %}
+{% load i18n %}
+
+{% block header %}
+  <header class="container-fixed">
+    <div class="row">
+      <div class="span3">
+        {% block logo %}
+          <a href="/"
+             class="brand"
+             title="{% trans 'Back to homepage' %}"
+             ><img src="{{ STATIC_URL }}lizard_ui/logo.png"
+                   alt="Lizard" /></a>
+        {% endblock logo %}
+      </div>
+      <div class="span9">
+        <div class="row">
+          {% block header_top_row %}
+            {{ block.super }}
+          {% endblock header_top_row %}
+        </div>
+        <div class="row">
+          {% block header_bottom_row %}
+            {{ block.super }}
+          {% endblock header_bottom_row %}
+        </div>
+      </div>
+    </div>
+  </header>
+{% endblock header %}
+
+
+{% block main_area %}
+  <div id="main_area"
+       class="container">
+    <div class="row">
+      <div id="sidebar" class="span3">
+        {% block sidebar %}
+          {{ block.super }}
+        {% endblock sidebar %}
+      </div>
+      {# End of sidebar #}
+
+      <div id="main" class="span9">
+        {% block menubar %}
+          {{ block.super }}
+        {% endblock menubar %}
+
+        {% block content_block %}
+          {{ block.super }}
+        {% endblock content_block %}
+      </div>
+    </div>
+  </div>
+  {# End of main_area #}
+{% endblock main_area %}

@@ -1,0 +1,192 @@
+{% extends "lizard_ui/lizardbase.html" %}
+
+{% block subtitle %}Block "subtitle"{% endblock subtitle%}
+{% block sitetitle %}- Block "sitetitle"{% endblock sitetitle%}
+
+
+{% block logo %}
+  Block LOGO
+{% endblock %}
+
+{% block site-actions %}
+  <ul class="nav">
+    <li><a href="#">block site-actions</a></li>
+    <li>
+      <a href="#">
+        <i class="icon-user icon-white"></i>
+        login
+      </a>
+    </li>
+    <li>
+      <a href="#">
+        <i class="icon-print icon-white"></i>
+        print
+      </a>
+    </li>
+  </ul>
+{% endblock %}
+
+{% block breadcrumbs %}
+  <ul>
+    <li>
+      <a href="#">Block</a> &rarr;
+    </li>
+    <li>
+      <a href="#">Breadcrumbs</a> &rarr;
+    </li>
+    <li class="active">
+      <a href="#">Tadaaah</a>
+    </li>
+  </ul>
+{% endblock %}
+
+{% block content-actions %}
+  <ul class="nav">
+    <li><a href="">Block</a></li>
+    <li><a href="">content-actions</a></li>
+    <li><a href="">('a' tag mandatory, btw)</a></li>
+  </ul>
+{% endblock %}
+
+
+{% block sidebar %}
+<h2>Block "sidebar" (h2)</h2>
+<ul>
+  <li>This</li>
+  <li>is the</li>
+  <li>sidebar</li>
+</ul>
+<h3>Heading 3</h3>
+<p>
+  The sidebar is for showing overview info, details, perhaps a small
+  "navigator" map to indicate the current location, etc.
+</p>
+{% endblock %}
+
+{% block sidebar-actions %}
+  <a class="btn" href="">
+    <i class="icon-exclamation-sign"></i>
+      sidebar-actions
+  </a>
+{% endblock sidebar-actions %}
+
+{% block content %}
+<div id="textual">
+  <h1>Block "content"</h1>
+  <p>
+    This is the content area, btw.  Here you can put for instance:
+  </p>
+  <ul>
+    <li>
+      The big main map.
+    </li>
+    <li>
+      BTW, if you've got <b>textual content</b>, put the textual content (all
+      of it) in a div with id "textual" to get a bit of margin left and right.
+    </li>
+    <li>
+      An edit form for the current object.
+    </li>
+    <li>
+      A bunch of graphs.
+    </li>
+  </ul>
+
+  <h2>Other extendable blocks</h2>
+  <dl>
+    <dt>
+      css
+    </dt>
+    <dd>
+      Block to add css.  Be sure to use <code>{% templatetag openvariable %}
+      block.super {% templatetag closevariable %}</code> at the start of your
+      block to get all the previously defined css, too.
+    </dd>
+
+  <dl>
+    <dt>
+      ie-css
+    </dt>
+    <dd>
+      Block to add css specific to IE. The block is wrapped in an "IE less
+      than 9" condition. Be sure to use <code>{% templatetag openvariable %}
+      block.super {% templatetag closevariable %}</code> at the start of your
+      block to get all the previously defined css, too.
+    </dd>
+
+    <dt>
+      javascript-in-head
+    </dt>
+    <dd>
+      Javascript that should really go into the head tag. Should probably
+      remain empty!
+    </dd>
+
+    <dt>
+      head-extras
+    </dt>
+    <dd>
+      For injecting links, javascript or css from your template.  This is not
+      compressed or otherwise managed.  For javascript and css, use the "css"
+      and "javascript" blocks.
+    </dd>
+
+    <dt>
+      javascript
+    </dt>
+    <dd>
+      Block to add javascript.  Be sure to use
+      <code>{% templatetag openvariable %} block.super
+      {% templatetag closevariable %}</code> at
+      the start of your block to get all the previously defined javascript,
+      too.
+    </dd>
+
+    <dt>
+      map-javascript
+    </dt>
+    <dd>
+      A block specifically for lizard-map's in-template javascript.
+    </dd>
+
+    <dt>
+      page
+    </dt>
+    <dd>
+      A block for when you want to replace everything between the body tags
+      (except the javascript at the end).
+    </dd>
+
+  </dl>
+
+</div>
+
+{% endblock %}
+
+{% block secondary-sidebar %}
+  <h2>secondary-sidebar</h2>
+  <ul>
+    <li><a href="#"><div class="workspace-acceptable">Layer 1</div></a></li>
+    <li><a href="#"><div class="workspace-acceptable">Layer 2</div></a></li>
+    <li><a href="#"><div class="workspace-acceptable">Layer 3</div></a></li>
+    <li><a href="#"><div class="workspace-acceptable">Layer 4</div></a></li>
+  </ul>
+{% endblock secondary-sidebar %}
+
+{% block orthogonal-actions %}
+  <div class="btn-toolbar">
+    <div class="btn-group">
+      <a class="btn" href="">
+        <i class="icon-calendar"></i>
+          1972-12-25 &mdash; 2000-11-10
+      </a>
+      {# Reinout's birthday till his wedding :-) #}
+    </div>
+
+    <div class="btn-group">
+      <a class="btn" href="#">Dry</a>
+      <a class="btn" href="#">Wet</a>
+      <a class="btn active" href="#">Soaking</a>
+    </div>
+  </div>
+{% endblock orthogonal-actions %}

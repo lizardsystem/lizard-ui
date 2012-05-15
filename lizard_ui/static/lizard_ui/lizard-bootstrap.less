@@ -1,0 +1,330 @@
+// Our colors. Dark and middle green; light is gray.
+@dark: #115e67;
+@middle: #7fa9ae;
+@light: #d9d9d6;
+
+// Border color for bars that we colors with our light color.
+@lightBorderColor: darken(@light, 10%);
+
+// A green navbar. We customize bootstrap's navbar colors here.
+@navbarBackground:                @dark;
+@navbarBackgroundHighlight:       @middle;
+@navbarText:                      @white;
+@navbarLinkColor:                 @white;
+@navbarLinkColorHover:            @light;
+
+// Bootstrap's link color is used in a lot of places. I'd rather keep it blue,
+// but just making it @dark is easier for customization.
+@linkColor: @dark;
+
+// Horizontal bar height. This 40px is somehow what comes out of bootstrap's
+// calculations, but we just set it here. We need it for placement of the main
+// elements.
+@barHeight: 40px;
+
+// Our horizontal bar class is basically the same as bootstrap's navbar, but
+// without the bottom margin. And with the right height explicitly set.
+.horizontal-bar {
+  .navbar;
+  margin-bottom: 0;  // Overrides .navbar's bottom margin.
+  height: @barHeight;
+  div, ul {
+    // Divs nested inside us get the right height, too.
+    height: @barHeight;
+  }
+}
+
+// Blocks inside a horizontal bar (like the logo or sidebar-actions) get a
+// proper padding.
+.block-in-bar {
+  padding-left: @baseFontSize;
+  padding-right: @baseFontSize;
+}
+
+// Arrangement of sidebar, content and footer.
+// See http://blog.stevensanderson.com/2011/10/05/
+// full-height-app-layouts-a-css-trick-to-make-it-easier/
+.fullRow, .fullCol {
+  overflow: hidden;
+  position: absolute;
+}
+.fullRow {
+  left: 0;
+  right: 0;
+}
+.fullCol {
+  top: 0;
+  bottom: 0;
+}
+.scroll-y {
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+// And to make sure there are no scrollbars when we slide a sidebar out, the
+// page needs to have overflow hidden.
+#page,
+html,
+body {
+  overflow: hidden;
+}
+
+// Two variables to help with positioning. They include the 1px border.
+@belowTopBars: 2 * @barHeight + 1;
+@aboveFooter: @barHeight + 1;
+// And we need the sidebar width, too, for positioning.
+@sidebarWidth: 300px;
+@rightbarWidth: 200px;
+
+// Top-most bar.
+#logo-row {
+  .horizontal-bar;
+  #gradient > .vertical(lighten(@dark, 10%), @dark);
+}
+
+// Second bar, below the logo one.
+#breadcrumb-row {
+  .horizontal-bar;
+  #gradient > .vertical(lighten(@light, 10%), @light);
+  border-bottom: 1px solid @lightBorderColor;
+}
+
+// Bar at the bottom.
+#footer {
+  .horizontal-bar;
+  #gradient > .vertical(@light, lighten(@light, 10%));
+  border-top: 1px solid @lightBorderColor;
+  // Placement. Full width and stuck to the bottom.
+  .fullRow;
+  bottom: 0;
+}
+
+// The sidebar sits beween the horizontal bars on the left. It is scrollable.
+// TODO: do we actually want the full sidebar to be scrollable?? Or just a
+// part of it?
+#sidebar,
+#rightbar,
+#secondary-sidebar {
+  .fullCol;
+  top: @belowTopBars;
+  bottom: @aboveFooter;
+  width: @sidebarWidth;
+  #gradient > .vertical(lighten(@light, 10%), #fff);
+  border-right: 1px solid @lightBorderColor;
+}
+#rightbar {
+  width: @rightbarWidth;
+  right: -@rightbarWidth;
+  display: none;
+}
+
+// The secondary sidebar slides in from the bottom. We need to keep it from
+// showing up right away.
+#secondary-sidebar {
+  display: none;
+  overflow: hidden;
+}
+
+// Keep the sidebar content out of the margins. It is all text, by definition.
+.sidebar-inner {
+  .scroll-y;
+  padding-left: @baseFontSize;
+  padding-right: @baseFontSize;
+}
+
+// The main content area sits between the horizontal bars, next to the
+// sidebar.
+#content {
+  .fullRow;
+  top: @belowTopBars;
+  left: @sidebarWidth + 1;  // Extra pixel for the border.
+  bottom: @aboveFooter;
+}
+
+// Every bar is divided into two; the following parts are floated to the left.
+#logo,
+#breadcrumbs,
+#sidebar-actions {
+  .block-in-bar;
+  float: left;
+}
+
+// The  following actions are floated right.
+#site-actions,
+#content-actions,
+#rightbar-actions {
+  .block-in-bar;
+  float: right;
+}
+
+// The stuff in the bottom bar below the content is for orthogonal selection
+// of settings related to the content, for example the date of the data that is
+// displayed. It really belongs to the other selection choices that are made
+// in the sidebar. So we want it to float left near the sidebar.
+#orthogonal-actions {
+  .block-in-bar;
+  float: left;
+}
+
+// The orthogonal-actions floats left, so we need to give the sidebar-actions
+// some width to compensate. Sidebar width minus twice the padding.
+#sidebar-actions {
+  width: @sidebarWidth - 2 * @baseFontSize;
+}
+
+// The rightbar actions need some space, too.
+#rightbar-actions {
+  width: @rightbarWidth - 2 * @baseFontSize;
+}
+
+
+// Lizard-specific stuff.
+
+// In the sidebar, the headers are smaller and have the middle background
+// color.
+
+// The headers and workspace acceptables should have more height than the
+// lineheight. But we do not want to mess with the lineheight, as that looks
+// bad with multiple lines. So padding above and below!
+@sidebarItemPadding: (@barHeight - @baseLineHeight) * 0.5;
+
+.padded-sidebar-item {
+  display: block;
+  padding-top: @sidebarItemPadding;
+  padding-bottom: @sidebarItemPadding;
+}
+
+#sidebar,
+#rightbar,
+#secondary-sidebar {
+  h2, h3, h4 {
+    clear: left;
+    font-size: @baseFontSize;
+    line-height: @baseLineHeight;
+    margin-left: -@baseFontSize;
+    margin-right: -@baseFontSize;
+    padding-left: @baseFontSize;
+    padding-right: @baseFontSize;
+    .padded-sidebar-item;
+    font-weight: bold;
+  }
+  h2 {
+    #gradient > .horizontal(lighten(@middle, 10%), @middle);
+    border-bottom: 1px solid @middle;
+  }
+  h3, h4 {
+    #gradient > .horizontal(lighten(@light, 10%), @light);
+    border-bottom: 1px solid @light;
+  }
+  h4 {
+    font-weight: normal;
+  }
+}
+
+
+// Textual content. #textual is for backwards compatibility.
+#textual,
+.textual-content {
+  padding: @baseFontSize;
+}
+
+// Breadcrumbs fixes.
+#breadcrumbs ul {
+  margin-left: 0;
+  li {
+    display: inline;
+    line-height: @barHeight;
+    & .active {
+      a {
+        font-color: black;
+      }
+    }
+  }
+}
+
+// We want button groups in the navbar (well, mostly in the
+// orthogonal-actions bar). Best way to get them next to each other if there
+// are multiple button groups is a toolbar. But we need to strip some margin
+// off that.
+.navbar {
+  .btn-toolbar {
+    margin-top: 0;
+  }
+}
+
+// Black instead of white for the light second bar.
+#content-actions {
+  .nav > li > a {
+    color: @grayDark;
+  }
+  .nav > li > a:hover {
+    color: @dark;
+  }
+}
+
+// Icon placement in the sidebar.
+ul.ui-icon-list {
+  margin-left: 0;
+  margin-top: @baseFontSize;
+  li {
+    list-style: none;
+    float: left;
+    text-align: center;
+    width: 120px;
+    height: 120px;
+    padding: 5px;
+  }
+  li a img {
+  	-moz-border-radius: 13px;
+	-webkit-border-radius: 13px;
+	border-radius: 13px;
+    -webkit-box-shadow: 2px 2px 10px 5px #ccc;
+    -moz-box-shadow: 2px 2px 10px 5px #ccc;
+    box-shadow: 2px 2px 10px 5px #ccc;
+  }
+  .notworking {
+    cursor: not-allowed;
+  }
+}
+
+
+// The following is not really a tree display. I think it is not used anymore.
+// Or it should go to lizard-maptree.
+ul.tree {
+  margin-left: @baseFontSize;
+  li {
+    list-style: none;
+  }
+  &.tree-top-level {
+    margin-left: 0;
+  }
+}
+
+ul.without-bullets {
+  margin-left: 0;
+  li {
+    list-style: none;
+  }
+}
+
+.workspace-acceptable:hover {
+    cursor: pointer;
+    border: 1px solid #fff;
+    color: @dark;
+    background-color: @light;
+}
+
+
+#login-form {
+    margin: 10% auto auto auto;
+    text-align: center;
+    width: 300px;
+}
+
+
+div #login-error {
+	display: none;
+}
+
+.btn.active {
+  background-color: @middle;
+}
