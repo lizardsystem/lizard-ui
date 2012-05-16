@@ -3718,7 +3718,7 @@ a.thumbnail:hover {
   bottom: 0;
   top: 81px;
   bottom: 41px;
-  width: 301px;
+  width: 300px;
   background-color: #f7f7f6;
   background-image: -moz-linear-gradient(top, #f2f2f0, #ffffff);
   background-image: -ms-linear-gradient(top, #f2f2f0, #ffffff);
@@ -3751,7 +3751,7 @@ a.thumbnail:hover {
   left: 0;
   right: 0;
   top: 81px;
-  left: 302px;
+  left: 301px;
   bottom: 41px;
 }
 #logo, #breadcrumbs, #sidebar-actions {
@@ -3770,7 +3770,7 @@ a.thumbnail:hover {
   float: left;
 }
 #sidebar-actions {
-  width: 275px;
+  width: 274px;
 }
 #rightbar-actions {
   width: 174px;
@@ -3865,7 +3865,7 @@ ul.ui-icon-list li {
   text-align: center;
   width: 120px;
   height: 120px;
-  padding: 5px;
+  padding: 4px;
 }
 ul.ui-icon-list li a img {
   -moz-border-radius: 13px;
