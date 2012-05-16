@@ -13,6 +13,10 @@ Changelog of lizard-ui
   package manager npm installed to install lessc and uglify-js (only needed if
   you need to rebuild twitter-bootstrap).
 
+- Changed icon padding to accommodate for two columns in Chrome.
+
+- Added sphinx setup for documentation generation.
+
 
 3.16 (2012-05-10)
 -----------------
