@@ -8,6 +8,7 @@ TODO: Short one-paragraph intro.
 
    code
    project
+   migration_31
 
 
 .. include:: ../../README.rst
