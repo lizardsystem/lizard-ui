@@ -13,9 +13,11 @@ Choices, requirements, assumptions
 Lizard-ui is opinionated: it makes choices and prescribes (good!)
 technologies.
 
-- Included: the `blueprint css framework <http://www.blueprintcss.org/>`_.  It
-  resets css styles so that we've got a common base.  It fixes common IE
-  layout bugs.  It gives a basic typography that's quite pleasing.
+- Included: the `twitter-bootstrap css framework
+  <http://twitter.github.com/bootstrap/>`_.  It resets css styles so that
+  we've got a common base.  It fixes common IE layout bugs.  It gives a basic
+  typography that's quite pleasing. And it has some javascript that makes many
+  common UI tasks easy.
 
 - Required: `django-staticfiles
   <http://pypi.python.org/pypi/django-staticfiles>`_.  For a more verbose
@@ -53,8 +55,8 @@ Our own license is GPLv3.
 
 Lizard-ui ships with a couple of external css/javascript libraries.
 
-Blueprint
-  Modified MIT
+Twitter-bootstrap
+  Apache 2.0 license.
 
 Jquery and jqueryui
   Dual licensed under the MIT or GPL Version 2 licenses.  Includes Sizzle.js,
