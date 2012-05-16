@@ -15,6 +15,8 @@ Changelog of lizard-ui
 
 - Changed icon padding to accommodate for two columns in Chrome.
 
+- Added sphinx setup for documentation generation.
+
 
 3.16 (2012-05-10)
 -----------------
