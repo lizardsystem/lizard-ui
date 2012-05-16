@@ -655,7 +655,7 @@ $(document).ready(function () {
     setUpOverlays();
     setUpLogin();
     setUpPrintButton();
-    setUpTipsy();
+    // setUpTipsy();
     setUpSortableTables();
     //setUpWorkspaceAcceptableButtons();
     // Light up the selected tab, if available.
