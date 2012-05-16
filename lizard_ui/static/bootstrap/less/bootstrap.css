@@ -3893,12 +3893,6 @@ ul.without-bullets {
 ul.without-bullets li {
   list-style: none;
 }
-.workspace-acceptable:hover {
-  cursor: pointer;
-  border: 1px solid #fff;
-  color: #115e67;
-  background-color: #d9d9d6;
-}
 #login-form {
   margin: 10% auto auto auto;
   text-align: center;
