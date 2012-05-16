@@ -6,6 +6,10 @@ from django.db import models
 
 class Migration(SchemaMigration):
 
+    depends_on = (
+        ("lizard_security", "0002_auto__add_usergroup__add_permissionmapper__add_dataset"),
+        )
+
     def forwards(self, orm):
         
         # Adding field 'ApplicationIcon.data_set'
