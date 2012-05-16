@@ -221,7 +221,7 @@ call "block.super".  An example::
   {% endblock content %}
 
 A example of a common task: change the logo.  For that, make a
-``media/lizard_ui`` directory in your django application (or site) and place a
+``static/lizard_ui`` directory in your django application (or site) and place a
 ``logo.png`` in it.  Django-staticfiles' mechanism will take your logo.png in
 preference to lizard-ui's.
 
