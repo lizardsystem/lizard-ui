@@ -121,14 +121,12 @@ class TestUtility(TestCase):
 
 class TestTracebackLoggingMiddleware(TestCase):
 
-    def setUp(self):
-        self.request = 'mock request'
-        self.exception = Exception('Mock exception')
-
     def test_smoke(self):
         """Just test that it doesn't crash."""
+        exception = Exception('Mock exception')
+        request = RequestFactory().get('/')
         middleware = TracebackLoggingMiddleware()
-        middleware.process_exception(self.request, self.exception)
+        middleware.process_exception(request, exception)
 
 
 class TestConfigChecker(TestCase):
