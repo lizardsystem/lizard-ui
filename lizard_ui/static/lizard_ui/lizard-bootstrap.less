@@ -286,7 +286,6 @@ ul.ui-icon-list {
   }
 }
 
-
 // The following is not really a tree display. I think it is not used anymore.
 // Or it should go to lizard-maptree.
 ul.tree {
@@ -301,18 +300,14 @@ ul.tree {
 
 ul.without-bullets {
   margin-left: 0;
-  li {
-    list-style: none;
-  }
+  list-style: none;
 }
-
 
 #login-form {
     margin: 10% auto auto auto;
     text-align: center;
     width: 300px;
 }
-
 
 div #login-error {
 	display: none;
@@ -321,3 +316,158 @@ div #login-error {
 .btn.active {
   background-color: @middle;
 }
+
+// copied from lizard_map.css
+
+/* ****************** Treeview ************ */
+#sidebar ul {
+    li.workspace-acceptable,
+    div.workspace-acceptable {
+        cursor: pointer;
+        display: block;
+        margin: 4px 0;
+
+        &:hover {
+            outline: 1px solid #000;
+        }
+
+        &.selected {
+            background-color: #d9d9d6;
+        }
+    }
+}
+
+#sidebar ul.treeview {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    li.expandable span.folder,
+    li.collapsable span.folder {
+        cursor: pointer;
+        display: block;
+        margin: 4px 0;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
+    }
+
+    div.hitarea {
+        width: 16px;
+        height: 16px;
+        float: left;
+        cursor: pointer;
+    }
+
+    div.expandable-hitarea {
+        background: url("../../lizard_ui/arrows.png") no-repeat scroll 6px -10px transparent;
+    }
+
+    div.collapsable-hitarea {
+        background: url("../../lizard_ui/arrows.png") no-repeat scroll -7px 5px transparent;
+    }
+
+    a.file {
+        display: block;
+        margin: 4px 0;
+    }
+}
+
+/* ****************** /Treeview ************ */
+
+a.workspace-acceptable,
+div.nonworking-workspace-acceptable {
+  display: block;
+  font-decoration: none;
+  color: #333333;
+}
+
+a.workspace-acceptable:hover,
+div.nonworking-workspace-acceptable:hover {
+  font-decoration: none;
+}
+
+a.workspace-acceptable:active,
+div.nonworking-workspace-acceptable:active {
+  font-decoration: none;
+  color: #333333;
+}
+
+a.workspace-acceptable {
+  border: 1px solid transparent;
+}
+
+a.workspace-acceptable:hover {
+  border: 1px solid gray;
+  font-decoration: none;
+}
+
+a.workspace-acceptable .workspace-selected-icon {
+  display: none;
+}
+
+a.workspace-acceptable.selected {
+  font-weight: bold;
+}
+
+a.workspace-acceptable.selected .workspace-selected-icon {
+  display: inline-block;
+}
+
+div.nonworking-workspace-acceptable {
+  font-style: italic;
+}
+
+#map {
+  background-color: #ddd;
+}
+
+#lizard-map-wms {
+  display: none;
+}
+
+#moving-box {
+  width: 0;
+  height: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  border: 1px solid black;
+}
+
+/* ****************** Workspace editor ("kaartlagen") ************ */
+
+#edit-workspace img.workspace-item-image {
+  vertical-align: middle;
+}
+
+#edit-workspace .workspace-items,
+#edit-workspace .workspace-actions {
+  margin-left: 0;
+}
+
+#edit-workspace .workspace-items li,
+#edit-workspace .workspace-actions li {
+  list-style: none;
+}
+
+#edit-workspace .workspace-items .below-workspace-item,
+#edit-workspace .workspace-actions .below-workspace-item {
+  display: none;
+  text-align: right;
+}
+
+#edit-workspace .workspace-actions {
+  margin-top: 1em;
+  border-top: 1px solid #111;
+  padding-top: 1em;
+}
+
+#edit-workspace div.workspace-item label {
+  display: inline;
+  cursor: pointer;
+}
+
+/* ****************** /Workspace editor ("kaartlagen") ************ */
