@@ -5,7 +5,8 @@ Changelog of lizard-ui
 4.0a2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fixed google maps (which would be invisible) by removing max-width from
+  bootstrap's css.
 
 
 4.0a1 (2012-05-18)
