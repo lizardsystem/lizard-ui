@@ -9,11 +9,19 @@ Changelog of lizard-ui
 
 - Merged reinout-bootstrap branch ("the deltaportaal layout").
 
+- Using compiled css/js instead of less/coffee.
+
+- Using smaller logo.
+
 - Added source distribution of twitter-bootstrap. You need node.js and its
   package manager npm installed to install lessc and uglify-js (only needed if
   you need to rebuild twitter-bootstrap).
 
 - Changed icon padding to accommodate for two columns in Chrome.
+
+- Fixed several styling issues.
+
+- Making the popup compatible.
 
 
 3.16 (2012-05-10)
