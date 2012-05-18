@@ -4232,4 +4232,7 @@ div.nonworking-workspace-acceptable {
   cursor: pointer;
 }
 /* ****************** /Workspace editor ("kaartlagen") ************ */
+img {
+  max-width: none !important;
+}
 /* Empty, use this to override basic colors for a specific site. */
