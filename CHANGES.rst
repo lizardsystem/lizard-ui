@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-4.0a2 (unreleased)
+4.0a2 (2012-05-18)
 ------------------
 
 - Fixed google maps (which would be invisible) by removing max-width from
