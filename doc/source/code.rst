@@ -18,4 +18,3 @@ Code documentation
 
 .. automodule:: lizard_ui.views
    :members:
-
