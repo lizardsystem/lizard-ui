@@ -166,7 +166,6 @@ class UiView(ViewContextMixin, TemplateView):
 
     """
     template_name = 'lizard_ui/lizardbase.html'
-    edit_link = None
     icon_url_name = 'lizard_ui.icons'
     # ^^^ So that we can subclass this view and still get proper urls.
     show_secondary_sidebar_title = None

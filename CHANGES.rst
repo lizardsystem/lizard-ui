@@ -23,6 +23,8 @@ Changelog of lizard-ui
 
 - Making the popup compatible.
 
+- Added sphinx setup for documentation generation.
+
 
 3.16 (2012-05-10)
 -----------------
