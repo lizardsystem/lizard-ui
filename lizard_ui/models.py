@@ -1,5 +1,6 @@
 from django.core.urlresolvers import reverse
 from django.db import models
+from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 
 from lizard_security.manager import FilteredManager
@@ -82,7 +83,11 @@ class ApplicationIcon(models.Model):
     supports_object_permissions = True
 
     name = models.CharField(_('name'), max_length=40)
-    icon = models.CharField(_('icon'), max_length=200)
+    icon = models.CharField(
+        _('icon'),
+        max_length=200,
+        help_text=_('Either a full URL or an /static_media/... URL or lizard_ui/app_icons/...'),
+        )
     description = models.TextField(_('description'), blank=True, null=True)
     url = models.CharField(_('url'), max_length=200, blank=True, null=True)
     application_screen = models.ForeignKey(
@@ -135,3 +140,11 @@ class ApplicationIcon(models.Model):
             result = []
         result.append(parent)
         return result
+
+    def icon_url(self):
+        """Return cleaned-up URL."""
+        already_good = [settings.STATIC_URL, 'http://', 'https://']
+        for indicator in already_good:
+            if self.icon.startswith(indicator):
+                return self.icon
+        return settings.STATIC_URL + self.icon

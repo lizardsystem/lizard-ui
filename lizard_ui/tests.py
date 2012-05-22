@@ -6,7 +6,7 @@ from django.test import TestCase
 from django.test.client import RequestFactory
 from django.utils import simplejson as json
 
-# from lizard_ui.models import ApplicationScreen
+from lizard_ui.models import ApplicationIcon
 from lizard_ui.configchecker import checker
 from lizard_ui.middleware import TracebackLoggingMiddleware
 from lizard_ui.templatetags.utility import dutch_timedelta
@@ -143,3 +143,31 @@ class TestExampleApplicationScreen(TestCase):
         request = RequestFactory().get('/example/')
         response = lizard_ui.views.application_screen(request)
         self.assertEquals(response.status_code, 200)
+
+class TestApplicationIcon(TestCase):
+
+    def test_url1(self):
+        ai = ApplicationIcon(icon='reinout.png')
+        self.assertEquals('/static_media/reinout.png',
+                          ai.icon_url())
+
+    def test_url2(self):
+        ai = ApplicationIcon(icon='lizard_ui/reinout.png')
+        self.assertEquals('/static_media/lizard_ui/reinout.png',
+                          ai.icon_url())
+
+    def test_url3(self):
+        ai = ApplicationIcon(icon='/static_media/reinout.png')
+        self.assertEquals('/static_media/reinout.png',
+                          ai.icon_url())
+
+    def test_url4(self):
+        ai = ApplicationIcon(icon='http://example.org/reinout.png')
+        self.assertEquals('http://example.org/reinout.png',
+                          ai.icon_url())
+
+    def test_url5(self):
+        ai = ApplicationIcon(icon='http://example.org/reinout.png')
+        self.assertEquals('http://example.org/reinout.png',
+                          ai.icon_url())
+
