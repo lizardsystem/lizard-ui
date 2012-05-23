@@ -9,6 +9,10 @@ Changelog of lizard-ui
 
 - Updated configchecker.
 
+- Commented line 413 in jquery-ui-1.8.5.custom.css to remove conflicing
+  (with Twitter Bootstrap) class .ui-button-text-only .ui-button-text 
+  [Gijs Nijholt]
+
 
 4.0a2 (2012-05-18)
 ------------------
