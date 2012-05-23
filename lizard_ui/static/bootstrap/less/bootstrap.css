@@ -3980,8 +3980,12 @@ body {
 }
 .padded-sidebar-item {
   display: block;
-  padding-top: 11px;
-  padding-bottom: 11px;
+  padding-top: 8.8px;
+  padding-bottom: 8.8px;
+}
+.workspace-acceptable.padded-sidebar-item {
+  padding: 0 !important;
+  margin: 4px 0;
 }
 #sidebar h2,
 #rightbar h2,
@@ -4000,8 +4004,8 @@ body {
   padding-left: 13px;
   padding-right: 13px;
   display: block;
-  padding-top: 11px;
-  padding-bottom: 11px;
+  padding-top: 8.8px;
+  padding-bottom: 8.8px;
   font-weight: bold;
 }
 #sidebar h2,
@@ -4160,30 +4164,34 @@ div #login-error {
 a.workspace-acceptable,
 div.nonworking-workspace-acceptable {
   display: block;
-  font-decoration: none;
+  text-decoration: none;
   color: #333333;
 }
 a.workspace-acceptable:hover,
 div.nonworking-workspace-acceptable:hover {
-  font-decoration: none;
+  text-decoration: none;
 }
 a.workspace-acceptable:active,
 div.nonworking-workspace-acceptable:active {
-  font-decoration: none;
+  text-decoration: none;
   color: #333333;
 }
 a.workspace-acceptable {
   border: 1px solid transparent;
 }
 a.workspace-acceptable:hover {
-  border: 1px solid gray;
-  font-decoration: none;
+  border: 1px solid #000;
+  text-decoration: none;
+}
+a.workspace-acceptable:focus {
+  outline: none;
+  outline-offset: 0;
 }
 a.workspace-acceptable .workspace-selected-icon {
   display: none;
 }
 a.workspace-acceptable.selected {
-  font-weight: bold;
+  background-color: #D9D9D6;
 }
 a.workspace-acceptable.selected .workspace-selected-icon {
   display: inline-block;

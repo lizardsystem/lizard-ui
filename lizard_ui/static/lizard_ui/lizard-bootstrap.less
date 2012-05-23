@@ -185,12 +185,17 @@ body {
 // The headers and workspace acceptables should have more height than the
 // lineheight. But we do not want to mess with the lineheight, as that looks
 // bad with multiple lines. So padding above and below!
-@sidebarItemPadding: (@barHeight - @baseLineHeight) * 0.5;
+@sidebarItemPadding: (@barHeight - @baseLineHeight) * 0.4;
 
 .padded-sidebar-item {
   display: block;
   padding-top: @sidebarItemPadding;
   padding-bottom: @sidebarItemPadding;
+}
+
+.workspace-acceptable.padded-sidebar-item {
+  padding: 0 !important;
+  margin: 4px 0;
 }
 
 #sidebar,
@@ -380,18 +385,18 @@ div #login-error {
 a.workspace-acceptable,
 div.nonworking-workspace-acceptable {
   display: block;
-  font-decoration: none;
+  text-decoration: none;
   color: #333333;
 }
 
 a.workspace-acceptable:hover,
 div.nonworking-workspace-acceptable:hover {
-  font-decoration: none;
+  text-decoration: none;
 }
 
 a.workspace-acceptable:active,
 div.nonworking-workspace-acceptable:active {
-  font-decoration: none;
+  text-decoration: none;
   color: #333333;
 }
 
@@ -400,8 +405,13 @@ a.workspace-acceptable {
 }
 
 a.workspace-acceptable:hover {
-  border: 1px solid gray;
-  font-decoration: none;
+  border: 1px solid #000;
+  text-decoration: none;
+}
+
+a.workspace-acceptable:focus {
+  outline: none;
+  outline-offset: 0;
 }
 
 a.workspace-acceptable .workspace-selected-icon {
@@ -409,7 +419,7 @@ a.workspace-acceptable .workspace-selected-icon {
 }
 
 a.workspace-acceptable.selected {
-  font-weight: bold;
+  background-color: #D9D9D6;
 }
 
 a.workspace-acceptable.selected .workspace-selected-icon {
