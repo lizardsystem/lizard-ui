@@ -4214,6 +4214,13 @@ div.nonworking-workspace-acceptable {
   border: 1px solid black;
 }
 /* ****************** Workspace editor ("kaartlagen") ************ */
+#edit-workspace span.no-image-spacer {
+  width: 16px;
+  display: inline-block;
+}
+#edit-workspace label input {
+  display: inline;
+}
 #edit-workspace img.workspace-item-image {
   vertical-align: middle;
 }
