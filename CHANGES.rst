@@ -5,7 +5,7 @@ Changelog of lizard-ui
 4.0a3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Upgraded sentry client to raven.
 
 
 4.0a2 (2012-05-18)
@@ -37,8 +37,6 @@ Changelog of lizard-ui
 - Making the popup compatible.
 
 - Added sphinx setup for documentation generation.
-
-- Upgraded sentry client to raven.
 
 
 3.16 (2012-05-10)
