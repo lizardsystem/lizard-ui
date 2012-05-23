@@ -7,6 +7,8 @@ Changelog of lizard-ui
 
 - Upgraded sentry client to raven.
 
+- Updated configchecker.
+
 
 4.0a2 (2012-05-18)
 ------------------
