@@ -16,7 +16,6 @@ install_requires = [
     'django-extensions',
     'django-staticfiles >= 1.0',
     'django_compressor >= 1.2a1',  # Yes, underscore.
-#    'django-sentry',
     'pytz',
     'raven',
     'simplejson',
