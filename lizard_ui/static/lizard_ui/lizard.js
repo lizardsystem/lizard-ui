@@ -34,7 +34,7 @@ function reloadGraph($graph, max_image_width, callback) {
             height = 0.5 * width;
         }
         // Prevent a horizontal scrollbar in any case.
-        width = width - scrollbarWidth();
+        //width = width - scrollbarWidth();
     }
     $graph.hide();
     url = $graph.attr('href');
