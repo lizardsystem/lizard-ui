@@ -4242,7 +4242,7 @@ div.nonworking-workspace-acceptable {
   border-top: 1px solid #111;
   padding-top: 1em;
 }
-#edit-workspace div.workspace-item label {
+#edit-workspace li.workspace-item label {
   display: inline;
   cursor: pointer;
 }
