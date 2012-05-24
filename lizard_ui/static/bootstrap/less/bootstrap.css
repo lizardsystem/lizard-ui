@@ -4231,6 +4231,7 @@ div.nonworking-workspace-acceptable {
 #edit-workspace .workspace-items li,
 #edit-workspace .workspace-actions li {
   list-style: none;
+  padding-top: 2px;
 }
 #edit-workspace .workspace-items .below-workspace-item,
 #edit-workspace .workspace-actions .below-workspace-item {
