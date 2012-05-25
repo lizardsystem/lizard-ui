@@ -4,12 +4,14 @@
 	<a class="close" data-dismiss="modal">×</a>
 	<h3>{% trans 'Login' %}</h3>
   </div>
+  <form id="modal-login-form" name="modal-login-form" action="#" method="POST">
   <div class="modal-body">
 	<div id="login-error" class="alert alert-error">
 	</div>
 	  <fieldset>
 		<label>{% trans "Name" %}</label>
 		<input type="text"
+			   id="modal-login-form-username"
 			   name="username"
 			   {% if form.username.value %}
   			   value="{{ form.username.value }}"
@@ -25,7 +27,7 @@
 	  </fieldset>
   </div>
   <div class="modal-footer">
-	<a id="modal-login-form" href="#" class="btn btn-primary">
-	  {% trans 'Login' %}</a>
+    <input type="submit" id="modal-login-form-btn" class="btn btn-primary" value="{% trans 'Login' %}" />
   </div>
+  </form>
 </div>

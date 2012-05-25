@@ -185,9 +185,23 @@
     });
     $('.ui-login-link').click(function(e) {
       e.preventDefault();
-      return $('#login-modal').modal('toggle');
+      $('#login-modal').modal('toggle');
+      if ($('#login-modal').is('.in')) {
+        $(document).unbind('keyup');
+        $(document).bind('keyup', function(event) {
+          if ($("*:focus").parents('#login-modal').length === 0) {
+            return $('#modal-login-form-username').focus();
+          }
+        });
+        $('#modal-login-form-username').focus();
+      }
+      return false;
     });
-    $('#modal-login-form').click(function() {
+    $('#modal-login-form').submit(function() {
+      handleLogin();
+      return false;
+    });
+    $('#modal-login-form-btn').click(function() {
       return handleLogin();
     });
     return this;

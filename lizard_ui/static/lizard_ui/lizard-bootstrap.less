@@ -230,6 +230,7 @@ body {
 #textual,
 .textual-content {
   padding: @baseFontSize;
+  .scroll-y;
 }
 
 // Breadcrumbs fixes.
@@ -520,4 +521,9 @@ ul.wscol-actions {
 // overrides reset.less
 img {
   max-width: none !important;
+}
+
+// Fix margin on modal login form
+#login-modal form {
+    margin: 0;
 }

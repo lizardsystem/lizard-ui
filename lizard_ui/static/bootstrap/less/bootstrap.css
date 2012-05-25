@@ -3102,6 +3102,9 @@ input[type="submit"].btn.small {
 .modal-body .modal-form {
   margin-bottom: 0;
 }
+.modal-body input[type=submit] {
+  display: none;
+}
 .modal-footer {
   padding: 14px 15px 15px;
   margin-bottom: 0;
@@ -4047,6 +4050,8 @@ body {
 #textual,
 .textual-content {
   padding: 13px;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 #breadcrumbs ul {
   margin-left: 0;
@@ -4278,5 +4283,8 @@ ul.wscol-actions li {
 /* ****************** /Workspace + collage editor ("kaartlagen") ************ */
 img {
   max-width: none !important;
+}
+#login-modal form {
+  margin: 0;
 }
 /* Empty, use this to override basic colors for a specific site. */
