@@ -7,9 +7,11 @@
   <div class="modal-body">
 	<div id="login-error" class="alert alert-error">
 	</div>
+	<form id="modal-login-form" name="modal-login-form" action="#" method="POST">
 	  <fieldset>
 		<label>{% trans "Name" %}</label>
 		<input type="text"
+			   id="modal-login-form-username"
 			   name="username"
 			   {% if form.username.value %}
   			   value="{{ form.username.value }}"
@@ -22,10 +24,12 @@
 		<input type="hidden"
 			   name="login-url"
 			   value="{% url lizard_ui.login %}" />
+		<input type="submit" />
 	  </fieldset>
+    </form>
   </div>
   <div class="modal-footer">
-	<a id="modal-login-form" href="#" class="btn btn-primary">
+	<a id="modal-login-form-btn" href="#" class="btn btn-primary">
 	  {% trans 'Login' %}</a>
   </div>
 </div>

@@ -197,8 +197,20 @@ $(document).ready ->
     $('.ui-login-link').click (e) ->
         e.preventDefault()
         $('#login-modal').modal('toggle');
+        if $('#login-modal').is('.in')
+            $(document).unbind 'keyup'
+            $(document).bind 'keyup', (event) ->
+                if $("*:focus").parents('#login-modal').length == 0
+                    $('#modal-login-form-username').focus()
+            $('#modal-login-form-username').focus()
+        false
+            
 
-    $('#modal-login-form').click ->
+    $('#modal-login-form').submit ->
+        handleLogin()
+        false
+
+    $('#modal-login-form-btn').click ->
         handleLogin()
     @
 
