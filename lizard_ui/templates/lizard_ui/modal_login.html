@@ -4,10 +4,10 @@
 	<a class="close" data-dismiss="modal">×</a>
 	<h3>{% trans 'Login' %}</h3>
   </div>
+  <form id="modal-login-form" name="modal-login-form" action="#" method="POST">
   <div class="modal-body">
 	<div id="login-error" class="alert alert-error">
 	</div>
-	<form id="modal-login-form" name="modal-login-form" action="#" method="POST">
 	  <fieldset>
 		<label>{% trans "Name" %}</label>
 		<input type="text"
@@ -24,12 +24,10 @@
 		<input type="hidden"
 			   name="login-url"
 			   value="{% url lizard_ui.login %}" />
-		<input type="submit" />
 	  </fieldset>
-    </form>
   </div>
   <div class="modal-footer">
-	<a id="modal-login-form-btn" href="#" class="btn btn-primary">
-	  {% trans 'Login' %}</a>
+    <input type="submit" id="modal-login-form-btn" class="btn btn-primary" value="{% trans 'Login' %}" />
   </div>
+  </form>
 </div>
