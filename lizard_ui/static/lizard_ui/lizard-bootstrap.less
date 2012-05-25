@@ -58,6 +58,7 @@
 }
 .scroll-y {
   overflow-y: auto;
+  overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
 }
 // And to make sure there are no scrollbars when we slide a sidebar out, the
@@ -195,7 +196,6 @@ body {
 
 .workspace-acceptable.padded-sidebar-item {
   padding: 0 !important;
-  margin: 4px 0;
 }
 
 #sidebar,
@@ -331,7 +331,8 @@ div #login-error {
     div.workspace-acceptable {
         cursor: pointer;
         display: block;
-        margin: 4px 0;
+        margin: 4px -100px;
+        padding: 2px 100px;
 
         &:hover {
             outline: 1px solid #000;
@@ -352,12 +353,16 @@ div #login-error {
     li.collapsable span.folder {
         cursor: pointer;
         display: block;
-        margin: 4px 0;
+        margin: 6px 0;
     }
 
     ul {
         list-style: none;
         padding: 0;
+    }
+    
+    li {
+        margin: 2px 0;
     }
 
     div.hitarea {
@@ -377,7 +382,7 @@ div #login-error {
 
     a.file {
         display: block;
-        margin: 4px 0;
+        margin: 6px 0;
     }
 }
 

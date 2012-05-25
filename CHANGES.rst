@@ -18,6 +18,8 @@ Changelog of lizard-ui
   
 - Fixed some interaction issues with modal and non-modal login form.
 
+- Restored accordion behavior and improved leftbar styling.
+
 
 4.0a2 (2012-05-18)
 ------------------

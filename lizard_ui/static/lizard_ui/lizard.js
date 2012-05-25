@@ -220,6 +220,49 @@ function setUpSortableTables() {
     });
 }
 
+function setUpAccordion() {
+    $("#accordion").tabs(
+        "#accordion .pane",
+        {tabs: "h2, h3",
+         effect: "slide"});
+    /* Set up a global 'accordion' variable to later steer the animation. */
+    accordion = $("#accordion").data("tabs");
+    $(".accordion-load-next a").live('click', function (event) {
+        var pane, nextPaneId, url, newTitle, ourId;
+        event.preventDefault();
+        pane = $(this).parents(".accordion-load-next");
+        nextPaneId = pane.attr("data-next-pane-id");
+        url = $(this).attr("href");
+        $(nextPaneId).html('<div class="loading" />');
+        $.ajax({
+            type: "GET",
+            url: url,
+            success: function (data) {
+                // Update all pane titles and the new pane. Data is the whole
+                // (new) html page.
+                $(".pane").each(function () {
+                    // Title of current pane.
+                    newTitle = $(data).find("#" + $(this).attr("id")).prev().html();
+                    $(this).prev().html(newTitle);
+                    // Refresh target pane contents only.
+                    ourId = "#" + $(this).attr("id");
+                    if (ourId === nextPaneId) {
+                        $(this).html($(data).find(ourId));
+                    }
+                });
+                //setUpTooltips();
+                setUpTree();
+            },
+            error: function (e) {
+                $(nextPaneId).html('<div class="ss_error ss_sprite" />' +
+                                   'Fout bij laden paginaonderdeel.');
+            }
+        });
+        $("li.selected", pane).removeClass("selected");
+        $(this).parent("li").addClass("selected");
+        accordion.click(accordion.getIndex() + 1);
+    });
+}
 
 
 
@@ -232,5 +275,6 @@ $(document).ready(function () {
     setUpSortableTables();
     // Set up legend.
     //setUpTooltips(); // The edit function is on the tooltip.
+    setUpAccordion();
 });
 
