@@ -11,3 +11,6 @@ following two files::
 
  cp development-bundle/ui/jquery-ui-1.8.11.custom.js jqueryui.js
  cp js/jquery-ui-1.8.11.custom.min.js jqueryui.min.js
+
+All .ui-button styles have been changes to .xui-button as they conflict with
+twitter-bootstrap.  [reinout]

@@ -5,12 +5,15 @@ Changelog of lizard-ui
 4.0a3 (unreleased)
 ------------------
 
+- UI fixes: graphs load automatically again; workspace item paddings/margins;
+  jqueryui buttons commented out as they conflict with bootstrap's css.
+
 - Upgraded sentry client to raven.
 
 - Updated configchecker.
 
 - Commented line 413 in jquery-ui-1.8.5.custom.css to remove conflicing
-  (with Twitter Bootstrap) class .ui-button-text-only .ui-button-text 
+  (with Twitter Bootstrap) class .ui-button-text-only .ui-button-text
   [Gijs Nijholt]
 
 
