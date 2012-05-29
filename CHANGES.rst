@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-4.0a3 (unreleased)
+4.0b1 (2012-05-29)
 ------------------
 
 - UI fixes: graphs load automatically again; workspace item paddings/margins;
