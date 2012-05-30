@@ -18,7 +18,10 @@
   };
 
   closeSidebar = function() {
-    if (window.secondarySidebarState === "opened") hideSecondarySidebar();
+    if (window.secondarySidebarState === "opened") {
+      hideSecondarySidebar();
+      window.secondarySidebarState = "closed";
+    }
     $('#sidebar-actions .icon-arrow-left').removeClass('icon-arrow-left').addClass('icon-arrow-right');
     $('.secondary-sidebar-button').attr('disabled', '');
     $('div#sidebar').animate({

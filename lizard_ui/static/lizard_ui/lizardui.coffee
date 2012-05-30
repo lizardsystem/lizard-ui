@@ -16,6 +16,7 @@ closeSidebar = ->
     if window.secondarySidebarState is "opened"
         # First close the secondary one.
         hideSecondarySidebar()
+        window.secondarySidebarState = "closed"
     $('#sidebar-actions .icon-arrow-left')
         .removeClass('icon-arrow-left')
         .addClass('icon-arrow-right')
