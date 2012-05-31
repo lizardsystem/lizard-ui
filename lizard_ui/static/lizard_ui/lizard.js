@@ -116,7 +116,6 @@ function reloadLocalizedGraphs($location, max_image_width) {
 function reloadFlotGraph($graph, max_image_width, callback) {
     var url = $graph.attr('data-flot-graph-data-url');
     if (url !== undefined) {
-        //url = '/static_media/metingen3.json';
         $.ajax({
             url: url,
             method: 'GET',
@@ -126,35 +125,33 @@ function reloadFlotGraph($graph, max_image_width, callback) {
                 if (callback !== undefined) {
                     callback();
                 }
-            }
+            },
+            timeout: 20000,
         });
     }
 }
 
 
+/**
+ * Draw the response data to a canvas in DOM element $graph using Flot.
+ *
+ * @param {$graph} DOM element which will be replaced by the graph
+ * @param {response} a dictionary containing graph data such as x/y values and labels
+ */
 function flotGraphLoadData($graph, max_image_width, response) {
     var plot;
-    //var length = series.length;
-    //var finalData = series;
-    //var data = [];
-    //var x_max = finalData[finalData.length-1]["Timestamp"];
-    //var x_min = finalData[0]["Timestamp"];
-    //for(var i in finalData){
-    //    var date = finalData[i]["Timestamp"];
-    //    data[i] =  [date, parseFloat(finalData[i].Waarde).toFixed(3)];
-    //}
     var data = response.series;
     
     var options = {
-        colors: ['blue'],
         series: {
             lines: { show: true },
             points: { show: true, hoverable: true }
         },
-        yaxis: {
-            min: response.v_min,
-            max: response.v_max
-        },
+        // disabled, flot seems to be able to determine these
+        //yaxis: {
+        //    min: response.y_min,
+        //    max: response.y_max
+        //},
         xaxis: {
             mode: "time",
             tickSize: [2, "day"]
@@ -199,7 +196,7 @@ function flotGraphLoadData($graph, max_image_width, response) {
             }
             plot = $.plot(
                 $graph,
-                [data],
+                data,
                 $.extend(true, {}, options, {
                     xaxis: {
                         min: ranges.xaxis.from,
@@ -216,7 +213,6 @@ function flotGraphLoadData($graph, max_image_width, response) {
     //});
 
     function showChartTooltip(x, y, contents) {
-        console.debug(contents);
         $('<div id="charttooltip">'+ contents + '</div>').css({
             position: 'absolute',
             display: 'none',
@@ -243,7 +239,7 @@ function flotGraphLoadData($graph, max_image_width, response) {
         }
     });
 
-    plot = $.plot($graph, [data], options);
+    plot = $.plot($graph, data, options);
 
     //$("#clearSelection").click(function () {
     //    plot.clearSelection();
@@ -254,7 +250,7 @@ function flotGraphLoadData($graph, max_image_width, response) {
     //});
 
     $(".flot-graph-reload").click(function () {
-        plot = $.plot($graph, [data], options);
+        plot = $.plot($graph, data, options);
     });
 }
 
