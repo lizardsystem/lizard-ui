@@ -1,8 +1,6 @@
 (function() {
   var animationSpeed, closeRightbar, closeSidebar, handleLogin, hideSecondarySidebar, openRightbar, openSidebar, setUpMapDimensions, setUpPopovers, showSecondarySidebar;
-
   animationSpeed = 300;
-
   setUpPopovers = function() {
     $(".has_popover").popover();
     $(".has_popover_north").popover({
@@ -16,7 +14,6 @@
     });
     return this;
   };
-
   closeSidebar = function() {
     if (window.secondarySidebarState === "opened") {
       hideSecondarySidebar();
@@ -35,7 +32,6 @@
     });
     return this;
   };
-
   openSidebar = function() {
     $('#sidebar-actions .icon-arrow-right').removeClass('icon-arrow-right').addClass('icon-arrow-left');
     $('div#sidebar').animate({
@@ -50,9 +46,10 @@
     $('.secondary-sidebar-button').removeAttr('disabled');
     return this;
   };
-
   closeRightbar = function() {
-    if (window.secondaryRightbarState === "opened") hideSecondaryRightbar();
+    if (window.secondaryRightbarState === "opened") {
+      hideSecondaryRightbar();
+    }
     $('#rightbar-actions .icon-arrow-right').removeClass('icon-arrow-right').addClass('icon-arrow-left');
     $('div#rightbar').animate({
       right: -200,
@@ -65,7 +62,6 @@
     });
     return this;
   };
-
   openRightbar = function() {
     $('#rightbar-actions .icon-arrow-left').removeClass('icon-arrow-left').addClass('icon-arrow-right');
     $('div#rightbar').show();
@@ -80,7 +76,6 @@
     });
     return this;
   };
-
   showSecondarySidebar = function() {
     var bottom, element, top;
     top = $("#sidebar").position().top;
@@ -95,7 +90,6 @@
     element.css('overflow-y', 'auto');
     return this;
   };
-
   hideSecondarySidebar = function() {
     var bottom, element;
     bottom = $("#footer").position().top;
@@ -107,7 +101,6 @@
     $('.secondary-sidebar-button').button('toggle');
     return this;
   };
-
   setUpMapDimensions = function() {
     var alreadySized, bottom, contentHeight, contentWidth, element, heightPerItem, items, remainingHeight;
     contentHeight = $("div#content").height();
@@ -133,7 +126,6 @@
     }
     return this;
   };
-
   handleLogin = function() {
     var password, url, username;
     username = $('input[name=username]').val();
@@ -155,7 +147,6 @@
       }
     });
   };
-
   $(document).ready(function() {
     window.sidebarState = "opened";
     window.secondarySidebarState = "closed";
@@ -216,7 +207,5 @@
     });
     return this;
   });
-
   $(window).bind('orientationchange pageshow resize', setUpMapDimensions);
-
 }).call(this);
