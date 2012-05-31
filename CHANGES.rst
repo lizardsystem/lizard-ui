@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-4.0b2 (unreleased)
+4.0b2 (2012-05-31)
 ------------------
 
 - Properly close secondary sidebar ("Kaartlagen") when hiding the sidebar ("Inklappen").
