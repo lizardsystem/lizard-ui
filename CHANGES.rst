@@ -7,6 +7,14 @@ Changelog of lizard-ui
 
 - Properly close secondary sidebar ("Kaartlagen") when hiding the sidebar ("Inklappen").
 
+- Add the Flot JavaScript library.
+
+- Fix a small styling issue concerning workspaces.
+
+- Update to jQuery 1.7.2 which includes some .ajax() fixes.
+
+- Add client side support for the new FlotGraph.
+
 
 4.0b1 (2012-05-29)
 ------------------
