@@ -5,7 +5,8 @@ Changelog of lizard-ui
 4.0b4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Added ``required_permission`` attribute on UiView. If you set it, the
+  permission is checked and the user redirected, if needed.
 
 
 4.0b3 (2012-06-01)
@@ -43,7 +44,7 @@ Changelog of lizard-ui
 - Commented line 413 in jquery-ui-1.8.5.custom.css to remove conflicing
   (with Twitter Bootstrap) class .ui-button-text-only .ui-button-text
   [Gijs Nijholt]
-  
+
 - Fixed some interaction issues with modal and non-modal login form.
 
 - Restored accordion behavior and improved leftbar styling.

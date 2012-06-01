@@ -4,6 +4,7 @@ import logging
 import urlparse
 import urllib
 
+from django.conf import settings
 from django.contrib.auth import login
 from django.contrib.auth import logout
 from django.core.urlresolvers import reverse
@@ -166,6 +167,9 @@ class UiView(ViewContextMixin, TemplateView):
       already subclassed themselves or that use UiView directly. So they can
       best customize the ``lizard_ui/lizardbase.html`` template.
 
+    You can specify ``required_permission``. If set, the permission is checked
+    (and the user is redirected to the login page if needed).
+
     """
     template_name = 'lizard_ui/lizardbase.html'
     icon_url_name = 'lizard_ui.icons'
@@ -177,6 +181,7 @@ class UiView(ViewContextMixin, TemplateView):
     require_application_icon_with_permission = False
     # ^^^ If there's no visible application icon, we don't have the necessary
     # permission. At least, that's what this is intended for.
+    required_permission = None
 
     def get_context_data(self, **kwargs):
         if self.require_application_icon_with_permission:
@@ -186,6 +191,13 @@ class UiView(ViewContextMixin, TemplateView):
                 # TODO: change to 403 (forbidden) with Django 1.4.
                 raise Http404
         return super(UiView, self).get_context_data(**kwargs)
+
+    def dispatch(self, request, *args, **kwargs):
+        if self.required_permission:
+            if not request.user.has_perm(self.required_permission):
+                return HttpResponseRedirect(
+                    settings.LOGIN_URL + '?next=%s' % request.path)
+        return super(UiView, self).dispatch(request, *args, **kwargs)
 
     @property
     def title(self):
