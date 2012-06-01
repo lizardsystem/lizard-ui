@@ -140,12 +140,11 @@ function reloadFlotGraph($graph, max_image_width, callback) {
  */
 function flotGraphLoadData($graph, max_image_width, response) {
     var plot;
-    var data = response.series;
+    var data = response.data;
     
     var options = {
         series: {
-            lines: { show: true },
-            points: { show: true, hoverable: true }
+            points: { show: true, hoverable: true },
         },
         // disabled, flot seems to be able to determine these
         //yaxis: {
