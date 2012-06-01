@@ -5,7 +5,9 @@ Changelog of lizard-ui
 4.0b3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Tiny styling fix.
+
+- Add flot bar graph support.
 
 
 4.0b2 (2012-05-31)
