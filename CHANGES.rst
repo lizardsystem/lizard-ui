@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-4.0b4 (unreleased)
+4.0b4 (2012-06-01)
 ------------------
 
 - Added ``required_permission`` attribute on UiView. If you set it, the
