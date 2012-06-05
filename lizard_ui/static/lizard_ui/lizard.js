@@ -151,9 +151,19 @@ function flotGraphLoadData($graph, max_image_width, response) {
         //    min: response.y_min,
         //    max: response.y_max
         //},
+        yaxis: {
+            axisLabel: response.y_label, // plugin jquery.flot.axislabels.js
+            axisLabelUseCanvas: true,
+            axisLabelFontFamily: 'Verdana,Arial,sans-serif',
+            axisLabelFontSizePixels: 12
+        },
         xaxis: {
             mode: "time",
-            tickSize: [2, "day"]
+            tickSize: [2, "day"],
+            axisLabel: response.x_label, // plugin jquery.flot.axislabels.js
+            axisLabelUseCanvas: true,
+            axisLabelFontFamily: 'Verdana,Arial,sans-serif',
+            axisLabelFontSizePixels: 12
         },
         selection: { mode: "x" },
         grid: { hoverable: true }
