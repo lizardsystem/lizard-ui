@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-4.0b5 (unreleased)
+4.0b5 (2012-06-05)
 ------------------
 
 - Replace zettingen.png icon to one with shadow.
