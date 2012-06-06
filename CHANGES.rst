@@ -5,7 +5,9 @@ Changelog of lizard-ui
 4.0b6 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Moved excanvas for IE 6 and 7 outside compress.
+
+- Fixed trailing commas (IE7 does not like them).
 
 
 4.0b5 (2012-06-05)
