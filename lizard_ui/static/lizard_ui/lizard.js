@@ -126,7 +126,7 @@ function reloadFlotGraph($graph, max_image_width, callback) {
                     callback();
                 }
             },
-            timeout: 20000,
+            timeout: 20000
         });
     }
 }
@@ -144,7 +144,7 @@ function flotGraphLoadData($graph, max_image_width, response) {
     
     var options = {
         series: {
-            points: { show: true, hoverable: true },
+            points: { show: true, hoverable: true }
         },
         // disabled, flot seems to be able to determine these
         //yaxis: {
