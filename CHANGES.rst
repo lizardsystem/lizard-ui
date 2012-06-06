@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-4.0b6 (unreleased)
+4.0b6 (2012-06-06)
 ------------------
 
 - Moved excanvas for IE 6 and 7 outside compress.
