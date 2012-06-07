@@ -135,7 +135,10 @@ body {
 // The main content area sits between the horizontal bars, next to the
 // sidebar.
 #content {
-  .fullRow;
+  overflow: auto;
+  position: absolute;
+  left: 0;
+  right: 0;
   top: @belowTopBars;
   left: @sidebarWidth + 1;  // Extra pixel for the border.
   bottom: @aboveFooter;
@@ -344,7 +347,7 @@ div #login-error {
     }
 }
 
-#sidebar ul.treeview {
+#sidebar ul.filetree {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -454,6 +457,9 @@ div.nonworking-workspace-acceptable {
 }
 
 /* ****************** Workspace + collage editor ("kaartlagen") ************ */
+#accordion h2 {
+  cursor: pointer;
+}
 tr.ui-sortable-placeholder {
   content: "<td></td>";
   height: 50px;
@@ -536,4 +542,17 @@ img {
 // Fix margin on modal login form
 #login-modal form {
     margin: 0;
+}
+
+/* ****************** Date range dialog ************ */
+
+#movable-dialog-content {
+  max-height: 480px;
+}
+
+div.date-range-box label {
+  display: inline;
+}
+div.date-range-box input {
+  display: inline;
 }
