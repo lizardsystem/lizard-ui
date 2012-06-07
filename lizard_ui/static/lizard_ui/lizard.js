@@ -373,6 +373,7 @@ function setUpSortableTables() {
     });
 }
 
+
 function setUpAccordion() {
     $("#accordion").tabs(
         "#accordion .pane",
@@ -418,7 +419,6 @@ function setUpAccordion() {
 }
 
 
-
 $(document).ready(function () {
     // Do not change the order.
     setUpTree();
@@ -430,4 +430,3 @@ $(document).ready(function () {
     //setUpTooltips(); // The edit function is on the tooltip.
     setUpAccordion();
 });
-
