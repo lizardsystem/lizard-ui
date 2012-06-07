@@ -5,7 +5,7 @@ Changelog of lizard-ui
 4.0b7 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Date range styling; fix a FOUC; fix cursur pointer on H2;
 
 
 4.0b6 (2012-06-06)
