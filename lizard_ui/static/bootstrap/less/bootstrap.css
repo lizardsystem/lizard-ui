@@ -3950,7 +3950,7 @@ body {
   padding-right: 13px;
 }
 #content {
-  overflow: hidden;
+  overflow: auto;
   position: absolute;
   left: 0;
   right: 0;
@@ -4137,37 +4137,37 @@ div #login-error {
 #sidebar ul div.workspace-acceptable.selected {
   background-color: #d9d9d6;
 }
-#sidebar ul.treeview {
+#sidebar ul.filetree {
   list-style: none;
   margin: 0;
   padding: 0;
 }
-#sidebar ul.treeview li.expandable span.folder,
-#sidebar ul.treeview li.collapsable span.folder {
+#sidebar ul.filetree li.expandable span.folder,
+#sidebar ul.filetree li.collapsable span.folder {
   cursor: pointer;
   display: block;
   margin: 6px 0;
 }
-#sidebar ul.treeview ul {
+#sidebar ul.filetree ul {
   list-style: none;
   padding: 0;
 }
-#sidebar ul.treeview li {
+#sidebar ul.filetree li {
   margin: 2px 0;
 }
-#sidebar ul.treeview div.hitarea {
+#sidebar ul.filetree div.hitarea {
   width: 16px;
   height: 16px;
   float: left;
   cursor: pointer;
 }
-#sidebar ul.treeview div.expandable-hitarea {
+#sidebar ul.filetree div.expandable-hitarea {
   background: url("../../lizard_ui/arrows.png") no-repeat scroll 6px -10px transparent;
 }
-#sidebar ul.treeview div.collapsable-hitarea {
+#sidebar ul.filetree div.collapsable-hitarea {
   background: url("../../lizard_ui/arrows.png") no-repeat scroll -7px 5px transparent;
 }
-#sidebar ul.treeview a.file {
+#sidebar ul.filetree a.file {
   display: block;
   margin: 6px 0;
 }
@@ -4225,13 +4225,16 @@ div.nonworking-workspace-acceptable {
   border: 1px solid black;
 }
 /* ****************** Workspace + collage editor ("kaartlagen") ************ */
+#accordion h2 {
+  cursor: pointer;
+}
 tr.ui-sortable-placeholder {
   content: "<td></td>";
   height: 50px;
 }
 span.no-image-spacer {
   width: 20px;
-  display: inline-block;
+  display: inline;
 }
 /*#edit-workspace label input {
     display: inline;
@@ -4297,5 +4300,15 @@ img {
 }
 #login-modal form {
   margin: 0;
+}
+/* ****************** Date range dialog ************ */
+#movable-dialog-content {
+  max-height: 480px;
+}
+div.date-range-box label {
+  display: inline;
+}
+div.date-range-box input {
+  display: inline;
 }
 /* Empty, use this to override basic colors for a specific site. */
