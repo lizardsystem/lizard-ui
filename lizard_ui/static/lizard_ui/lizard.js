@@ -108,7 +108,10 @@ function reloadGraphs(max_image_width, callback) {
 
 function reloadLocalizedGraphs($location, max_image_width) {
     $('a.replace-with-image', $location).each(function () {
-        reloadGraph($(this, max_image_width));
+        reloadGraph($(this), max_image_width);
+    });
+    $('div.flot-graph', $location).each(function () {
+        reloadFlotGraph($(this), max_image_width);
     });
 }
 
