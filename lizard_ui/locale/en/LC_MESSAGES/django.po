@@ -1,85 +1,85 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
+# Translators:
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: Lizard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-28 03:40-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"POT-Creation-Date: 2012-06-12 04:41-0500\n"
+"PO-Revision-Date: 2012-06-11 14:24+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: en\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
 #: forms.py:10
 msgid "Username"
-msgstr ""
+msgstr "Username"
 
 #: forms.py:14 templates/lizard_ui/login.html:21
 #: templates/lizard_ui/modal_login.html:19
 msgid "Password"
-msgstr ""
+msgstr "Password"
 
-#: models.py:17 models.py:85
+#: models.py:17 models.py:84
 msgid "name"
-msgstr ""
+msgstr "name"
 
-#: models.py:19 models.py:87
+#: models.py:19 models.py:86
 msgid "description"
-msgstr ""
+msgstr "description"
 
-#: models.py:86
+#: models.py:85
 msgid "icon"
-msgstr ""
+msgstr "icon"
 
-#: models.py:88
+#: models.py:87
 msgid "url"
-msgstr ""
+msgstr "url"
 
-#: models.py:91
+#: models.py:90
 msgid "Application screen we're a part of"
-msgstr ""
+msgstr "Application screen we're a part of"
 
-#: models.py:95
+#: models.py:94
 msgid "Application screen we point at (this disables the url)"
-msgstr ""
+msgstr "Application screen we point at (this disables the url)"
 
-#: models.py:100
+#: models.py:99
 msgid "index"
-msgstr ""
+msgstr "index"
 
-#: models.py:102
+#: models.py:101
 msgid "Number used for ordering icons relative to each other."
-msgstr ""
+msgstr "Number used for ordering icons relative to each other."
 
-#: views.py:204
+#: views.py:219
 msgid "logout"
-msgstr ""
+msgstr "logout"
 
-#: views.py:211 templates/lizard_ui/login.html:36
+#: views.py:226 templates/lizard_ui/login.html:36
 #: templates/lizard_ui/modal_login.html:5
 #: templates/lizard_ui/modal_login.html:29
 msgid "Login"
-msgstr ""
+msgstr "Login"
 
-#: views.py:276
+#: views.py:292
 msgid "edit"
-msgstr ""
+msgstr "edit"
 
-#: views.py:306
+#: views.py:321
 msgid "Collapse"
-msgstr ""
+msgstr "Collapse"
 
-#: templates/lizard_ui/cmsbase.html:11 templates/lizard_ui/realbase.html:85
+#: templates/lizard_ui/cmsbase.html:11 templates/lizard_ui/realbase.html:84
 msgid "Back to homepage"
-msgstr ""
+msgstr "Back to homepage"
 
 #: templates/lizard_ui/login.html:11 templates/lizard_ui/modal_login.html:11
 msgid "Name"
-msgstr ""
+msgstr "Name"
