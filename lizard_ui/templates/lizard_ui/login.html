@@ -9,6 +9,13 @@
   {% csrf_token %}
   <div>
     <label>{% trans "Name" %}</label>
+    {% if form.errors.username %}
+      <div class="alert alert-error">
+  	    {% for error in form.errors.username %}
+	      <p>{{ error }}</p>
+        {% endfor %}
+      </div>
+    {% endif %}
     <input type="text"
            name="username"
 		   {% if form.username.value %}
@@ -19,6 +26,13 @@
   </div>
   <div>
     <label>{% trans "Password" %}</label>
+    {% if form.errors.password %}
+      <div class="alert alert-error">
+  	    {% for error in form.errors.password %}
+	      <p>{{ error }}</p>
+        {% endfor %}
+      </div>
+    {% endif %}
     <input type="password"
            name="password" />
   </div>

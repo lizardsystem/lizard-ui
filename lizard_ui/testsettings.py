@@ -15,7 +15,7 @@ INSTALLED_APPS = [
     'south',
     'compressor',
     'staticfiles',
-    'sentry.client',
+    'raven.contrib.django',
     'lizard_security',
     'django_extensions',
     'django_nose',
@@ -25,6 +25,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.sites',
     ]
+
+SENTRY_SERVERS = ('http://1ea687a6dc894fa5bd7bc35b578c1dc0:913530819af3428b85fa6a0a7124dbe9@sentry.lizardsystem.nl/1')
+
 ROOT_URLCONF = 'lizard_ui.urls'
 
 MIDDLEWARE_CLASSES = (
@@ -34,7 +37,6 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'lizard_ui.middleware.TracebackLoggingMiddleware',
     'lizard_security.middleware.SecurityMiddleware',
     'tls.TLSRequestMiddleware',
     )
@@ -88,4 +90,4 @@ STATIC_URL = '/static_media/'
 ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
 
 STATICFILES_FINDERS = STATICFILES_FINDERS
-LOGGING = setup_logging(BUILDOUT_DIR)
+LOGGING = setup_logging(BUILDOUT_DIR, sentry_level='WARN')

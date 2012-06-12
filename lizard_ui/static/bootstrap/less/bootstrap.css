@@ -3102,6 +3102,9 @@ input[type="submit"].btn.small {
 .modal-body .modal-form {
   margin-bottom: 0;
 }
+.modal-body input[type=submit] {
+  display: none;
+}
 .modal-footer {
   padding: 14px 15px 15px;
   margin-bottom: 0;
@@ -3741,6 +3744,7 @@ a.thumbnail:hover {
 }
 .scroll-y {
   overflow-y: auto;
+  overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
 }
 #page,
@@ -3940,12 +3944,13 @@ body {
 }
 .sidebar-inner {
   overflow-y: auto;
+  overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
   padding-left: 13px;
   padding-right: 13px;
 }
 #content {
-  overflow: hidden;
+  overflow: auto;
   position: absolute;
   left: 0;
   right: 0;
@@ -3980,8 +3985,11 @@ body {
 }
 .padded-sidebar-item {
   display: block;
-  padding-top: 11px;
-  padding-bottom: 11px;
+  padding-top: 8.8px;
+  padding-bottom: 8.8px;
+}
+.workspace-acceptable.padded-sidebar-item {
+  padding: 0 !important;
 }
 #sidebar h2,
 #rightbar h2,
@@ -4000,8 +4008,8 @@ body {
   padding-left: 13px;
   padding-right: 13px;
   display: block;
-  padding-top: 11px;
-  padding-bottom: 11px;
+  padding-top: 8.8px;
+  padding-bottom: 8.8px;
   font-weight: bold;
 }
 #sidebar h2,
@@ -4043,6 +4051,9 @@ body {
 #textual,
 .textual-content {
   padding: 13px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 #breadcrumbs ul {
   margin-left: 0;
@@ -4115,7 +4126,8 @@ div #login-error {
 #sidebar ul div.workspace-acceptable {
   cursor: pointer;
   display: block;
-  margin: 4px 0;
+  margin: 4px -100px;
+  padding: 2px 100px;
 }
 #sidebar ul li.workspace-acceptable:hover,
 #sidebar ul div.workspace-acceptable:hover {
@@ -4125,65 +4137,72 @@ div #login-error {
 #sidebar ul div.workspace-acceptable.selected {
   background-color: #d9d9d6;
 }
-#sidebar ul.treeview {
+#sidebar ul.filetree {
   list-style: none;
   margin: 0;
   padding: 0;
 }
-#sidebar ul.treeview li.expandable span.folder,
-#sidebar ul.treeview li.collapsable span.folder {
+#sidebar ul.filetree li.expandable span.folder,
+#sidebar ul.filetree li.collapsable span.folder {
   cursor: pointer;
   display: block;
-  margin: 4px 0;
+  margin: 6px 0;
 }
-#sidebar ul.treeview ul {
+#sidebar ul.filetree ul {
   list-style: none;
   padding: 0;
 }
-#sidebar ul.treeview div.hitarea {
+#sidebar ul.filetree li {
+  margin: 2px 0;
+}
+#sidebar ul.filetree div.hitarea {
   width: 16px;
   height: 16px;
   float: left;
   cursor: pointer;
 }
-#sidebar ul.treeview div.expandable-hitarea {
+#sidebar ul.filetree div.expandable-hitarea {
   background: url("../../lizard_ui/arrows.png") no-repeat scroll 6px -10px transparent;
 }
-#sidebar ul.treeview div.collapsable-hitarea {
+#sidebar ul.filetree div.collapsable-hitarea {
   background: url("../../lizard_ui/arrows.png") no-repeat scroll -7px 5px transparent;
 }
-#sidebar ul.treeview a.file {
+#sidebar ul.filetree a.file {
   display: block;
-  margin: 4px 0;
+  margin: 6px 0;
 }
 /* ****************** /Treeview ************ */
 a.workspace-acceptable,
 div.nonworking-workspace-acceptable {
   display: block;
-  font-decoration: none;
+  text-decoration: none;
   color: #333333;
 }
 a.workspace-acceptable:hover,
 div.nonworking-workspace-acceptable:hover {
-  font-decoration: none;
+  text-decoration: none;
 }
 a.workspace-acceptable:active,
 div.nonworking-workspace-acceptable:active {
-  font-decoration: none;
+  text-decoration: none;
   color: #333333;
 }
 a.workspace-acceptable {
   border: 1px solid transparent;
 }
 a.workspace-acceptable:hover {
-  border: 1px solid gray;
-  font-decoration: none;
+  border: 1px solid #000;
+  text-decoration: none;
+}
+a.workspace-acceptable:focus {
+  outline: none;
+  outline-offset: 0;
 }
 a.workspace-acceptable .workspace-selected-icon {
   display: none;
 }
 a.workspace-acceptable.selected {
-  font-weight: bold;
+  background-color: #D9D9D6;
 }
 a.workspace-acceptable.selected .workspace-selected-icon {
   display: inline-block;
@@ -4205,34 +4224,91 @@ div.nonworking-workspace-acceptable {
   left: 0;
   border: 1px solid black;
 }
-/* ****************** Workspace editor ("kaartlagen") ************ */
-#edit-workspace img.workspace-item-image {
+/* ****************** Workspace + collage editor ("kaartlagen") ************ */
+#accordion h2 {
+  cursor: pointer;
+}
+tr.ui-sortable-placeholder {
+  content: "<td></td>";
+  height: 50px;
+}
+span.no-image-spacer {
+  width: 20px;
+  display: inline;
+}
+/*#edit-workspace label input {
+    display: inline;
+}*/
+#edit-workspace img.workspace-item-image,
+#edit-collage img.collage-item-image {
   vertical-align: middle;
 }
-#edit-workspace .workspace-items,
-#edit-workspace .workspace-actions {
+/*#edit-workspace .workspace-items,
+.wscol-actions {
   margin-left: 0;
 }
-#edit-workspace .workspace-items li,
-#edit-workspace .workspace-actions li {
+
+#edit-workspace .workspace-items li {
   list-style: none;
+  padding-top: 2px;
 }
+
 #edit-workspace .workspace-items .below-workspace-item,
-#edit-workspace .workspace-actions .below-workspace-item {
+.wscol-actions .below-workspace-item {
   display: none;
   text-align: right;
-}
-#edit-workspace .workspace-actions {
+}*/
+ul.wscol-actions {
   margin-top: 1em;
   border-top: 1px solid #111;
   padding-top: 1em;
 }
-#edit-workspace div.workspace-item label {
+ul.wscol-actions li {
+  list-style: none;
+  padding-top: 2px;
   display: inline;
+}
+#edit-workspace .workspace-items .sidebarbox-action-icon {
   cursor: pointer;
 }
-/* ****************** /Workspace editor ("kaartlagen") ************ */
+#edit-collage a.collage-popup {
+  text-decoration: none;
+}
+.wscol-table {
+  width: 100%;
+}
+.wscol-table td {
+  vertical-align: top;
+}
+.wscol-table td.icontd {
+  padding-right: 2px;
+  width: 18px;
+}
+.wscol-table td.lasttd {
+  text-align: right;
+  width: 16px;
+}
+.wscol-table td.maintd {
+  width: 100%;
+}
+.wscol-table tr.paddme td {
+  padding-bottom: 20px;
+}
+/* ****************** /Workspace + collage editor ("kaartlagen") ************ */
 img {
   max-width: none !important;
+}
+#login-modal form {
+  margin: 0;
+}
+/* ****************** Date range dialog ************ */
+#movable-dialog-content {
+  max-height: 480px;
+}
+div.date-range-box label {
+  display: inline;
+}
+div.date-range-box input {
+  display: inline;
 }
 /* Empty, use this to override basic colors for a specific site. */

@@ -34,7 +34,7 @@ function reloadGraph($graph, max_image_width, callback) {
             height = 0.5 * width;
         }
         // Prevent a horizontal scrollbar in any case.
-        width = width - scrollbarWidth();
+        //width = width - scrollbarWidth();
     }
     $graph.hide();
     url = $graph.attr('href');
@@ -100,15 +100,171 @@ function reloadGraphs(max_image_width, callback) {
     $('a.replace-with-image').each(function () {
         reloadGraph($(this), max_image_width, callback);
     });
+    $('div.flot-graph').each(function () {
+        reloadFlotGraph($(this), max_image_width, callback);
+    });
 }
 
 
 function reloadLocalizedGraphs($location, max_image_width) {
     $('a.replace-with-image', $location).each(function () {
-        reloadGraph($(this, max_image_width));
+        reloadGraph($(this), max_image_width);
+    });
+    $('div.flot-graph', $location).each(function () {
+        reloadFlotGraph($(this), max_image_width);
     });
 }
 
+
+function reloadFlotGraph($graph, max_image_width, callback) {
+    var url = $graph.attr('data-flot-graph-data-url');
+    if (url !== undefined) {
+        $.ajax({
+            url: url,
+            method: 'GET',
+            dataType: 'json',
+            success: function (response) {
+                flotGraphLoadData($graph, max_image_width, response);
+                if (callback !== undefined) {
+                    callback();
+                }
+            },
+            timeout: 20000
+        });
+    }
+}
+
+
+/**
+ * Draw the response data to a canvas in DOM element $graph using Flot.
+ *
+ * @param {$graph} DOM element which will be replaced by the graph
+ * @param {response} a dictionary containing graph data such as x/y values and labels
+ */
+function flotGraphLoadData($graph, max_image_width, response) {
+    var plot;
+    var data = response.data;
+    
+    var options = {
+        series: {
+            points: { show: true, hoverable: true }
+        },
+        // disabled, flot seems to be able to determine these
+        //yaxis: {
+        //    min: response.y_min,
+        //    max: response.y_max
+        //},
+        yaxis: {
+            axisLabel: response.y_label, // plugin jquery.flot.axislabels.js
+            axisLabelUseCanvas: true,
+            axisLabelFontFamily: 'Verdana,Arial,sans-serif',
+            axisLabelFontSizePixels: 12
+        },
+        xaxis: {
+            mode: "time",
+            tickSize: [2, "day"],
+            axisLabel: response.x_label, // plugin jquery.flot.axislabels.js
+            axisLabelUseCanvas: true,
+            axisLabelFontFamily: 'Verdana,Arial,sans-serif',
+            axisLabelFontSizePixels: 12
+        },
+        selection: { mode: "x" },
+        grid: { hoverable: true }
+    };
+
+    $graph.bind("plotselected", function (event, ranges) {
+        //$("#selection").text(ranges.xaxis.from.toFixed(1) + " to " + ranges.xaxis.to.toFixed(1));
+        var zoom = true;
+        if (zoom) {
+            var x_min_zoom, x_max_zoom, tick_size, diff_time, diff_seconds;
+            x_min_zoom = ranges.xaxis.from;
+            x_max_zoom = ranges.xaxis.to; 
+            tick_size = [];
+            diff_time = x_max_zoom - x_min_zoom;
+            diff_seconds = diff_time/1000;
+            diff_minutes = diff_time/1000/60;
+            diff_hours = diff_time/1000/60/60;
+            //TODO get min time stap from timeseries
+            if (diff_hours > 24*30) {
+                $.merge(tick_size, [1, "month"]); 
+            } else if (diff_hours > 24) {
+                $.merge(tick_size, [1, "day"]); 
+            } else if (diff_hours > 1) {
+                $.merge(tick_size, [1, "hour"]);
+            } else if (diff_minutes > 45) {
+                $.merge(tick_size, [15, "minute"]);
+            } else if (diff_minutes > 10) {
+                $.merge(tick_size, [10, "minute"]);
+            } else if (diff_minutes > 5) {
+                $.merge(tick_size, [5, "minute"]);
+            } else if (diff_minutes > 1) {
+                $.merge(tick_size, [1, "minute"]);
+            } else if (diff_seconds > 45 ) {
+                $.merge(tick_size, [15, "second"]);
+            } else if (diff_seconds > 10) {
+                $.merge(tick_size, [10, "second"]);
+            } else {
+                $.merge(tick_size, [1, "second"]);
+            }
+            plot = $.plot(
+                $graph,
+                data,
+                $.extend(true, {}, options, {
+                    xaxis: {
+                        min: ranges.xaxis.from,
+                        max: ranges.xaxis.to,
+                        tickSize: tick_size
+                    }
+                })
+            );
+        }
+    });
+
+    //$graph.bind("plotunselected", function (event) {
+    //    $("#selection").text("");
+    //});
+
+    function showChartTooltip(x, y, contents) {
+        $('<div id="charttooltip">'+ contents + '</div>').css({
+            position: 'absolute',
+            display: 'none',
+            top: y - 25,
+            left: x + 5,
+            border: '1px solid #bfbfbf',
+            padding: '2px',
+            'background-color': '#ffffff',
+            opacity: 1,
+            'z-index':11000
+        }).appendTo("body").fadeIn(200);
+    }
+
+    $graph.bind("plothover", function (event, pos, item) {
+        //$("#x").text(pos.x.toFixed(2));
+        //$("#y").text(pos.y.toFixed(2));
+        if (item) {
+            $("#charttooltip").remove();
+            var x = item.datapoint[0].toFixed(2),
+                y = item.datapoint[1].toFixed(2);
+            showChartTooltip(item.pageX, item.pageY, item.datapoint[1]);
+        } else {
+            $("#charttooltip").remove();
+        }
+    });
+
+    plot = $.plot($graph, data, options);
+
+    //$("#clearSelection").click(function () {
+    //    plot.clearSelection();
+    //});
+
+    //$("#setSelection").click(function () {
+    //    plot.setSelection({ xaxis: { from: x_min, to: x_max } });
+    //});
+
+    $(".flot-graph-reload").click(function () {
+        plot = $.plot($graph, data, options);
+    });
+}
 
 /**
  * Resize the main window to get an image that is better suited for printing.
@@ -162,7 +318,7 @@ function setUpTipsy() {
         delayOut: 200,
         fade: false,
         gravity: 'w',
-	live: true
+    live: true
     });
 
     $('[rel=tipsy-south]').tipsy({
@@ -170,7 +326,7 @@ function setUpTipsy() {
         delayOut: 200,
         fade: false,
         gravity: 's',
-	live: true
+    live: true
     });
 
     $('a#logo-img').tipsy({
@@ -178,14 +334,14 @@ function setUpTipsy() {
         delayOut: 200,
         fade: false,
         gravity: 'n',
-	live: true
+    live: true
     });
     $('span[rel=tipsy]').tipsy({
         delayIn: 200,
         delayOut: 200,
         fade: false,
         gravity: 's',
-	live: true
+    live: true
     });
 
     $('#summary-datepicker-a').tipsy({
@@ -193,14 +349,14 @@ function setUpTipsy() {
         delayOut: 200,
         fade: false,
         gravity: 's',
-	live: true
+    live: true
     });
     $('[rel=tipsy-southwest]').tipsy({
         delayIn: 200,
         delayOut: 200,
         fade: false,
         gravity: 'sw',
-	live: true
+    live: true
     });
 }
 
@@ -221,6 +377,49 @@ function setUpSortableTables() {
 }
 
 
+function setUpAccordion() {
+    $("#accordion").tabs(
+        "#accordion .pane",
+        {tabs: "h2, h3",
+         effect: "slide"});
+    /* Set up a global 'accordion' variable to later steer the animation. */
+    accordion = $("#accordion").data("tabs");
+    $(".accordion-load-next a").live('click', function (event) {
+        var pane, nextPaneId, url, newTitle, ourId;
+        event.preventDefault();
+        pane = $(this).parents(".accordion-load-next");
+        nextPaneId = pane.attr("data-next-pane-id");
+        url = $(this).attr("href");
+        $(nextPaneId).html('<div class="loading" />');
+        $.ajax({
+            type: "GET",
+            url: url,
+            success: function (data) {
+                // Update all pane titles and the new pane. Data is the whole
+                // (new) html page.
+                $(".pane").each(function () {
+                    // Title of current pane.
+                    newTitle = $(data).find("#" + $(this).attr("id")).prev().html();
+                    $(this).prev().html(newTitle);
+                    // Refresh target pane contents only.
+                    ourId = "#" + $(this).attr("id");
+                    if (ourId === nextPaneId) {
+                        $(this).html($(data).find(ourId));
+                    }
+                });
+                //setUpTooltips();
+                setUpTree();
+            },
+            error: function (e) {
+                $(nextPaneId).html('<div class="ss_error ss_sprite" />' +
+                                   'Fout bij laden paginaonderdeel.');
+            }
+        });
+        $("li.selected", pane).removeClass("selected");
+        $(this).parent("li").addClass("selected");
+        accordion.click(accordion.getIndex() + 1);
+    });
+}
 
 
 $(document).ready(function () {
@@ -232,5 +431,5 @@ $(document).ready(function () {
     setUpSortableTables();
     // Set up legend.
     //setUpTooltips(); // The edit function is on the tooltip.
+    setUpAccordion();
 });
-

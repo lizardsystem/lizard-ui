@@ -80,6 +80,7 @@ def checker():  # Pragma: nocover
     for app in ['lizard_ui',
                 'compressor',
                 'staticfiles',
+                'lizard_security',
                 'django.contrib.admin',
                 'django.contrib.auth',
                 'django.contrib.contenttypes',
@@ -94,9 +95,7 @@ def checker():  # Pragma: nocover
                     "from MIDDLEWARE_CLASSES, the new logging setup handles "
                     "that automatically.")
 
-    if hasattr(settings, 'SENTRY_REMOTE_URL'):
-        if not hasattr(settings, 'SENTRY_KEY'):
-            logger.error("You have a SENTRY_REMOTE_URL, but no SENTRY_KEY.")
+    if hasattr(settings, 'SENTRY_SERVERS'):
         production_settings_file = os.path.join(settings.SETTINGS_DIR,
                                                 'settings.py')
         if os.path.exists(production_settings_file):
@@ -104,13 +103,13 @@ def checker():  # Pragma: nocover
                                           'r').read():
                 logger.warn("You're missing a sentry log handler. Pass "
                             "sentry_level='WARN' to setup_logging().")
-        if not 'sentry.client' in settings.INSTALLED_APPS:
-            logger.warn("You're missing 'sentry.client' in your ",
+        if not 'raven.contrib.django' in settings.INSTALLED_APPS:
+            logger.warn("You're missing 'raven.contrib.django' in your ",
                         "INSTALLED_APPS list.")
     else:
         logger.info(
             "You haven't set up sentry yet. Do it, if this is a site. "
-            "Add SENTRY_REMOTE_URL for that.")
+            "Add SENTRY_SERVERS for that.")
 
     if not getattr(settings, 'USE_I18N', False):
         logger.error("Set USE_I18N to True: we're using translations now.")

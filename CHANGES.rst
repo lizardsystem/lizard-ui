@@ -2,10 +2,72 @@ Changelog of lizard-ui
 ======================
 
 
-4.0a3 (unreleased)
+4.0b7 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Date range styling; fix a FOUC; fix cursur pointer on H2;
+
+
+4.0b6 (2012-06-06)
+------------------
+
+- Moved excanvas for IE 6 and 7 outside compress.
+
+- Fixed trailing commas (IE7 does not like them).
+
+
+4.0b5 (2012-06-05)
+------------------
+
+- Replace zettingen.png icon to one with shadow.
+
+
+4.0b4 (2012-06-01)
+------------------
+
+- Added ``required_permission`` attribute on UiView. If you set it, the
+  permission is checked and the user redirected, if needed.
+
+
+4.0b3 (2012-06-01)
+------------------
+
+- Tiny styling fix.
+
+- Add flot bar graph support.
+
+
+4.0b2 (2012-05-31)
+------------------
+
+- Properly close secondary sidebar ("Kaartlagen") when hiding the sidebar ("Inklappen").
+
+- Add the Flot JavaScript library.
+
+- Fix a small styling issue concerning workspaces.
+
+- Update to jQuery 1.7.2 which includes some .ajax() fixes.
+
+- Add client side support for the new FlotGraph.
+
+
+4.0b1 (2012-05-29)
+------------------
+
+- UI fixes: graphs load automatically again; workspace item paddings/margins;
+  jqueryui buttons commented out as they conflict with bootstrap's css.
+
+- Upgraded sentry client to raven.
+
+- Updated configchecker.
+
+- Commented line 413 in jquery-ui-1.8.5.custom.css to remove conflicing
+  (with Twitter Bootstrap) class .ui-button-text-only .ui-button-text
+  [Gijs Nijholt]
+
+- Fixed some interaction issues with modal and non-modal login form.
+
+- Restored accordion behavior and improved leftbar styling.
 
 
 4.0a2 (2012-05-18)

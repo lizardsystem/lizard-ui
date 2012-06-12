@@ -58,6 +58,7 @@
 }
 .scroll-y {
   overflow-y: auto;
+  overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
 }
 // And to make sure there are no scrollbars when we slide a sidebar out, the
@@ -134,7 +135,10 @@ body {
 // The main content area sits between the horizontal bars, next to the
 // sidebar.
 #content {
-  .fullRow;
+  overflow: auto;
+  position: absolute;
+  left: 0;
+  right: 0;
   top: @belowTopBars;
   left: @sidebarWidth + 1;  // Extra pixel for the border.
   bottom: @aboveFooter;
@@ -185,12 +189,16 @@ body {
 // The headers and workspace acceptables should have more height than the
 // lineheight. But we do not want to mess with the lineheight, as that looks
 // bad with multiple lines. So padding above and below!
-@sidebarItemPadding: (@barHeight - @baseLineHeight) * 0.5;
+@sidebarItemPadding: (@barHeight - @baseLineHeight) * 0.4;
 
 .padded-sidebar-item {
   display: block;
   padding-top: @sidebarItemPadding;
   padding-bottom: @sidebarItemPadding;
+}
+
+.workspace-acceptable.padded-sidebar-item {
+  padding: 0 !important;
 }
 
 #sidebar,
@@ -225,6 +233,7 @@ body {
 #textual,
 .textual-content {
   padding: @baseFontSize;
+  .scroll-y;
 }
 
 // Breadcrumbs fixes.
@@ -325,7 +334,8 @@ div #login-error {
     div.workspace-acceptable {
         cursor: pointer;
         display: block;
-        margin: 4px 0;
+        margin: 4px -100px;
+        padding: 2px 100px;
 
         &:hover {
             outline: 1px solid #000;
@@ -337,7 +347,7 @@ div #login-error {
     }
 }
 
-#sidebar ul.treeview {
+#sidebar ul.filetree {
     list-style: none;
     margin: 0;
     padding: 0;
@@ -346,12 +356,16 @@ div #login-error {
     li.collapsable span.folder {
         cursor: pointer;
         display: block;
-        margin: 4px 0;
+        margin: 6px 0;
     }
 
     ul {
         list-style: none;
         padding: 0;
+    }
+    
+    li {
+        margin: 2px 0;
     }
 
     div.hitarea {
@@ -371,7 +385,7 @@ div #login-error {
 
     a.file {
         display: block;
-        margin: 4px 0;
+        margin: 6px 0;
     }
 }
 
@@ -380,18 +394,18 @@ div #login-error {
 a.workspace-acceptable,
 div.nonworking-workspace-acceptable {
   display: block;
-  font-decoration: none;
+  text-decoration: none;
   color: #333333;
 }
 
 a.workspace-acceptable:hover,
 div.nonworking-workspace-acceptable:hover {
-  font-decoration: none;
+  text-decoration: none;
 }
 
 a.workspace-acceptable:active,
 div.nonworking-workspace-acceptable:active {
-  font-decoration: none;
+  text-decoration: none;
   color: #333333;
 }
 
@@ -400,8 +414,13 @@ a.workspace-acceptable {
 }
 
 a.workspace-acceptable:hover {
-  border: 1px solid gray;
-  font-decoration: none;
+  border: 1px solid #000;
+  text-decoration: none;
+}
+
+a.workspace-acceptable:focus {
+  outline: none;
+  outline-offset: 0;
 }
 
 a.workspace-acceptable .workspace-selected-icon {
@@ -409,7 +428,7 @@ a.workspace-acceptable .workspace-selected-icon {
 }
 
 a.workspace-acceptable.selected {
-  font-weight: bold;
+  background-color: #D9D9D6;
 }
 
 a.workspace-acceptable.selected .workspace-selected-icon {
@@ -437,43 +456,103 @@ div.nonworking-workspace-acceptable {
   border: 1px solid black;
 }
 
-/* ****************** Workspace editor ("kaartlagen") ************ */
+/* ****************** Workspace + collage editor ("kaartlagen") ************ */
+#accordion h2 {
+  cursor: pointer;
+}
+tr.ui-sortable-placeholder {
+  content: "<td></td>";
+  height: 50px;
+}
 
-#edit-workspace img.workspace-item-image {
+span.no-image-spacer {
+  width: 20px;
+  display: inline;
+}
+
+/*#edit-workspace label input {
+    display: inline;
+}*/
+
+#edit-workspace img.workspace-item-image,
+#edit-collage img.collage-item-image {
   vertical-align: middle;
 }
 
-#edit-workspace .workspace-items,
-#edit-workspace .workspace-actions {
+/*#edit-workspace .workspace-items,
+.wscol-actions {
   margin-left: 0;
 }
 
-#edit-workspace .workspace-items li,
-#edit-workspace .workspace-actions li {
+#edit-workspace .workspace-items li {
   list-style: none;
+  padding-top: 2px;
 }
 
 #edit-workspace .workspace-items .below-workspace-item,
-#edit-workspace .workspace-actions .below-workspace-item {
+.wscol-actions .below-workspace-item {
   display: none;
   text-align: right;
-}
+}*/
 
-#edit-workspace .workspace-actions {
+ul.wscol-actions {
   margin-top: 1em;
   border-top: 1px solid #111;
   padding-top: 1em;
+  & li {
+    list-style: none;
+    padding-top: 2px;
+    display: inline;
+  }
 }
-
-#edit-workspace div.workspace-item label {
-  display: inline;
-  cursor: pointer;
+#edit-workspace .workspace-items .sidebarbox-action-icon {
+    cursor: pointer;
 }
-
-/* ****************** /Workspace editor ("kaartlagen") ************ */
+#edit-collage a.collage-popup {
+    text-decoration: none;
+}
+.wscol-table {
+    width:100%;
+}
+.wscol-table td {
+    vertical-align: top;
+    &.icontd {
+        padding-right: 2px;
+        width: 18px;
+    }
+    &.lasttd {
+        text-align: right;
+        width: 16px;
+    }
+    &.maintd {
+        width: 100%;
+    }
+}
+.wscol-table tr.paddme td {
+    padding-bottom: 20px;
+}
+/* ****************** /Workspace + collage editor ("kaartlagen") ************ */
 
 // Fix for invisible GMaps tiles
 // overrides reset.less
 img {
   max-width: none !important;
+}
+
+// Fix margin on modal login form
+#login-modal form {
+    margin: 0;
+}
+
+/* ****************** Date range dialog ************ */
+
+#movable-dialog-content {
+  max-height: 480px;
+}
+
+div.date-range-box label {
+  display: inline;
+}
+div.date-range-box input {
+  display: inline;
 }

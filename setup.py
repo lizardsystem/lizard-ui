@@ -1,6 +1,6 @@
 from setuptools import setup
 
-version = '4.0a3.dev0'
+version = '4.0b7.dev0'
 
 long_description = '\n\n'.join([
     open('README.rst').read(),
@@ -15,8 +15,10 @@ install_requires = [
     'django-nose',
     'django-extensions',
     'django-staticfiles >= 1.0',
-    'django_compressor >= 1.2a1',  # Yes, underscore.
-    'django-sentry',
+    'django_compressor >= 1.1.2',  # Yes, underscore.
+    'pytz',
+    'raven',
+    'simplejson',
     'docutils',  # For the admin docs.
     'lizard-security',
     'south',

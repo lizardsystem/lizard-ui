@@ -9,11 +9,15 @@
     $(".has_popover_south").popover({
       placement: 'bottom'
     });
+    $(".has_popover_west").popover({
+      placement: 'left'
+    });
     return this;
   };
   closeSidebar = function() {
     if (window.secondarySidebarState === "opened") {
       hideSecondarySidebar();
+      window.secondarySidebarState = "closed";
     }
     $('#sidebar-actions .icon-arrow-left').removeClass('icon-arrow-left').addClass('icon-arrow-right');
     $('.secondary-sidebar-button').attr('disabled', '');
@@ -182,9 +186,23 @@
     });
     $('.ui-login-link').click(function(e) {
       e.preventDefault();
-      return $('#login-modal').modal('toggle');
+      $('#login-modal').modal('toggle');
+      if ($('#login-modal').is('.in')) {
+        $(document).unbind('keyup');
+        $(document).bind('keyup', function(event) {
+          if ($("*:focus").parents('#login-modal').length === 0) {
+            return $('#modal-login-form-username').focus();
+          }
+        });
+        $('#modal-login-form-username').focus();
+      }
+      return false;
     });
-    $('#modal-login-form').click(function() {
+    $('#modal-login-form').submit(function() {
+      handleLogin();
+      return false;
+    });
+    $('#modal-login-form-btn').click(function() {
       return handleLogin();
     });
     return this;
