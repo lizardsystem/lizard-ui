@@ -76,7 +76,7 @@ openRightbar = ->
         opacity: 100
         ,animationSpeed
     $('div#content').animate
-        right: 200
+        right: 250
         ,animationSpeed
         , -> setUpMapDimensions()
     @
