@@ -7,6 +7,8 @@ Changelog of lizard-ui
 
 - Date range styling; fix a FOUC; fix cursur pointer on H2;
 
+- Increased right sidebar to make legends fit.
+
 
 4.0b6 (2012-06-06)
 ------------------

@@ -1,20 +1,22 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
-#
+# 
+# Translators:
+# Translators:
+#   <>, 2012.
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: Lizard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-03-28 03:40-0500\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"POT-Creation-Date: 2012-06-12 04:41-0500\n"
+"PO-Revision-Date: 2012-06-13 15:32+0000\n"
+"Last-Translator: Roland van Laar <roland.vanlaar@nelen-schuurmans.nl>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
 #: forms.py:10
@@ -26,62 +28,64 @@ msgstr "Naam"
 msgid "Password"
 msgstr "Wachtwoord"
 
-#: models.py:17 models.py:85
+#: models.py:17 models.py:84
 msgid "name"
 msgstr "naam"
 
-#: models.py:19 models.py:87
+#: models.py:19 models.py:86
 msgid "description"
 msgstr "omschrijving"
 
-#: models.py:86
+#: models.py:85
 msgid "icon"
 msgstr "icoon"
 
-#: models.py:88
+#: models.py:87
 msgid "url"
 msgstr "url"
 
-#: models.py:91
+#: models.py:90
 msgid "Application screen we're a part of"
 msgstr "Applicatiescherm waar we in zitten"
 
-#: models.py:95
+#: models.py:94
 msgid "Application screen we point at (this disables the url)"
 msgstr ""
 "Applicatiescherm waar we naar verwijzen (het URL veld wordt dan niet "
 "gebruikt)"
 
-#: models.py:100
+#: models.py:99
 msgid "index"
 msgstr "index"
 
-#: models.py:102
+#: models.py:101
 msgid "Number used for ordering icons relative to each other."
 msgstr "Nummer om iconen relatief t.o.v. elkaar te op volgorde te zetten."
 
-#: views.py:204
+#: views.py:219
 msgid "logout"
 msgstr "Log uit"
 
-#: views.py:211 templates/lizard_ui/login.html:36
+#: views.py:226 templates/lizard_ui/login.html:36
 #: templates/lizard_ui/modal_login.html:5
 #: templates/lizard_ui/modal_login.html:29
 msgid "Login"
 msgstr "Log in"
 
-#: views.py:276
+#: views.py:292
 msgid "edit"
 msgstr "bewerken"
 
-#: views.py:306
+#: views.py:321
 msgid "Collapse"
 msgstr "Inklappen"
 
-#: templates/lizard_ui/cmsbase.html:11 templates/lizard_ui/realbase.html:85
+#: templates/lizard_ui/cmsbase.html:11 templates/lizard_ui/realbase.html:84
 msgid "Back to homepage"
 msgstr "Naar de voorpagina"
 
 #: templates/lizard_ui/login.html:11 templates/lizard_ui/modal_login.html:11
 msgid "Name"
 msgstr "Naam"
+
+
