@@ -269,6 +269,18 @@ class UiView(ViewContextMixin, TemplateView):
         return icon_found
 
     @property
+    def home_breadcrumb_element(self):
+        """Return action that points at the homepage.
+
+        Useful in cases we don't have a proper breadcrumb path.
+        """
+        app_screen = get_object_or_404(ApplicationScreen,
+                                       slug=DEFAULT_APPLICATION_SCREEN)
+        return Action(name=app_screen.name,
+                      url=app_screen.get_absolute_url(),
+                      description=app_screen.description)
+
+    @property
     def breadcrumbs(self):
         """Return breadcrumbs (as a list of actions).
 
