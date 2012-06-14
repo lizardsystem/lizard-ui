@@ -4223,6 +4223,7 @@ div.nonworking-workspace-acceptable {
   top: 0;
   left: 0;
   border: 1px solid black;
+  z-index: 15000;
 }
 /* ****************** Workspace + collage editor ("kaartlagen") ************ */
 #accordion h2 {
