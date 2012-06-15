@@ -207,14 +207,10 @@
       }
       return false;
     });
-    $('#modal-login-form').submit(function() {
-      handleLogin();
-      return false;
-    });
-    $('#modal-login-form-btn').click(function() {
+    return $('#modal-login-form').submit(function(e) {
+      e.preventDefault();
       return handleLogin();
     });
-    return this;
   });
 
   $(window).bind('orientationchange pageshow resize', setUpMapDimensions);

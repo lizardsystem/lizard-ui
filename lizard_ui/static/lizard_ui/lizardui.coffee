@@ -206,14 +206,9 @@ $(document).ready ->
             $('#modal-login-form-username').focus()
         false
             
-
-    $('#modal-login-form').submit ->
+    $('#modal-login-form').submit (e) ->
+        e.preventDefault()
         handleLogin()
-        false
-
-    $('#modal-login-form-btn').click ->
-        handleLogin()
-    @
 
 
 $(window).bind('orientationchange pageshow resize', setUpMapDimensions)

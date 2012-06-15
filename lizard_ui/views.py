@@ -103,7 +103,10 @@ class LoginView(ViewContextMixin, FormView, ViewNextURLMixin):
         if request.is_ajax():
             errors = ' '.join(form.non_field_errors())
             for fieldname, errorlist in form.errors.items():
-                errors += ' ' + form.fields[fieldname].label + ': ' + ' '.join(errorlist);
+                if fieldname in form.fields:
+                    errors += ' ' + form.fields[fieldname].label + ': ' + ' '.join(errorlist);
+                else:
+                    errors += ' '.join(errorlist);
             return HttpResponse(json.dumps({'success': False,
                                             'error_message': errors}),
                                 mimetype='application/json')

@@ -11,6 +11,8 @@ Changelog of lizard-ui
 
 - Added styling for multi-select button.
 
+- Proper submission and handling of global errors on login form.
+
 
 4.0b6 (2012-06-06)
 ------------------
