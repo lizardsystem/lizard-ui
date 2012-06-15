@@ -347,7 +347,7 @@ class UiView(ViewContextMixin, TemplateView):
 
         """
         collapse_action = Action(icon='icon-arrow-left',
-                                 name=_('Collapse'),
+                                 name=_('Navigation'),
                                  klass='collapse-sidebar')
         actions = [collapse_action]
         if self.show_secondary_sidebar_title:

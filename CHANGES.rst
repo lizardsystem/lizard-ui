@@ -13,6 +13,8 @@ Changelog of lizard-ui
 
 - Proper submission and handling of global errors on login form.
 
+- Changed label of collapse-sidebar-button to 'Navigatie'.
+
 
 4.0b6 (2012-06-06)
 ------------------
