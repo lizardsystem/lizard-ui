@@ -103,7 +103,10 @@ class LoginView(ViewContextMixin, FormView, ViewNextURLMixin):
         if request.is_ajax():
             errors = ' '.join(form.non_field_errors())
             for fieldname, errorlist in form.errors.items():
-                errors += ' ' + form.fields[fieldname].label + ': ' + ' '.join(errorlist);
+                if fieldname in form.fields:
+                    errors += ' ' + form.fields[fieldname].label + ': ' + ' '.join(errorlist);
+                else:
+                    errors += ' '.join(errorlist);
             return HttpResponse(json.dumps({'success': False,
                                             'error_message': errors}),
                                 mimetype='application/json')
@@ -350,7 +353,7 @@ class UiView(ViewContextMixin, TemplateView):
 
         """
         collapse_action = Action(icon='icon-arrow-left',
-                                 name=_('Collapse'),
+                                 name=_('Navigation'),
                                  klass='collapse-sidebar')
         actions = [collapse_action]
         if self.show_secondary_sidebar_title:
