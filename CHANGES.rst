@@ -9,6 +9,8 @@ Changelog of lizard-ui
 
 - Increased right sidebar to make legends fit.
 
+- Added styling for multi-select button.
+
 
 4.0b6 (2012-06-06)
 ------------------
