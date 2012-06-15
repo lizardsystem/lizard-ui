@@ -177,7 +177,6 @@ class UiView(ViewContextMixin, TemplateView):
     show_secondary_sidebar_title = None
     show_secondary_sidebar_icon = None
     show_rightbar_title = None
-    gauges_site_id = uisettings.GAUGES_SITE_ID  # gaug.es tracking
     require_application_icon_with_permission = False
     # ^^^ If there's no visible application icon, we don't have the necessary
     # permission. At least, that's what this is intended for.
@@ -198,6 +197,13 @@ class UiView(ViewContextMixin, TemplateView):
                 return HttpResponseRedirect(
                     settings.LOGIN_URL + '?next=%s' % request.path)
         return super(UiView, self).dispatch(request, *args, **kwargs)
+
+    @property
+    def gauges_site_id(self):
+        """Return gaug.es tracking code (unless we're in debug mode)."""
+        if settings.DEBUG:
+            return
+        return uisettings.GAUGES_SITE_ID
 
     @property
     def title(self):
