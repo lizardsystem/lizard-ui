@@ -5,7 +5,8 @@ Changelog of lizard-ui
 4.1 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Trying to construct a breadcrumb even if we don't have an application icon
+  pointing at the current page.
 
 
 4.0 (2012-06-19)

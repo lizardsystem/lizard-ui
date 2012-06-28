@@ -121,9 +121,9 @@
               <div id="breadcrumbs">
                 {% block breadcrumbs %}
 
-                  {% if view.breadcrumbs %}
+                  {% if view.breadcrumbs_with_fallback %}
                     <ul>
-                      {% for action in view.breadcrumbs %}
+                      {% for action in view.breadcrumbs_with_fallback %}
                         <li {% if action.description %}
                               title="{{ action.name }}"
                               data-content="{{ action.description }}"
