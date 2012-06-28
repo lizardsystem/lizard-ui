@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-4.1 (unreleased)
+4.1 (2012-06-28)
 ----------------
 
 - Trying to construct a breadcrumb even if we don't have an application icon
