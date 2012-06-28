@@ -2,8 +2,15 @@ Changelog of lizard-ui
 ======================
 
 
-4.0b7 (unreleased)
-------------------
+4.1 (unreleased)
+----------------
+
+- Trying to construct a breadcrumb even if we don't have an application icon
+  pointing at the current page.
+
+
+4.0 (2012-06-19)
+----------------
 
 - Date range styling; fix a FOUC; fix cursur pointer on H2;
 

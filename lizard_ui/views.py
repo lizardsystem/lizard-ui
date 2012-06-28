@@ -290,6 +290,16 @@ class UiView(ViewContextMixin, TemplateView):
                       description=app_screen.description)
 
     @property
+    def our_own_breadcrumb_element(self):
+        """Return action that points at the current page.
+
+        Useful in cases we don't have a proper breadcrumb path or if we are a
+        sub-page of an app for which we found a breadcrumb path.
+        """
+        return Action(name=self.page_title,
+                      url=self.request.path)
+
+    @property
     def breadcrumbs(self):
         """Return breadcrumbs (as a list of actions).
 
@@ -310,9 +320,30 @@ class UiView(ViewContextMixin, TemplateView):
         return result
 
     @property
+    def breadcrumbs_with_fallback(self):
+        """Return breadcrumbs (as a list of actions) even if we have none.
+
+        Sometimes we cannot find breadcrumbs because a page isn't configured
+        with ApplicationIcons pointing at it. We provide a fallback: just the
+        homepage link and ourselves.
+
+        But, for 'ourselves' we need a page title. If that's not available
+        we're not going to return only the 'home' url.
+
+        """
+        if self.breadcrumbs:
+            return self.breadcrumbs
+        if not self.page_title:
+            # We cannot point at ourselves without a title to use.
+            return
+        result = [self.home_breadcrumb_element,
+                  self.our_own_breadcrumb_element]
+        return result
+
+    @property
     def page_title(self):
         """Return name of latest breadcrumb for page title fallback."""
-        if not len(self.breadcrumbs):
+        if not self.breadcrumbs:
             return
         return self.breadcrumbs[-1].name
 
@@ -443,11 +474,7 @@ class IconView(UiView):
         result = super(IconView, self).breadcrumbs
         if result:
             return result
-        home = self.application_screen
-        result = [Action(name=home.name,
-                         url=home.get_absolute_url(),
-                         description=home.description)]
-        return result
+        return [self.home_breadcrumb_element]
 
     @property
     def icons(self):
