@@ -3800,10 +3800,10 @@ a.thumbnail:hover {
   clear: left;
   font-size: 13px;
   line-height: 18px;
-  margin-left: -13px;
-  margin-right: -13px;
-  padding-left: 13px;
-  padding-right: 13px;
+  margin-left: -50px;
+  margin-right: -50px;
+  padding-left: 50px;
+  padding-right: 50px;
   display: block;
   padding-top: 8.8px;
   padding-bottom: 8.8px;

@@ -5,7 +5,7 @@ Changelog of lizard-ui
 4.2 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Prettified background gradient in sidebar navigation tree.
 
 
 4.1 (2012-06-28)
