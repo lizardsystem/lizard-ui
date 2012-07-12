@@ -7,6 +7,8 @@ Changelog of lizard-ui
 
 - Prettified background gradient in sidebar navigation tree.
 
+- Fixed minor layout issues.
+
 
 4.1 (2012-06-28)
 ----------------

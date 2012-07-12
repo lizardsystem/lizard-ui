@@ -3751,7 +3751,7 @@ a.thumbnail:hover {
   padding-right: 13px;
 }
 #content {
-  overflow: auto;
+  overflow: hidden;
   position: absolute;
   left: 0;
   right: 0;

@@ -74,7 +74,7 @@
       opacity: 100
     }, animationSpeed);
     $('div#content').animate({
-      right: 250
+      right: 251
     }, animationSpeed, function() {
       return setUpMapDimensions();
     });
