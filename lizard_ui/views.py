@@ -104,9 +104,10 @@ class LoginView(ViewContextMixin, FormView, ViewNextURLMixin):
             errors = ' '.join(form.non_field_errors())
             for fieldname, errorlist in form.errors.items():
                 if fieldname in form.fields:
-                    errors += ' ' + form.fields[fieldname].label + ': ' + ' '.join(errorlist);
+                    errors += ' ' + form.fields[fieldname].label + ': '
+                    errors += ' '.join(errorlist)
                 else:
-                    errors += ' '.join(errorlist);
+                    errors += ' '.join(errorlist)
             return HttpResponse(json.dumps({'success': False,
                                             'error_message': errors}),
                                 mimetype='application/json')
