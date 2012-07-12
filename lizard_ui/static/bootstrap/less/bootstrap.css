@@ -3800,14 +3800,11 @@ a.thumbnail:hover {
   clear: left;
   font-size: 13px;
   line-height: 18px;
-  margin-left: -50px;
-  margin-right: -50px;
-  padding-left: 50px;
-  padding-right: 50px;
   display: block;
   padding-top: 8.8px;
   padding-bottom: 8.8px;
   font-weight: bold;
+  margin-right: -13px;
 }
 #sidebar h2, #rightbar h2, #secondary-sidebar h2 {
   background-color: #7fa9ae;
@@ -3820,6 +3817,8 @@ a.thumbnail:hover {
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#9ebec2', endColorstr='#7fa9ae', GradientType=1);
   border-bottom: 1px solid #7fa9ae;
+  margin-left: -13px;
+  padding-left: 13px;
 }
 #sidebar h3,
 #rightbar h3,
@@ -3840,6 +3839,21 @@ a.thumbnail:hover {
 }
 #sidebar h4, #rightbar h4, #secondary-sidebar h4 {
   font-weight: normal;
+}
+#sidebar h3 {
+  margin-left: -26px;
+  padding-left: 26px;
+}
+#sidebar h4 {
+  margin-left: -39px;
+  padding-left: 39px;
+}
+#rightbar h3,
+#secondary-sidebar h3,
+#rightbar h4,
+#secondary-sidebar h4 {
+  margin-left: -13px;
+  padding-left: 13px;
 }
 #textual, .textual-content {
   padding: 13px;
