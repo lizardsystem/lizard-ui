@@ -3782,8 +3782,8 @@ a.thumbnail:hover {
 }
 .padded-sidebar-item {
   display: block;
-  padding-top: 8.8px;
-  padding-bottom: 8.8px;
+  padding-top: 4.4px;
+  padding-bottom: 4.4px;
 }
 .workspace-acceptable.padded-sidebar-item {
   padding: 0 !important;
@@ -3801,8 +3801,8 @@ a.thumbnail:hover {
   font-size: 13px;
   line-height: 18px;
   display: block;
-  padding-top: 8.8px;
-  padding-bottom: 8.8px;
+  padding-top: 4.4px;
+  padding-bottom: 4.4px;
   font-weight: bold;
   margin-right: -13px;
 }
@@ -3820,12 +3820,7 @@ a.thumbnail:hover {
   margin-left: -13px;
   padding-left: 13px;
 }
-#sidebar h3,
-#rightbar h3,
-#secondary-sidebar h3,
-#sidebar h4,
-#rightbar h4,
-#secondary-sidebar h4 {
+#sidebar h3, #rightbar h3, #secondary-sidebar h3 {
   background-color: #d9d9d6;
   background-image: -moz-linear-gradient(left, #f2f2f0, #d9d9d6);
   background-image: -ms-linear-gradient(left, #f2f2f0, #d9d9d6);
@@ -3837,21 +3832,11 @@ a.thumbnail:hover {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f2f2f0', endColorstr='#d9d9d6', GradientType=1);
   border-bottom: 1px solid #d9d9d6;
 }
-#sidebar h4, #rightbar h4, #secondary-sidebar h4 {
-  font-weight: normal;
-}
 #sidebar h3 {
   margin-left: -26px;
   padding-left: 26px;
 }
-#sidebar h4 {
-  margin-left: -39px;
-  padding-left: 39px;
-}
-#rightbar h3,
-#secondary-sidebar h3,
-#rightbar h4,
-#secondary-sidebar h4 {
+#rightbar h3, #secondary-sidebar h3 {
   margin-left: -13px;
   padding-left: 13px;
 }

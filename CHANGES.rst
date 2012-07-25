@@ -5,7 +5,7 @@ Changelog of lizard-ui
 4.3 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Fixed minor layout issues.
 
 
 4.2 (2012-07-12)

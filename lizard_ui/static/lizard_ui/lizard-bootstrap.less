@@ -189,7 +189,7 @@ body {
 // The headers and workspace acceptables should have more height than the
 // lineheight. But we do not want to mess with the lineheight, as that looks
 // bad with multiple lines. So padding above and below!
-@sidebarItemPadding: (@barHeight - @baseLineHeight) * 0.4;
+@sidebarItemPadding: (@barHeight - @baseLineHeight) * 0.2;
 
 .padded-sidebar-item {
   display: block;
@@ -218,12 +218,9 @@ body {
     margin-left: -13px;
     padding-left: 13px;
   }
-  h3, h4 {
+  h3 {
     #gradient > .horizontal(lighten(@light, 10%), @light);
     border-bottom: 1px solid @light;
-  }
-  h4 {
-    font-weight: normal;
   }
 }
 
@@ -232,15 +229,11 @@ body {
     margin-left: -26px;
     padding-left: 26px;
   }
-  h4 {
-    margin-left: -39px;
-    padding-left: 39px;
-  }
 }
 
 #rightbar,
 #secondary-sidebar {
-  h3, h4 {
+  h3 {
     margin-left: -13px;
     padding-left: 13px;
   }
