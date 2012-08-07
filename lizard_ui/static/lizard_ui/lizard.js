@@ -182,6 +182,8 @@ function flotGraphLoadData($graph, max_image_width, response) {
             $.merge(tick_size, [1, "month"]);
         } else if (diff_hours > 24) {
             $.merge(tick_size, [1, "day"]);
+        } else if (diff_hours > 20) {
+            $.merge(tick_size, [2, "hour"]);
         } else if (diff_hours > 1) {
             $.merge(tick_size, [1, "hour"]);
         } else if (diff_minutes > 45) {
