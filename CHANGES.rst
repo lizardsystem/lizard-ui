@@ -7,6 +7,10 @@ Changelog of lizard-ui
 
 - Flot graphs: calculate tick sizes.
 
+- Updated OpenLayers to 2.12.
+
+- Styling: fix bootstrap messing up labels, fix hover popup z-index.
+
 
 4.3 (2012-07-26)
 ----------------
