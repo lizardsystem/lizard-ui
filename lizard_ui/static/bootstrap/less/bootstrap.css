@@ -4321,4 +4321,7 @@ div.date-range-box input {
 .tickLabels {
   font-size: xx-small !important;
 }
+#hover-popup {
+  z-index: 10000 !important;
+}
 /* Empty, use this to override basic colors for a specific site. */
