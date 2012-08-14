@@ -178,9 +178,7 @@ function flotGraphLoadData($graph, max_image_width, response) {
         var diff_minutes = diff_time/1000/60;
         var diff_hours = diff_time/1000/60/60;
         // TODO get min time stap from timeseries
-        if (diff_hours > 24*30*12*10) {
-            $.merge(tick_size, [10, "year"]);
-        } else if (diff_hours > 24*30*12) {
+        if (diff_hours > 24*30*12) {
             $.merge(tick_size, [1, "year"]);
         } else if (diff_hours > 24*30) {
             $.merge(tick_size, [1, "month"]);

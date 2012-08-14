@@ -9,6 +9,7 @@
 	<div id="login-error" class="alert alert-error">
 	</div>
 	  <fieldset>
+        <div>
 		<label>{% trans "Name" %}</label>
 		<input type="text"
 			   id="modal-login-form-username"
@@ -17,13 +18,15 @@
   			   value="{{ form.username.value }}"
 			   {% endif %}
 			   />
-
+	    </div>
+        <div>
 		<label>{% trans "Password" %}</label>
 		<input type="password"
 			   name="password" />
 		<input type="hidden"
 			   name="login-url"
 			   value="{% url lizard_ui.login %}" />
+        </div>
 	  </fieldset>
   </div>
   <div class="modal-footer">

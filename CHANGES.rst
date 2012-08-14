@@ -5,7 +5,7 @@ Changelog of lizard-ui
 4.6 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Small styling issue with labels.
 
 
 4.5 (2012-08-14)
