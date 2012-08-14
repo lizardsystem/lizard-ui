@@ -324,10 +324,18 @@
     <script id="openlayers-script"
             type="text/javascript"
             src="{{ STATIC_URL }}openlayers/OpenLayers.js"
-            data-openlayers-url="{{ STATIC_URL }}openlayers/"></script>
+            data-openlayers-url="{{ STATIC_URL }}openlayers/"
+            charset="utf-8"></script>
     <script type="text/javascript"
-            src="{{ STATIC_URL }}openlayers/deprecated.js"></script>
-    <!--[if lte IE 8]><script language="javascript" type="text/javascript" src="{{ STATIC_URL }}jquery-flot/excanvas.min.js"></script><![endif]-->
+            src="{{ STATIC_URL }}openlayers/deprecated.js" charset="utf-8"></script>
+
+    {% spaceless %}
+    <!--[if lte IE 8]>
+        <script language="javascript"
+                type="text/javascript"
+                src="{{ STATIC_URL }}jquery-flot/excanvas.min.js"></script>
+    <![endif]-->
+    {% endspaceless %}
 
     {% compress js %}
       {% block javascript %}

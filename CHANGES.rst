@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-4.4 (unreleased)
+4.4 (2012-08-14)
 ----------------
 
 - Flot graphs: calculate tick sizes.
