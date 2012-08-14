@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-4.5 (unreleased)
+4.5 (2012-08-14)
 ----------------
 
 - Switch to OpenLayers dark theme.
