@@ -5,7 +5,7 @@ Changelog of lizard-ui
 4.7 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Made less and coffee.
 
 
 4.6 (2012-08-14)
