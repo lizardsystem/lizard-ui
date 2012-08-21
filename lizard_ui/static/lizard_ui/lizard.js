@@ -138,6 +138,8 @@ function reloadFlotGraph($graph, max_image_width, callback) {
 
     var url = $graph.attr('data-flot-graph-data-url');
     if (url !== undefined) {
+        var $loading = $('<img src="/static_media/lizard_ui/ajax-loader.gif" class="flot-loading-animation" />');
+        $graph.append($loading);
         $.ajax({
             url: url,
             method: 'GET',
@@ -151,7 +153,13 @@ function reloadFlotGraph($graph, max_image_width, callback) {
                     callback();
                 }
             },
-            timeout: 20000
+            timeout: 20000,
+            error: function () {
+                $graph.html('Failed to load the graph data.');
+            },
+            complete: function () {
+                $loading.remove();
+            }
         });
     }
 }
