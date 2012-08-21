@@ -5,7 +5,11 @@ Changelog of lizard-ui
 4.7 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Build a custom jquery.flot.axislabels.js, which is much better (in terms of not messing up flot's draw()).
+
+- Switch the popup's tabs to the superior jquery-ui tabs, replacing the jquery-tools tabs.
+
+- Update flot to latest (git) version, which supports proper ticks rendering (on canvas instead of HTML elements).
 
 
 4.6 (2012-08-14)
