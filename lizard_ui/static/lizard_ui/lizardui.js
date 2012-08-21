@@ -111,6 +111,7 @@
   setUpMapDimensions = function() {
     var alreadySized, bottom, contentHeight, contentWidth, element, heightPerItem, items, remainingHeight;
     contentHeight = $("div#content").height();
+    $("div#content > .textual-content").outerHeight(contentHeight);
     contentWidth = $("div#content").width();
     $(".sidebar-inner").height(contentHeight);
     alreadySized = $("#content .i-have-height");

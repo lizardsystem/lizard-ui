@@ -109,6 +109,7 @@ hideSecondarySidebar = ->
 
 setUpMapDimensions = ->
     contentHeight = $("div#content").height()
+    $("div#content > .textual-content").outerHeight(contentHeight)
     contentWidth = $("div#content").width()
     # Restrict the sidebar-inners.
     $(".sidebar-inner").height contentHeight
@@ -205,7 +206,7 @@ $(document).ready ->
                     $('#modal-login-form-username').focus()
             $('#modal-login-form-username').focus()
         false
-            
+
     $('#modal-login-form').submit (e) ->
         e.preventDefault()
         handleLogin()
