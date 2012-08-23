@@ -3,6 +3,7 @@ from copy import copy
 import logging
 import urlparse
 import urllib
+import json
 
 from django.conf import settings
 from django.contrib.auth import login
@@ -12,7 +13,6 @@ from django.http import Http404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render
-from django.utils import simplejson as json
 from django.utils.translation import ugettext as _
 from django.views.generic.base import TemplateView, View
 from django.views.generic.edit import FormView

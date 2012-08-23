@@ -148,14 +148,16 @@ function reloadFlotGraph($graph, max_image_width, callback) {
                 var plot = flotGraphLoadData($graph, max_image_width, response);
                 $graph.attr('data-graph-loaded', 'true');
                 // fix for IE8...; IE7 is fine
-                fixIE8DrawBug(plot);
+                if (plot) {
+                    fixIE8DrawBug(plot);
+                }
                 if (callback !== undefined) {
                     callback();
                 }
             },
             timeout: 20000,
             error: function () {
-                $graph.html('Failed to load the graph data.');
+                $graph.html('Fout bij het laden van gegevens.');
             },
             complete: function () {
                 $loading.remove();
@@ -173,6 +175,10 @@ function reloadFlotGraph($graph, max_image_width, callback) {
  */
 function flotGraphLoadData($graph, max_image_width, response) {
     var data = response.data;
+    if (data.length === 0) {
+        $graph.html('Geen gegevens beschikbaar.');
+        return;
+    }
     var defaultOpts = {
         series: {
             points: { show: true, hoverable: true }

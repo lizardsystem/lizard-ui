@@ -5,7 +5,11 @@ Changelog of lizard-ui
 4.8 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Remove conflicting simplejson dependency.
+
+- Remove raven which is incompatible with Django 1.4.
+
+- Add error when graph has no data.
 
 
 4.7 (2012-08-23)
