@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-4.8 (unreleased)
+4.8 (2012-08-23)
 ----------------
 
 - Remove conflicting simplejson dependency.
