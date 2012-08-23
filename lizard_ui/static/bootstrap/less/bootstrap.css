@@ -3944,7 +3944,7 @@ body {
   padding-right: 13px;
 }
 #content {
-  overflow: hidden;
+  overflow: auto;
   position: absolute;
   left: 0;
   right: 0;
