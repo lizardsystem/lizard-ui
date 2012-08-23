@@ -11,6 +11,10 @@ Changelog of lizard-ui
 
 - Update flot to latest (git) version, which supports proper ticks rendering (on canvas instead of HTML elements).
 
+- Fixed textual content scrollbars / overflow (again?).
+
+- Updated some app_icons.
+
 
 4.6 (2012-08-14)
 ----------------
