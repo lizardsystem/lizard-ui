@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-4.7 (unreleased)
+4.7 (2012-08-23)
 ----------------
 
 - Build a custom jquery.flot.axislabels.js, which is much better (in terms of not messing up flot's draw()).
