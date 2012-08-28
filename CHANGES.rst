@@ -5,7 +5,7 @@ Changelog of lizard-ui
 4.9 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Removed dependency on sentry when sentry_level = None.
 
 
 4.8 (2012-08-23)

@@ -24,7 +24,8 @@ def setup_logging(buildout_dir,
     - ``file_level='WARN'`` sets the var/log/django.log level. None means
       quiet.
 
-    - ``sentry_level=None`` sets the sentry level. None means quiet.
+    - ``sentry_level=None`` sets the sentry level. None means sentry logging
+        is removed from the logging.
 
     - ``sql=False`` switches sql statement logging on or off.
 
@@ -82,6 +83,10 @@ def setup_logging(buildout_dir,
         result['loggers']['']['handlers'].append('logfile')
     if sentry_level is not None:
         result['loggers']['']['handlers'].append('sentry')
+    else:
+        # When sentry is still in the handlers sentry needs to be installed
+        # which gave import errors in Django 1.4.
+        del result['handlers']['sentry']
     if sql:
         result['loggers']['django.db.backends']['handlers'] = [
             'console', 'logfile']
