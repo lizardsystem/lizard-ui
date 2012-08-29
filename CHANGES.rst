@@ -2,10 +2,34 @@ Changelog of lizard-ui
 ======================
 
 
-4.7 (unreleased)
+4.9 (unreleased)
 ----------------
 
-- Made less and coffee.
+- Removed dependency on sentry when sentry_level = None.
+
+
+4.8 (2012-08-23)
+----------------
+
+- Remove conflicting simplejson dependency.
+
+- Remove raven which is incompatible with Django 1.4.
+
+- Add error when graph has no data.
+
+
+4.7 (2012-08-23)
+----------------
+
+- Build a custom jquery.flot.axislabels.js, which is much better (in terms of not messing up flot's draw()).
+
+- Switch the popup's tabs to the superior jquery-ui tabs, replacing the jquery-tools tabs.
+
+- Update flot to latest (git) version, which supports proper ticks rendering (on canvas instead of HTML elements).
+
+- Fixed textual content scrollbars / overflow (again?).
+
+- Updated some app_icons.
 
 
 4.6 (2012-08-14)

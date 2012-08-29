@@ -3745,7 +3745,7 @@ a.thumbnail:hover {
   padding-right: 13px;
 }
 #content {
-  overflow: hidden;
+  overflow: auto;
   position: absolute;
   left: 0;
   right: 0;
@@ -4080,9 +4080,6 @@ img {
   margin: 0;
 }
 /* ****************** Date range dialog ************ */
-#movable-dialog-content {
-  max-height: 480px;
-}
 div.date-range-box label {
   display: inline;
 }

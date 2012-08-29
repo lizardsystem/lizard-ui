@@ -115,21 +115,53 @@ function reloadLocalizedGraphs($location, max_image_width) {
     });
 }
 
+function fixIE8DrawBug(plot) {
+    if (navigator.appName == 'Microsoft Internet Explorer') {
+        var ua = navigator.userAgent;
+        var re = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})");
+        if (re.exec(ua) != null) {
+            var rv = parseFloat(RegExp.$1);
+            if (rv == 8) {
+                setTimeout(function () {
+                    plot.resize();
+                    plot.setupGrid();
+                    plot.draw();
+                }, 100);
+            }
+        }
+    }
+}
 
 function reloadFlotGraph($graph, max_image_width, callback) {
+    // check if graph is already loaded
+    if ($graph.attr('data-graph-loaded')) return;
+
     var url = $graph.attr('data-flot-graph-data-url');
     if (url !== undefined) {
+        var $loading = $('<img src="/static_media/lizard_ui/ajax-loader.gif" class="flot-loading-animation" />');
+        $graph.append($loading);
         $.ajax({
             url: url,
             method: 'GET',
             dataType: 'json',
             success: function (response) {
-                flotGraphLoadData($graph, max_image_width, response);
+                var plot = flotGraphLoadData($graph, max_image_width, response);
+                $graph.attr('data-graph-loaded', 'true');
+                // fix for IE8...; IE7 is fine
+                if (plot) {
+                    fixIE8DrawBug(plot);
+                }
                 if (callback !== undefined) {
                     callback();
                 }
             },
-            timeout: 20000
+            timeout: 20000,
+            error: function () {
+                $graph.html('Fout bij het laden van gegevens.');
+            },
+            complete: function () {
+                $loading.remove();
+            }
         });
     }
 }
@@ -142,10 +174,12 @@ function reloadFlotGraph($graph, max_image_width, callback) {
  * @param {response} a dictionary containing graph data such as x/y values and labels
  */
 function flotGraphLoadData($graph, max_image_width, response) {
-    var plot;
     var data = response.data;
-    
-    var baseOptions = {
+    if (data.length === 0) {
+        $graph.html('Geen gegevens beschikbaar.');
+        return;
+    }
+    var defaultOpts = {
         series: {
             points: { show: true, hoverable: true }
         },
@@ -156,22 +190,22 @@ function flotGraphLoadData($graph, max_image_width, response) {
         //},
         yaxis: {
             axisLabel: response.y_label, // plugin jquery.flot.axislabels.js
-            axisLabelUseCanvas: true,
+            axisLabelTryRotate: true, // use canvas here, because this label is vertical, which IE can't handle
             axisLabelFontFamily: 'Verdana,Arial,sans-serif',
-            axisLabelFontSizePixels: 12
+            axisLabelFontSizePixels: 11
         },
         xaxis: {
             mode: "time",
             axisLabel: response.x_label, // plugin jquery.flot.axislabels.js
-            axisLabelUseCanvas: true,
+            axisLabelTryRotate: true,
             axisLabelFontFamily: 'Verdana,Arial,sans-serif',
-            axisLabelFontSizePixels: 12
+            axisLabelFontSizePixels: 11
         },
         selection: { mode: "x" },
-        grid: { hoverable: true }
+        grid: { hoverable: true, labelMargin: 10 }
     };
 
-    var calcTickSizeAndPlot = function (x_min, x_max) {
+    var updateTickSize = function (axis, x_min, x_max) {
         var tick_size = [];
         var diff_time = x_max - x_min;
         var diff_seconds = diff_time/1000;
@@ -203,23 +237,26 @@ function flotGraphLoadData($graph, max_image_width, response) {
         } else {
             $.merge(tick_size, [1, "second"]);
         }
-        var options = $.extend(true, {}, baseOptions, {
-            xaxis: {
-                min: x_min,
-                max: x_max,
-                tickSize: tick_size
-            }
-        });
-        plot = $.plot($graph, data, options);
+        axis.min = x_min;
+        axis.max = x_max;
+        axis.tickSize = tick_size;
     };
 
-    var rePlot = function () {
-        calcTickSizeAndPlot(response.x_min, response.x_max);
+    // initial plot
+    updateTickSize(defaultOpts.xaxis, response.x_min, response.x_max);
+    var plot = $.plot($graph, data, defaultOpts);
+
+    var redraw = function () {
+        plot.clearSelection();
+        plot.setupGrid();
+        plot.draw();
     };
 
     $graph.bind("plotselected", function (event, ranges) {
         //$("#selection").text(ranges.xaxis.from.toFixed(1) + " to " + ranges.xaxis.to.toFixed(1));
-        calcTickSizeAndPlot(ranges.xaxis.from, ranges.xaxis.to);
+        var opts = plot.getOptions();
+        updateTickSize(opts.xaxes[0], ranges.xaxis.from, ranges.xaxis.to);
+        redraw();
     });
 
     //$graph.bind("plotunselected", function (event) {
@@ -229,7 +266,6 @@ function flotGraphLoadData($graph, max_image_width, response) {
     function showChartTooltip(x, y, contents) {
         $('<div id="charttooltip">'+ contents + '</div>').css({
             position: 'absolute',
-            display: 'none',
             top: y - 25,
             left: x + 5,
             border: '1px solid #bfbfbf',
@@ -237,7 +273,7 @@ function flotGraphLoadData($graph, max_image_width, response) {
             'background-color': '#ffffff',
             opacity: 1,
             'z-index':11000
-        }).appendTo("body").fadeIn(200);
+        }).appendTo("body");
     }
 
     $graph.bind("plothover", function (event, pos, item) {
@@ -253,8 +289,11 @@ function flotGraphLoadData($graph, max_image_width, response) {
         }
     });
 
-    // initial plot
-    rePlot();
+    // add axis labels
+    // var $x_label = $('<div/>').html(response.x_label);
+    // $x_label.insertAfter($graph);
+    // var $y_label = $('<div/>').html(response.y_label);
+    // $y_label.insertBefore($graph);
 
     //$("#clearSelection").click(function () {
     //    plot.clearSelection();
@@ -265,8 +304,12 @@ function flotGraphLoadData($graph, max_image_width, response) {
     //});
 
     $(".flot-graph-reload").click(function () {
-        rePlot();
+        var opts = plot.getOptions();
+        updateTickSize(opts.xaxes[0], response.x_min, response.x_max);
+        redraw();
     });
+
+    return plot;
 }
 
 /**

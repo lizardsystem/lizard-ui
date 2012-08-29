@@ -15,7 +15,6 @@ INSTALLED_APPS = [
     'south',
     'compressor',
     'staticfiles',
-    'raven.contrib.django',
     'lizard_security',
     'django_extensions',
     'django_nose',
@@ -90,4 +89,4 @@ STATIC_URL = '/static_media/'
 ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
 
 STATICFILES_FINDERS = STATICFILES_FINDERS
-LOGGING = setup_logging(BUILDOUT_DIR, sentry_level='WARN')
+LOGGING = setup_logging(BUILDOUT_DIR)
