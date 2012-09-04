@@ -1,8 +1,8 @@
 {# Included by icons.html (both in lizard-ui and lizard-map). #}
   <ul class="ui-icon-list">
     {% for icon in view.icons %}
-      <li title="{{ icon.name }}"
-          {% if icon.description %}
+      <li {% if icon.description %}
+            title="{{ icon.name }}"
             data-content="{{ icon.description }}"
             class="has_popover"
           {% endif %}
