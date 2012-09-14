@@ -55,7 +55,7 @@
     if (window.secondaryRightbarState === "opened") hideSecondaryRightbar();
     $('#rightbar-actions .icon-arrow-right').removeClass('icon-arrow-right').addClass('icon-arrow-left');
     $('div#rightbar').animate({
-      right: -200,
+      right: -251,
       opacity: 0
     }, animationSpeed);
     $('div#content').animate({

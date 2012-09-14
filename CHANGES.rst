@@ -7,6 +7,8 @@ Changelog of lizard-ui
 
 - Removed dependency on sentry when sentry_level = None.
 
+- Fixed problem with sidebar width and content div scrollbars.
+
 
 4.8 (2012-08-23)
 ----------------

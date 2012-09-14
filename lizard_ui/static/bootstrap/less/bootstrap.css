@@ -3745,7 +3745,8 @@ a.thumbnail:hover {
   padding-right: 13px;
 }
 #content {
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
   position: absolute;
   left: 0;
   right: 0;
@@ -3778,9 +3779,6 @@ a.thumbnail:hover {
   display: block;
   padding-top: 4.4px;
   padding-bottom: 4.4px;
-}
-.workspace-acceptable.padded-sidebar-item {
-  padding: 0 !important;
 }
 #sidebar h2,
 #rightbar h2,
