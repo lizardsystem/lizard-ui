@@ -16,7 +16,6 @@ install_requires = [
     'django-extensions',
     'django-staticfiles >= 1.0',
     'django_compressor >= 1.1.2',  # Yes, underscore.
-    'pytz',
     'docutils',  # For the admin docs.
     'lizard-security',
     'south',
