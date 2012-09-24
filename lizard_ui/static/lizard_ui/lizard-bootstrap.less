@@ -49,8 +49,8 @@
 // See http://blog.stevensanderson.com/2011/10/05/
 // full-height-app-layouts-a-css-trick-to-make-it-easier/
 .fullRow, .fullCol {
-  overflow: hidden;
   position: absolute;
+  overflow: auto;
 }
 .fullRow {
   left: 0;
@@ -105,7 +105,11 @@ body {
   // Placement. Full width and stuck to the bottom.
   .fullRow;
   bottom: 0;
-  .btn-group {
+  .btn-toolbar {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  button {
     margin-top: 5px;
   }
 }
@@ -229,7 +233,16 @@ body {
   h3 {
     #gradient > .horizontal(lighten(@light, 10%), @light);
     border-bottom: 1px solid @light;
+    margin-left: -13px;
+    padding-left: 13px;
   }
+}
+
+// Ensure legend images (which come from an external source) don't exceed
+// the right bar.
+// Also take a potential scrollbar into account.
+#rightbar img {
+  max-width: 220px;
 }
 
 // Textual content. #textual is for backwards compatibility.
@@ -298,9 +311,11 @@ ul.ui-icon-list {
   }
 }
 
-// The following is not really a tree display. I think it is not used anymore.
-// Or it should go to lizard-maptree.
-/*
+// Tree in lizard-maptree
+ul.without-bullets {
+  margin-left: 0;
+  list-style: none;
+}
 ul.tree {
   margin-left: @baseFontSize;
   li {
@@ -311,11 +326,9 @@ ul.tree {
   }
 }
 
-ul.without-bullets {
-  margin-left: 0;
-  list-style: none;
-}
-
+// The following is not really a tree display. I think it is not used anymore.
+// Or it should go to lizard-maptree.
+/*
 #login-form {
     margin: 10% auto auto auto;
     text-align: center;
@@ -562,10 +575,15 @@ ul.wscol-actions {
     padding-bottom: 20px;
 }
 
+// override checkbox margin which is added to checkboxes by Bootstrap
+.wscol-table input[type="checkbox"] {
+    margin: 0;
+}
+
 // Fix for invisible GMaps tiles
 // overrides bootstraps reset.less
 img {
-  max-width: none !important;
+  max-width: none;
 }
 
 /* ****************** Date range dialog ************ */
@@ -610,6 +628,15 @@ span.collage-add {
 }
 .olControlLayerSwitcher .layersDiv input[type="radio"] {
     margin: 0;
+}
+
+// Give broken OpenLayers tiles (eg. when Geoserver breaks down)
+// only a slight transparancy, instead of making them entirely pink
+// need !important because OpenLayers does some inline styling
+.olImageLoadError {
+    background-color: pink !important;
+    opacity: 0.4 !important;
+    filter: alpha(opacity=40) !important; /* IE */
 }
 
 // Give daterangepicker a higher z-index

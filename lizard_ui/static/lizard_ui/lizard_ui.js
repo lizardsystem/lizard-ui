@@ -21,6 +21,23 @@
     }
 }());
 
+// Detect IE version, so we can make some exceptions
+// due to this browsers general crappiness.
+var isIE = false;
+var ieVersion = 0;
+var determine_ie_version = function () {
+    if (navigator.appName == 'Microsoft Internet Explorer') {
+        isIE = true;
+        var ua = navigator.userAgent;
+        var re = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})");
+        if (re.exec(ua) != null) {
+            var rv = parseFloat(RegExp.$1);
+            ieVersion = rv;
+        }
+    }
+};
+determine_ie_version();
+
 // some class aliases for Bootstrap information popovers
 var setUpPopovers = function() {
   var animation = false;
@@ -42,8 +59,7 @@ var closeSidebar = function() {
   $('#sidebar-actions .icon-arrow-left').removeClass('icon-arrow-left').addClass('icon-arrow-right');
   $('.secondary-sidebar-button').attr('disabled', '');
   $('div#sidebar').animate({
-    left: -300,
-    opacity: 0
+    left: -300
   }, animationSpeed);
   $('div#content').animate({
     left: 0
@@ -57,8 +73,7 @@ var closeSidebar = function() {
 var openSidebar = function() {
   $('#sidebar-actions .icon-arrow-right').removeClass('icon-arrow-right').addClass('icon-arrow-left');
   $('div#sidebar').animate({
-    left: 0,
-    opacity: 100
+    left: 0
   }, animationSpeed);
   $('div#content').animate({
     left: 300
@@ -74,8 +89,7 @@ var closeRightbar = function() {
   if (window.secondaryRightbarState === "opened") hideSecondaryRightbar();
   $('#rightbar-actions .icon-arrow-right').removeClass('icon-arrow-right').addClass('icon-arrow-left');
   $('div#rightbar').animate({
-    right: -251,
-    opacity: 0
+    right: -251
   }, animationSpeed);
   $('div#content').animate({
     right: 0
@@ -90,8 +104,7 @@ var openRightbar = function() {
   $('#rightbar-actions .icon-arrow-left').removeClass('icon-arrow-left').addClass('icon-arrow-right');
   $('div#rightbar').show();
   $('div#rightbar').animate({
-    right: 0,
-    opacity: 100
+    right: 0
   }, animationSpeed);
   $('div#content').animate({
     right: 251
@@ -131,32 +144,7 @@ var hideSecondarySidebar = function() {
 };
 
 var setUpMapDimensions = function() {
-  // TODO FIXME EJVOS
-  return;
-  var alreadySized, bottom, contentHeight, contentWidth, element, heightPerItem, items, remainingHeight;
-  contentHeight = $("div#content").height();
-  $("div#content > .textual-content").outerHeight(contentHeight);
-  contentWidth = $("div#content").width();
-  $(".sidebar-inner").height(contentHeight);
-  alreadySized = $("#content .i-have-height");
-  remainingHeight = contentHeight;
-  alreadySized.each(function() {
-    remainingHeight = remainingHeight - $(this).height();
-    return $(this).width(contentWidth);
-  });
-  items = $("#content .give-me-height");
-  heightPerItem = remainingHeight / items.length;
-  items.each(function() {
-    $(this).height(heightPerItem);
-    return $(this).width(contentWidth);
-  });
-  if (window.secondarySidebarState === "closed") {
-    bottom = $("#footer").position().top;
-    element = $("#secondary-sidebar");
-    element.css('top', bottom);
-    element.show();
-  }
-  return this;
+  // not needed anymore since all sizing is handled in the css
 };
 
 var handleLogin = function() {
@@ -713,6 +701,15 @@ $(document).ready(function() {
 
 
 $(document).ready(function () {
+    // fix div heights for IE7
+    // we don't support IE7 though
+    if (isIE && ieVersion == 7) {
+        $('#content').height('100%');
+        $('#sidebar').height('100%');
+        $('#secondary-sidebar').height('100%');
+        $('#rightbar').height('100%');
+    }
+
     $('#date-range').daterangepicker({
         maxDate: Date.today(),
         format: 'dd-MM-yyyy',

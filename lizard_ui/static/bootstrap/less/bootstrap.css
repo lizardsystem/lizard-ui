@@ -4901,8 +4901,8 @@ a.badge:hover {
 }
 .fullRow,
 .fullCol {
-  overflow: hidden;
   position: absolute;
+  overflow: auto;
 }
 .fullRow {
   left: 0;
@@ -4990,8 +4990,8 @@ body {
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffd9d9d6', endColorstr='#fff2f2f0', GradientType=0);
   border-top: 1px solid #c0c0bc;
-  overflow: hidden;
   position: absolute;
+  overflow: auto;
   left: 0;
   right: 0;
   bottom: 0;
@@ -5003,14 +5003,18 @@ body {
 #footer ul {
   height: 40px;
 }
-#footer .btn-group {
+#footer .btn-toolbar {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+#footer button {
   margin-top: 5px;
 }
 #sidebar,
 #rightbar,
 #secondary-sidebar {
-  overflow: hidden;
   position: absolute;
+  overflow: auto;
   top: 0;
   bottom: 0;
   top: 81px;
@@ -5127,6 +5131,11 @@ body {
   background-repeat: repeat-x;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff2f2f0', endColorstr='#ffd9d9d6', GradientType=1);
   border-bottom: 1px solid #d9d9d6;
+  margin-left: -13px;
+  padding-left: 13px;
+}
+#rightbar img {
+  max-width: 220px;
 }
 #textual,
 .textual-content {
@@ -5176,22 +5185,20 @@ ul.ui-icon-list li a img {
 ul.ui-icon-list .notworking {
   cursor: not-allowed;
 }
-/*
-ul.tree {
-  margin-left: @baseFontSize;
-  li {
-    list-style: none;
-  }
-  &.tree-top-level {
-    margin-left: 0;
-  }
-}
-
 ul.without-bullets {
   margin-left: 0;
   list-style: none;
 }
-
+ul.tree {
+  margin-left: 13px;
+}
+ul.tree li {
+  list-style: none;
+}
+ul.tree.tree-top-level {
+  margin-left: 0;
+}
+/*
 #login-form {
     margin: 10% auto auto auto;
     text-align: center;
@@ -5401,8 +5408,11 @@ ul.wscol-actions li {
 .wscol-table tr.paddme td {
   padding-bottom: 20px;
 }
+.wscol-table input[type="checkbox"] {
+  margin: 0;
+}
 img {
-  max-width: none !important;
+  max-width: none;
 }
 /* ****************** Date range dialog ************ */
 div.date-range-box label {
@@ -5435,6 +5445,13 @@ span.collage-add {
 }
 .olControlLayerSwitcher .layersDiv input[type="radio"] {
   margin: 0;
+}
+.olImageLoadError {
+  background-color: pink !important;
+  opacity: 0.4 !important;
+  filter: alpha(opacity=40) !important;
+  /* IE */
+
 }
 .daterangepicker {
   z-index: 10000;
