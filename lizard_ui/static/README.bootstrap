@@ -1,9 +1,8 @@
 Twitter bootstrap from http://twitter.github.com/bootstrap/
 
-Downloaded: twitter-bootstrap-v2.0.1 master
+Downloaded: twitter-bootstrap-v2.1.1 master
 
-Added bootstrap.min.js from the generated doc zipfile as we've got problems
-with the yui minimizer that django-compressor uses.
+Removed docs, tests, and non-minified javascript.
 
 In the main .less file, I added includes for lizard-bootstrap and sitespecific.less at the end:
 
