@@ -1,3 +1,7 @@
+// Overridden Bootstrap typography
+@baseFontSize:          13px;
+@baseLineHeight:        18px;
+
 // Our colors. Dark and middle green; light is gray.
 @dark: #115e67;
 @middle: #7fa9ae;
@@ -9,7 +13,7 @@
 // A green navbar. We customize bootstrap's navbar colors here.
 @navbarBackground:                @dark;
 @navbarBackgroundHighlight:       @middle;
-@navbarText:                      @white;
+@navbarText:                      @dark;
 @navbarLinkColor:                 @white;
 @navbarLinkColorHover:            @light;
 
@@ -58,14 +62,18 @@
 }
 .scroll-y {
   overflow-y: auto;
-  overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
 }
+.scroll-x {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
 // And to make sure there are no scrollbars when we slide a sidebar out, the
 // page needs to have overflow hidden.
-#page,
 html,
 body {
+  // WARNING: this potentially makes _everything_ invisible in IE7
   overflow: hidden;
 }
 
@@ -97,11 +105,12 @@ body {
   // Placement. Full width and stuck to the bottom.
   .fullRow;
   bottom: 0;
+  .btn-group {
+    margin-top: 5px;
+  }
 }
 
 // The sidebar sits beween the horizontal bars on the left. It is scrollable.
-// TODO: do we actually want the full sidebar to be scrollable?? Or just a
-// part of it?
 #sidebar,
 #rightbar,
 #secondary-sidebar {
@@ -122,7 +131,6 @@ body {
 // showing up right away.
 #secondary-sidebar {
   display: none;
-  overflow: hidden;
 }
 
 // Keep the sidebar content out of the margins. It is all text, by definition.
@@ -135,8 +143,6 @@ body {
 // The main content area sits between the horizontal bars, next to the
 // sidebar.
 #content {
-  overflow-x: hidden;
-  overflow-y: auto;
   position: absolute;
   left: 0;
   right: 0;
@@ -153,7 +159,7 @@ body {
   float: left;
 }
 
-// The  following actions are floated right.
+// The following actions are floated right.
 #site-actions,
 #content-actions,
 #rightbar-actions {
@@ -179,6 +185,9 @@ body {
 // The rightbar actions need some space, too.
 #rightbar-actions {
   width: @rightbarWidth - 2 * @baseFontSize;
+  .btn-group {
+    .pull-right;
+  }
 }
 
 
@@ -198,11 +207,7 @@ body {
   padding-bottom: @sidebarItemPadding;
 }
 
-// .workspace-acceptable.padded-sidebar-item {
-//   padding: 0 !important;
-// }
-// ^^^ Reinout commented this out. It wreaks the layout.
-
+// Header styling for all sidebars
 #sidebar,
 #rightbar,
 #secondary-sidebar {
@@ -213,6 +218,7 @@ body {
     .padded-sidebar-item;
     font-weight: bold;
     margin-right: -13px;
+    margin-top: 0;
   }
   h2 {
     #gradient > .horizontal(lighten(@middle, 10%), @middle);
@@ -225,22 +231,6 @@ body {
     border-bottom: 1px solid @light;
   }
 }
-
-#sidebar {
-  h3 {
-    margin-left: -26px;
-    padding-left: 26px;
-  }
-}
-
-#rightbar,
-#secondary-sidebar {
-  h3 {
-    margin-left: -13px;
-    padding-left: 13px;
-  }
-}
-
 
 // Textual content. #textual is for backwards compatibility.
 #textual,
@@ -297,8 +287,8 @@ ul.ui-icon-list {
   }
   li a img {
   	-moz-border-radius: 13px;
-	-webkit-border-radius: 13px;
-	border-radius: 13px;
+	  -webkit-border-radius: 13px;
+	  border-radius: 13px;
     -webkit-box-shadow: 2px 2px 10px 5px #ccc;
     -moz-box-shadow: 2px 2px 10px 5px #ccc;
     box-shadow: 2px 2px 10px 5px #ccc;
@@ -310,6 +300,7 @@ ul.ui-icon-list {
 
 // The following is not really a tree display. I think it is not used anymore.
 // Or it should go to lizard-maptree.
+/*
 ul.tree {
   margin-left: @baseFontSize;
   li {
@@ -331,24 +322,46 @@ ul.without-bullets {
     width: 300px;
 }
 
-div #login-error {
-	display: none;
-}
-
 .btn.active {
   background-color: @middle;
 }
+*/
 
 // copied from lizard_map.css
 
 /* ****************** Treeview ************ */
+
+// initially hide login error div
+#login-error {
+  display: none;
+}
+
+// remove 1px border around jquery ui tabs
+#popup-tabs {
+  border: none;
+}
+
+// remove fat header on jquery ui tabs
+#popup-tabs > ul.ui-widget-header {
+  background: none;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid #AAAAAA;
+}
+
+// remove fat padding on jquery ui tabs
+#popup-tabs > ul > li > a {
+  padding: 0.05em 1em;
+}
+
 #sidebar ul {
     li.workspace-acceptable,
     div.workspace-acceptable {
         cursor: pointer;
         display: block;
-        margin: 4px -100px;
-        padding: 2px 100px;
+        //margin: 4px -100px;
+        //padding: 2px 100px;
 
         &:hover {
             outline: 1px solid #000;
@@ -360,6 +373,7 @@ div #login-error {
     }
 }
 
+/* 
 #sidebar ul.filetree {
     list-style: none;
     margin: 0;
@@ -401,65 +415,63 @@ div #login-error {
         margin: 6px 0;
     }
 }
-
+*/
 /* ****************** /Treeview ************ */
 
+
+// workspace-acceptable link styling
 a.workspace-acceptable,
 div.nonworking-workspace-acceptable {
   display: block;
   text-decoration: none;
   color: #333333;
 }
-
 a.workspace-acceptable:hover,
 div.nonworking-workspace-acceptable:hover {
   text-decoration: none;
 }
-
 a.workspace-acceptable:active,
 div.nonworking-workspace-acceptable:active {
   text-decoration: none;
   color: #333333;
 }
-
 a.workspace-acceptable {
   border: 1px solid transparent;
 }
-
 a.workspace-acceptable:hover {
   border: 1px solid #000;
   text-decoration: none;
 }
-
 a.workspace-acceptable:focus {
   outline: none;
   outline-offset: 0;
 }
-
 a.workspace-acceptable .workspace-selected-icon {
   display: none;
 }
-
 a.workspace-acceptable.selected {
   background-color: #D9D9D6;
 }
-
 a.workspace-acceptable.selected .workspace-selected-icon {
   display: inline-block;
 }
-
 div.nonworking-workspace-acceptable {
   font-style: italic;
 }
 
+// main map div styling
 #map {
   background-color: #ddd;
+  width: 100%;
+  height: 100%;
 }
 
+// hide the WMS div element, which only contains data-* attributes 
 #lizard-map-wms {
   display: none;
 }
 
+// animated box that appears when adding a layer / collage item
 #moving-box {
   width: 0;
   height: 0;
@@ -509,6 +521,7 @@ span.no-image-spacer {
   text-align: right;
 }*/
 
+// list of buttons, like clearing the workspace or collage
 ul.wscol-actions {
   margin-top: 1em;
   border-top: 1px solid #111;
@@ -525,6 +538,9 @@ ul.wscol-actions {
 #edit-collage a.collage-popup {
     text-decoration: none;
 }
+
+// table around workspace items to ensure proper flow.
+// not sure if it was the right choice
 .wscol-table {
     width:100%;
 }
@@ -545,17 +561,11 @@ ul.wscol-actions {
 .wscol-table tr.paddme td {
     padding-bottom: 20px;
 }
-/* ****************** /Workspace + collage editor ("kaartlagen") ************ */
 
 // Fix for invisible GMaps tiles
-// overrides reset.less
+// overrides bootstraps reset.less
 img {
   max-width: none !important;
-}
-
-// Fix margin on modal login form
-#login-modal form {
-    margin: 0;
 }
 
 /* ****************** Date range dialog ************ */
@@ -567,18 +577,48 @@ div.date-range-box input {
   display: inline;
 }
 
+// Icons for multi select (a star)
 .active .icon-multi-select {
   background-position: -120px 0;
 }
-
 .icon-multi-select {
   background-position: -144px 0;
 }
 
+// Old Flot graphs (new ones use Canvas text rendering)
 .tickLabels {
   font-size: xx-small !important;
 }
 
+// Label appearing when the mouse is hovering over the map
 #hover-popup {
   z-index: 10000 !important;
+}
+
+// TODO FIXME
+span.collage-add {
+  cursor: pointer;
+}
+
+// Fix OpenLayers layer selector labels
+.olControlLayerSwitcher .layersDiv label {
+  display: inline;
+  font-family: @baseFontFamily;
+  font-size: @baseFontSize;
+  margin-bottom: 0;
+  vertical-align: middle !important;
+}
+.olControlLayerSwitcher .layersDiv input[type="radio"] {
+    margin: 0;
+}
+
+// Give daterangepicker a higher z-index
+.daterangepicker {
+  z-index: 10000;
+}
+
+// Ensure popovers are always on top (Google Maps logo for 
+// example has z-index: 1100 on OpenLayers)
+.popover {
+  z-index: 15000;
 }
