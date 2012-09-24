@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Lizard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-15 09:30-0500\n"
+"POT-Creation-Date: 2012-09-24 02:28+0200\n"
 "PO-Revision-Date: 2012-06-13 15:32+0000\n"
 "Last-Translator: Roland van Laar <roland.vanlaar@nelen-schuurmans.nl>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,7 +24,7 @@ msgid "Username"
 msgstr "Naam"
 
 #: forms.py:14 templates/lizard_ui/login.html:28
-#: templates/lizard_ui/modal_login.html:21
+#: templates/lizard_ui/modal_login.html:24
 msgid "Password"
 msgstr "Wachtwoord"
 
@@ -67,25 +67,25 @@ msgstr "index"
 msgid "Number used for ordering icons relative to each other."
 msgstr "Nummer om iconen relatief t.o.v. elkaar te op volgorde te zetten."
 
-#: views.py:236
+#: views.py:243
 msgid "logout"
 msgstr "Log uit"
 
-#: views.py:243 templates/lizard_ui/login.html:50
+#: views.py:250 templates/lizard_ui/login.html:50
 #: templates/lizard_ui/modal_login.html:5
-#: templates/lizard_ui/modal_login.html:30
+#: templates/lizard_ui/modal_login.html:33
 msgid "Login"
 msgstr "Log in"
 
-#: views.py:321
+#: views.py:359
 msgid "edit"
 msgstr "bewerken"
 
-#: views.py:350
+#: views.py:388
 msgid "Navigation"
 msgstr "Navigatie"
 
-#: templates/lizard_ui/cmsbase.html:11 templates/lizard_ui/realbase.html:85
+#: templates/lizard_ui/cmsbase.html:11 templates/lizard_ui/realbase.html:90
 msgid "Back to homepage"
 msgstr "Naar de voorpagina"
 
