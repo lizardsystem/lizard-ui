@@ -106,9 +106,7 @@
 					  {% for action in view.site_actions %}
                         <li
                            {% if action.description %}
-                             title="{{ action.name }}"
-                             data-content="{{ action.description }}"
-                             class="has_popover_south"
+                             title="{{ action.description }}"
                            {% endif %}
                            >
                           <a href="{{ action.url }}"
@@ -238,9 +236,8 @@
                       {% for action in view.sidebar_actions %}
                         <button type="button"
                           {% if action.description %}
-                            title="{{ action.name }}"
-                            data-content="{{ action.description }}"
-                            class="has_popover btn {{ action.klass }}"
+                            title="{{ action.description }}"
+                            class="btn {{ action.klass }}"
                           {% else %}
                             class="btn {{ action.klass }}"
                           {% endif %}
@@ -269,9 +266,8 @@
                         {% for action in group %}
                           <button type="button"
                             {% if action.description %}
-                              title="{{ action.name }}"
-                              data-content="{{ action.description }}"
-                              class="has_popover btn {{ action.klass }}"
+                              title="{{ action.description }}"
+                              class="btn {{ action.klass }}"
                             {% else %}
                               class="btn {{ action.klass }}"
                             {% endif %}
@@ -300,9 +296,8 @@
                       {% for action in view.rightbar_actions %}
                         <button type="button"
                           {% if action.description %}
-                            title="{{ action.name }}"
-                            data-content="{{ action.description }}"
-                            class="has_popover btn {{ action.klass }}"
+                            title="{{ action.description }}"
+                            class="btn {{ action.klass }}"
                           {% else %}
                             class="btn {{ action.klass }}"
                           {% endif %}
