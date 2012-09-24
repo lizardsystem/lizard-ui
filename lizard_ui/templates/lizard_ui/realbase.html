@@ -32,6 +32,16 @@
               href="{{ STATIC_URL }}jqueryui/smoothness/jquery-ui-1.8.23.custom.css"
               rel="stylesheet"
               media="screen, projection" />
+        {# OpenLayers: manually load the OpenLayers css so we can control the load order #}
+        {# pass theme:null to the OpenLayers.Map instance to prevent OL from autoloading it #}
+        <link rel="stylesheet"
+              href="{{ STATIC_URL }}openlayers/theme/default/style.css"
+              type="text/css"
+              media="screen, projection" />
+        <link rel="stylesheet"
+              href="{{ STATIC_URL }}daterangepicker/daterangepicker.css"
+              type="text/css"
+              media="screen, projection" />
         {# Twitter bootstrap, but with an included #}
         {# lizard_ui/lizard-bootstrap.less to overrides bootstrap defaults. #}
         {# Bootstrap must be below jqueryui to avoid overriding. #}
@@ -42,10 +52,6 @@
         {# Sprites: all icons (print, info, etc) in one cacheable image. #}
         <link rel="stylesheet"
               href="{{ STATIC_URL }}sprites/sprite.css"
-              type="text/css"
-              media="screen, projection" />
-        <link rel="stylesheet"
-              href="{{ STATIC_URL }}daterangepicker/daterangepicker.css"
               type="text/css"
               media="screen, projection" />
         {# CSS for jquery-treeview #}
@@ -327,10 +333,17 @@
     <script src="{{ STATIC_URL }}jquery/jquery.min.js"></script>
     <script src="{{ STATIC_URL }}jqueryui/jqueryui.min.js"></script>
     <script src="{{ STATIC_URL }}bootstrap/bootstrap.min.js"></script>
+    {% if debug %}
+    <script id="openlayers-script"
+            src="{{ STATIC_URL }}openlayers/OpenLayers.debug.js"
+            data-openlayers-url="{{ STATIC_URL }}openlayers/"
+            charset="utf-8"></script>
+    {% else %}
     <script id="openlayers-script"
             src="{{ STATIC_URL }}openlayers/OpenLayers.js"
             data-openlayers-url="{{ STATIC_URL }}openlayers/"
             charset="utf-8"></script>
+    {% endif %}
 
     {# Excanvas, for IE7 and IE8 support for HTML5 Canvas. #}
     <!--[if lt IE 9]>
