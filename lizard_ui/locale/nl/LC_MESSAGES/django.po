@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Lizard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-09-24 02:28+0200\n"
+"POT-Creation-Date: 2012-09-24 07:19+0200\n"
 "PO-Revision-Date: 2012-06-13 15:32+0000\n"
 "Last-Translator: Roland van Laar <roland.vanlaar@nelen-schuurmans.nl>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -67,25 +67,45 @@ msgstr "index"
 msgid "Number used for ordering icons relative to each other."
 msgstr "Nummer om iconen relatief t.o.v. elkaar te op volgorde te zetten."
 
-#: views.py:243
+#: views.py:238
+msgid "Your current username"
+msgstr "Uw huidige gebruikersnaam"
+
+#: views.py:244
 msgid "logout"
 msgstr "Log uit"
 
-#: views.py:250 templates/lizard_ui/login.html:50
+#: views.py:245
+msgid "Click here to logout"
+msgstr "Klik hier om uit te loggen"
+
+#: views.py:252 templates/lizard_ui/login.html:50
 #: templates/lizard_ui/modal_login.html:5
 #: templates/lizard_ui/modal_login.html:33
 msgid "Login"
 msgstr "Log in"
 
-#: views.py:359
-msgid "edit"
-msgstr "bewerken"
+#: views.py:253
+msgid "Click here to login"
+msgstr "Klik hier om in te loggen"
 
-#: views.py:388
+#: views.py:362
+msgid "Edit"
+msgstr "Bewerken"
+
+#: views.py:363
+msgid "Edit this page."
+msgstr "Bewerk deze pagina."
+
+#: views.py:392
 msgid "Navigation"
 msgstr "Navigatie"
 
-#: templates/lizard_ui/cmsbase.html:11 templates/lizard_ui/realbase.html:90
+#: views.py:393 views.py:400 views.py:418
+msgid "Collapse or expand this panel"
+msgstr "Klap dit paneel in of uit"
+
+#: templates/lizard_ui/cmsbase.html:11 templates/lizard_ui/realbase.html:96
 msgid "Back to homepage"
 msgstr "Naar de voorpagina"
 
