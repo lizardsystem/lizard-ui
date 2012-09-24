@@ -2,7 +2,187 @@
 
 // jslint configuration.  Don't put spaces before 'jslint' and 'global'.
 /*jslint browser: true */
-/*global $, OpenLayers, window */
+
+// Avoid `console` errors in browsers that lack a console.
+(function() {
+    var noop = function noop() {};
+    var methods = [
+        'assert', 'clear', 'count', 'debug', 'dir', 'dirxml', 'error',
+        'exception', 'group', 'groupCollapsed', 'groupEnd', 'info', 'log',
+        'markTimeline', 'profile', 'profileEnd', 'table', 'time', 'timeEnd',
+        'timeStamp', 'trace', 'warn'
+    ];
+    var length = methods.length;
+    var console = window.console || {};
+
+    while (length--) {
+        // Only stub undefined methods.
+        console[methods[length]] = console[methods[length]] || noop;
+    }
+}());
+
+// some class aliases for Bootstrap information popovers
+var setUpPopovers = function() {
+  var animation = false;
+  $(".has_popover").popover({animation: animation});
+  $(".has_popover_north").popover({placement: 'top', animation: animation});
+  $(".has_popover_east").popover({placement: 'right', animation: animation});
+  $(".has_popover_south").popover({placement: 'bottom', animation: animation});
+  $(".has_popover_west").popover({placement: 'left', animation: animation});
+};
+
+var animationSpeed = 300;
+
+// left bar, containing icons etc.
+var closeSidebar = function() {
+  if (window.secondarySidebarState === "opened") {
+    hideSecondarySidebar();
+    window.secondarySidebarState = "closed";
+  }
+  $('#sidebar-actions .icon-arrow-left').removeClass('icon-arrow-left').addClass('icon-arrow-right');
+  $('.secondary-sidebar-button').attr('disabled', '');
+  $('div#sidebar').animate({
+    left: -300,
+    opacity: 0
+  }, animationSpeed);
+  $('div#content').animate({
+    left: 0
+  }, animationSpeed, function() {
+    return setUpMapDimensions();
+  });
+  return this;
+};
+
+// left bar, containing icons
+var openSidebar = function() {
+  $('#sidebar-actions .icon-arrow-right').removeClass('icon-arrow-right').addClass('icon-arrow-left');
+  $('div#sidebar').animate({
+    left: 0,
+    opacity: 100
+  }, animationSpeed);
+  $('div#content').animate({
+    left: 300
+  }, animationSpeed, function() {
+    return setUpMapDimensions();
+  });
+  $('.secondary-sidebar-button').removeAttr('disabled');
+  return this;
+};
+
+// right bar, containing legend
+var closeRightbar = function() {
+  if (window.secondaryRightbarState === "opened") hideSecondaryRightbar();
+  $('#rightbar-actions .icon-arrow-right').removeClass('icon-arrow-right').addClass('icon-arrow-left');
+  $('div#rightbar').animate({
+    right: -251,
+    opacity: 0
+  }, animationSpeed);
+  $('div#content').animate({
+    right: 0
+  }, animationSpeed, function() {
+    return setUpMapDimensions();
+  });
+  return this;
+};
+
+// right bar, containing legend
+var openRightbar = function() {
+  $('#rightbar-actions .icon-arrow-left').removeClass('icon-arrow-left').addClass('icon-arrow-right');
+  $('div#rightbar').show();
+  $('div#rightbar').animate({
+    right: 0,
+    opacity: 100
+  }, animationSpeed);
+  $('div#content').animate({
+    right: 251
+  }, animationSpeed, function() {
+    return setUpMapDimensions();
+  });
+  return this;
+};
+
+// secondary left bar, for workspace and collage 
+var showSecondarySidebar = function() {
+  var bottom, element, top;
+  top = $("#sidebar").position().top;
+  $('.secondary-sidebar-button').button('toggle');
+  bottom = $("#footer").position().top;
+  element = $("#secondary-sidebar");
+  element.css('top', bottom);
+  element.show();
+  element.animate({
+    top: top
+  }, animationSpeed);
+  element.css('overflow-y', 'auto');
+  return this;
+};
+
+// secondary left bar, for workspace and collage 
+var hideSecondarySidebar = function() {
+  var bottom, element;
+  bottom = $("#footer").position().top;
+  element = $("#secondary-sidebar");
+  element.css("overflow-y", "hidden");
+  $("#secondary-sidebar").animate({
+    top: bottom
+  }, animationSpeed);
+  $('.secondary-sidebar-button').button('toggle');
+  return this;
+};
+
+var setUpMapDimensions = function() {
+  // TODO FIXME EJVOS
+  return;
+  var alreadySized, bottom, contentHeight, contentWidth, element, heightPerItem, items, remainingHeight;
+  contentHeight = $("div#content").height();
+  $("div#content > .textual-content").outerHeight(contentHeight);
+  contentWidth = $("div#content").width();
+  $(".sidebar-inner").height(contentHeight);
+  alreadySized = $("#content .i-have-height");
+  remainingHeight = contentHeight;
+  alreadySized.each(function() {
+    remainingHeight = remainingHeight - $(this).height();
+    return $(this).width(contentWidth);
+  });
+  items = $("#content .give-me-height");
+  heightPerItem = remainingHeight / items.length;
+  items.each(function() {
+    $(this).height(heightPerItem);
+    return $(this).width(contentWidth);
+  });
+  if (window.secondarySidebarState === "closed") {
+    bottom = $("#footer").position().top;
+    element = $("#secondary-sidebar");
+    element.css('top', bottom);
+    element.show();
+  }
+  return this;
+};
+
+var handleLogin = function() {
+  var password, url, username;
+  username = $('input[name=username]').val();
+  password = $('input[name=password]').val();
+  url = $('input[name=login-url]').val();
+  return $.ajax({
+    url: url,
+    type: "POST",
+    data: {
+      username: username,
+      password: password
+    },
+    success: function(data) {
+      if (data.success) {
+        return window.location.reload();
+      } else {
+        return $('#login-error').html(data.error_message).show();
+      }
+    }
+  });
+};
+
+$(window).bind('orientationchange pageshow resize', setUpMapDimensions);
+
 
 // Globals that we ourselves define.
 var hiddenStuffHeight, mainContentHeight, sidebarHeight, mainContentWidth,
@@ -97,9 +277,11 @@ function reloadGraph($graph, max_image_width, callback) {
  * @param {function} callback function to call when a graph has been reloaded
  */
 function reloadGraphs(max_image_width, callback) {
+    // Old matplotlib graphs, probably needs some work
     $('a.replace-with-image').each(function () {
         reloadGraph($(this), max_image_width, callback);
     });
+    // New Flot graphs
     $('div.flot-graph').each(function () {
         reloadFlotGraph($(this), max_image_width, callback);
     });
@@ -243,7 +425,7 @@ function flotGraphLoadData($graph, max_image_width, response) {
     };
 
     // initial plot
-    updateTickSize(defaultOpts.xaxis, response.x_min, response.x_max);
+    //updateTickSize(defaultOpts.xaxis, response.x_min, response.x_max);
     var plot = $.plot($graph, data, defaultOpts);
 
     var redraw = function () {
@@ -253,9 +435,12 @@ function flotGraphLoadData($graph, max_image_width, response) {
     };
 
     $graph.bind("plotselected", function (event, ranges) {
-        //$("#selection").text(ranges.xaxis.from.toFixed(1) + " to " + ranges.xaxis.to.toFixed(1));
+        var x_min = ranges.xaxis.from;
+        var x_max = ranges.xaxis.to;
         var opts = plot.getOptions();
-        updateTickSize(opts.xaxes[0], ranges.xaxis.from, ranges.xaxis.to);
+        var axis = opts.xaxes[0];
+        axis.min = x_min;
+        axis.max = x_max;
         redraw();
     });
 
@@ -265,14 +450,14 @@ function flotGraphLoadData($graph, max_image_width, response) {
 
     function showChartTooltip(x, y, contents) {
         $('<div id="charttooltip">'+ contents + '</div>').css({
-            position: 'absolute',
-            top: y - 25,
-            left: x + 5,
-            border: '1px solid #bfbfbf',
-            padding: '2px',
-            'background-color': '#ffffff',
-            opacity: 1,
-            'z-index':11000
+            'position': 'absolute',
+            'top': y - 25,
+            'left': x + 5,
+            'padding': '0.4em 0.6em',
+            'border-radius': '0.5em',
+            'border': '1px solid #111',
+            'background-color': '#fff',
+            'z-index': 11000
         }).appendTo("body");
     }
 
@@ -305,7 +490,7 @@ function flotGraphLoadData($graph, max_image_width, response) {
 
     $(".flot-graph-reload").click(function () {
         var opts = plot.getOptions();
-        updateTickSize(opts.xaxes[0], response.x_min, response.x_max);
+        //updateTickSize(opts.xaxes[0], response.x_min, response.x_max);
         redraw();
     });
 
@@ -463,12 +648,85 @@ function setUpAccordion() {
         });
         $("li.selected", pane).removeClass("selected");
         $(this).parent("li").addClass("selected");
-        accordion.click(accordion.getIndex() + 1);
+        if (accordion) {
+            accordion.click(accordion.getIndex() + 1);
+        }
     });
 }
 
+$(document).ready(function() {
+  window.sidebarState = "opened";
+  window.secondarySidebarState = "closed";
+  window.rightbarState = "closed";
+  setUpPopovers();
+  setUpMapDimensions();
+  window.setUpMapDimensions = setUpMapDimensions;
+  $('.secondary-sidebar-button').click(function(e) {
+    e.preventDefault();
+    if (window.secondarySidebarState === "closed") {
+      showSecondarySidebar();
+      return window.secondarySidebarState = "opened";
+    } else {
+      hideSecondarySidebar();
+      return window.secondarySidebarState = "closed";
+    }
+  });
+  $('.btn.collapse-sidebar').click(function(e) {
+    e.preventDefault();
+    if (window.sidebarState === "opened") {
+      closeSidebar();
+      return window.sidebarState = "closed";
+    } else {
+      openSidebar();
+      return window.sidebarState = "opened";
+    }
+  });
+  $('.btn.collapse-rightbar').click(function(e) {
+    e.preventDefault();
+    if (window.rightbarState === "opened") {
+      closeRightbar();
+      return window.rightbarState = "closed";
+    } else {
+      openRightbar();
+      return window.rightbarState = "opened";
+    }
+  });
+  $('.ui-login-link').click(function(e) {
+    e.preventDefault();
+    $('#login-modal').modal('toggle');
+    if ($('#login-modal').is('.in')) {
+      $(document).unbind('keyup');
+      $(document).bind('keyup', function(event) {
+        if ($("*:focus").parents('#login-modal').length === 0) {
+          return $('#modal-login-form-username').focus();
+        }
+      });
+      $('#modal-login-form-username').focus();
+    }
+    return false;
+  });
+  return $('#modal-login-form').submit(function(e) {
+    e.preventDefault();
+    return handleLogin();
+  });
+});
+
 
 $(document).ready(function () {
+    $('#date-range').daterangepicker({
+        maxDate: Date.today(),
+        format: 'dd-MM-yyyy',
+        locale: {
+            applyLabel:"Bevestigen",
+            fromLabel:"Van",
+            toLabel:"Tot",
+            customRangeLabel:"Handmatige invoer",
+            daysOfWeek:['zo', 'ma', 'di', 'wo', 'do', 'vr','za'],
+            monthNames:['januari', 'februari', 'maart', 'april', 'mei', 'juni', 'juli', 'augustus', 'september', 'oktober', 'november', 'december'],
+            firstDay:0,
+            opens: 'right'
+        }
+    });
     // Do not change the order.
     setUpTree();
     reloadGraphs();
