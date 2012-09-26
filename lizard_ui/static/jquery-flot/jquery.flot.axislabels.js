@@ -246,6 +246,7 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
     };
 
     IeTransformAxisLabel.prototype.draw = function(box) {
+        // apply superclass draw method
         CssTransformAxisLabel.prototype.draw.call(this, box);
         if (this.requiresResize) {
             var elem = this.plot.getPlaceholder().find("." + this.axisName + "Label");
@@ -293,8 +294,8 @@ WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
         var defaultPadding = 2;  // padding between axis and tick labels
 
         plot.hooks.draw.push(function (plot, ctx) {
+            // MEASURE AND SET OPTIONS
             if (!sizesCalculated) {
-                // MEASURE AND SET OPTIONS
                 $.each(plot.getAxes(), function(axisName, axis) {
                     var opts = axis.options // Flot 0.7
                         || plot.getOptions()[axisName]; // Flot 0.6
