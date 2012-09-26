@@ -5430,8 +5430,8 @@ div.date-range-box input {
 #hover-popup {
   z-index: 10000 !important;
 }
-span.collage-add {
-  cursor: pointer;
+a.collage-add {
+  text-decoration: none;
 }
 .olControlLayerSwitcher .layersDiv label {
   display: inline;
