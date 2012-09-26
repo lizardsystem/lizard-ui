@@ -271,19 +271,10 @@ function reloadGraphs(max_image_width, callback) {
     });
     // New Flot graphs
     $('div.flot-graph').each(function () {
-        reloadFlotGraph($(this), max_image_width, callback);
+        reloadFlotGraph($(this), callback);
     });
 }
 
-
-function reloadLocalizedGraphs($location, max_image_width) {
-    $('a.replace-with-image', $location).each(function () {
-        reloadGraph($(this), max_image_width);
-    });
-    $('div.flot-graph', $location).each(function () {
-        reloadFlotGraph($(this), max_image_width);
-    });
-}
 
 function fixIE8DrawBug(plot) {
     if (navigator.appName == 'Microsoft Internet Explorer') {
@@ -302,7 +293,7 @@ function fixIE8DrawBug(plot) {
     }
 }
 
-function reloadFlotGraph($graph, max_image_width, callback) {
+function reloadFlotGraph($graph, callback) {
     // check if graph is already loaded
     if ($graph.attr('data-graph-loaded')) return;
 
@@ -315,7 +306,7 @@ function reloadFlotGraph($graph, max_image_width, callback) {
             method: 'GET',
             dataType: 'json',
             success: function (response) {
-                var plot = flotGraphLoadData($graph, max_image_width, response);
+                var plot = flotGraphLoadData($graph, response);
                 $graph.attr('data-graph-loaded', 'true');
                 // fix for IE8...; IE7 is fine
                 if (plot) {
@@ -327,7 +318,7 @@ function reloadFlotGraph($graph, max_image_width, callback) {
             },
             timeout: 20000,
             error: function () {
-                $graph.html('Fout bij het laden van gegevens.');
+                $graph.html('Fout bij het laden van de gegevens.');
             },
             complete: function () {
                 $loading.remove();
@@ -337,100 +328,139 @@ function reloadFlotGraph($graph, max_image_width, callback) {
 }
 
 
+var MS_SECOND = 1000;
+var MS_MINUTE = 60 * MS_SECOND;
+var MS_HOUR = 60 * MS_MINUTE;
+var MS_DAY = 24 * MS_HOUR;
+var MS_MONTH = 30 * MS_DAY;
+var MS_YEAR = 365 * MS_DAY;
+
+function flotFixHeight(placeholder) {
+    placeholder.css('width', '100%');
+    var placeholderParent = placeholder.parent();
+    var height = 0;
+    placeholderParent.siblings().each(function() {
+        height -= $(this).outerHeight();
+    });
+    height -= parseInt(placeholderParent.css('padding-top'), 10);
+    height -= parseInt(placeholderParent.css('padding-bottom'), 10);
+    height += window.innerHeight;
+    placeholder.css('height', (height <= 0) ? 100 : height + 'px');
+}
+
 /**
  * Draw the response data to a canvas in DOM element $graph using Flot.
  *
  * @param {$graph} DOM element which will be replaced by the graph
  * @param {response} a dictionary containing graph data such as x/y values and labels
  */
-function flotGraphLoadData($graph, max_image_width, response) {
+function flotGraphLoadData($container, response) {
     var data = response.data;
     if (data.length === 0) {
-        $graph.html('Geen gegevens beschikbaar.');
+        $container.html('Geen gegevens beschikbaar.');
         return;
     }
     var defaultOpts = {
         series: {
             points: { show: true, hoverable: true }
         },
-        // disabled, flot seems to be able to determine these
-        //yaxis: {
-        //    min: response.y_min,
-        //    max: response.y_max
-        //},
         yaxis: {
             axisLabel: response.y_label, // plugin jquery.flot.axislabels.js
-            axisLabelTryRotate: true, // use canvas here, because this label is vertical, which IE can't handle
+            axisLabelTryRotate: true, // note: IE is notoriously bad in handling vertical text
             axisLabelFontFamily: 'Verdana,Arial,sans-serif',
-            axisLabelFontSizePixels: 11
+            axisLabelFontSizePixels: 11,
+            zoomRange: [false, false]
         },
         xaxis: {
             mode: "time",
             axisLabel: response.x_label, // plugin jquery.flot.axislabels.js
             axisLabelTryRotate: true,
             axisLabelFontFamily: 'Verdana,Arial,sans-serif',
-            axisLabelFontSizePixels: 11
+            axisLabelFontSizePixels: 11,
+            zoomRange: [1 * MS_MINUTE, 400 * MS_YEAR]
         },
-        selection: { mode: "x" },
-        grid: { hoverable: true, labelMargin: 10 }
+        grid: { hoverable: true, labelMargin: 15 },
+        pan: { interactive: true },
+        zoom: { interactive: true }
+        // touch: { pan: 'xy', scale: 'x', autoWidth: false, autoHeight: false }
     };
 
-    var updateTickSize = function (axis, x_min, x_max) {
-        var tick_size = [];
-        var diff_time = x_max - x_min;
-        var diff_seconds = diff_time/1000;
-        var diff_minutes = diff_time/1000/60;
-        var diff_hours = diff_time/1000/60/60;
-        // TODO get min time stap from timeseries
-        if (diff_hours > 24*30*12) {
-            $.merge(tick_size, [1, "year"]);
-        } else if (diff_hours > 24*30) {
-            $.merge(tick_size, [1, "month"]);
-        } else if (diff_hours > 24) {
-            $.merge(tick_size, [1, "day"]);
-        } else if (diff_hours > 20) {
-            $.merge(tick_size, [2, "hour"]);
-        } else if (diff_hours > 1) {
-            $.merge(tick_size, [1, "hour"]);
-        } else if (diff_minutes > 45) {
-            $.merge(tick_size, [15, "minute"]);
-        } else if (diff_minutes > 10) {
-            $.merge(tick_size, [10, "minute"]);
-        } else if (diff_minutes > 5) {
-            $.merge(tick_size, [5, "minute"]);
-        } else if (diff_minutes > 1) {
-            $.merge(tick_size, [1, "minute"]);
-        } else if (diff_seconds > 45 ) {
-            $.merge(tick_size, [15, "second"]);
-        } else if (diff_seconds > 10) {
-            $.merge(tick_size, [10, "second"]);
-        } else {
-            $.merge(tick_size, [1, "second"]);
-        }
-        axis.min = x_min;
-        axis.max = x_max;
-        axis.tickSize = tick_size;
-    };
+    // set up elements nested in our assigned parent div
+    $container.css('position', 'relative');
+    // first row
+    var $graph_row = $('<div class="flot-graph-row" />')
+                  .css({
+                        position: 'absolute',
+                        left: 0, top: 0, bottom: 42, right: 0
+                  });
+    // just a spacer for now, have jquery.flot.axislabels.js draw the actual label
+    var $y_label = $('<span class="flot-graph-y-label" />')
+                  .css({
+                        position: 'absolute',
+                        left: 0, top: 0, bottom: 0, width: 12
+                  });
+    $graph_row.append($y_label);
+    var $graph = $('<span class="flot-graph-canvas" />')
+                  .css({
+                        position: 'absolute',
+                        left: 12, top: 0, bottom: 0, right: 0
+                  });
+    $graph_row.append($graph);
+    $container.append($graph_row);
+
+    // second row
+    // just a spacer for now, have jquery.flot.axislabels.js draw the actual label
+    var $x_label = $('<div class="flot-graph-x-label" />')
+                    .css({
+                        position: 'absolute',
+                        left: 0, bottom: 30, right: 0,
+                        height: 12
+                    });
+    $container.append($x_label);
+
+    // third row
+    var $control_row = $('<div class="flot-graph-control-row" />')
+                       .css({
+                           position: 'absolute',
+                           left: 0, bottom: 0, right: 0,
+                           height: 30
+                       });
+    // controls
+    // TODO should implement JavaScript gettext / i18n
+    var $c_reset = $('<button title="Reset zoom" class="btn" type="button"><i class="icon-refresh"></i></button>');
+    $control_row.append($c_reset);
+
+    var $c_plus = $('<button title="Zoom in" class="btn" type="button"><i class="icon-zoom-in"></i></button>');
+    $control_row.append($c_plus);
+
+    var $c_min = $('<button title="Zoom uit" class="btn" type="button"><i class="icon-zoom-out"></i></button>');
+    $control_row.append($c_min);
+
+    var $c_bwd = $('<button title="Schuif naar links" class="btn" type="button"><i class="icon-backward"></i></button>');
+    $control_row.append($c_bwd);
+
+    var $c_fwd = $('<button title="Schuif naar rechts" class="btn" type="button"><i class="icon-forward"></i></button>');
+    $control_row.append($c_fwd);
+
+    $container.append($control_row);
 
     // initial plot
-    //updateTickSize(defaultOpts.xaxis, response.x_min, response.x_max);
     var plot = $.plot($graph, data, defaultOpts);
 
-    var redraw = function () {
-        plot.clearSelection();
-        plot.setupGrid();
-        plot.draw();
-    };
+    // var redraw = function () {
+        // plot.setupGrid();
+        // plot.draw();
+    // };
 
-    $graph.bind("plotselected", function (event, ranges) {
-        var x_min = ranges.xaxis.from;
-        var x_max = ranges.xaxis.to;
-        var opts = plot.getOptions();
-        var axis = opts.xaxes[0];
-        axis.min = x_min;
-        axis.max = x_max;
-        redraw();
-    });
+    // $graph.bind("plotselected", function (event, ranges) {
+        // var x_min = ranges.xaxis.from;
+        // var x_max = ranges.xaxis.to;
+        // var opts = plot.getOptions();
+        // var axis = opts.xaxes[0];
+        // axis.min = x_min;
+        // axis.max = x_max;
+        // redraw();
+    // });
 
     //$graph.bind("plotunselected", function (event) {
     //    $("#selection").text("");
@@ -476,10 +506,29 @@ function flotGraphLoadData($graph, max_image_width, response) {
     //    plot.setSelection({ xaxis: { from: x_min, to: x_max } });
     //});
 
-    $(".flot-graph-reload").click(function () {
-        var opts = plot.getOptions();
-        //updateTickSize(opts.xaxes[0], response.x_min, response.x_max);
-        redraw();
+    $c_reset.click(function () {
+        $.each(plot.getXAxes(), function (idx, axis) {
+            axis.options.min = null;
+            axis.options.max = null;
+        });
+        $.each(plot.getYAxes(), function (idx, axis) {
+            axis.options.min = null;
+            axis.options.max = null;
+        });
+        plot.setupGrid();
+        plot.draw();
+    });
+    $c_plus.click(function () {
+        plot.zoom({ amount: 2 });
+    });
+    $c_min.click(function () {
+        plot.zoom({ amount: 0.5 });
+    });
+    $c_bwd.click(function () {
+        plot.pan({ left: -500 });
+    });
+    $c_fwd.click(function () {
+        plot.pan({ left: 500 });
     });
 
     return plot;
