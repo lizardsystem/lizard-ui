@@ -5039,8 +5039,6 @@ body {
   display: none;
 }
 .sidebar-inner {
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
   padding-left: 13px;
   padding-right: 13px;
 }
@@ -5051,6 +5049,7 @@ body {
   top: 81px;
   left: 301px;
   bottom: 41px;
+  overflow: auto;
 }
 #logo,
 #breadcrumbs,
@@ -5140,8 +5139,6 @@ body {
 #textual,
 .textual-content {
   padding: 13px;
-  overflow-y: auto;
-  -webkit-overflow-scrolling: touch;
 }
 #breadcrumbs ul {
   margin-left: 0;

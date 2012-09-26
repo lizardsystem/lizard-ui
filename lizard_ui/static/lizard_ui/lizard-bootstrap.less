@@ -139,7 +139,7 @@ body {
 
 // Keep the sidebar content out of the margins. It is all text, by definition.
 .sidebar-inner {
-  .scroll-y;
+  //.scroll-y;
   padding-left: @baseFontSize;
   padding-right: @baseFontSize;
 }
@@ -153,6 +153,7 @@ body {
   top: @belowTopBars;
   left: @sidebarWidth + 1;  // Extra pixel for the border.
   bottom: @aboveFooter;
+  overflow: auto;
 }
 
 // Every bar is divided into two; the following parts are floated to the left.
@@ -249,7 +250,7 @@ body {
 #textual,
 .textual-content {
   padding: @baseFontSize;
-  .scroll-y;
+  //.scroll-y;
 }
 
 // Breadcrumbs fixes.
