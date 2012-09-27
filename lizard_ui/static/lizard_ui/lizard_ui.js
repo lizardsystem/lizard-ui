@@ -316,6 +316,17 @@ function reloadFlotGraph($graph, callback) {
     if ($graph.attr('data-graph-loaded')) return;
 
     var url = $graph.attr('data-flot-graph-data-url');
+    // HACK: viewstate is currently only in lizard_map,
+    // but graphs are here, in lizard_ui
+    var view_state = get_view_state();
+    if (view_state !== undefined) {
+        if (view_state.start && view_state.end) {
+            url += '&' + $.param({
+                dt_start: view_state.start.toJSON(),
+                dt_end: view_state.end.toJSON()
+            });
+        }
+    }
     if (url !== undefined) {
         var $loading = $('<img src="/static_media/lizard_ui/ajax-loader.gif" class="flot-loading-animation" />');
         $graph.append($loading);
