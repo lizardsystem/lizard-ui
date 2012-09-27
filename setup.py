@@ -18,6 +18,7 @@ install_requires = [
     'django_compressor >= 1.2',  # Yes, underscore.
     'docutils',  # For the admin docs.
     'lizard-security',
+    'raven',
     'south',
     'werkzeug',
     ],
