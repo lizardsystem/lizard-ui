@@ -158,9 +158,6 @@
 
                 {% endblock breadcrumbs %}
               </div>
-              <span>
-                  <input id="date-range" type="text" /> 
-              </span>
               <div id="content-actions">
                 {% block content-actions %}
 
@@ -333,11 +330,13 @@
             src="{{ STATIC_URL }}openlayers/OpenLayers.debug.js"
             data-openlayers-url="{{ STATIC_URL }}openlayers/"
             charset="utf-8"></script>
+    <script src="{{ STATIC_URL }}jquery-json/jquery.json-2.3.js"></script>
     {% else %}
     <script id="openlayers-script"
             src="{{ STATIC_URL }}openlayers/OpenLayers.js"
             data-openlayers-url="{{ STATIC_URL }}openlayers/"
             charset="utf-8"></script>
+    <script src="{{ STATIC_URL }}jquery-json/jquery.json-2.3.min.js"></script>
     {% endif %}
 
     {# Excanvas, for IE7 and IE8 support for HTML5 Canvas. #}
