@@ -3,7 +3,9 @@
 // jslint configuration.  Don't put spaces before 'jslint' and 'global'.
 /*jslint browser: true */
 
-// Avoid `console` errors in browsers that lack a console.
+/**
+ * Avoid `console` errors in browsers that lack a console.
+ */
 (function() {
     var noop = function noop() {};
     var methods = [
@@ -21,8 +23,10 @@
     }
 }());
 
-// Detect IE version, so we can make some exceptions
-// due to this browsers general crappiness.
+/**
+ * Detect IE version, so we can make some exceptions,
+ * due to this browsers general crappiness.
+ */
 var isIE = false;
 var ieVersion = 0;
 var determine_ie_version = function () {
@@ -37,6 +41,20 @@ var determine_ie_version = function () {
     }
 };
 determine_ie_version();
+
+/**
+ * Check if selector returns any elements.
+ *
+ * Usage: $('#notAnElement').exists();
+ */
+jQuery.fn.exists = function () {
+    return this.length !== 0;
+};
+
+// jQuery Deparam - v0.1.0 - 6/14/2011
+// http://benalman.com/
+// Copyright (c) 2011 Ben Alman; Licensed MIT, GPL
+(function($){var a,b=decodeURIComponent,c=$.deparam=function(a,d){var e={};$.each(a.replace(/\+/g," ").split("&"),function(a,f){var g=f.split("="),h=b(g[0]);if(!!h){var i=b(g[1]||""),j=h.split("]["),k=j.length-1,l=0,m=e;j[0].indexOf("[")>=0&&/\]$/.test(j[k])?(j[k]=j[k].replace(/\]$/,""),j=j.shift().split("[").concat(j),k++):k=0,$.isFunction(d)?i=d(h,i):d&&(i=c.reviver(h,i));if(k)for(;l<=k;l++)h=j[l]!==""?j[l]:m.length,l<k?m=m[h]=m[h]||(isNaN(j[l+1])?{}:[]):m[h]=i;else $.isArray(e[h])?e[h].push(i):h in e?e[h]=[e[h],i]:e[h]=i}});return e};c.reviver=function(b,c){var d={"true":!0,"false":!1,"null":null,"undefined":a};return+c+""===c?+c:c in d?d[c]:c}})(jQuery);
 
 // some class aliases for Bootstrap information popovers
 var setUpPopovers = function() {
@@ -759,20 +777,6 @@ $(document).ready(function () {
         $('#rightbar').height('100%');
     }
 
-    $('#date-range').daterangepicker({
-        maxDate: Date.today(),
-        format: 'dd-MM-yyyy',
-        locale: {
-            applyLabel:"Bevestigen",
-            fromLabel:"Van",
-            toLabel:"Tot",
-            customRangeLabel:"Handmatige invoer",
-            daysOfWeek:['zo', 'ma', 'di', 'wo', 'do', 'vr','za'],
-            monthNames:['januari', 'februari', 'maart', 'april', 'mei', 'juni', 'juli', 'augustus', 'september', 'oktober', 'november', 'december'],
-            firstDay:0,
-            opens: 'right'
-        }
-    });
     // Do not change the order.
     setUpTree();
     reloadGraphs();
