@@ -166,9 +166,7 @@
                       {% for action in view.content_actions %}
                         <li
                            {% if action.description %}
-                             title="{{ action.name }}"
-                             data-content="{{ action.description }}"
-                             class="has_popover_west"
+                             title="{{ action.description }}"
                            {% endif %}
                            {% for item in action.data_attributes.items %}
                              data-{{ item.0 }}="{{ item.1 }}"
