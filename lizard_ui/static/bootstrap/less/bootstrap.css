@@ -4924,6 +4924,10 @@ html,
 body {
   overflow: hidden;
 }
+header,
+#footer {
+  overflow: hidden;
+}
 #logo-row {
   overflow: visible;
   margin-bottom: 18px;

@@ -84,6 +84,11 @@ body {
 @sidebarWidth: 300px;
 @rightbarWidth: 250px;
 
+// These never need scroll.
+header, #footer {
+  overflow: hidden;
+}
+
 // Top-most bar.
 #logo-row {
   .horizontal-bar;
