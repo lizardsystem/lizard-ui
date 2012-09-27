@@ -25,6 +25,7 @@
         this.format = 'MM/dd/yyyy';
         this.locale = {
             applyLabel:"Apply",
+            cancelLabel:"Cancel",
             fromLabel:"From",
             toLabel:"To",
             customRangeLabel:"Custom Range",
@@ -84,6 +85,7 @@
                       '<input class="input-mini" type="text" name="daterangepicker_end" value="" disabled="disabled" />' +
                     '</div>' +
                     '<button class="btn btn-small btn-success" disabled="disabled">' + this.locale.applyLabel + '</button>' +
+                    '<button class="btn btn-small btn-danger pull-right">' + this.locale.cancelLabel + '</button>' +
                   '</div>' +
                 '</div>' +
               '</div>';
@@ -219,7 +221,8 @@
         // by erikjan.vos@nelen-schuurmans.nl
         this.container.find('.calendar').on('click', '.prev-year', $.proxy(this.clickPrevYear, this));
         this.container.find('.calendar').on('click', '.next-year', $.proxy(this.clickNextYear, this));
-        this.container.find('.ranges').on('click', 'button', $.proxy(this.clickApply, this));
+        this.container.find('.ranges').on('click', 'button.btn-success', $.proxy(this.clickApply, this));
+        this.container.find('.ranges').on('click', 'button.btn-danger', $.proxy(this.clickCancel, this));
 
         this.container.find('.calendar').on('click', 'td.available', $.proxy(this.clickDate, this));
         this.container.find('.calendar').on('mouseenter', 'td.available', $.proxy(this.enterDate, this));
@@ -253,9 +256,9 @@
             this.container.find('input[name=daterangepicker_end]').val(this.endDate.toString(this.format));
 
             if (this.startDate.equals(this.endDate) || this.startDate.isBefore(this.endDate)) {
-                this.container.find('button').removeAttr('disabled');
+                this.container.find('button.btn-success').removeAttr('disabled');
             } else {
-                this.container.find('button').attr('disabled', 'disabled');
+                this.container.find('button.btn-success').attr('disabled', 'disabled');
             }
         },
 
@@ -486,6 +489,11 @@
 
         clickApply: function (e) {
             this.hide();
+        },
+
+        clickCancel: function (e) {
+            this.container.hide();
+            $(document).off('mousedown', this.hide);
         },
 
         updateCalendars: function () {
