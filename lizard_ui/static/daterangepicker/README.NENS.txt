@@ -1,0 +1,5 @@
+-Changed to actually use locale.monthNames option.
+-Changed to apply styling to custom range button.
+-Actually, the custom range button is now hidden entirely.
+-Changed to always show calendar AND custom date ranges.
+-Changed to allow year browsing.
