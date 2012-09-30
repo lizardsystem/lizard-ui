@@ -42,6 +42,19 @@ var ieVersion = 0;
 }());
 
 /**
+ * Detect Apple appliances.
+ */
+var isAppleMobile = false;
+(function () {
+    if (navigator && navigator.userAgent && navigator.userAgent != null) {
+        var strUserAgent = navigator.userAgent.toLowerCase();
+        var arrMatches = strUserAgent.match(/(iphone|ipod|ipad)/);
+        if (arrMatches)
+            isAppleMobile = true;
+    }
+}());
+
+/**
  * Check if selector returns any elements.
  *
  * Usage: $('#notAnElement').exists();
