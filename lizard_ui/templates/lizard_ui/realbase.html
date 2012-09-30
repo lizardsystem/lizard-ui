@@ -319,7 +319,7 @@
     {# Ajax calls need a CSRF token cookie, and this line sends one as a side effect #}
     <!-- {{ csrf_token }} -->
 
-    {# Already minimized scripts. #}
+    {# Already minimized, stable scripts. #}
     <script src="{{ STATIC_URL }}jquery/jquery.min.js"></script>
     <script src="{{ STATIC_URL }}jqueryui/jqueryui.min.js"></script>
     <script src="{{ STATIC_URL }}bootstrap/bootstrap.min.js"></script>
@@ -329,12 +329,14 @@
             data-openlayers-url="{{ STATIC_URL }}openlayers/"
             charset="utf-8"></script>
     <script src="{{ STATIC_URL }}jquery-json/jquery.json-2.3.js"></script>
+    <script src="{{ STATIC_URL }}momentjs/moment.js"></script>
     {% else %}
     <script id="openlayers-script"
             src="{{ STATIC_URL }}openlayers/OpenLayers.js"
             data-openlayers-url="{{ STATIC_URL }}openlayers/"
             charset="utf-8"></script>
     <script src="{{ STATIC_URL }}jquery-json/jquery.json-2.3.min.js"></script>
+    <script src="{{ STATIC_URL }}momentjs/moment.min.js"></script>
     {% endif %}
 
     {# Excanvas, for IE7 and IE8 support for HTML5 Canvas. #}
@@ -344,6 +346,7 @@
 
     {% compress js %}
       {% block javascript %}
+        <script src="{{ STATIC_URL }}momentjs/nl.js"></script>
         <script src="{{ STATIC_URL }}lizard_ui/csrf.js"></script>
         <script src="{{ STATIC_URL }}lizard_ui/lizard_ui.js"></script>
         <script src="{{ STATIC_URL }}jquery-treeview/jquery.treeview.js"></script>
@@ -353,7 +356,6 @@
         <script src="{{ STATIC_URL }}jquery-flot/jquery.flot.resize.js"></script>
         <script src="{{ STATIC_URL }}jquery-flot/jquery.flot.navigate.js"></script>
         <script src="{{ STATIC_URL }}jquery-flot/jquery.flot.time.js"></script>
-        <script src="{{ STATIC_URL }}daterangepicker/date.js"></script>
         <script src="{{ STATIC_URL }}daterangepicker/daterangepicker.js"></script>
         {% comment It seems these aren't used anymore %}
         <!--
