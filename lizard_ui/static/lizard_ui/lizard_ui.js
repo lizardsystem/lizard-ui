@@ -405,7 +405,7 @@ function flotGraphLoadData($container, response) {
     }
     var defaultOpts = {
         series: {
-            points: { show: true, hoverable: true }
+            points: { show: true, hoverable: true, radius: 1 }
         },
         yaxis: {
             axisLabel: response.y_label, // plugin jquery.flot.axislabels.js
