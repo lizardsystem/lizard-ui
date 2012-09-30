@@ -29,7 +29,7 @@
  */
 var isIE = false;
 var ieVersion = 0;
-var determine_ie_version = function () {
+(function () {
     if (navigator.appName == 'Microsoft Internet Explorer') {
         isIE = true;
         var ua = navigator.userAgent;
@@ -39,8 +39,7 @@ var determine_ie_version = function () {
             ieVersion = rv;
         }
     }
-};
-determine_ie_version();
+}());
 
 /**
  * Check if selector returns any elements.
@@ -55,50 +54,6 @@ jQuery.fn.exists = function () {
 // http://benalman.com/
 // Copyright (c) 2011 Ben Alman; Licensed MIT, GPL
 (function($){var a,b=decodeURIComponent,c=$.deparam=function(a,d){var e={};$.each(a.replace(/\+/g," ").split("&"),function(a,f){var g=f.split("="),h=b(g[0]);if(!!h){var i=b(g[1]||""),j=h.split("]["),k=j.length-1,l=0,m=e;j[0].indexOf("[")>=0&&/\]$/.test(j[k])?(j[k]=j[k].replace(/\]$/,""),j=j.shift().split("[").concat(j),k++):k=0,$.isFunction(d)?i=d(h,i):d&&(i=c.reviver(h,i));if(k)for(;l<=k;l++)h=j[l]!==""?j[l]:m.length,l<k?m=m[h]=m[h]||(isNaN(j[l+1])?{}:[]):m[h]=i;else $.isArray(e[h])?e[h].push(i):h in e?e[h]=[e[h],i]:e[h]=i}});return e};c.reviver=function(b,c){var d={"true":!0,"false":!1,"null":null,"undefined":a};return+c+""===c?+c:c in d?d[c]:c}})(jQuery);
-
-// Fix Date.parse for Firefox, IE8, et cetera.
-/** https://github.com/csnover/js-iso8601 */
-/**
-* Date.parse with progressive enhancement for ISO 8601 <https://github.com/csnover/js-iso8601>
-* © 2011 Colin Snover <http://zetafleet.com>
-* Released under MIT license.
-*/
-(function (Date, undefined) {
-    var origParse = Date.parse, numericKeys = [ 1, 4, 5, 6, 7, 10, 11 ];
-    Date.parseISO8601 = function (date) {
-        var timestamp, struct, minutesOffset = 0;
-
-        // ES5 §15.9.4.2 states that the string should attempt to be parsed as a Date Time String Format string
-        // before falling back to any implementation-specific date parsing, so that’s what we do, even if native
-        // implementations could be faster
-        // 1 YYYY 2 MM 3 DD 4 HH 5 mm 6 ss 7 msec 8 Z 9 ± 10 tzHH 11 tzmm
-        if ((struct = /^(\d{4}|[+\-]\d{6})(?:-(\d{2})(?:-(\d{2}))?)?(?:T(\d{2}):(\d{2})(?::(\d{2})(?:\.(\d{3}))?)?(?:(Z)|([+\-])(\d{2})(?::(\d{2}))?)?)?$/.exec(date))) {
-            // avoid NaN timestamps caused by “undefined” values being passed to Date.UTC
-            for (var i = 0, k; (k = numericKeys[i]); ++i) {
-                struct[k] = +struct[k] || 0;
-            }
-
-            // allow undefined days and months
-            struct[2] = (+struct[2] || 1) - 1;
-            struct[3] = +struct[3] || 1;
-
-            if (struct[8] !== 'Z' && struct[9] !== undefined) {
-                minutesOffset = struct[10] * 60 + struct[11];
-
-                if (struct[9] === '+') {
-                    minutesOffset = 0 - minutesOffset;
-                }
-            }
-
-            timestamp = Date.UTC(struct[1], struct[2], struct[3], struct[4], struct[5] + minutesOffset, struct[6], struct[7]);
-        }
-        else {
-            timestamp = origParse ? origParse(date) : NaN;
-        }
-
-        return new Date(timestamp);
-    };
-}(Date));
 
 // some class aliases for Bootstrap information popovers
 var setUpPopovers = function() {
@@ -359,26 +314,40 @@ function reloadFlotGraph($graph, callback) {
     // check if graph is already loaded
     if ($graph.attr('data-graph-loaded')) return;
 
+    // the wonders of asynchronous programming
+    if ($graph.attr('data-graph-loading')) return;
+
+    // check if element is visible (again):
+    // flot can't draw on an invisible surface
+    if ($graph.is(':hidden')) return;
+
     var url = $graph.attr('data-flot-graph-data-url');
     // HACK: viewstate is currently only in lizard_map,
     // but graphs are here, in lizard_ui
     var view_state = get_view_state();
+    view_state = to_date_strings(view_state);
     if (view_state !== undefined) {
-        if (view_state.start && view_state.end) {
+        if (view_state.dt_start && view_state.dt_end) {
             url += '&' + $.param({
-                dt_start: view_state.start.toJSON(),
-                dt_end: view_state.end.toJSON()
+                dt_start: view_state.dt_start,
+                dt_end: view_state.dt_end
             });
         }
     }
     if (url !== undefined) {
         var $loading = $('<img src="/static_media/lizard_ui/ajax-loader.gif" class="flot-loading-animation" />');
-        $graph.append($loading);
+        $graph.empty().append($loading);
+        $graph.attr('data-graph-loading', 'true');
         $.ajax({
             url: url,
             method: 'GET',
             dataType: 'json',
             success: function (response) {
+                // element might have been hidden in the meantime
+                // so check if element is visible again:
+                // flot can't draw on an invisible surface
+                if ($graph.is(':hidden')) return;
+
                 var plot = flotGraphLoadData($graph, response);
                 $graph.attr('data-graph-loaded', 'true');
                 // fix for IE8...; IE7 is fine
@@ -394,6 +363,7 @@ function reloadFlotGraph($graph, callback) {
                 $graph.html('Fout bij het laden van de gegevens.');
             },
             complete: function () {
+                $graph.removeAttr('data-graph-loading');
                 $loading.remove();
             }
         });
@@ -719,49 +689,48 @@ function setUpSortableTables() {
 
 
 function setUpAccordion() {
-    $("#accordion").tabs(
-        "#accordion .pane",
-        {tabs: "h2, h3",
-         effect: "slide"});
-    /* Set up a global 'accordion' variable to later steer the animation. */
-    accordion = $("#accordion").data("tabs");
-    $(".accordion-load-next a").live('click', function (event) {
-        var pane, nextPaneId, url, newTitle, ourId;
-        event.preventDefault();
-        pane = $(this).parents(".accordion-load-next");
-        nextPaneId = pane.attr("data-next-pane-id");
-        url = $(this).attr("href");
-        $(nextPaneId).html('<div class="loading" />');
-        $.ajax({
-            type: "GET",
-            url: url,
-            success: function (data) {
-                // Update all pane titles and the new pane. Data is the whole
-                // (new) html page.
-                $(".pane").each(function () {
-                    // Title of current pane.
-                    newTitle = $(data).find("#" + $(this).attr("id")).prev().html();
-                    $(this).prev().html(newTitle);
-                    // Refresh target pane contents only.
-                    ourId = "#" + $(this).attr("id");
-                    if (ourId === nextPaneId) {
-                        $(this).html($(data).find(ourId));
-                    }
-                });
-                //setUpTooltips();
-                setUpTree();
-            },
-            error: function (e) {
-                $(nextPaneId).html('<div class="ss_error ss_sprite" />' +
-                                   'Fout bij laden paginaonderdeel.');
+    if ($("#accordion").exists()) {
+        $("#accordion").tabs("#accordion .pane", { tabs: "h2, h3", effect: "slide"});
+        /* Set up a global 'accordion' variable to later steer the animation. */
+        accordion = $("#accordion").data("tabs");
+        $(".accordion-load-next a").live('click', function (event) {
+            var pane, nextPaneId, url, newTitle, ourId;
+            event.preventDefault();
+            pane = $(this).parents(".accordion-load-next");
+            nextPaneId = pane.attr("data-next-pane-id");
+            url = $(this).attr("href");
+            $(nextPaneId).html('<div class="loading" />');
+            $.ajax({
+                type: "GET",
+                url: url,
+                success: function (data) {
+                    // Update all pane titles and the new pane. Data is the whole
+                    // (new) html page.
+                    $(".pane").each(function () {
+                        // Title of current pane.
+                        newTitle = $(data).find("#" + $(this).attr("id")).prev().html();
+                        $(this).prev().html(newTitle);
+                        // Refresh target pane contents only.
+                        ourId = "#" + $(this).attr("id");
+                        if (ourId === nextPaneId) {
+                            $(this).html($(data).find(ourId));
+                        }
+                    });
+                    //setUpTooltips();
+                    setUpTree();
+                },
+                error: function (e) {
+                    $(nextPaneId).html('<div class="ss_error ss_sprite" />' +
+                                       'Fout bij laden paginaonderdeel.');
+                }
+            });
+            $("li.selected", pane).removeClass("selected");
+            $(this).parent("li").addClass("selected");
+            if (accordion) {
+                accordion.click(accordion.getIndex() + 1);
             }
         });
-        $("li.selected", pane).removeClass("selected");
-        $(this).parent("li").addClass("selected");
-        if (accordion) {
-            accordion.click(accordion.getIndex() + 1);
-        }
-    });
+    }
 }
 
 $(document).ready(function() {
