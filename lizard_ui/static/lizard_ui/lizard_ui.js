@@ -438,8 +438,10 @@ function flotGraphLoadData($container, response) {
         grid: { hoverable: true, labelMargin: 15 },
         pan: { interactive: true },
         zoom: { interactive: true }
-        // touch: { pan: 'xy', scale: 'x', autoWidth: false, autoHeight: false }
     };
+    if (isAppleMobile) {
+        defaultOpts.touch = { pan: 'xy', scale: 'x', autoWidth: false, autoHeight: false };
+    }
 
     // set up elements nested in our assigned parent div
     $container.css('position', 'relative');
