@@ -19,10 +19,7 @@
 
 .daterangepicker .calendar {
   display: none;
-/* by erikjan.vos@nelen-schuurmans.nl */
   max-width: 266px;
-/*  max-width: 230px; */
-/* /by erikjan.vos@nelen-schuurmans.nl */
 }
 
 .daterangepicker .calendar th, .daterangepicker .calendar td {
@@ -138,10 +135,7 @@
 
 .daterangepicker td, .daterangepicker th {
   text-align: center;
-/* by erikjan.vos@nelen-schuurmans.nl */
   width: 28px;
-/*  width: 20px; */
-/* /by erikjan.vos@nelen-schuurmans.nl */
   height: 20px;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
