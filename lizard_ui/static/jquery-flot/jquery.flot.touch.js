@@ -9,11 +9,6 @@
     };
 
     function init(plot) {
-        if (!plot.getOptions().touch) {
-            // fix doing stuff on devices without touch support
-            return;
-        }
-
         var isPanning = false;
         var isZooming = false;
         var lastTouchPosition = {
@@ -72,6 +67,11 @@
         }
 
         function processOptions(plot, options) {
+            if (!options.touch) {
+                // only do something when touch options are set
+                return;
+            }
+
             var placeholder = plot.getPlaceholder();
 
             if (options.touch.autoWidth) {
@@ -92,6 +92,10 @@
 
                 placeholder.css('height', (height <= 0) ? 100 : height + 'px');
             }
+
+            plot.hooks.bindEvents.push(bindEvents);
+            plot.hooks.processDatapoints.push(processDatapoints);
+            plot.hooks.shutdown.push(shutdown);
         }
 
         function bindEvents(plot, eventHolder) {
@@ -198,6 +202,7 @@
                     lastTouchDistance = distance;
                 }
             });
+            // /placeholder.bind
 
             placeholder.bind('touchend', function(evt) {
                 var placeholder = plot.getPlaceholder();
@@ -278,6 +283,7 @@
                     '-webkit-transform-origin' : scaleOrigin.x + '% ' + scaleOrigin.y + '%'
                 });
             });
+            // /placeholder.bind
         } // /bindEvents
 
         function processDatapoints(plot, series, datapoints) {
@@ -306,11 +312,7 @@
         }
 
         plot.hooks.processOptions.push(processOptions);
-        plot.hooks.bindEvents.push(bindEvents);
-        plot.hooks.processDatapoints.push(processDatapoints);
-        plot.hooks.shutdown.push(shutdown);
     } // /init
-
 
     $.plot.plugins.push({
         init : init,
