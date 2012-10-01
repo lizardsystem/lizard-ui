@@ -92,13 +92,14 @@
 
                 placeholder.css('height', (height <= 0) ? 100 : height + 'px');
             }
-
-            plot.hooks.bindEvents.push(bindEvents);
-            plot.hooks.processDatapoints.push(processDatapoints);
-            plot.hooks.shutdown.push(shutdown);
         }
 
         function bindEvents(plot, eventHolder) {
+            if (!plot.getOptions().touch) {
+                // only do something when touch options are set
+                return;
+            }
+
             var placeholder = plot.getPlaceholder();
             var container = $('<div class="flot-touch-container" style="background:#fff;"/>');
 
@@ -287,6 +288,11 @@
         } // /bindEvents
 
         function processDatapoints(plot, series, datapoints) {
+            if (!plot.getOptions().touch) {
+                // only do something when touch options are set
+                return;
+            }
+
             if (window.devicePixelRatio) {
                 var placeholder = plot.getPlaceholder();
 
@@ -306,12 +312,20 @@
         }
 
         function shutdown(plot, eventHolder) {
+            if (!plot.getOptions().touch) {
+                // only do something when touch options are set
+                return;
+            }
+
             var placeholder = plot.getPlaceholder();
 
             placeholder.unbind('touchstart').unbind('touchmove').unbind('touchend');
         }
 
         plot.hooks.processOptions.push(processOptions);
+        plot.hooks.bindEvents.push(bindEvents);
+        plot.hooks.processDatapoints.push(processDatapoints);
+        plot.hooks.shutdown.push(shutdown);
     } // /init
 
     $.plot.plugins.push({

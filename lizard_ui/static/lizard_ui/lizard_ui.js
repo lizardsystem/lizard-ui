@@ -440,7 +440,11 @@ function flotGraphLoadData($container, response) {
         zoom: { interactive: true }
     };
     if (isAppleMobile) {
+        // enable touch
         defaultOpts.touch = { pan: 'xy', scale: 'x', autoWidth: false, autoHeight: false };
+        // disable flot.navigate pan & zoom
+        defaultOpts.pan.interactive = false;
+        defaultOpts.zoom.interactive = false;
     }
 
     // set up elements nested in our assigned parent div
