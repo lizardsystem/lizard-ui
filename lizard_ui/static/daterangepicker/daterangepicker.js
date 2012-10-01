@@ -50,9 +50,6 @@
         //element that triggered the date range picker
         this.element = $(element);
 
-        if (this.element.hasClass('pull-right'))
-            this.opens = 'left';
-
         if (this.element.is('input')) {
             this.element.on({
                 click: $.proxy(this.show, this),
