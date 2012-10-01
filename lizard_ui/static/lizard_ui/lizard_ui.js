@@ -528,31 +528,33 @@ function flotGraphLoadData($container, response) {
     //    $("#selection").text("");
     //});
 
-    function showChartTooltip(x, y, contents) {
-        $('<div id="charttooltip">'+ contents + '</div>').css({
-            'position': 'absolute',
-            'top': y - 25,
-            'left': x + 5,
-            'padding': '0.4em 0.6em',
-            'border-radius': '0.5em',
-            'border': '1px solid #111',
-            'background-color': '#fff',
-            'z-index': 11000
-        }).appendTo("body");
-    }
-
-    $graph.bind("plothover", function (event, pos, item) {
-        //$("#x").text(pos.x.toFixed(2));
-        //$("#y").text(pos.y.toFixed(2));
-        if (item) {
-            $("#charttooltip").remove();
-            //var x = item.datapoint[0].toFixed(2);
-            //var y = item.datapoint[1].toFixed(2);
-            showChartTooltip(item.pageX, item.pageY, item.datapoint[1]);
-        } else {
-            $("#charttooltip").remove();
+    if (!isAppleMobile) {
+        function showChartTooltip(x, y, contents) {
+            $('<div id="charttooltip">'+ contents + '</div>').css({
+                'position': 'absolute',
+                'top': y - 25,
+                'left': x + 5,
+                'padding': '0.4em 0.6em',
+                'border-radius': '0.5em',
+                'border': '1px solid #111',
+                'background-color': '#fff',
+                'z-index': 11000
+            }).appendTo("body");
         }
-    });
+
+        $graph.bind("plothover", function (event, pos, item) {
+            //$("#x").text(pos.x.toFixed(2));
+            //$("#y").text(pos.y.toFixed(2));
+            if (item) {
+                $("#charttooltip").remove();
+                //var x = item.datapoint[0].toFixed(2);
+                //var y = item.datapoint[1].toFixed(2);
+                showChartTooltip(item.pageX, item.pageY, item.datapoint[1]);
+            } else {
+                $("#charttooltip").remove();
+            }
+        });
+    }
 
     // add axis labels
     // var $x_label = $('<div/>').html(response.x_label);
