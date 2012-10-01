@@ -542,6 +542,11 @@
 
             this.updateView();
             this.updateCalendars();
+        },
+
+        getRange: function (rangeType) {
+            var range = this.ranges[rangeType];
+            return range;
         }
     };
 
