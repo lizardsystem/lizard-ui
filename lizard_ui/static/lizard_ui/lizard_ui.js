@@ -68,6 +68,24 @@ jQuery.fn.exists = function () {
 // Copyright (c) 2011 Ben Alman; Licensed MIT, GPL
 (function($){var a,b=decodeURIComponent,c=$.deparam=function(a,d){var e={};$.each(a.replace(/\+/g," ").split("&"),function(a,f){var g=f.split("="),h=b(g[0]);if(!!h){var i=b(g[1]||""),j=h.split("]["),k=j.length-1,l=0,m=e;j[0].indexOf("[")>=0&&/\]$/.test(j[k])?(j[k]=j[k].replace(/\]$/,""),j=j.shift().split("[").concat(j),k++):k=0,$.isFunction(d)?i=d(h,i):d&&(i=c.reviver(h,i));if(k)for(;l<=k;l++)h=j[l]!==""?j[l]:m.length,l<k?m=m[h]=m[h]||(isNaN(j[l+1])?{}:[]):m[h]=i;else $.isArray(e[h])?e[h].push(i):h in e?e[h]=[e[h],i]:e[h]=i}});return e};c.reviver=function(b,c){var d={"true":!0,"false":!1,"null":null,"undefined":a};return+c+""===c?+c:c in d?d[c]:c}})(jQuery);
 
+/**
+ * jQuery support for Mustache. Shameless port of a shameless port.
+ * @defunkt => @janl => @aq
+ * See http://github.com/defunkt/mustache for more info.
+ */
+(function($) {
+  $.mustache = function (template, view, partials) {
+    return Mustache.render(template, view, partials);
+  };
+  $.fn.mustache = function (view, partials) {
+    return $(this).map(function (i, elm) {
+      var template = $(elm).html().trim();
+      var output = $.mustache(template, view, partials);
+      return $(output).get();
+    });
+  };
+})(jQuery);
+
 // some class aliases for Bootstrap information popovers
 var setUpPopovers = function() {
   var animation = false;
@@ -201,12 +219,6 @@ var handleLogin = function() {
 
 $(window).bind('orientationchange pageshow resize', setUpMapDimensions);
 
-
-// Globals that we ourselves define.
-var hiddenStuffHeight, mainContentHeight, sidebarHeight, mainContentWidth,
-    verticalItemHeight, accordion, resizeTimer, cachedScrollbarWidth;
-
-
 function reloadGraph($graph, max_image_width, callback) {
     var url, url_click, timestamp, width, height, amp_or_questionmark,
     html_img, image, $main_tag, html_src, html_url, errormsg;
@@ -305,21 +317,13 @@ function reloadGraphs(max_image_width, callback) {
     });
 }
 
-
 function fixIE8DrawBug(plot) {
-    if (navigator.appName == 'Microsoft Internet Explorer') {
-        var ua = navigator.userAgent;
-        var re = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})");
-        if (re.exec(ua) != null) {
-            var rv = parseFloat(RegExp.$1);
-            if (rv == 8) {
-                setTimeout(function () {
-                    plot.resize();
-                    plot.setupGrid();
-                    plot.draw();
-                }, 100);
-            }
-        }
+    if (isIE && ieVersion == 8) {
+        setTimeout(function () {
+            plot.resize();
+            plot.setupGrid();
+            plot.draw();
+        }, 100);
     }
 }
 
@@ -382,7 +386,6 @@ function reloadFlotGraph($graph, callback) {
         });
     }
 }
-
 
 var MS_SECOND = 1000;
 var MS_MINUTE = 60 * MS_SECOND;
@@ -627,7 +630,6 @@ function printPage() {
     }
 }
 
-
 /*
 Sets up treestructures with an interactive interface. Use force_initialize.
 */
@@ -641,57 +643,6 @@ function setUpTree(force_initialize) {
         }
     });
 }
-
-
-// Initialize Tipsy
-function setUpTipsy() {
-    $('a[rel=tipsy]').tipsy({
-        delayIn: 200,
-        delayOut: 200,
-        fade: false,
-        gravity: 'w',
-    live: true
-    });
-
-    $('[rel=tipsy-south]').tipsy({
-        delayIn: 200,
-        delayOut: 200,
-        fade: false,
-        gravity: 's',
-    live: true
-    });
-
-    $('a#logo-img').tipsy({
-        delayIn: 200,
-        delayOut: 200,
-        fade: false,
-        gravity: 'n',
-    live: true
-    });
-    $('span[rel=tipsy]').tipsy({
-        delayIn: 200,
-        delayOut: 200,
-        fade: false,
-        gravity: 's',
-    live: true
-    });
-
-    $('#summary-datepicker-a').tipsy({
-        delayIn: 200,
-        delayOut: 200,
-        fade: false,
-        gravity: 's',
-    live: true
-    });
-    $('[rel=tipsy-southwest]').tipsy({
-        delayIn: 200,
-        delayOut: 200,
-        fade: false,
-        gravity: 'sw',
-    live: true
-    });
-}
-
 
 function setUpSortableTables() {
     $(".sortable-table").each(function () {
@@ -708,6 +659,7 @@ function setUpSortableTables() {
     });
 }
 
+var accordion;
 
 function setUpAccordion() {
     if ($("#accordion").exists()) {
@@ -737,7 +689,6 @@ function setUpAccordion() {
                             $(this).html($(data).find(ourId));
                         }
                     });
-                    //setUpTooltips();
                     setUpTree();
                 },
                 error: function (e) {
@@ -760,7 +711,6 @@ $(document).ready(function() {
   window.rightbarState = "closed";
   setUpPopovers();
   setUpMapDimensions();
-  window.setUpMapDimensions = setUpMapDimensions;
   $('.secondary-sidebar-button').click(function(e) {
     e.preventDefault();
     if (window.secondarySidebarState === "closed") {
@@ -811,7 +761,6 @@ $(document).ready(function() {
   });
 });
 
-
 $(document).ready(function () {
     // fix div heights for IE7
     // we don't support IE7 though
@@ -825,10 +774,6 @@ $(document).ready(function () {
     // Do not change the order.
     setUpTree();
     reloadGraphs();
-    // setUpPrintButton();
-    // setUpTipsy();
     setUpSortableTables();
-    // Set up legend.
-    //setUpTooltips(); // The edit function is on the tooltip.
     setUpAccordion();
 });
