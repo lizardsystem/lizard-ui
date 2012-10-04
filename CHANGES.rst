@@ -11,6 +11,26 @@ Changelog of lizard-ui
 
 - Fixed problem with sidebar width and content div scrollbars.
 
+- Update Twitter Bootstrap to 2.1.1, html5shiv to the latest dev version, flot
+  to the latest dev version.
+
+- Remove seemingly unused jquery-tools library.
+
+- Merged coffeescript to lizard_ui.js.
+
+- Various styling fixes.
+
+- Change information popovers near edge of screen to their browser native
+  counterparts.
+
+- Add control buttons to flot graph. Add flot navigate plugin.
+
+- Fix overflow (once and for all?).
+
+- Add date-range picker.
+
+- Add IE version and iPad detection.
+
 
 4.8 (2012-08-23)
 ----------------
