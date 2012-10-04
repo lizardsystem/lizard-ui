@@ -5,6 +5,8 @@ Changelog of lizard-ui
 4.9 (unreleased)
 ----------------
 
+- Relicensed from GPL to LGPL.
+
 - Removed dependency on sentry when sentry_level = None.
 
 - Fixed problem with sidebar width and content div scrollbars.
