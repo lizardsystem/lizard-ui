@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-4.9 (unreleased)
+4.9 (2012-10-04)
 ----------------
 
 - Relicensed from GPL to LGPL.
