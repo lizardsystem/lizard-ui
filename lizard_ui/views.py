@@ -273,6 +273,8 @@ class UiView(ViewContextMixin, TemplateView):
                 continue
             if not icon_url.startswith('/'):
                 icon_url = '/' + icon_url
+            if not icon_url.endswith('/'):
+                icon_url = icon_url + '/'
             if page_url.startswith(icon_url):
                 if best_url and len(icon_url) < len(best_url):
                     # It matches, but it is shorter than what we already have.
