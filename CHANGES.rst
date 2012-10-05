@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-4.10 (unreleased)
+4.10 (2012-10-05)
 -----------------
 
 - Fix an unneeded django-compressor pin.
