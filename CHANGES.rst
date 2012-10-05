@@ -5,7 +5,9 @@ Changelog of lizard-ui
 4.10 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Fix an unneeded django-compressor pin.
+
+- Add some app_icons.
 
 
 4.9 (2012-10-04)
