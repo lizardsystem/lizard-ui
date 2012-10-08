@@ -5,7 +5,9 @@ Changelog of lizard-ui
 4.11 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Add some app_icons.
+
+- Use Font-Awesome for icons.
 
 
 4.10 (2012-10-05)
