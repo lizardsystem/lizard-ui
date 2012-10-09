@@ -68,24 +68,6 @@ jQuery.fn.exists = function () {
 // Copyright (c) 2011 Ben Alman; Licensed MIT, GPL
 (function($){var a,b=decodeURIComponent,c=$.deparam=function(a,d){var e={};$.each(a.replace(/\+/g," ").split("&"),function(a,f){var g=f.split("="),h=b(g[0]);if(!!h){var i=b(g[1]||""),j=h.split("]["),k=j.length-1,l=0,m=e;j[0].indexOf("[")>=0&&/\]$/.test(j[k])?(j[k]=j[k].replace(/\]$/,""),j=j.shift().split("[").concat(j),k++):k=0,$.isFunction(d)?i=d(h,i):d&&(i=c.reviver(h,i));if(k)for(;l<=k;l++)h=j[l]!==""?j[l]:m.length,l<k?m=m[h]=m[h]||(isNaN(j[l+1])?{}:[]):m[h]=i;else $.isArray(e[h])?e[h].push(i):h in e?e[h]=[e[h],i]:e[h]=i}});return e};c.reviver=function(b,c){var d={"true":!0,"false":!1,"null":null,"undefined":a};return+c+""===c?+c:c in d?d[c]:c}})(jQuery);
 
-/**
- * jQuery support for Mustache. Shameless port of a shameless port.
- * @defunkt => @janl => @aq
- * See http://github.com/defunkt/mustache for more info.
- */
-(function($) {
-  $.mustache = function (template, view, partials) {
-    return Mustache.render(template, view, partials);
-  };
-  $.fn.mustache = function (view, partials) {
-    return $(this).map(function (i, elm) {
-      var template = $(elm).html().trim();
-      var output = $.mustache(template, view, partials);
-      return $(output).get();
-    });
-  };
-})(jQuery);
-
 // some class aliases for Bootstrap information popovers
 var setUpPopovers = function() {
   var animation = false;
@@ -114,7 +96,6 @@ var closeSidebar = function() {
   }, animationSpeed, function() {
     return setUpMapDimensions();
   });
-  return this;
 };
 
 // left bar, containing icons
@@ -129,7 +110,6 @@ var openSidebar = function() {
     return setUpMapDimensions();
   });
   $('.secondary-sidebar-button').removeAttr('disabled');
-  return this;
 };
 
 // right bar, containing legend
@@ -144,7 +124,6 @@ var closeRightbar = function() {
   }, animationSpeed, function() {
     return setUpMapDimensions();
   });
-  return this;
 };
 
 // right bar, containing legend
@@ -159,7 +138,6 @@ var openRightbar = function() {
   }, animationSpeed, function() {
     return setUpMapDimensions();
   });
-  return this;
 };
 
 // secondary left bar, for workspace and collage 
@@ -175,7 +153,6 @@ var showSecondarySidebar = function() {
     top: top
   }, animationSpeed);
   element.css('overflow-y', 'auto');
-  return this;
 };
 
 // secondary left bar, for workspace and collage 
@@ -188,7 +165,6 @@ var hideSecondarySidebar = function() {
     top: bottom
   }, animationSpeed);
   $('.secondary-sidebar-button').button('toggle');
-  return this;
 };
 
 var setUpMapDimensions = function() {
@@ -340,7 +316,7 @@ function reloadFlotGraph($graph, callback) {
 
     var url = $graph.attr('data-flot-graph-data-url');
     // HACK: viewstate is currently only in lizard_map,
-    // but graphs are here, in lizard_ui
+    // but graphs are here, in lizard_ui, for some reason
     var view_state = get_view_state();
     view_state = to_date_strings(view_state);
     if (view_state !== undefined) {
@@ -393,19 +369,6 @@ var MS_HOUR = 60 * MS_MINUTE;
 var MS_DAY = 24 * MS_HOUR;
 var MS_MONTH = 30 * MS_DAY;
 var MS_YEAR = 365 * MS_DAY;
-
-function flotFixHeight(placeholder) {
-    placeholder.css('width', '100%');
-    var placeholderParent = placeholder.parent();
-    var height = 0;
-    placeholderParent.siblings().each(function() {
-        height -= $(this).outerHeight();
-    });
-    height -= parseInt(placeholderParent.css('padding-top'), 10);
-    height -= parseInt(placeholderParent.css('padding-bottom'), 10);
-    height += window.innerHeight;
-    placeholder.css('height', (height <= 0) ? 100 : height + 'px');
-}
 
 /**
  * Draw the response data to a canvas in DOM element $graph using Flot.
@@ -532,8 +495,9 @@ function flotGraphLoadData($container, response) {
     //});
 
     if (!isAppleMobile) {
-        function showChartTooltip(x, y, contents) {
-            $('<div id="charttooltip">'+ contents + '</div>').css({
+        function showChartTooltip(x, y, datapoint) {
+            var formatted = moment.utc(datapoint[0]).format('LL h:mm');
+            $('<div id="charttooltip">' + formatted + ': '+ datapoint[1] + '</div>').css({
                 'position': 'absolute',
                 'top': y - 25,
                 'left': x + 5,
@@ -552,7 +516,7 @@ function flotGraphLoadData($container, response) {
                 $("#charttooltip").remove();
                 //var x = item.datapoint[0].toFixed(2);
                 //var y = item.datapoint[1].toFixed(2);
-                showChartTooltip(item.pageX, item.pageY, item.datapoint[1]);
+                showChartTooltip(item.pageX, item.pageY, item.datapoint);
             } else {
                 $("#charttooltip").remove();
             }
