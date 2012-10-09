@@ -282,14 +282,14 @@ function reloadGraph($graph, max_image_width, callback) {
  * @param {number} max_image_width maximum width to resize each graph to
  * @param {function} callback function to call when a graph has been reloaded
  */
-function reloadGraphs(max_image_width, callback) {
+function reloadGraphs(max_image_width, callback, force) {
     // Old matplotlib graphs, probably needs some work
     $('a.replace-with-image').each(function () {
         reloadGraph($(this), max_image_width, callback);
     });
     // New Flot graphs
     $('div.flot-graph').each(function () {
-        reloadFlotGraph($(this), callback);
+        reloadFlotGraph($(this), callback, force);
     });
 }
 
@@ -303,9 +303,9 @@ function fixIE8DrawBug(plot) {
     }
 }
 
-function reloadFlotGraph($graph, callback) {
+function reloadFlotGraph($graph, callback, force) {
     // check if graph is already loaded
-    if ($graph.attr('data-graph-loaded')) return;
+    if (force !== true && $graph.attr('data-graph-loaded')) return;
 
     // the wonders of asynchronous programming
     if ($graph.attr('data-graph-loading')) return;
