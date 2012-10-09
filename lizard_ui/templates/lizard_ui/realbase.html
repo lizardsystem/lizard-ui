@@ -20,10 +20,6 @@
 	<meta charset="utf-8" />
     <link rel="icon" href="{{ STATIC_URL }}lizard_ui/favicon.ico" type="images/x-icon" />
     <link rel="SHORTCUT ICON" href="{{ STATIC_URL }}lizard_ui/favicon.ico" />
-    {# HTML5 shiv/shim (they are equal), for IE6-8 support of HTML elements. After the styles. #}
-    <!--[if lt IE 9]>
-      <script src="{{ STATIC_URL }}html5shiv/html5shiv.js"></script>
-    <![endif]-->
 
     {% compress css %}
       {% block css %}
@@ -54,15 +50,18 @@
               href="{{ STATIC_URL }}sprites/sprite.css"
               type="text/css"
               media="screen, projection" />
-        {# CSS for jquery-treeview #}
-        <!--
-        <link type="text/css"
-              href="{{ STATIC_URL }}jquery-treeview/jquery.treeview.css"
-              rel="stylesheet"
-              media="screen, projection" />
-        -->
       {% endblock css %}
     {% endcompress %}
+    <!--[if IE 7]>
+    <link rel="stylesheet"
+          href="{{ STATIC_URL }}bootstrap/less/bootstrap-ie7.css"
+          type="text/css"
+          media="screen, projection" />
+    <style type="text/css">
+        html, body { overflow: none; }
+    </style>
+    <![endif]-->
+
     <!--[if lt IE 9]>
       {% compress css %}
         {% block ie-css %}
@@ -79,6 +78,11 @@
       {# Your own totally-unmanaged per-template extra css/javascript/links #}
     {% endblock head-extras %}
 
+    {# HTML5 shiv/shim (they are equal), for IE6-8 support of HTML elements. After the styles. #}
+    <!--[if lt IE 9]>
+      <script src="{{ STATIC_URL }}html5shiv/html5shiv.js"></script>
+    <![endif]-->
+
   </head>
   <body>
 	{% block modal %}
@@ -92,10 +96,11 @@
                  class="navbar">
               <div id="logo">
                 {% block logo %}
-                  <a href="/"
-                     title='{% trans "Back to homepage" %}'
-                     ><img src="{{ STATIC_URL }}lizard_ui/logo.png"
-                           alt="Lizard" /></a>
+                  {% spaceless %}
+                    <a href="/" title='{% trans "Back to homepage" %}'>
+                        <img src="{{ STATIC_URL }}lizard_ui/logo.png" alt="Lizard" />
+                    </a>
+                  {% endspaceless %}
                 {% endblock logo %}
               </div>
               <div id="site-actions">
@@ -331,8 +336,9 @@
 
     {# Scripts whose non-minified versions have some use in development scenarios. #}
     {% if debug %}
+    {# speed up developing, change to OpenLayers.debug.js when we have OL troubles #}
     <script id="openlayers-script"
-            src="{{ STATIC_URL }}openlayers/OpenLayers.js" {# speed up developing, change to OpenLayers.debug.js to debug #}
+            src="{{ STATIC_URL }}openlayers/OpenLayers.js"
             data-openlayers-url="{{ STATIC_URL }}openlayers/"
             charset="utf-8"></script>
     <script src="{{ STATIC_URL }}jquery-json/jquery.json-2.3.js"></script>
@@ -360,12 +366,6 @@
         <script src="{{ STATIC_URL }}jquery-flot/jquery.flot.time.js"></script>
         <script src="{{ STATIC_URL }}jquery-flot/jquery.flot.touch.js"></script>
         <script src="{{ STATIC_URL }}daterangepicker/daterangepicker.js"></script>
-        {% comment It seems these aren't used anymore %}
-        <!--
-        <script src="{{ STATIC_URL }}datatables/media/js/jquery.dataTables.min.js"></script>
-        <script src="{{ STATIC_URL }}colorpicker/js/colorpicker.js"></script>
-        -->
-        {% endcomment %}
       {% endblock javascript %}
     {% endcompress %}
 
