@@ -268,7 +268,7 @@ class UiView(ViewContextMixin, TemplateView):
             if icon_url == '/':
                 # Pointer at a CMS page above us, probably.
                 continue
-            if icon_url.startswith('http://'):
+            if icon_url.startswith('http://') or icon_url.startswith('https://'):
                 # External url, so it cannot match.
                 continue
             if not icon_url.startswith('/'):
