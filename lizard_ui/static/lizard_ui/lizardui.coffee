@@ -56,7 +56,7 @@ closeRightbar = ->
         .removeClass('icon-arrow-right')
         .addClass('icon-arrow-left')
     $('div#rightbar').animate
-        right: -200
+        right: -300
         opacity: 0
         ,animationSpeed
     $('div#content').animate
