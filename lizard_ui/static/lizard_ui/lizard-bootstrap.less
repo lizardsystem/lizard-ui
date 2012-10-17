@@ -282,6 +282,12 @@ header, #footer {
   }
 }
 
+// Strip shadow from the default Bootstrap style
+// as requested by the designers.
+.navbar .nav > li > a {
+  text-shadow: none;
+}
+
 // Black instead of white for the light second bar.
 #content-actions {
   .nav > li > a {
@@ -501,9 +507,6 @@ div.nonworking-workspace-acceptable {
 }
 
 /* ****************** Workspace + collage editor ("kaartlagen") ************ */
-#accordion h2 {
-  cursor: pointer;
-}
 tr.ui-sortable-placeholder {
   content: "<td></td>";
   height: 50px;
@@ -553,9 +556,6 @@ ul.wscol-actions {
 #edit-workspace .workspace-items .sidebarbox-action-icon {
     cursor: pointer;
 }
-#edit-collage a.collage-popup {
-    text-decoration: none;
-}
 
 // table around workspace items to ensure proper flow.
 // not sure if it was the right choice
@@ -600,14 +600,6 @@ div.date-range-box input {
   display: inline;
 }
 
-// Icons for multi select (a star)
-.active .icon-multi-select {
-  background-position: -120px 0;
-}
-.icon-multi-select {
-  background-position: -144px 0;
-}
-
 // Old Flot graphs (new ones use Canvas text rendering)
 .tickLabels {
   font-size: xx-small !important;
@@ -649,8 +641,15 @@ a.collage-add {
   z-index: 10000;
 }
 
-// Ensure popovers are always on top (Google Maps logo for 
-// example has z-index: 1100 on OpenLayers)
+// Give popover a thick black border, as requested by upper management
 .popover {
-  z-index: 15000;
+  border: 3px solid #000;
+}
+@popoverArrowWidth: 6px;
+@popoverArrowColor: #000;
+@popoverArrowOuterColor: #000;
+
+// Ensure popovers are above the Google Maps logo
+.olLayerGooglePoweredBy, .olLayerGoogleCopyright {
+  z-index: 999 !important;
 }

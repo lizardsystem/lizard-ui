@@ -10,5 +10,12 @@ In the main .less file, I added includes for lizard-bootstrap and sitespecific.l
 @import "../../lizard_ui/lizard-bootstrap.less";
 @import "../../lizard_ui/sitespecific.less";
 
+Also, support for "Font Awesome" was added, which replaces the default glyphicons with their
+vector-based counterparts wrapped in a TrueType font:
+
+// Components: common
+//@import "sprites.less"; // lizard: use font for icons
+@import "font-awesome.less"; // lizard: use font for icons
+@import "font-awesome-ie7.less"; // lizard: use font for icons
 
 License: apache v2.0
