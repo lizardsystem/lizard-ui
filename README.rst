@@ -6,6 +6,9 @@ interface, so a **base Django template** and some **css + javascript**.  We
 designed it at `Nelen & Schuurmans <http://www.nelen-schuurmans.nl>`_ for our
 geographical information websites (with water management information).
 
+.. image:: https://secure.travis-ci.org/lizardsystem/lizard-ui.png?branch=master
+   :target: http://travis-ci.org/#!/lizardsystem/lizard-ui
+
 
 Choices, requirements, assumptions
 ----------------------------------
