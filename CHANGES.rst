@@ -9,6 +9,8 @@ Changelog of lizard-ui
 
 - Use Font-Awesome for icons.
 
+- Changed the styling a bit.
+
 
 4.10 (2012-10-05)
 -----------------
