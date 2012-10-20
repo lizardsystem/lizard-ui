@@ -389,18 +389,10 @@ function flotGraphLoadData($container, response) {
             points: { show: true, hoverable: true, radius: 1 }
         },
         yaxis: {
-            axisLabel: response.y_label, // plugin jquery.flot.axislabels.js
-            axisLabelTryRotate: true, // note: IE is notoriously bad in handling vertical text
-            axisLabelFontFamily: 'Verdana,Arial,sans-serif',
-            axisLabelFontSizePixels: 11,
             zoomRange: [false, false]
         },
         xaxis: {
             mode: "time",
-            axisLabel: response.x_label, // plugin jquery.flot.axislabels.js
-            axisLabelTryRotate: true,
-            axisLabelFontFamily: 'Verdana,Arial,sans-serif',
-            axisLabelFontSizePixels: 11,
             zoomRange: [1 * MS_MINUTE, 400 * MS_YEAR]
         },
         grid: { hoverable: true, labelMargin: 15 },
@@ -419,42 +411,57 @@ function flotGraphLoadData($container, response) {
     $container.css('position', 'relative');
     // first row
     var $graph_row = $('<div class="flot-graph-row" />')
-                  .css({
-                        position: 'absolute',
-                        left: 0, top: 0, bottom: 42, right: 0
-                  });
-    // just a spacer for now, have jquery.flot.axislabels.js draw the actual label
+        .css({
+            position: 'absolute',
+            left: 0, top: 0, bottom: 48, right: 0
+        });
+    var $y_label_text_wrapper = $('<div/>')
+        .css({
+            position: 'absolute',
+            bottom: 25,
+            width: 20
+        });
+    var $y_label_text = $('<div class="flot-graph-y-label-text" />')
+        .css({
+            'white-space': 'nowrap',
+            'background-color': '#fff'
+        })
+        .transform({rotate: '-90deg'})
+        .html(response.y_label);
+    $y_label_text_wrapper.append($y_label_text);
     var $y_label = $('<span class="flot-graph-y-label" />')
-                  .css({
-                        position: 'absolute',
-                        left: 0, top: 0, bottom: 0, width: 12
-                  });
+        .css({
+            position: 'absolute',
+            left: 0, top: 0, bottom: 0, width: 20
+        });
+    $y_label.append($y_label_text_wrapper);
     $graph_row.append($y_label);
     var $graph = $('<span class="flot-graph-canvas" />')
-                  .css({
-                        position: 'absolute',
-                        left: 12, top: 0, bottom: 0, right: 0
-                  });
+        .css({
+            position: 'absolute',
+            left: 20, top: 0, bottom: 0, right: 0
+        });
     $graph_row.append($graph);
     $container.append($graph_row);
 
     // second row
     // just a spacer for now, have jquery.flot.axislabels.js draw the actual label
     var $x_label = $('<div class="flot-graph-x-label" />')
-                    .css({
-                        position: 'absolute',
-                        left: 0, bottom: 30, right: 0,
-                        height: 12
-                    });
+        .css({
+            position: 'absolute',
+            left: 60, bottom: 30, right: 0,
+            height: 18
+        })
+        .html(response.x_label);
     $container.append($x_label);
 
     // third row
     var $control_row = $('<div class="flot-graph-control-row" />')
-                       .css({
-                           position: 'absolute',
-                           left: 0, bottom: 0, right: 0,
-                           height: 30
-                       });
+        .css({
+            position: 'absolute',
+            left: 0, bottom: 0, right: 0,
+            height: 30
+        });
     // controls
     // TODO should implement JavaScript gettext / i18n
     var $c_reset = $('<button title="Reset zoom" class="btn" type="button"><i class="icon-refresh"></i></button>');
