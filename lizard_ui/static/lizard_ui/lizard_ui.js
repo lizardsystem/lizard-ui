@@ -205,25 +205,7 @@ $(window).bind('orientationchange pageshow resize', setUpMapDimensions);
  * stackoverflow.com/questions/5282719/javascript-print-blocked-by-chrome
  */
 function printPage() {
-    var max_image_width = 850, graphsToReload;
-    if ($("#main").width() > max_image_width) {
-        $("#main").width(max_image_width);
-        graphsToReload = $('a.replace-with-image').length;
-        if (graphsToReload > 0) {
-            reloadGraphs(max_image_width, function () {
-                graphsToReload -= 1;
-                if (graphsToReload < 1) {
-                    window.print();
-                }
-            });
-        } else {
-            // No graphs to reload.
-            window.print();
-        }
-    } else {
-        // Already proper size.
-        window.print();
-    }
+    window.print();
 }
 
 /*
