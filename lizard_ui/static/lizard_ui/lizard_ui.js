@@ -306,9 +306,8 @@ function reloadDynamicGraph($graph, callback, force) {
             };
 
             var update_size = function () {
-                var $img = $(this);
-                $img.data('current-loaded-width', $img.width());
-                $img.data('current-loaded-height', $img.height());
+                $graph.data('current-loaded-width', $graph.width());
+                $graph.data('current-loaded-height', $graph.height());
             };
 
             var on_load_once = function () {
@@ -330,7 +329,7 @@ function reloadDynamicGraph($graph, callback, force) {
                 .attr('src', get_url_with_size());
 
             var update_src = function () {
-                if ($img.data('current-loaded-width') != $img.width() || $img.data('current-loaded-height') != $img.height()) {
+                if ($graph.data('current-loaded-width') != $graph.width() || $graph.data('current-loaded-height') != $graph.height()) {
                     $img.attr('src', get_url_with_size());
                 }
             };
