@@ -710,7 +710,6 @@ $(document).ready(function () {
 
     // Do not change the order.
     setUpTree();
-    reloadGraphs();
     setUpSortableTables();
     setUpAccordion();
 });
