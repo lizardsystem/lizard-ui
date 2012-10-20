@@ -386,7 +386,8 @@ function flotGraphLoadData($container, response) {
     }
     var defaultOpts = {
         series: {
-            points: { show: true, hoverable: true, radius: 1 }
+            points: { show: true, hoverable: true, radius: 1 },
+            shadowSize: 0
         },
         yaxis: {
             zoomRange: [false, false]
@@ -484,25 +485,6 @@ function flotGraphLoadData($container, response) {
     // initial plot
     var plot = $.plot($graph, data, defaultOpts);
 
-    // var redraw = function () {
-        // plot.setupGrid();
-        // plot.draw();
-    // };
-
-    // $graph.bind("plotselected", function (event, ranges) {
-        // var x_min = ranges.xaxis.from;
-        // var x_max = ranges.xaxis.to;
-        // var opts = plot.getOptions();
-        // var axis = opts.xaxes[0];
-        // axis.min = x_min;
-        // axis.max = x_max;
-        // redraw();
-    // });
-
-    //$graph.bind("plotunselected", function (event) {
-    //    $("#selection").text("");
-    //});
-
     if (!isAppleMobile) {
         function showChartTooltip(x, y, datapoint) {
             var formatted = moment.utc(datapoint[0]).format('LL h:mm');
@@ -519,32 +501,14 @@ function flotGraphLoadData($container, response) {
         }
 
         $graph.bind("plothover", function (event, pos, item) {
-            //$("#x").text(pos.x.toFixed(2));
-            //$("#y").text(pos.y.toFixed(2));
             if (item) {
                 $("#charttooltip").remove();
-                //var x = item.datapoint[0].toFixed(2);
-                //var y = item.datapoint[1].toFixed(2);
                 showChartTooltip(item.pageX, item.pageY, item.datapoint);
             } else {
                 $("#charttooltip").remove();
             }
         });
     }
-
-    // add axis labels
-    // var $x_label = $('<div/>').html(response.x_label);
-    // $x_label.insertAfter($graph);
-    // var $y_label = $('<div/>').html(response.y_label);
-    // $y_label.insertBefore($graph);
-
-    //$("#clearSelection").click(function () {
-    //    plot.clearSelection();
-    //});
-
-    //$("#setSelection").click(function () {
-    //    plot.setSelection({ xaxis: { from: x_min, to: x_max } });
-    //});
 
     $c_reset.click(function () {
         $.each(plot.getXAxes(), function (idx, axis) {
