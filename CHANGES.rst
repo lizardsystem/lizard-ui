@@ -7,6 +7,8 @@ Changelog of lizard-ui
 
 - Fixed graph axislabels.
 
+- Support mixed flot/matplotlib (IE8) graphs.
+
 
 4.11 (2012-10-18)
 -----------------
