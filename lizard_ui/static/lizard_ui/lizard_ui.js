@@ -305,7 +305,12 @@ function reloadDynamicGraph($graph, callback, force) {
                 return url_with_size;
             };
 
-            var on_load = function () {
+            var update_size = function () {
+                $img.data('current-loaded-width', $img.width());
+                $img.data('current-loaded-height', $img.height());
+            };
+
+            var on_load_once = function () {
                 on_loaded();
 
                 // tab might have been hidden in the meantime
@@ -318,13 +323,13 @@ function reloadDynamicGraph($graph, callback, force) {
             };
 
             var $img = $('<img/>')
-                .one('load', on_load) // ensure this is only called once
+                .one('load', on_load_once) // ensure this is only called once
+                .load(update_size)
                 .error(on_error)
                 .attr('src', get_url_with_size());
 
             var update_src = function () {
-                var new_url = get_url_with_size();
-                if ($img.attr('src') != new_url) {
+                if ($img.data('current-loaded-width') != $img.width() || $img.data('current-loaded-height') != $img.height()) {
                     $img.attr('src', get_url_with_size());
                 }
             };
