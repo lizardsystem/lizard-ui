@@ -306,6 +306,7 @@ function reloadDynamicGraph($graph, callback, force) {
             };
 
             var update_size = function () {
+                var $img = $(this);
                 $img.data('current-loaded-width', $img.width());
                 $img.data('current-loaded-height', $img.height());
             };
