@@ -197,87 +197,6 @@ var handleLogin = function() {
 
 $(window).bind('orientationchange pageshow resize', setUpMapDimensions);
 
-function reloadGraph($graph, max_image_width, callback) {
-    var url, url_click, timestamp, width, height, amp_or_questionmark,
-    html_img, image, $main_tag, html_src, html_url, errormsg;
-    $main_tag = $graph;
-    width = $graph.parent('.img-use-my-size').innerWidth();
-    height = $graph.parent('.img-use-my-size').innerHeight();
-    if ($graph.attr('data-errormsg')) {
-        errormsg = $graph.attr('data-errormsg');
-    } else {
-        errormsg = 'De data is niet beschikbaar';
-    }
-    if (width === null) {
-        width = '';
-        height = '';
-    } else {
-        if (width > max_image_width) {
-            width = max_image_width;
-        }
-        if (width < 10) {
-            width = 0.5 * height;
-        }
-        if (height < 10) {
-            height = 0.5 * width;
-        }
-        // Prevent a horizontal scrollbar in any case.
-        //width = width - scrollbarWidth();
-    }
-    $graph.hide();
-    url = $graph.attr('href');
-    if (url.indexOf('?') === -1) {
-        amp_or_questionmark = '?';
-    } else {
-        amp_or_questionmark = '&';
-    }
-    url_click = $graph.attr('data-href-click');
-    // Remove a previous image that's already there.
-    // PROBABLY NOT NEEDED $('~ img', this).remove();
-    timestamp = new Date().getTime();  // No cached images.
-    html_url = url +
-        amp_or_questionmark + 'width=' + width +
-        '&height=' + height +
-        '&random=' + timestamp;
-    html_img = '<img src="' + html_url + '" class="auto-inserted" ' +
-        '/>';
-    // Remove progress animation and possibly old images.
-    $main_tag.parent().find(".auto-inserted").remove();
-
-    // Add progress animation.
-    $graph.after('<div class="auto-inserted"><img src="/static_media/lizard_ui/ajax-loader.gif" class="progress-animation" data-src="' + html_url + '" /></div>');
-
-    // Preload image.
-    image = $(html_img);
-
-    // Place <a href></a> around image tag.
-    if (url_click !== undefined) {
-        html_img = '<a href="' + url_click + '" class="auto-inserted">' + html_img + '</a>';
-    }
-
-    image.load(function () {
-        // After preloading.
-        // Remove progress animation and possibly old images.
-        $main_tag.parent().find(".auto-inserted").remove();
-        $main_tag.after($(this));
-        if (undefined !== callback) {
-            callback();
-        }
-    });
-    image.error(function () {
-        // After preloading.
-        // Remove progress animation and possibly old images.
-        $main_tag.parent().find(".auto-inserted").remove();
-        $main_tag.after(
-            '<p class="auto-inserted">' +
-                errormsg +
-                '</p>');
-        if (undefined !== callback) {
-            callback();
-        }
-    });
-}
-
 /**
  * Resize the graphs to the given maximum width and reload them.
  *
@@ -285,27 +204,13 @@ function reloadGraph($graph, max_image_width, callback) {
  * @param {function} callback function to call when a graph has been reloaded
  */
 function reloadGraphs(max_image_width, callback, force) {
-    // Old matplotlib graphs, probably needs some work
-    $('a.replace-with-image').each(function () {
-        reloadGraph($(this), max_image_width, callback);
-    });
     // New Flot graphs
-    $('div.flot-graph').each(function () {
-        reloadFlotGraph($(this), callback, force);
+    $('.dynamic-graph').each(function () {
+        reloadDynamicGraph($(this), callback, force);
     });
 }
 
-function fixIE8DrawBug(plot) {
-    if (isIE && ieVersion == 8) {
-        setTimeout(function () {
-            plot.resize();
-            plot.setupGrid();
-            plot.draw();
-        }, 100);
-    }
-}
-
-function reloadFlotGraph($graph, callback, force) {
+function reloadDynamicGraph($graph, callback, force) {
     // check if graph is already loaded
     if (force !== true && $graph.attr('data-graph-loaded')) return;
 
@@ -316,7 +221,19 @@ function reloadFlotGraph($graph, callback, force) {
     // flot can't draw on an invisible surface
     if ($graph.is(':hidden')) return;
 
-    var url = $graph.attr('data-flot-graph-data-url');
+    // determine whether to use flot or the image graph
+    var flot_graph_data_url = $graph.attr('data-flot-graph-data-url');
+    var image_graph_url = $graph.attr('data-image-graph-url');
+    var graph_type;
+    if (isIE && ieVersion < 9) {
+        graph_type = 'image';
+    }
+    else {
+        graph_type = (flot_graph_data_url) ? 'flot' : 'image';
+    }
+    var url = (graph_type == 'flot') ? flot_graph_data_url : image_graph_url;
+
+    // add currently selected date range to url
     // HACK: viewstate is currently only in lizard_map,
     // but graphs are here, in lizard_ui, for some reason
     var view_state = get_view_state();
@@ -329,39 +246,95 @@ function reloadFlotGraph($graph, callback, force) {
             });
         }
     }
-    if (url !== undefined) {
-        var $loading = $('<img src="/static_media/lizard_ui/ajax-loader.gif" class="flot-loading-animation" />');
+
+    if (url) {
+        // add a spinner
+        var $loading = $('<img src="/static_media/lizard_ui/ajax-loader.gif" class="graph-loading-animation" />');
         $graph.empty().append($loading);
         $graph.attr('data-graph-loading', 'true');
-        $.ajax({
-            url: url,
-            method: 'GET',
-            dataType: 'json',
-            success: function (response) {
-                // element might have been hidden in the meantime
+
+        // remove spinner when loading has finished (either with or without an error)
+        var on_loaded = function () {
+            $graph.removeAttr('data-graph-loading');
+            $loading.remove();
+        };
+
+        // set attribute and call callback when drawing has finished
+        var on_drawn = function () {
+            $graph.attr('data-graph-loaded', 'true');
+            if (callback !== undefined) {
+                callback();
+            }
+        };
+
+        // show a message when loading has failed
+        var on_error = function () {
+            on_loaded();
+            $graph.html('Fout bij het laden van de gegevens.');
+        };
+
+        // for flot graphs, grab the JSON data and call Flot
+        if (graph_type == 'flot') {
+            $.ajax({
+                url: url,
+                method: 'GET',
+                dataType: 'json',
+                success: function (response) {
+                    on_loaded();
+
+                    // tab might have been hidden in the meantime
+                    // so check if element is visible again:
+                    // we can't draw on an invisible surface
+                    if ($graph.is(':hidden')) return;
+
+                    var plot = flotGraphLoadData($graph, response);
+                    on_drawn();
+                },
+                timeout: 20000,
+                error: on_error
+            });
+        }
+        // for static image graphs, just load the image as <img> element
+        else if (graph_type == 'image') {
+            var get_url_with_size = function () {
+                // add available width and height to url
+                var url_with_size = url + '&' + $.param({
+                    width: $graph.width(),
+                    height: $graph.height()
+                });
+                return url_with_size;
+            };
+
+            var on_load = function () {
+                on_loaded();
+
+                // tab might have been hidden in the meantime
                 // so check if element is visible again:
-                // flot can't draw on an invisible surface
+                // we can't draw on an invisible surface
                 if ($graph.is(':hidden')) return;
 
-                var plot = flotGraphLoadData($graph, response);
-                $graph.attr('data-graph-loaded', 'true');
-                // fix for IE8...; IE7 is fine
-                if (plot) {
-                    fixIE8DrawBug(plot);
+                $graph.append($(this));
+                on_drawn();
+            };
+
+            var $img = $('<img/>')
+                .one('load', on_load) // ensure this is only called once
+                .error(on_error)
+                .attr('src', get_url_with_size());
+
+            var update_src = function () {
+                $img.attr('src', get_url_with_size());
+            };
+
+            var timeout = null;
+            $graph.resize(function () {
+                if (timeout) {
+                    // clear old timeout first
+                    clearTimeout(timeout);
                 }
-                if (callback !== undefined) {
-                    callback();
-                }
-            },
-            timeout: 20000,
-            error: function () {
-                $graph.html('Fout bij het laden van de gegevens.');
-            },
-            complete: function () {
-                $graph.removeAttr('data-graph-loading');
-                $loading.remove();
-            }
-        });
+                timeout = setTimeout(update_src, 1500);
+            });
+        }
     }
 }
 
