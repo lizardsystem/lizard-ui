@@ -9,6 +9,9 @@ Changelog of lizard-ui
 
 - Support mixed flot/matplotlib (IE8) graphs.
 
+- Moved graph stuff to lizard-map, which is a more suitable place for it (in the current app structure).
+  In the future all UI stuff should go to lizard-ui.
+
 
 4.11 (2012-10-18)
 -----------------
