@@ -323,7 +323,10 @@ function reloadDynamicGraph($graph, callback, force) {
                 .attr('src', get_url_with_size());
 
             var update_src = function () {
-                $img.attr('src', get_url_with_size());
+                var new_url = get_url_with_size();
+                if ($img.attr('src') != new_url) {
+                    $img.attr('src', get_url_with_size());
+                }
             };
 
             var timeout = null;
