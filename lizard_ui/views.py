@@ -235,12 +235,14 @@ class UiView(ViewContextMixin, TemplateView):
                 # The action is just text-with-an-icon right now.
                 action = Action(icon='icon-user')
                 action.name = self.request.user
+                action.description = _('Your current username')
                 actions.append(action)
                 # Separate logout action.
                 action = Action()
                 action.url = '%s?%s' % (reverse('lizard_ui.logout'),
                                         query_string)
                 action.name = _('logout')
+                action.description = _('Click here to logout')
                 action.klass = 'ui-logout-link'
                 actions.append(action)
             else:
@@ -248,6 +250,7 @@ class UiView(ViewContextMixin, TemplateView):
                 action.url = '%s?%s' % (reverse('lizard_ui.login'),
                                         query_string)
                 action.name = _('Login')
+                action.description = _('Click here to login')
                 action.klass = 'ui-login-link'
                 actions.append(action)
         return actions
@@ -265,11 +268,13 @@ class UiView(ViewContextMixin, TemplateView):
             if icon_url == '/':
                 # Pointer at a CMS page above us, probably.
                 continue
-            if icon_url.startswith('http://'):
+            if icon_url.startswith('http://') or icon_url.startswith('https://'):
                 # External url, so it cannot match.
                 continue
             if not icon_url.startswith('/'):
                 icon_url = '/' + icon_url
+            if not icon_url.endswith('/'):
+                icon_url = icon_url + '/'
             if page_url.startswith(icon_url):
                 if best_url and len(icon_url) < len(best_url):
                     # It matches, but it is shorter than what we already have.
@@ -356,7 +361,8 @@ class UiView(ViewContextMixin, TemplateView):
     @property
     def edit_action(self):
         """Return edit link as an action, ready for content_actions."""
-        return Action(name=_('edit'),
+        return Action(name=_('Edit'),
+                      description=_('Edit this page.'),
                       url=self.edit_link,
                       icon='icon-edit')
 
@@ -386,12 +392,14 @@ class UiView(ViewContextMixin, TemplateView):
         """
         collapse_action = Action(icon='icon-arrow-left',
                                  name=_('Navigation'),
+                                 description=_('Collapse or expand this panel'),
                                  klass='collapse-sidebar')
         actions = [collapse_action]
         if self.show_secondary_sidebar_title:
             # Having a title means we want to show it.
             actions.append(
                 Action(name=self.show_secondary_sidebar_title,
+                       description=_('Collapse or expand this panel'),
                        icon=self.show_secondary_sidebar_icon,
                        klass='secondary-sidebar-button'))
         return actions
@@ -409,6 +417,7 @@ class UiView(ViewContextMixin, TemplateView):
             # Having a title means we want to show it.
             actions.append(
                 Action(name=self.show_rightbar_title,
+                       description=_('Collapse or expand this panel'),
                        icon='icon-arrow-left',
                        klass='collapse-rightbar'))
         return actions

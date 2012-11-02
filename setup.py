@@ -1,6 +1,6 @@
 from setuptools import setup
 
-version = '4.9deltaportaal.dev0'
+version = '4.12.dev0'
 
 long_description = '\n\n'.join([
     open('README.rst').read(),
@@ -15,10 +15,10 @@ install_requires = [
     'django-nose',
     'django-extensions',
     'django-staticfiles >= 1.0',
-    'django_compressor >= 1.1.2',  # Yes, underscore.
-    'pytz',
+    'django_compressor >= 1.1',  # Yes, underscore.
     'docutils',  # For the admin docs.
     'lizard-security',
+    'raven',
     'south',
     'werkzeug',
     ],
@@ -37,7 +37,7 @@ setup(name='lizard-ui',
       author='Reinout van Rees',
       author_email='reinout.vanrees@nelen-schuurmans.nl',
       url='http://www.nelen-schuurmans.nl/lizard/',
-      license='GPL',
+      license='LGPL',
       packages=['lizard_ui'],
       include_package_data=True,
       zip_safe=False,

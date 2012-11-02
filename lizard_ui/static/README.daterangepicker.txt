@@ -1,0 +1,7 @@
+-Changed to actually use locale.monthNames option.
+-Changed to apply styling to custom range button.
+-Changed to always show calendar AND custom date ranges.
+-Changed to allow year browsing.
+-Changed to remember range types.
+-Added a 'cancel' button.
+-Changed to use Moment JS instead of the deprecated Date JS.

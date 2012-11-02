@@ -2,10 +2,63 @@ Changelog of lizard-ui
 ======================
 
 
-4.9deltaportaal (unreleased)
-----------------------------
+4.12 (unreleased)
+-----------------
 
-- Nothing changed yet.
+- Fixed graph axislabels.
+
+- Support mixed flot/matplotlib (IE8) graphs.
+
+- Moved graph stuff to lizard-map, which is a more suitable place for it (in the current app structure).
+  In the future all UI stuff should go to lizard-ui.
+
+
+4.11 (2012-10-18)
+-----------------
+
+- Add some app_icons.
+
+- Use Font-Awesome for icons.
+
+- Changed the styling a bit.
+
+
+4.10 (2012-10-05)
+-----------------
+
+- Fix an unneeded django-compressor pin.
+
+- Add some app_icons.
+
+
+4.9 (2012-10-04)
+----------------
+
+- Relicensed from GPL to LGPL.
+
+- Removed dependency on sentry when sentry_level = None.
+
+- Fixed problem with sidebar width and content div scrollbars.
+
+- Update Twitter Bootstrap to 2.1.1, html5shiv to the latest dev version, flot
+  to the latest dev version.
+
+- Remove seemingly unused jquery-tools library.
+
+- Merged coffeescript to lizard_ui.js.
+
+- Various styling fixes.
+
+- Change information popovers near edge of screen to their browser native
+  counterparts.
+
+- Add control buttons to flot graph. Add flot navigate plugin.
+
+- Fix overflow (once and for all?).
+
+- Add date-range picker.
+
+- Add IE version and iPad detection.
 
 
 4.8 (2012-08-23)

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Lizard\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2012-06-15 09:30-0500\n"
+"POT-Creation-Date: 2012-09-24 07:19+0200\n"
 "PO-Revision-Date: 2012-06-11 14:24+0000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,7 +22,7 @@ msgid "Username"
 msgstr "Username"
 
 #: forms.py:14 templates/lizard_ui/login.html:28
-#: templates/lizard_ui/modal_login.html:21
+#: templates/lizard_ui/modal_login.html:24
 msgid "Password"
 msgstr "Password"
 
@@ -63,31 +63,54 @@ msgstr "index"
 msgid "Number used for ordering icons relative to each other."
 msgstr "Number used for ordering icons relative to each other."
 
-#: views.py:236
+#: views.py:238
+msgid "Your current username"
+msgstr ""
+
+#: views.py:244
 msgid "logout"
 msgstr "logout"
 
-#: views.py:243 templates/lizard_ui/login.html:50
+#: views.py:245
+msgid "Click here to logout"
+msgstr ""
+
+#: views.py:252 templates/lizard_ui/login.html:50
 #: templates/lizard_ui/modal_login.html:5
-#: templates/lizard_ui/modal_login.html:30
+#: templates/lizard_ui/modal_login.html:33
 msgid "Login"
 msgstr "Login"
 
-#: views.py:321
-msgid "edit"
-msgstr "edit"
+#: views.py:253
+msgid "Click here to login"
+msgstr ""
 
-#: views.py:350
+#: views.py:362
+msgid "Edit"
+msgstr ""
+
+#: views.py:363
+msgid "Edit this page."
+msgstr ""
+
+#: views.py:392
 msgid "Navigation"
 msgstr ""
 
-#: templates/lizard_ui/cmsbase.html:11 templates/lizard_ui/realbase.html:85
+#: views.py:393 views.py:400 views.py:418
+msgid "Collapse or expand this panel"
+msgstr ""
+
+#: templates/lizard_ui/cmsbase.html:11 templates/lizard_ui/realbase.html:96
 msgid "Back to homepage"
 msgstr "Back to homepage"
 
 #: templates/lizard_ui/login.html:11 templates/lizard_ui/modal_login.html:12
 msgid "Name"
 msgstr "Name"
+
+#~ msgid "edit"
+#~ msgstr "edit"
 
 #~ msgid "Collapse"
 #~ msgstr "Collapse"
