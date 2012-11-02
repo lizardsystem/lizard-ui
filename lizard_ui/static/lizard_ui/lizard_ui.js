@@ -71,11 +71,11 @@ jQuery.fn.exists = function () {
 // some class aliases for Bootstrap information popovers
 var setUpPopovers = function() {
   var animation = false;
-  $(".has_popover").popover({animation: animation});
-  $(".has_popover_north").popover({placement: 'top', animation: animation});
-  $(".has_popover_east").popover({placement: 'right', animation: animation});
-  $(".has_popover_south").popover({placement: 'bottom', animation: animation});
-  $(".has_popover_west").popover({placement: 'left', animation: animation});
+  $(".has_popover").popover({animation: animation, trigger: 'hover'});
+  $(".has_popover_north").popover({animation: animation, trigger: 'hover'});
+  $(".has_popover_east").popover({animation: animation, trigger: 'hover'});
+  $(".has_popover_south").popover({animation: animation, trigger: 'hover'});
+  $(".has_popover_west").popover({animation: animation, trigger: 'hover'});
 };
 
 var animationSpeed = 300;
@@ -172,6 +172,7 @@ var hideSecondarySidebar = function() {
 var setUpMapDimensions = function() {
   // not needed anymore since all sizing is handled in the css
 };
+window.setUpMapDimensions = setUpMapDimensions;
 
 var handleLogin = function() {
   var password, url, username;
