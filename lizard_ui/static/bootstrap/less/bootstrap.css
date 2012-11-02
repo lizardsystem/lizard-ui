@@ -2626,7 +2626,7 @@ ul.icons li .icon-large:before {
 .open {
   *z-index: 1000;
 }
-.open > .dropdown-menu {
+.open  > .dropdown-menu {
   display: block;
 }
 .pull-right > .dropdown-menu {
@@ -5527,6 +5527,9 @@ ul.tree.tree-top-level {
 }
 #sidebar ul.filetree li {
   margin: 2px 0;
+}
+#sidebar ul.filetree li .selected {
+  background-color: #D9D9D6;
 }
 #sidebar ul.filetree div.hitarea {
   width: 16px;
