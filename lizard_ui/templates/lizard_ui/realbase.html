@@ -108,16 +108,15 @@
 
                   {% if view.site_actions %}
                     <ul class="nav">
-					  {% for action in view.site_actions %}
-                        <li
-                           {% if action.description %}
-                             title="{{ action.description }}"
-                           {% endif %}
-                           >
+		      {% for action in view.site_actions %}
+                        <li>
                           <a href="{{ action.url }}"
+                             {% if action.description %}
+                               title="{{ action.description }}"
+                             {% endif %}
                              class="{{ action.klass }}">
                             {% if action.icon %}
-                              <i class="{{ action.icon }} icon-white"></i>
+                              <i class="{{ action.icon }}"></i>
                             {% endif %}
                             {{ action.name }}
                           </a>
