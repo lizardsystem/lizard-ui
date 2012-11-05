@@ -2628,7 +2628,7 @@ ul.icons li .icon-large:before {
 .open {
   *z-index: 1000;
 }
-.open  > .dropdown-menu {
+.open > .dropdown-menu {
   display: block;
 }
 .pull-right > .dropdown-menu {
@@ -5694,6 +5694,10 @@ a.workspace-acceptable.selected .workspace-selected-icon {
 }
 div.nonworking-workspace-acceptable {
   font-style: italic;
+}
+.workspace-acceptable-info .icon-info-sign {
+  text-decoration: none;
+  color: #333333;
 }
 #map {
   background-color: #ddd;
