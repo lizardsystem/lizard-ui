@@ -71,11 +71,25 @@ jQuery.fn.exists = function () {
 // some class aliases for Bootstrap information popovers
 var setUpPopovers = function() {
   var animation = false;
-  $(".has_popover").popover({animation: animation, trigger: 'hover', html: true});
-  $(".has_popover_north").popover({animation: animation, trigger: 'hover', html: true});
-  $(".has_popover_east").popover({animation: animation, trigger: 'hover', html: true});
-  $(".has_popover_south").popover({animation: animation, trigger: 'hover', html: true});
-  $(".has_popover_west").popover({animation: animation, trigger: 'hover', html: true});
+  $(".has_popover").popover({animation: animation,
+                             trigger: 'hover',
+                             html: true});
+  $(".has_popover_north").popover({animation: animation,
+                                   placement: 'top',
+                                   trigger: 'hover',
+                                   html: true});
+  $(".has_popover_east").popover({animation: animation,
+                                   placement: 'right',
+                                  trigger: 'hover',
+                                  html: true});
+  $(".has_popover_south").popover({animation: animation,
+                                   placement: 'bottom',
+                                   trigger: 'hover',
+                                   html: true});
+  $(".has_popover_west").popover({animation: animation,
+                                   placement: 'left',
+                                  trigger: 'hover',
+                                  html: true});
 };
 
 var animationSpeed = 300;
