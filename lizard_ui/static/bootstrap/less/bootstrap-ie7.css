@@ -2359,7 +2359,7 @@ table [class*=span],
 .open {
   *z-index: 1000;
 }
-.open  > .dropdown-menu {
+.open > .dropdown-menu {
   display: block;
 }
 .pull-right > .dropdown-menu {
@@ -5307,7 +5307,8 @@ a.workspace-acceptable:focus {
 a.workspace-acceptable .workspace-selected-icon {
   display: none;
 }
-a.workspace-acceptable.selected {
+a.workspace-acceptable.selected,
+a.workspace-acceptable.selected-invisible {
   background-color: #D9D9D6;
 }
 a.workspace-acceptable.selected .workspace-selected-icon {
