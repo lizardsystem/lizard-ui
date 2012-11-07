@@ -3,6 +3,103 @@
 // jslint configuration.  Don't put spaces before 'jslint' and 'global'.
 /*jslint browser: true */
 
+
+/* Copy/pasted reloadGraphs from an old lizard-ui. Deltaportaal needs it */
+/* because it has an older lizard-map. */
+
+function reloadGraph($graph, max_image_width, callback) {
+    var url, url_click, timestamp, width, height, amp_or_questionmark,
+    html_img, image, $main_tag, html_src, html_url, errormsg;
+    $main_tag = $graph;
+    width = $graph.parent('.img-use-my-size').innerWidth();
+    height = $graph.parent('.img-use-my-size').innerHeight();
+    if ($graph.attr('data-errormsg')) {
+        errormsg = $graph.attr('data-errormsg');
+    } else {
+        errormsg = 'De data is niet beschikbaar';
+    }
+    if (width === null) {
+        width = '';
+        height = '';
+    } else {
+        if (width > max_image_width) {
+            width = max_image_width;
+        }
+        if (width < 10) {
+            width = 0.5 * height;
+        }
+        if (height < 10) {
+            height = 0.5 * width;
+        }
+        // Prevent a horizontal scrollbar in any case.
+        //width = width - scrollbarWidth();
+    }
+    $graph.hide();
+    url = $graph.attr('href');
+    if (url.indexOf('?') === -1) {
+        amp_or_questionmark = '?';
+    } else {
+        amp_or_questionmark = '&';
+    }
+    url_click = $graph.attr('data-href-click');
+    // Remove a previous image that's already there.
+    // PROBABLY NOT NEEDED $('~ img', this).remove();
+    timestamp = new Date().getTime();  // No cached images.
+    html_url = url +
+        amp_or_questionmark + 'width=' + width +
+        '&height=' + height +
+        '&random=' + timestamp;
+    html_img = '<img src="' + html_url + '" class="auto-inserted" ' +
+        '/>';
+    // Remove progress animation and possibly old images.
+    $main_tag.parent().find(".auto-inserted").remove();
+
+    // Add progress animation.
+    $graph.after('<div class="auto-inserted"><img src="/static_media/lizard_ui/ajax-loader.gif" class="progress-animation" data-src="' + html_url + '" /></div>');
+
+    // Preload image.
+    image = $(html_img);
+
+    // Place <a href></a> around image tag.
+    if (url_click !== undefined) {
+        html_img = '<a href="' + url_click + '" class="auto-inserted">' + html_img + '</a>';
+    }
+
+    image.load(function () {
+        // After preloading.
+        // Remove progress animation and possibly old images.
+        $main_tag.parent().find(".auto-inserted").remove();
+        $main_tag.after($(this));
+        if (undefined !== callback) {
+            callback();
+        }
+    });
+    image.error(function () {
+        // After preloading.
+        // Remove progress animation and possibly old images.
+        $main_tag.parent().find(".auto-inserted").remove();
+        $main_tag.after(
+            '<p class="auto-inserted">' +
+                errormsg +
+                '</p>');
+        if (undefined !== callback) {
+            callback();
+        }
+    });
+}
+
+function reloadGraphs(max_image_width, callback) {
+    // This one doesn't work with flot. Not a problem for deltaportaal.
+    $('a.replace-with-image').each(function () {
+        reloadGraph($(this), max_image_width, callback);
+    });
+    // $('div.flot-graph').each(function () {
+    //     reloadFlotGraph($(this), max_image_width, callback);
+    // });
+}
+
+
+
 /**
  * Avoid `console` errors in browsers that lack a console.
  */
