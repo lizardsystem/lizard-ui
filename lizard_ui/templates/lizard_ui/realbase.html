@@ -84,7 +84,7 @@
     <![endif]-->
 
   </head>
-  <body>
+  <body {% block inside-body-tag-itself %}{% endblock %}>
 	{% block modal %}
 	  {% include 'lizard_ui/modal_login.html' %}
 	{% endblock %}
