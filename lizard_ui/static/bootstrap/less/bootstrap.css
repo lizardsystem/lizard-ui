@@ -5298,6 +5298,7 @@ a.badge:hover {
 html,
 body {
   overflow: hidden;
+  height: 100%;
 }
 header,
 #footer {
