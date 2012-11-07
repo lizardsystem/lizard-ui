@@ -5339,7 +5339,7 @@ ul.tree.tree-top-level {
 }
 #popup-tabs > ul > li > a,
 .popup-tabs > ul > li > a {
-  padding: 0.05em 1em;
+  padding: 0.05em 1em ! important;
 }
 #sidebar ul li.workspace-acceptable,
 #sidebar ul div.workspace-acceptable {
