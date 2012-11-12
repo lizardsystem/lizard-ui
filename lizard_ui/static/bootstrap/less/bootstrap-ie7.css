@@ -5348,7 +5348,9 @@ ul.tree.tree-top-level {
   outline: 1px solid #000;
 }
 #sidebar ul li.workspace-acceptable.selected,
-#sidebar ul div.workspace-acceptable.selected {
+#sidebar ul div.workspace-acceptable.selected,
+#sidebar ul li.workspace-acceptable.selected-invisible,
+#sidebar ul div.workspace-acceptable.selected-invisible {
   background-color: #d9d9d6;
 }
 #sidebar ul.filetree {
