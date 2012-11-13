@@ -2361,7 +2361,7 @@ table th[class*="span"],
 .open {
   *z-index: 1000;
 }
-.open > .dropdown-menu {
+.open  > .dropdown-menu {
   display: block;
 }
 .pull-right > .dropdown-menu {
@@ -5355,40 +5355,38 @@ ul.tree.tree-top-level {
 }
 #sidebar ul.filetree {
   list-style: none;
-  margin: 0;
+  margin: 0 0 9px 0;
   padding: 0;
-}
-#sidebar ul.filetree li.expandable span.folder,
-#sidebar ul.filetree li.collapsable span.folder {
-  cursor: pointer;
-  display: block;
-  margin: 6px 0;
 }
 #sidebar ul.filetree ul {
   list-style: none;
   padding: 0;
 }
 #sidebar ul.filetree li {
-  margin: 2px 0;
+  margin: 6px 0;
+  position: relative;
 }
 #sidebar ul.filetree li .selected {
   background-color: #D9D9D6;
 }
-#sidebar ul.filetree div.hitarea {
-  width: 16px;
-  height: 16px;
-  float: left;
+#sidebar ul.filetree .hitarea {
+  padding-left: 16px;
   cursor: pointer;
 }
-#sidebar ul.filetree div.expandable-hitarea {
+#sidebar ul.filetree .expandable-hitarea {
   background: url("../../lizard_ui/arrows.png") no-repeat scroll 6px -10px transparent;
 }
-#sidebar ul.filetree div.collapsable-hitarea {
+#sidebar ul.filetree .collapsable-hitarea {
   background: url("../../lizard_ui/arrows.png") no-repeat scroll -7px 5px transparent;
 }
-#sidebar ul.filetree a.file {
+#sidebar ul.filetree .file {
   display: block;
-  margin: 6px 0;
+}
+#sidebar ul.filetree .sidebarbox-action-icon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  cursor: pointer;
 }
 /* ****************** /Treeview ************ */
 a.workspace-acceptable,

@@ -279,10 +279,12 @@ function setUpAccordion() {
                         // Refresh target pane contents only.
                         ourId = "#" + $(this).attr("id");
                         if (ourId === nextPaneId) {
-                            $(this).html($(data).find(ourId));
+                            $(this).html($(data).find(ourId).html());
+                            $(this).data("tree-initialized", false);
                         }
                     });
                     setUpTree();
+                    setUpPopovers();
                 },
                 error: function (e) {
                     $(nextPaneId).html('<div class="ss_error ss_sprite" />' +

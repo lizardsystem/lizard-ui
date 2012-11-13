@@ -1,22 +1,29 @@
 {# the variables tree_template and tree_items must be defined before entering #}
 {# tree_items is a list of dicts with properties name, url, children #}
 {% for child in tree_items %}
-<li>
   {% if child.children %}
-    {% if child.url %}<a href="{{ child.url }}">{% endif %}
-    <span class="folder">{{ child.name }}
+  <li class="node">
+    <div class="hitarea">
+      {% if child.url %}<a href="{{ child.url }}">{% endif %}
+      <span class="folder">{{ child.name }}</span>
+      {% if child.url %}</a>{% endif %}
       {% if child.description %}{# show info button if description available #}
-      <span class="ss_sprite ss_information sidebarbox-action-icon legend-tooltip">&nbsp;</span>
-      <div class="tooltip">{% autoescape off %}{{ child.description }}{% endautoescape %}</div>
+      <span class="sidebarbox-action-icon legend-tooltip has_popover"
+            data-content="{{ child.description }}"
+            data-trigger="click"
+            rel="popover"
+            title="{{ child.name }}"
+      ><i class="icon-info-sign"></i></span>
       {% endif %}
-    </span>
-    {% if child.url %}</a>{% endif %}
+    </div>
     <ul>
       {% with child.children as tree_items %}
         {% include tree_template %}
       {% endwith %}
     </ul>
+  </li>
   {% else %}
+  <li class="leaf">
     {# No children: it's a leaf. #}
     {% if child.url %}
       <a href="{{ child.url }}"
@@ -27,9 +34,13 @@
       <span class="quiet">{{ child.name }}</span>
     {% endif %}
     {% if child.description %}{# show info button if description available #}
-      <span class="ss_sprite ss_information sidebarbox-action-icon legend-tooltip">&nbsp;</span>
-      <div class="tooltip">{% autoescape off %}{{ child.description }}{% endautoescape %}</div>
+      <span class="sidebarbox-action-icon legend-tooltip has_popover"
+            data-content="{{ child.description }}"
+            data-trigger="click"
+            rel="popover"
+            title="{{ child.name }}"
+      ><i class="icon-info-sign"></i></span>
     {% endif %}
+  </li>
   {% endif %}
-</li>
 {% endfor %}
