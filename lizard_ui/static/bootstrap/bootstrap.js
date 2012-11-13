@@ -1188,6 +1188,11 @@
     }
 
   , toggle: function (e) {
+      // (Lizard) ensure click event is canceled for popovers
+      if (e) {
+          e.stopPropagation();
+          e.preventDefault();
+      }
       var self = $(e.currentTarget)[this.type](this._options).data(this.type)
       self[self.tip().hasClass('in') ? 'hide' : 'show']()
     }

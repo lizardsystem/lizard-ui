@@ -27,4 +27,16 @@ bootstrap.js:
       // (Lizard) FIX popover insert strategy
       //.insertAfter(this.$element)
 
+And clickevents are canceled when a user clicks on a popover:
+bootstrap.js:
+  , toggle: function (e) {
+      // (Lizard) ensure click event is canceled for popovers
+      if (e) {
+          e.stopPropagation();
+          e.preventDefault();
+      }
+      var self = $(e.currentTarget)[this.type](this._options).data(this.type)
+      self[self.tip().hasClass('in') ? 'hide' : 'show']()
+    }
+
 License: apache v2.0
