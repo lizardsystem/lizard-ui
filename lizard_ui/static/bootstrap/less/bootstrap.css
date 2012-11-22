@@ -5829,4 +5829,10 @@ a.collage-add {
 .olLayerGoogleCopyright {
   z-index: 999 !important;
 }
+.olLayerGrid .olTileImage {
+  -webkit-transition: none;
+  -moz-transition: none;
+  -o-transition: none;
+  transition: none;
+}
 /* Empty, use this to override basic colors for a specific site. */
