@@ -12,6 +12,16 @@ Changelog of lizard-ui
 - Moved graph stuff to lizard-map, which is a more suitable place for it (in the current app structure).
   In the future all UI stuff should go to lizard-ui.
 
+- Updated Twitter Bootstrap to v2.2.1.
+
+- Added better support for clickable popovers.
+
+- Changed tree styling a bit to support info icons next to tree items.
+
+- Disabled fadeIn for OpenLayers tiles.
+
+- Added a track that 'instantly' loads application screens.
+
 
 4.11 (2012-10-18)
 -----------------
