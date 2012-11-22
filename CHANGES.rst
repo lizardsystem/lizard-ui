@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-4.12 (unreleased)
+4.12 (2012-11-22)
 -----------------
 
 - Fixed graph axislabels.
