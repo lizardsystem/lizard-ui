@@ -356,6 +356,50 @@ $(document).ready(function() {
   });
 });
 
+function setup_appscreen_instant_load() {
+    $('.ui-icon-list a').each(function () {
+        var href = $(this).attr('href');
+        if (href) {
+            // ensure icon link is relative and contains '/screen/', so we know it points
+            // to another appscreen
+            if (href.length > 1 && href[0] == '/' && href.indexOf('/screen/') != -1) {
+                $(this).click(function (e) {
+                    // ensure click event is cancelled
+                    if (e) {
+                        e.stopPropagation();
+                        e.preventDefault();
+                    }
+                    // define an error handler that just does a location.replace, in case
+                    // of an error
+                    var redirect = function () {
+                        window.location.href = href;
+                    };
+                    // retrieve the page asynchronously
+                    $.get(href)
+                    .success(function (data) {
+                        try {
+                            // replace sidebar and crumb elements with the new content
+                            var $old_sidebar = $('#sidebar');
+                            var $old_breadcrumbs = $('#breadcrumbs');
+                            var $data = $(data);
+                            $old_sidebar.replaceWith($data.find('#sidebar'));
+                            $old_breadcrumbs.replaceWith($data.find('#breadcrumbs'));
+                            // hide popovers which might still be active
+                            $('div.popover').remove();
+                        }
+                        catch (err) {
+                            redirect();
+                        }
+                    })
+                    .error(function () {
+                        redirect();
+                    });
+                });
+            }
+        }
+    });
+}
+
 $(document).ready(function () {
     // fix div heights for IE7
     // we don't support IE7 though
@@ -370,4 +414,5 @@ $(document).ready(function () {
     setUpTree();
     setUpSortableTables();
     setUpAccordion();
+    setup_appscreen_instant_load();
 });
