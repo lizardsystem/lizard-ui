@@ -30,7 +30,7 @@
             </fieldset>
         </div>
         <div class="modal-footer">
-            <input type="submit" id="modal-login-form-btn" class="btn btn-primary" value="{% trans 'Login' %}" />
+            <input type="submit" id="modal-login-form-btn" class="btn btn-primary" value="{% trans 'Login' %}" /> {% trans "or" %} <a href="{% url lizard_ui.register %}">{% trans "register" %}</a>
         </div>
         <input type="hidden"
                name="login-url"
