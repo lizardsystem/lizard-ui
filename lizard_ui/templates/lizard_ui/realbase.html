@@ -112,7 +112,8 @@
                         <li>
                           <a href="{{ action.url }}"
                              {% if action.description %}
-                               title="{{ action.description }}"
+                               data-title="{{ action.name }}"
+                               data-content="{{ action.description }}"
                              {% endif %}
                              class="{{ action.klass }}">
                             {% if action.icon %}
