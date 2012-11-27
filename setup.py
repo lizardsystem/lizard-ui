@@ -11,7 +11,7 @@ long_description = '\n\n'.join([
 
 install_requires = [
     'BeautifulSoup',
-    'Django >= 1.3',
+    'Django >= 1.4',
     'django-nose',
     'django-extensions',
     'django-staticfiles >= 1.0',
