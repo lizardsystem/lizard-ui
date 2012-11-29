@@ -13,11 +13,11 @@ from django.http import Http404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext as _, get_language
 from django.views.generic.base import TemplateView, View
 from django.views.generic.edit import FormView
 
-from lizard_ui.forms import LoginForm
+from lizard_ui.forms import LoginForm, ChangeLanguageForm
 from lizard_ui.layout import Action
 from lizard_ui.models import ApplicationScreen
 from lizard_ui.models import ApplicationIcon
@@ -135,6 +135,40 @@ class LogoutView(View, ViewNextURLMixin):
         return self.get(*args, **kwargs)
 
 
+class ChangeLanguageView(ViewContextMixin, FormView, ViewNextURLMixin):
+    """Shows a change language modal form."""
+
+    template_name = 'lizard_ui/change_language.html'
+    form_class = ChangeLanguageForm
+    default_redirect = '/'
+
+    def post(self, request, *args, **kwargs):
+        form_class = self.get_form_class()
+        form = self.get_form(form_class)
+        if form.is_valid():
+            language = form.cleaned_data['language']
+            if request.is_ajax():
+                return HttpResponse(json.dumps({'success': True}),
+                    mimetype='application/json')
+
+            next_url = form.cleaned_data['next_url']
+            redirect_to = self.check_url(next_url)
+            return HttpResponseRedirect(redirect_to)
+
+        if request.is_ajax():
+            errors = ' '.join(form.non_field_errors())
+            for fieldname, errorlist in form.errors.items():
+                if fieldname in form.fields:
+                    errors += ' ' + form.fields[fieldname].label + ': '
+                    errors += ' '.join(errorlist)
+                else:
+                    errors += ' '.join(errorlist)
+            return HttpResponse(json.dumps({'success': False,
+                                            'error_message': errors}),
+                mimetype='application/json')
+        return self.form_invalid(form)
+
+
 def example_breadcrumbs(request,
                         template='lizard_ui/example-breadcrumbs.html'):
     crumbs = [{'name': 'name', 'url': 'url'},
@@ -228,6 +262,29 @@ class UiView(ViewContextMixin, TemplateView):
 
         """
         actions = copy(uisettings.SITE_ACTIONS)
+
+        if uisettings.SHOW_LANGUAGE_PICKER:
+            languages = settings.LANGUAGES
+            if len(languages) > 1:
+                language_code = get_language()  # current language code
+                language_name = _('Language')  # sort of default
+                try:
+                    language_name = dict(settings.LANGUAGES)[language_code.lower()]
+                except KeyError:
+                    for code, name in languages:
+                        if language_code.lower().startswith(code):
+                            language_name = name
+                            break
+                query_string = urllib.urlencode(
+                    {'next': self.request.path_info})
+                lang_action = Action(icon='icon-flag')
+                lang_action.url = '%s?%s' % (
+                    reverse('lizard_ui.change_language'), query_string)
+                lang_action.name = language_name
+                lang_action.description = _('Pick a language')
+                lang_action.klass = 'ui-change-language-link'
+                actions.append(lang_action)
+
         if uisettings.SHOW_LOGIN:
             query_string = urllib.urlencode({'next': self.request.path_info})
             if self.request.user.is_authenticated():

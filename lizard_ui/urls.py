@@ -45,7 +45,10 @@ urlpatterns = patterns(
     url(r'^$',
         lizard_ui.views.IconView.as_view(),
         name='lizard_ui.icons'),
-    )
+    url(r'^accounts/change_language/$',
+        lizard_ui.views.ChangeLanguageView.as_view(),
+        name='lizard_ui.change_language'),
+)
 
 urlpatterns += debugmode_urlpatterns()
 

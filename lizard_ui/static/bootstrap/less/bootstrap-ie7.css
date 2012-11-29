@@ -5322,7 +5322,7 @@ ul.tree.tree-top-level {
 }
 */
 /* ****************** Treeview ************ */
-#login-error {
+#login-error, #change-password-error {
   display: none;
 }
 #popup-tabs {
