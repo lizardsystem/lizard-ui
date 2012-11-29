@@ -7,6 +7,8 @@ Changelog of lizard-ui
 
 - Updated a Django version.
 
+- Align the popup-loading spinner in the middle.
+
 
 4.12 (2012-11-22)
 -----------------
