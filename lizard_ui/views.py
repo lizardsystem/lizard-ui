@@ -13,7 +13,8 @@ from django.http import Http404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render
-from django.utils.translation import ugettext as _, get_language
+from django.utils.translation import ugettext as _, get_language,\
+    check_for_language
 from django.views.generic.base import TemplateView, View
 from django.views.generic.edit import FormView
 
@@ -146,14 +147,19 @@ class ChangeLanguageView(ViewContextMixin, FormView, ViewNextURLMixin):
         form_class = self.get_form_class()
         form = self.get_form(form_class)
         if form.is_valid():
-            language = form.cleaned_data['language']
+            lang_code = request.POST.get('language', None)
+            next = request.REQUEST.get('next', None)
             if request.is_ajax():
-                return HttpResponse(json.dumps({'success': True}),
+                response = HttpResponse(json.dumps({'success': True}),
                     mimetype='application/json')
-
-            next_url = form.cleaned_data['next_url']
-            redirect_to = self.check_url(next_url)
-            return HttpResponseRedirect(redirect_to)
+            else:
+                response = http.HttpResponseRedirect(next)
+            if lang_code and check_for_language(lang_code):
+                if hasattr(request, 'session'):
+                    request.session[settings.LANGUAGE_COOKIE_NAME] = lang_code
+                else:
+                    response.set_cookie(settings.LANGUAGE_COOKIE_NAME, lang_code)
+            return response
 
         if request.is_ajax():
             errors = ' '.join(form.non_field_errors())
@@ -298,7 +304,7 @@ class UiView(ViewContextMixin, TemplateView):
                 action = Action()
                 action.url = '%s?%s' % (reverse('lizard_ui.logout'),
                                         query_string)
-                action.name = _('logout')
+                action.name = _('Logout')
                 action.description = _('Click here to logout')
                 action.klass = 'ui-logout-link'
                 actions.append(action)

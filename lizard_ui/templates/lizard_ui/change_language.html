@@ -15,9 +15,8 @@
                             {% get_language_info_list for LANGUAGES as languages %}
                             {% get_current_language as current_language %}
                             {% for lang in languages %}
-                                <option value="{{ lang.code }}">{{ lang.name_local }} ({{ lang.code }})</option>
+                                <option {% ifequal current_language lang.code %}selected="selected"{% endifequal %} value="{{ lang.code }}">{{ lang.name_local }} ({{ lang.code }})</option>
                             {% endfor %}
-                            <option value="{{ current_language }}">{{ current_language }}</option>
                         </select>
                     </div>
                 </div>
