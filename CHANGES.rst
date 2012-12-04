@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-4.13 (unreleased)
+4.13 (2012-12-04)
 -----------------
 
 - Updated a Django version.
