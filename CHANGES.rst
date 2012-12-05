@@ -5,8 +5,7 @@ Changelog of lizard-ui
 4.14 (unreleased)
 -----------------
 
-- Nothing changed yet.
-
+- Added flot.fillbetween plugin to the list of Javascript files.
 
 4.13 (2012-12-04)
 -----------------
@@ -14,8 +13,6 @@ Changelog of lizard-ui
 - Updated a Django version.
 
 - Align the popup-loading spinner in the middle.
-
-- Added flot.fillbetween plugin to the list of Javascript files.
 
 4.12 (2012-11-22)
 -----------------
