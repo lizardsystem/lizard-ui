@@ -20,7 +20,7 @@ class Command(makemessages.Command):
 
         - No need to chdir to the app/site's directory, we guess that.
 
-        - Follow symlinks in the app/site's directory for more po files.g
+        - Follow symlinks in the app/site's directory for more po files.
 
         - By default, all existing locales are updated instead of requiring
           you to specify that.
