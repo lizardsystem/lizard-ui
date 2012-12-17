@@ -7,6 +7,12 @@ Changelog of lizard-ui
 
 - Added flot.fillbetween plugin to the list of Javascript files.
 
+- Applied the rename of jquery's .ui-button to .xui-button everywhere.
+
+- Also renamed jquerys $(el).button to $(el).jqbutton as to now conflict
+  with Bootstrap.
+
+
 4.13 (2012-12-04)
 -----------------
 
