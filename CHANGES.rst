@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-4.14 (unreleased)
+4.14 (2012-12-17)
 -----------------
 
 - Added flot.fillbetween plugin to the list of Javascript files.
