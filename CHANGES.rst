@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-4.15 (unreleased)
+4.15 (2012-12-19)
 -----------------
 
 - Fixed urls.py, so it won't recusively include other lizard-* URLs when
