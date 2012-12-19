@@ -386,6 +386,8 @@ function setup_appscreen_instant_load() {
                             $old_breadcrumbs.replaceWith($data.find('#breadcrumbs'));
                             // hide popovers which might still be active
                             $('div.popover').remove();
+                            // initialize any new popovers
+                            setUpPopovers();
                         }
                         catch (err) {
                             redirect();
