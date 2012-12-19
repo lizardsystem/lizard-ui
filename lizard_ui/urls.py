@@ -13,7 +13,6 @@ import lizard_ui.views
 
 logger = logging.getLogger(__name__)
 lizard_ui.configchecker  # Pyflakes...
-admin.autodiscover()
 
 
 def debugmode_urlpatterns():
@@ -32,7 +31,6 @@ def debugmode_urlpatterns():
 
 urlpatterns = patterns(
     '',
-    (r'^admin/', include(admin.site.urls)),
     url(r'^accounts/login/$',
         lizard_ui.views.LoginView.as_view(),
         name='lizard_ui.login'),
@@ -47,9 +45,13 @@ urlpatterns = patterns(
         name='lizard_ui.icons'),
     )
 
-urlpatterns += debugmode_urlpatterns()
-
-if settings.DEBUG:  # Pragma: nocover
+if getattr(settings, 'LIZARD_UI_STANDALONE', False):
+    admin.autodiscover()
+    urlpatterns += patterns(
+        '',
+        (r'^admin/', include(admin.site.urls)),
+    )
+    urlpatterns += debugmode_urlpatterns()
     # Online documentation, mount it for example in the settings.DEBUG section
     # to get the documentation in your project while developing.
     urlpatterns += patterns(

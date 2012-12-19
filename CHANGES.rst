@@ -5,7 +5,12 @@ Changelog of lizard-ui
 4.15 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Fixed urls.py, so it won't recusively include other lizard-* URLs when
+  running as part of a site.
+
+- Made the appscreen admin more user friendly.
+
+- Initialize popovers again after fast appscreen load.
 
 
 4.14 (2012-12-17)
