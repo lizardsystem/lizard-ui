@@ -336,6 +336,8 @@ $(document).ready(function() {
       return window.rightbarState = "opened";
     }
   });
+  // Disabled due to SSO login
+  /*
   $('.ui-login-link').click(function(e) {
     e.preventDefault();
     $('#login-modal').modal('toggle');
@@ -354,6 +356,7 @@ $(document).ready(function() {
     e.preventDefault();
     return handleLogin();
   });
+  */
 });
 
 function setup_appscreen_instant_load() {

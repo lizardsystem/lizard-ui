@@ -239,7 +239,7 @@ class UiView(ViewContextMixin, TemplateView):
                 actions.append(action)
                 # Separate logout action.
                 action = Action()
-                action.url = '%s?%s' % (reverse('lizard_ui.logout'),
+                action.url = '%s?%s' % (reverse('logout'),
                                         query_string)
                 action.name = _('logout')
                 action.description = _('Click here to logout')
@@ -247,7 +247,7 @@ class UiView(ViewContextMixin, TemplateView):
                 actions.append(action)
             else:
                 action = Action(icon='icon-user')
-                action.url = '%s?%s' % (reverse('lizard_ui.login'),
+                action.url = '%s?%s' % (reverse('login'),
                                         query_string)
                 action.name = _('Login')
                 action.description = _('Click here to login')

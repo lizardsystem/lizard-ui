@@ -5,7 +5,8 @@ Changelog of lizard-ui
 4.16 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Changed login/logout to be real hyperlinks instead of the modal popup.
+  The links now point to the url alias named 'login'.
 
 
 4.15 (2012-12-19)
