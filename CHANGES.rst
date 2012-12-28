@@ -8,6 +8,8 @@ Changelog of lizard-ui
 - Changed login/logout to be real hyperlinks instead of the modal popup.
   The links now point to the url alias named 'login'.
 
+- Fixed a bug when map is unavailable during opening / closing the sidebar.
+
 
 4.15 (2012-12-19)
 -----------------
