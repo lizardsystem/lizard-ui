@@ -10,6 +10,8 @@ Changelog of lizard-ui
 
 - Fixed a bug when map is unavailable during opening / closing the sidebar.
 
+- Update to jQuery UI 1.8.24.
+
 
 4.15 (2012-12-19)
 -----------------

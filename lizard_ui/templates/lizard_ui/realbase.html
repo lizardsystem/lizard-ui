@@ -25,7 +25,7 @@
       {% block css %}
         {# CSS for jqueryui: "smoothness" theme #}
         <link type="text/css"
-              href="{{ STATIC_URL }}jqueryui/smoothness/jquery-ui-1.8.23.custom.css"
+              href="{{ STATIC_URL }}jqueryui/smoothness/jquery-ui.css"
               rel="stylesheet"
               media="screen, projection" />
         {# OpenLayers: manually load the OpenLayers css so we can control the load order #}
@@ -325,7 +325,6 @@
 
     {# Already minimized, stable scripts. #}
     <script src="{{ STATIC_URL }}jquery/jquery.min.js"></script>
-    <script src="{{ STATIC_URL }}jqueryui/jqueryui.min.js"></script>
 
     {# Excanvas, for IE7 and IE8 support for HTML5 Canvas. #}
     <!--[if lt IE 9]>
@@ -358,6 +357,7 @@
 
     {% compress js %}
       {% block javascript %}
+        <script src="{{ STATIC_URL }}jqueryui/jquery-ui.js"></script>
         <script src="{{ STATIC_URL }}momentjs/nl.js"></script>
         <script src="{{ STATIC_URL }}lizard_ui/csrf.js"></script>
         <script src="{{ STATIC_URL }}lizard_ui/lizard_ui.js"></script>
