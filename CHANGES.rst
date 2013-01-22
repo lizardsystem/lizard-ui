@@ -5,8 +5,9 @@ Changelog of lizard-ui
 4.16 (unreleased)
 -----------------
 
-- Changed login/logout to be real hyperlinks instead of the modal popup.
-  The links now point to the url alias named 'login'.
+- When SSO_ENABLED evaluates to True in your settings,
+  login/logout become real hyperlinks, instead of the modal popup.
+  The links then point to the url alias named 'login'.
 
 - Fixed a bug when map is unavailable during opening / closing the sidebar.
 

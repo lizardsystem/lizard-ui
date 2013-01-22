@@ -239,12 +239,13 @@ class UiView(ViewContextMixin, TemplateView):
                 actions.append(action)
                 # Separate logout action.
                 action = Action()
-                try:
+                if getattr(settings, 'SSO_ENABLED', False):
+                    # point to the SSO logout page (which redirects
+                    # to another server)
                     action.url = '%s?%s' % (reverse('logout'),
                                             query_string)
-                except NoReverseMatch:
-                    # lizard-auth-client not yet integrated: fall back
-                    # to the old (local) logout page
+                else:
+                    # fall back to the old (local) logout page
                     action.url = '%s?%s' % (reverse('lizard_ui.logout'),
                                             query_string)
                 action.name = _('logout')
@@ -253,17 +254,22 @@ class UiView(ViewContextMixin, TemplateView):
                 actions.append(action)
             else:
                 action = Action(icon='icon-user')
-                try:
+                if getattr(settings, 'SSO_ENABLED', False):
+                    # point to the SSO login page (which redirects
+                    # to another server)
                     action.url = '%s?%s' % (reverse('login'),
                                             query_string)
-                except NoReverseMatch:
-                    # lizard-auth-client not yet integrated: fall back
-                    # to the old (local) login form
+                else:
+                    # fall back to the old (local) login form
                     action.url = '%s?%s' % (reverse('lizard_ui.login'),
                                             query_string)
                 action.name = _('Login')
                 action.description = _('Click here to login')
-                action.klass = 'ui-login-link'
+                if getattr(settings, 'SSO_ENABLED', False):
+                    action.klass = 'ui-sso-login-link'
+                else:
+                    # fall back to the javascript login modal
+                    action.klass = 'ui-login-link'
                 actions.append(action)
         return actions
 
