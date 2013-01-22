@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-4.16 (unreleased)
+4.16 (2013-01-22)
 -----------------
 
 - When SSO_ENABLED evaluates to True in your settings,
