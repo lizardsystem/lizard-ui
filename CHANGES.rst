@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-4.17 (unreleased)
+4.17 (2013-01-28)
 -----------------
 
 - Fixed logo: removed artifacts; made the toes of the lizard more pronounced.
