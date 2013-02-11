@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-4.18 (unreleased)
+4.18 (2013-02-11)
 -----------------
 
 - Updated the app_icons.
