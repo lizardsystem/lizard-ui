@@ -9,7 +9,7 @@ geographical information websites (with water management information).
 .. image:: https://secure.travis-ci.org/lizardsystem/lizard-ui.png?branch=master
    :target: http://travis-ci.org/#!/lizardsystem/lizard-ui
 
-.. image:: http://translations.lizard.net/projects/p/lizardsystem/resource/lizard-ui/chart/image_png
+.. image:: https://translations.lizard.net/projects/p/lizardsystem/resource/lizard-ui/chart/image_png
    :target: https://translations.lizard.net/projects/p/lizardsystem/resource/lizard-ui/
 
 
