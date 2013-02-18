@@ -21,6 +21,7 @@ install_requires = [
     'raven',
     'south',
     'werkzeug',
+    'translations',
     ],
 
 tests_require = [
