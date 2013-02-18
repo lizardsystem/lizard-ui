@@ -286,7 +286,8 @@ class UiView(ViewContextMixin, TemplateView):
             if icon_url == '/':
                 # Pointer at a CMS page above us, probably.
                 continue
-            if icon_url.startswith('http://') or icon_url.startswith('https://'):
+            if (icon_url.startswith('http://') or
+                icon_url.startswith('https://')):
                 # External url, so it cannot match.
                 continue
             if not icon_url.startswith('/'):
@@ -408,10 +409,11 @@ class UiView(ViewContextMixin, TemplateView):
         yourself regarding adding new ones.
 
         """
-        collapse_action = Action(icon='icon-arrow-left',
-                                 name=_('Navigation'),
-                                 description=_('Collapse or expand this panel'),
-                                 klass='collapse-sidebar')
+        collapse_action = Action(
+            icon='icon-arrow-left',
+            name=_('Navigation'),
+            description=_('Collapse or expand this panel'),
+            klass='collapse-sidebar')
         actions = [collapse_action]
         if self.show_secondary_sidebar_title:
             # Having a title means we want to show it.
