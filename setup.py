@@ -21,6 +21,8 @@ install_requires = [
     'raven',
     'south',
     'werkzeug',
+    'translations',
+    'zc.buildout >= 2.0.1',
     ],
 
 tests_require = [
