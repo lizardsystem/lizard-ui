@@ -8,7 +8,7 @@ import json
 from django.conf import settings
 from django.contrib.auth import login
 from django.contrib.auth import logout
-from django.core.urlresolvers import reverse, NoReverseMatch
+from django.core.urlresolvers import reverse
 from django.http import Http404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404
