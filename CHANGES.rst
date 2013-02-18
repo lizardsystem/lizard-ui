@@ -6,7 +6,9 @@ Changelog of lizard-ui
 -----------------
 
 - Upgrade to zc.buildout 2.0.1.
+
 - Use translations package to manage translations.
+
 - Update translation files for dutch and vietnamese.
 
 

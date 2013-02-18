@@ -22,7 +22,6 @@ install_requires = [
     'south',
     'werkzeug',
     'translations',
-    'zc.buildout >= 2.0.1',
     ],
 
 tests_require = [
