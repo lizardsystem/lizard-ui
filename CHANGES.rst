@@ -5,7 +5,9 @@ Changelog of lizard-ui
 4.19 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Upgrade to zc.buildout 2.0.1.
+- Use translations package to manage translations.
+- Update translation files for dutch and vietnamese.
 
 
 4.18 (2013-02-11)
