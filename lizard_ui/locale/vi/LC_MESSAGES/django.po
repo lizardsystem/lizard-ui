@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: lizardsystem\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-02-13 13:07+0100\n"
-"PO-Revision-Date: 2013-02-13 12:06+0000\n"
+"PO-Revision-Date: 2013-02-19 13:54+0000\n"
 "Last-Translator: admin <admin@example.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: forms.py:10
 msgid "Username"
-msgstr "<TODO>"
+msgstr ""
 
 #: forms.py:14 templates/lizard_ui/login.html:28
 #: templates/lizard_ui/modal_login.html:24
@@ -81,7 +81,7 @@ msgstr ""
 #: templates/lizard_ui/modal_login.html:5
 #: templates/lizard_ui/modal_login.html:33
 msgid "Login"
-msgstr ""
+msgstr "Dăng Nhập"
 
 #: views.py:267
 msgid "Click here to login"
