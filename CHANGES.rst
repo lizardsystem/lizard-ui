@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-4.19 (unreleased)
+4.19 (2013-02-19)
 -----------------
 
 - Upgrade to zc.buildout 2.0.1.
