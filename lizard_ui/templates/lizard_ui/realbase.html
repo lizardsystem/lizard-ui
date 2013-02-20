@@ -199,14 +199,14 @@
         {% endblock header %}
 
         {% block main-area %}
-          <div id="sidebar">
+          <div id="sidebar" data-collapsed="{{ view.sidebar_is_collapsed|yesno:'true,false,false' }}">
             <div class="sidebar-inner">
               {% block sidebar %}
               {% endblock sidebar %}
             </div>
           </div>
 
-          <div id="secondary-sidebar">
+          <div id="secondary-sidebar" data-collapsed="{{ view.secondary_sidebar_is_collapsed|yesno:'true,false,true' }}">
             <div class="sidebar-inner">
               {% block secondary-sidebar %}
               {% endblock secondary-sidebar %}
@@ -218,7 +218,7 @@
             {% endblock content %}
           </div>
 
-          <div id="rightbar">
+          <div id="rightbar" data-collapsed="{{ view.rightbar_is_collapsed|yesno:'true,false,true' }}">
             <div class="sidebar-inner">
               {% block rightbar %}
               {% endblock rightbar %}

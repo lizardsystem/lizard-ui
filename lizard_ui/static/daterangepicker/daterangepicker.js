@@ -523,10 +523,12 @@
                 }
             }
             else {
-                // ignore passed start and end date
-                var range = this.ranges[rangeType];
-                startDate = range[0];
-                endDate = range[1];
+                if (rangeType in this.ranges) {
+                    // ignore passed start and end date
+                    var range = this.ranges[rangeType];
+                    startDate = range[0];
+                    endDate = range[1];
+                }
             }
 
             if (rangeType != this.rangeType)

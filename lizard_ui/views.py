@@ -225,6 +225,9 @@ class UiView(ViewContextMixin, TemplateView):
     # ^^^ If there's no visible application icon, we don't have the necessary
     # permission. At least, that's what this is intended for.
     required_permission = None
+    sidebar_is_collapsed = False
+    rightbar_is_collapsed = True
+    secondary_sidebar_is_collapsed = True
 
     def get_context_data(self, **kwargs):
         if self.require_application_icon_with_permission:

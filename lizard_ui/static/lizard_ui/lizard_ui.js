@@ -92,99 +92,176 @@ var setUpPopovers = function() {
                                   html: true});
 };
 
-var animationSpeed = 300;
+var defaultAnimationSpeed = 300;
 
-// left bar, containing icons etc.
+// left bar, containing app icons etc.
+var setSidebarState = function(collapse, preventAnim) {
+    var animationSpeed = preventAnim === true ? 0 : defaultAnimationSpeed;
+    if (collapse) {
+        var secondaryCollapsed = $('#secondary-sidebar').data('collapsed');
+        if (!secondaryCollapsed) {
+            setSecondarySidebarState(true);
+        }
+
+        // update arrow icon on button
+        $('.collapse-sidebar i')
+            .removeClass('icon-arrow-left')
+            .addClass('icon-arrow-right');
+        // disable the seconday sidebar button
+        $('.secondary-sidebar-button').attr('disabled', '');
+        // slide the sidebar
+        $('#sidebar').animate(
+            {
+                left: -300
+            },
+            animationSpeed
+        );
+        // slide the content
+        $('#content').animate(
+            {
+                left: 0
+            },
+            animationSpeed,
+            function() {
+                if (typeof map !== 'undefined') {
+                    map.updateSize();
+                }
+            }
+        );
+    }
+    else {
+        // update arrow icon on button
+        $('.collapse-sidebar i')
+            .removeClass('icon-arrow-right')
+            .addClass('icon-arrow-left');
+        // enable the seconday sidebar button
+        $('.secondary-sidebar-button').removeAttr('disabled');
+        // slide the sidebar
+        $('#sidebar').animate(
+            {
+                left : 0
+            },
+            animationSpeed
+        );
+        // slide the content
+        $('#content').animate(
+            {
+                left : 300
+            },
+            animationSpeed,
+            function() {
+                if (typeof map !== 'undefined') {
+                    map.updateSize();
+                }
+            }
+        );
+    }
+    // update the state
+    $('#sidebar').data('collapsed', collapse);
+};
+
+// right bar, for legend
+var setRightbarState = function(collapse, preventAnim) {
+    var animationSpeed = preventAnim === true ? 0 : defaultAnimationSpeed;
+    if (collapse) {
+        // disabled: can't seem to find secondary-rightbar anywhere?
+        // var secondaryCollapsed = $('#secondary-rightbar').data('collapsed');
+        // if (secondaryCollapsed) {
+            // hideSecondaryRightbar();
+        // }
+        $('.collapse-rightbar i')
+            .removeClass('icon-arrow-right')
+            .addClass('icon-arrow-left');
+        $('#rightbar').animate(
+            {
+                right : -251
+            },
+            animationSpeed
+        );
+        $('#content').animate(
+            {
+                right : 0
+            },
+            animationSpeed
+        );
+    }
+    else {
+        $('.collapse-rightbar i')
+            .removeClass('icon-arrow-left')
+            .addClass('icon-arrow-right');
+        $('#rightbar').show();
+        $('#rightbar').animate(
+            {
+                right : 0
+            },
+            animationSpeed
+        );
+        $('#content').animate(
+            {
+                right : 251
+            },
+            animationSpeed
+        );
+    }
+    // update the state
+    $('#rightbar').data('collapsed', collapse);
+};
+
+// secondary left bar, for workspace and collage
+var setSecondarySidebarState = function(collapse, preventAnim) {
+    var animationSpeed = preventAnim === true ? 0 : defaultAnimationSpeed;
+    if (collapse) {
+        var bottom = $("#footer").position().top;
+        var element = $("#secondary-sidebar");
+        element.css("overflow-y", "hidden");
+        $("#secondary-sidebar").animate(
+            {
+                top : bottom
+            },
+            animationSpeed
+        );
+        $('.secondary-sidebar-button').removeClass('active');
+    }
+    else {
+        var top = $("#sidebar").position().top;
+        $('.secondary-sidebar-button').addClass('active');
+        var bottom = $("#footer").position().top;
+        var element = $("#secondary-sidebar");
+        element.css('top', bottom);
+        element.show();
+        element.animate(
+            {
+                top : top
+            },
+            animationSpeed,
+            function() {
+                element.css('overflow-y', 'auto');
+            }
+        );
+    }
+    // update the state
+    $('#secondary-sidebar').data('collapsed', collapse);
+};
+
+
+// backwards compatibility
 var closeSidebar = function() {
-  if (window.secondarySidebarState === "opened") {
-    hideSecondarySidebar();
-    window.secondarySidebarState = "closed";
-  }
-  $('#sidebar-actions .icon-arrow-left').removeClass('icon-arrow-left').addClass('icon-arrow-right');
-  $('.secondary-sidebar-button').attr('disabled', '');
-  $('div#sidebar').animate({
-    left: -300
-  }, animationSpeed);
-  $('div#content').animate({
-    left: 0
-  }, animationSpeed, function() {
-    if (typeof map !== 'undefined') {
-        map.updateSize();
-    }
-    return setUpMapDimensions();
-  });
+    setSidebarState(true);
 };
-
-// left bar, containing icons
 var openSidebar = function() {
-  $('#sidebar-actions .icon-arrow-right').removeClass('icon-arrow-right').addClass('icon-arrow-left');
-  $('div#sidebar').animate({
-    left: 0
-  }, animationSpeed);
-  $('div#content').animate({
-    left: 300
-  }, animationSpeed, function() {
-    if (typeof map !== 'undefined') {
-        map.updateSize();
-    }
-    return setUpMapDimensions();
-  });
-  $('.secondary-sidebar-button').removeAttr('disabled');
+    setSidebarState(false);
 };
-
-// right bar, containing legend
 var closeRightbar = function() {
-  if (window.secondaryRightbarState === "opened") hideSecondaryRightbar();
-  $('#rightbar-actions .icon-arrow-right').removeClass('icon-arrow-right').addClass('icon-arrow-left');
-  $('div#rightbar').animate({
-    right: -251
-  }, animationSpeed);
-  $('div#content').animate({
-    right: 0
-  }, animationSpeed, function() {
-    return setUpMapDimensions();
-  });
+    setRightbarState(true);
 };
-
-// right bar, containing legend
 var openRightbar = function() {
-  $('#rightbar-actions .icon-arrow-left').removeClass('icon-arrow-left').addClass('icon-arrow-right');
-  $('div#rightbar').show();
-  $('div#rightbar').animate({
-    right: 0
-  }, animationSpeed);
-  $('div#content').animate({
-    right: 251
-  }, animationSpeed, function() {
-    return setUpMapDimensions();
-  });
+    setRightbarState(false);
 };
-
-// secondary left bar, for workspace and collage
 var showSecondarySidebar = function() {
-  var bottom, element, top;
-  top = $("#sidebar").position().top;
-  $('.secondary-sidebar-button').button('toggle');
-  bottom = $("#footer").position().top;
-  element = $("#secondary-sidebar");
-  element.css('top', bottom);
-  element.show();
-  element.animate({
-    top: top
-  }, animationSpeed);
-  element.css('overflow-y', 'auto');
+    setSecondarySidebarState(false);
 };
-
-// secondary left bar, for workspace and collage
 var hideSecondarySidebar = function() {
-  var bottom, element;
-  bottom = $("#footer").position().top;
-  element = $("#secondary-sidebar");
-  element.css("overflow-y", "hidden");
-  $("#secondary-sidebar").animate({
-    top: bottom
-  }, animationSpeed);
-  $('.secondary-sidebar-button').button('toggle');
+    setSecondarySidebarState(true);
 };
 
 var setUpMapDimensions = function() {
@@ -327,42 +404,34 @@ function setUpAccordion() {
     }
 }
 
+function setUpBars() {
+    // set initial states from data attributes, without animating
+    setSidebarState($('#sidebar').data('collapsed'), true);
+    setRightbarState($('#rightbar').data('collapsed'), true);
+    setSecondarySidebarState($('#secondary-sidebar').data('collapsed'), true);
+
+    // bind buttons
+    $('.collapse-sidebar').click(function(e) {
+        e.preventDefault();
+        // keep the ternary operator, so we magically deal with undefined scenarios
+        setSidebarState($('#sidebar').data('collapsed') === true ? false : true);
+    });
+    $('.collapse-rightbar').click(function(e) {
+        e.preventDefault();
+        // keep the ternary operator, so we magically deal with undefined scenarios
+        setRightbarState($('#rightbar').data('collapsed') === true ? false : true);
+    });
+    $('.secondary-sidebar-button').click(function(e) {
+        e.preventDefault();
+        // keep the ternary operator, so we magically deal with undefined scenarios
+        setSecondarySidebarState($('#secondary-sidebar').data('collapsed') === true ? false : true);
+    });
+}
+
 $(document).ready(function() {
-  window.sidebarState = "opened";
-  window.secondarySidebarState = "closed";
-  window.rightbarState = "closed";
+  setUpBars();
   setUpPopovers();
   setUpMapDimensions();
-  $('.secondary-sidebar-button').click(function(e) {
-    e.preventDefault();
-    if (window.secondarySidebarState === "closed") {
-      showSecondarySidebar();
-      return window.secondarySidebarState = "opened";
-    } else {
-      hideSecondarySidebar();
-      return window.secondarySidebarState = "closed";
-    }
-  });
-  $('.btn.collapse-sidebar').click(function(e) {
-    e.preventDefault();
-    if (window.sidebarState === "opened") {
-      closeSidebar();
-      return window.sidebarState = "closed";
-    } else {
-      openSidebar();
-      return window.sidebarState = "opened";
-    }
-  });
-  $('.btn.collapse-rightbar').click(function(e) {
-    e.preventDefault();
-    if (window.rightbarState === "opened") {
-      closeRightbar();
-      return window.rightbarState = "closed";
-    } else {
-      openRightbar();
-      return window.rightbarState = "opened";
-    }
-  });
   $('.ui-login-link').click(function(e) {
     e.preventDefault();
     $('#login-modal').modal('toggle');
