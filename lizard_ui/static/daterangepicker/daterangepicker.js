@@ -128,7 +128,7 @@
                         continue;
                     }
 
-                    this.ranges[rangeType] = [moment(start).startOf('day'), moment(end).startOf('day'), range];
+                    this.ranges[rangeType] = [moment(start), moment(end), range];
                 }
 
                 var list = '<ul>';
