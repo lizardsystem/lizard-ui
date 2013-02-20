@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-4.21 (unreleased)
+4.21 (2013-02-20)
 -----------------
 
 - Add language selector.
