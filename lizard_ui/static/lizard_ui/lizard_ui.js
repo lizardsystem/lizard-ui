@@ -214,6 +214,29 @@ var handleLogin = function() {
   });
 };
 
+var handleChangeLanguage = function() {
+    var language, url;
+    language = $('select[name=language]').val();
+    url = $('input[name=change-language-url]').val();
+    return $.ajax({
+        url: url,
+        type: "POST",
+        data: {
+            language: language
+        },
+        success: function(data) {
+            if (data.success) {
+                return window.location.reload();
+            } else {
+                return $('#change-language-error').html(data.error_message).show();
+            }
+        },
+        error: function(data) {
+            return $('#change-language-error').html("An error occurred. Please try again later.").show();
+        }
+    });
+};
+
 $(window).bind('orientationchange pageshow resize', setUpMapDimensions);
 
 /**
@@ -354,9 +377,27 @@ $(document).ready(function() {
     }
     return false;
   });
-  return $('#modal-login-form').submit(function(e) {
+  $('.ui-change-language-link').click(function(e) {
+    e.preventDefault();
+    $('#change-language-modal').modal('toggle');
+    if ($('#change-language-modal').is('.in')) {
+        $(document).unbind('keyup');
+        $(document).bind('keyup', function(event) {
+            if ($("*:focus").parents('#change-language-modal').length === 0) {
+                return $('#modal-change-language-form-language').focus();
+            }
+        });
+        $('#modal-change-language-form-language').focus();
+    }
+    return false;
+  });
+  $('#modal-login-form').submit(function(e) {
     e.preventDefault();
     return handleLogin();
+  });
+  $('#modal-change-language-form').submit(function(e) {
+    e.preventDefault();
+    return handleChangeLanguage();
   });
 });
 
