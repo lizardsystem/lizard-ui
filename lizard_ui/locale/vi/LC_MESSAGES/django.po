@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lizardsystem\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-13 13:07+0100\n"
-"PO-Revision-Date: 2013-02-19 13:54+0000\n"
+"POT-Creation-Date: 2013-02-20 09:12+0100\n"
+"PO-Revision-Date: 2013-02-20 08:16+0000\n"
 "Last-Translator: admin <admin@example.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -65,48 +65,70 @@ msgstr ""
 msgid "Number used for ordering icons relative to each other."
 msgstr ""
 
-#: views.py:238
+#: views.py:276 templates/lizard_ui/change_language.html:12
+msgid "Language"
+msgstr ""
+
+#: views.py:290
+msgid "Pick a language"
+msgstr ""
+
+#: views.py:301
 msgid "Your current username"
 msgstr ""
 
-#: views.py:251
+#: views.py:314
 msgid "logout"
 msgstr ""
 
-#: views.py:252
+#: views.py:315
 msgid "Click here to logout"
 msgstr ""
 
-#: views.py:266 templates/lizard_ui/login.html:50
+#: views.py:329 templates/lizard_ui/login.html:50
 #: templates/lizard_ui/modal_login.html:5
 #: templates/lizard_ui/modal_login.html:33
 msgid "Login"
 msgstr "Dăng Nhập"
 
-#: views.py:267
+#: views.py:330
 msgid "Click here to login"
 msgstr ""
 
-#: views.py:382
+#: views.py:446
 msgid "Edit"
 msgstr ""
 
-#: views.py:383
+#: views.py:447
 msgid "Edit this page."
 msgstr ""
 
-#: views.py:412
+#: views.py:477
 msgid "Navigation"
 msgstr ""
 
-#: views.py:413 views.py:420 views.py:438
+#: views.py:478 views.py:485 views.py:503
 msgid "Collapse or expand this panel"
 msgstr ""
 
-#: templates/lizard_ui/cmsbase.html:11 templates/lizard_ui/realbase.html:100
+#: templates/lizard_ui/change_language.html:5
+msgid "Change language"
+msgstr ""
+
+#: templates/lizard_ui/change_language.html:26
+msgid "Change"
+msgstr ""
+
+#: templates/lizard_ui/cmsbase.html:11 templates/lizard_ui/realbase.html:101
 msgid "Back to homepage"
 msgstr ""
 
 #: templates/lizard_ui/login.html:11 templates/lizard_ui/modal_login.html:12
 msgid "Name"
 msgstr ""
+
+#~ msgid "edit"
+#~ msgstr "edit"
+
+#~ msgid "Collapse"
+#~ msgstr "Collapse"

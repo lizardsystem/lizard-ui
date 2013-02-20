@@ -1,0 +1,32 @@
+{% load i18n %}
+<div class="modal hide" id="change-language-modal">
+    <div class="modal-header">
+        <a class="close" data-dismiss="modal">×</a>
+        <h3>{% trans 'Change language' %}</h3>
+    </div>
+    <form id="modal-change-language-form" class="form-horizontal" name="modal-change-language-form" action="#" method="POST">
+        <div class="modal-body">
+            <div id="change-language-error" class="alert alert-error" style="display: none;"></div>
+            <fieldset>
+                <div class="control-group">
+                    <label class="control-label">{% trans "Language" %}</label>
+                    <div class="controls">
+                        <select name="language">
+                            {% get_language_info_list for LANGUAGES as languages %}
+                            {% get_current_language as current_language %}
+                            {% for lang in languages %}
+                                <option {% ifequal current_language lang.code %}selected="selected"{% endifequal %} value="{{ lang.code }}">{{ lang.name_local }} ({{ lang.code }})</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+            </fieldset>
+        </div>
+        <div class="modal-footer">
+            <input type="submit" id="modal-change-language-form-btn" class="btn btn-primary" value="{% trans 'Change' %}" />
+        </div>
+        <input type="hidden"
+               name="change-language-url"
+               value="{% url lizard_ui.change_language %}" />
+    </form>
+</div>

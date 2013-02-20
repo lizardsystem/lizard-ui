@@ -5,13 +5,13 @@ Changelog of lizard-ui
 4.21 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Add language selector.
 
 
 4.20 (2013-02-19)
 -----------------
 
-- Add vietnamese translation for `Login` for testing purposes. 
+- Add vietnamese translation for `Login` for testing purposes.
 
 
 4.19 (2013-02-19)
