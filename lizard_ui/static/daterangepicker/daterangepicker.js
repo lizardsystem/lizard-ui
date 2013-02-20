@@ -486,9 +486,6 @@
                     var item = calendar[row][col];
                     cname += (item.month() == calendar[1][1].month()) ? '' : 'off';
 
-                    // Normalise the time so the comparison won't fail
-                    selected.hours(0).minutes(0).seconds(0).milliseconds(0);
-
                     if ((minDate && item < minDate) || (maxDate && item > maxDate))
                     {
                         cname = 'off disabled';
