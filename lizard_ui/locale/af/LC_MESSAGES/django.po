@@ -1,0 +1,137 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+#
+# Translators:
+# Translators:
+# Fritz van Deventer <fritz.vandeventer@nelen-schuurmans.nl>, 2013.
+msgid ""
+msgstr ""
+"Project-Id-Version: lizardsystem\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-02-20 09:12+0100\n"
+"PO-Revision-Date: 2013-02-20 13:18+0000\n"
+"Last-Translator: Fritz van Deventer <fritz.vandeventer@nelen-schuurmans.nl>\n"
+"Language-Team: Afrikaans (http://translations.lizard.net/projects/p/"
+"lizardsystem/team/af/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: af\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#: forms.py:10
+msgid "Username"
+msgstr "Gebruiker"
+
+#: forms.py:14 templates/lizard_ui/login.html:28
+#: templates/lizard_ui/modal_login.html:24
+msgid "Password"
+msgstr "Wagwoord"
+
+#: models.py:18 models.py:85
+msgid "name"
+msgstr "naam"
+
+#: models.py:20 models.py:91
+msgid "description"
+msgstr "beskrywing"
+
+#: models.py:87
+msgid "icon"
+msgstr "simbool"
+
+#: models.py:89
+msgid ""
+"Either a full URL or an /static_media/... URL or lizard_ui/app_icons/..."
+msgstr ""
+"Iewers 'n volledige URL of 'n /static_media/... URL of lizard_ui/"
+"app_icons/..."
+
+#: models.py:92
+msgid "url"
+msgstr "URL"
+
+#: models.py:95
+msgid "Application screen we're a part of"
+msgstr "Applikasieskerm waar ons onderdeel van uitmaka"
+
+#: models.py:99
+msgid "Application screen we point at (this disables the url)"
+msgstr "Applikasieskerm waar ons toe wys (dit skakel die URL af)"
+
+#: models.py:104
+msgid "index"
+msgstr "inhoudsopgawe"
+
+#: models.py:106
+msgid "Number used for ordering icons relative to each other."
+msgstr "Nommer wat gebruik word om simbole relatief te organiseer "
+
+#: views.py:276 templates/lizard_ui/change_language.html:12
+msgid "Language"
+msgstr "Taal"
+
+#: views.py:290
+msgid "Pick a language"
+msgstr "Kies 'n taal"
+
+#: views.py:301
+msgid "Your current username"
+msgstr "Jou huidige gebruikersnaam"
+
+#: views.py:314
+msgid "logout"
+msgstr "teken uit"
+
+#: views.py:315
+msgid "Click here to logout"
+msgstr "Klik hier om uit te teken"
+
+#: views.py:329 templates/lizard_ui/login.html:50
+#: templates/lizard_ui/modal_login.html:5
+#: templates/lizard_ui/modal_login.html:33
+msgid "Login"
+msgstr "Teken in"
+
+#: views.py:330
+msgid "Click here to login"
+msgstr "Klik "
+
+#: views.py:446
+msgid "Edit"
+msgstr "Wysig"
+
+#: views.py:447
+msgid "Edit this page."
+msgstr "Wysig hierdie bladsy"
+
+#: views.py:477
+msgid "Navigation"
+msgstr "Navigasie"
+
+#: views.py:478 views.py:485 views.py:503
+msgid "Collapse or expand this panel"
+msgstr "Klap hierdie paneel uit of in"
+
+#: templates/lizard_ui/change_language.html:5
+msgid "Change language"
+msgstr "Verander taal"
+
+#: templates/lizard_ui/change_language.html:26
+msgid "Change"
+msgstr "Verander"
+
+#: templates/lizard_ui/cmsbase.html:11 templates/lizard_ui/realbase.html:101
+msgid "Back to homepage"
+msgstr "Terug naar die huis bladsy"
+
+#: templates/lizard_ui/login.html:11 templates/lizard_ui/modal_login.html:12
+msgid "Name"
+msgstr "Naam"
+
+#~ msgid "edit"
+#~ msgstr "edit"
+
+#~ msgid "Collapse"
+#~ msgstr "Collapse"
