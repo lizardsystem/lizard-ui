@@ -10,8 +10,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: lizardsystem\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-02-13 13:07+0100\n"
-"PO-Revision-Date: 2013-02-13 12:10+0000\n"
+"POT-Creation-Date: 2013-02-20 09:12+0100\n"
+"PO-Revision-Date: 2013-02-20 08:17+0000\n"
 "Last-Translator: admin <admin@example.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -70,48 +70,70 @@ msgstr "index"
 msgid "Number used for ordering icons relative to each other."
 msgstr "Nummer om iconen relatief t.o.v. elkaar op volgorde te zetten."
 
-#: views.py:238
+#: views.py:276 templates/lizard_ui/change_language.html:12
+msgid "Language"
+msgstr "Taal"
+
+#: views.py:290
+msgid "Pick a language"
+msgstr "Kies een taal"
+
+#: views.py:301
 msgid "Your current username"
 msgstr "Uw huidige gebruikersnaam"
 
-#: views.py:251
+#: views.py:314
 msgid "logout"
 msgstr "Log uit"
 
-#: views.py:252
+#: views.py:315
 msgid "Click here to logout"
 msgstr "Klik hier om uit te loggen"
 
-#: views.py:266 templates/lizard_ui/login.html:50
+#: views.py:329 templates/lizard_ui/login.html:50
 #: templates/lizard_ui/modal_login.html:5
 #: templates/lizard_ui/modal_login.html:33
 msgid "Login"
 msgstr "Log in"
 
-#: views.py:267
+#: views.py:330
 msgid "Click here to login"
 msgstr "Klik hier om in te loggen"
 
-#: views.py:382
+#: views.py:446
 msgid "Edit"
 msgstr "Bewerken"
 
-#: views.py:383
+#: views.py:447
 msgid "Edit this page."
 msgstr "Bewerk deze pagina."
 
-#: views.py:412
+#: views.py:477
 msgid "Navigation"
 msgstr "Navigatie"
 
-#: views.py:413 views.py:420 views.py:438
+#: views.py:478 views.py:485 views.py:503
 msgid "Collapse or expand this panel"
 msgstr "Klap dit paneel in of uit"
 
-#: templates/lizard_ui/cmsbase.html:11 templates/lizard_ui/realbase.html:100
+#: templates/lizard_ui/change_language.html:5
+msgid "Change language"
+msgstr "Verander taal"
+
+#: templates/lizard_ui/change_language.html:26
+msgid "Change"
+msgstr "Verander"
+
+#: templates/lizard_ui/cmsbase.html:11 templates/lizard_ui/realbase.html:101
 msgid "Back to homepage"
 msgstr "Terug naar hoofdpagina."
 
 #: templates/lizard_ui/login.html:11 templates/lizard_ui/modal_login.html:12
 msgid "Name"
 msgstr "Naam"
+
+#~ msgid "edit"
+#~ msgstr "edit"
+
+#~ msgid "Collapse"
+#~ msgstr "Collapse"
