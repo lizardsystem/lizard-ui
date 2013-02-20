@@ -1,6 +1,6 @@
 from setuptools import setup
 
-version = '4.20.dev0'
+version = '4.21.dev0'
 
 long_description = '\n\n'.join([
     open('README.rst').read(),
@@ -25,6 +25,8 @@ install_requires = [
     ],
 
 tests_require = [
+    'nose',
+    'coverage',
     ]
 
 setup(name='lizard-ui',

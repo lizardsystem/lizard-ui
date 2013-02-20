@@ -2,7 +2,13 @@ Changelog of lizard-ui
 ======================
 
 
-4.20 (unreleased)
+4.21 (unreleased)
+-----------------
+
+- Nothing changed yet.
+
+
+4.20 (2013-02-19)
 -----------------
 
 - Add vietnamese translation for `Login` for testing purposes. 
