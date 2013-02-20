@@ -2,11 +2,74 @@ Changelog of lizard-ui
 ======================
 
 
-4.13 (unreleased)
+4.20 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Add vietnamese translation for `Login` for testing purposes. 
 
+
+4.19 (2013-02-19)
+-----------------
+
+- Upgrade to zc.buildout 2.0.1.
+
+- Use translations package to manage translations.
+
+- Update translation files for dutch and vietnamese.
+
+
+4.18 (2013-02-11)
+-----------------
+
+- Updated the app_icons.
+
+
+4.17 (2013-01-28)
+-----------------
+
+- Fixed logo: removed artifacts; made the toes of the lizard more pronounced.
+
+
+4.16 (2013-01-22)
+-----------------
+
+- When SSO_ENABLED evaluates to True in your settings,
+  login/logout become real hyperlinks, instead of the modal popup.
+  The links then point to the url alias named 'login'.
+
+- Fixed a bug when map is unavailable during opening / closing the sidebar.
+
+- Update to jQuery UI 1.8.24.
+
+
+4.15 (2012-12-19)
+-----------------
+
+- Fixed urls.py, so it won't recusively include other lizard-* URLs when
+  running as part of a site.
+
+- Made the appscreen admin more user friendly.
+
+- Initialize popovers again after fast appscreen load.
+
+
+4.14 (2012-12-17)
+-----------------
+
+- Added flot.fillbetween plugin to the list of Javascript files.
+
+- Applied the rename of jquery's .ui-button to .xui-button everywhere.
+
+- Also renamed jquerys $(el).button to $(el).jqbutton as to now conflict
+  with Bootstrap.
+
+
+4.13 (2012-12-04)
+-----------------
+
+- Updated a Django version.
+
+- Align the popup-loading spinner in the middle.
 
 4.12 (2012-11-22)
 -----------------

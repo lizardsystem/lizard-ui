@@ -302,19 +302,37 @@ class UiView(ViewContextMixin, TemplateView):
                 actions.append(action)
                 # Separate logout action.
                 action = Action()
-                action.url = '%s?%s' % (reverse('lizard_ui.logout'),
-                                        query_string)
-                action.name = _('Logout')
+                if getattr(settings, 'SSO_ENABLED', False):
+                    # point to the SSO logout page (which redirects
+                    # to another server)
+                    action.url = '%s?%s' % (reverse('logout'),
+                                            query_string)
+                else:
+                    # fall back to the old (local) logout page
+                    action.url = '%s?%s' % (reverse('lizard_ui.logout'),
+                                            query_string)
+                action.name = _('logout')
                 action.description = _('Click here to logout')
                 action.klass = 'ui-logout-link'
                 actions.append(action)
             else:
                 action = Action(icon='icon-user')
-                action.url = '%s?%s' % (reverse('lizard_ui.login'),
-                                        query_string)
+                if getattr(settings, 'SSO_ENABLED', False):
+                    # point to the SSO login page (which redirects
+                    # to another server)
+                    action.url = '%s?%s' % (reverse('login'),
+                                            query_string)
+                else:
+                    # fall back to the old (local) login form
+                    action.url = '%s?%s' % (reverse('lizard_ui.login'),
+                                            query_string)
                 action.name = _('Login')
                 action.description = _('Click here to login')
-                action.klass = 'ui-login-link'
+                if getattr(settings, 'SSO_ENABLED', False):
+                    action.klass = 'ui-sso-login-link'
+                else:
+                    # fall back to the javascript login modal
+                    action.klass = 'ui-login-link'
                 actions.append(action)
         return actions
 
@@ -331,7 +349,8 @@ class UiView(ViewContextMixin, TemplateView):
             if icon_url == '/':
                 # Pointer at a CMS page above us, probably.
                 continue
-            if icon_url.startswith('http://') or icon_url.startswith('https://'):
+            if (icon_url.startswith('http://') or
+                icon_url.startswith('https://')):
                 # External url, so it cannot match.
                 continue
             if not icon_url.startswith('/'):
@@ -453,10 +472,11 @@ class UiView(ViewContextMixin, TemplateView):
         yourself regarding adding new ones.
 
         """
-        collapse_action = Action(icon='icon-arrow-left',
-                                 name=_('Navigation'),
-                                 description=_('Collapse or expand this panel'),
-                                 klass='collapse-sidebar')
+        collapse_action = Action(
+            icon='icon-arrow-left',
+            name=_('Navigation'),
+            description=_('Collapse or expand this panel'),
+            klass='collapse-sidebar')
         actions = [collapse_action]
         if self.show_secondary_sidebar_title:
             # Having a title means we want to show it.

@@ -108,7 +108,9 @@ var closeSidebar = function() {
   $('div#content').animate({
     left: 0
   }, animationSpeed, function() {
-    if (map) map.updateSize();
+    if (typeof map !== 'undefined') {
+        map.updateSize();
+    }
     return setUpMapDimensions();
   });
 };
@@ -122,7 +124,9 @@ var openSidebar = function() {
   $('div#content').animate({
     left: 300
   }, animationSpeed, function() {
-    if (map) map.updateSize();
+    if (typeof map !== 'undefined') {
+        map.updateSize();
+    }
     return setUpMapDimensions();
   });
   $('.secondary-sidebar-button').removeAttr('disabled');
@@ -424,6 +428,8 @@ function setup_appscreen_instant_load() {
                             $old_breadcrumbs.replaceWith($data.find('#breadcrumbs'));
                             // hide popovers which might still be active
                             $('div.popover').remove();
+                            // initialize any new popovers
+                            setUpPopovers();
                         }
                         catch (err) {
                             redirect();

@@ -5835,4 +5835,14 @@ a.collage-add {
   -o-transition: none;
   transition: none;
 }
+.popup-loading-animation {
+  display: block;
+  height: 32px;
+  width: 32px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-left: -16px;
+  margin-top: -16px;
+}
 /* Empty, use this to override basic colors for a specific site. */
