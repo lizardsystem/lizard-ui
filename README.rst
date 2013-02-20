@@ -260,3 +260,28 @@ versions), add them as an "svn external" in the ``local_checkouts/`` directory
 and add them to the ``develop =`` list in buildout.cfg.
 
 Tests can always be run with ``bin/test`` or ``bin\test.exe``.
+
+
+Language selector
+-----------------
+Starting with version 4.21 a language selector has been added to lizard-ui.
+To activate the language selector for your project, put these changes in
+your settings file:
+
+- Make sure ``USE_I18N = True`` is set.
+
+- Add ``UI_SHOW_LANGUAGE_PICKER = True``.
+
+- Add ``'django.middleware.locale.LocaleMiddleware'`` to
+  ``MIDDLEWARE_CLASSES`` just below the SessionMiddleware line and above the
+  CommonMiddleware line.
+
+- Put the available languages in the ``LANGUAGES`` settings, e.g.::
+
+        LANGUAGES = (
+            ('en', 'English'),
+            ('nl', 'Nederlands'),
+            ('vi', 'Việt'),
+        )
+
+- Pick a default language, e.g. ``LANGUAGE_CODE = 'en'``

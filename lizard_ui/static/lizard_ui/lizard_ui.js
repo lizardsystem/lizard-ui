@@ -230,6 +230,9 @@ var handleChangeLanguage = function() {
             } else {
                 return $('#change-language-error').html(data.error_message).show();
             }
+        },
+        error: function(data) {
+            return $('#change-language-error').html("An error occurred. Please try again later.").show();
         }
     });
 };
