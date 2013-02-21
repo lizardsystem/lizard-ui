@@ -406,9 +406,15 @@ function setUpAccordion() {
 
 function setUpBars() {
     // set initial states from data attributes, without animating
-    setSidebarState($('#sidebar').data('collapsed'), true);
-    setRightbarState($('#rightbar').data('collapsed'), true);
-    setSecondarySidebarState($('#secondary-sidebar').data('collapsed'), true);
+    if ($('#sidebar').exists()) {
+        setSidebarState($('#sidebar').data('collapsed'), true);
+    }
+    if ($('#rightbar').exists()) {
+        setRightbarState($('#rightbar').data('collapsed'), true);
+    }
+    if ($('#secondary-sidebar').exists()) {
+        setSecondarySidebarState($('#secondary-sidebar').data('collapsed'), true);
+    }
 
     // bind buttons
     $('.collapse-sidebar').click(function(e) {

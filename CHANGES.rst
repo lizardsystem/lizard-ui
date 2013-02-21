@@ -5,7 +5,8 @@ Changelog of lizard-ui
 4.23 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Apps can now completely remove the sidebar and rightbar elements
+  without breaking the JavaScript.
 
 
 4.22 (2013-02-21)
