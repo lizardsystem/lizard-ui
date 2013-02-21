@@ -7,6 +7,8 @@ Changelog of lizard-ui
 
 - Add translation to Afrikaans.
 
+- Prevent daterangepicker to round to full days / hours.
+
 
 4.21 (2013-02-20)
 -----------------
