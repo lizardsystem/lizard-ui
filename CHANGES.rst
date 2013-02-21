@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-4.22 (unreleased)
+4.22 (2013-02-21)
 -----------------
 
 - Add translation to Afrikaans.
