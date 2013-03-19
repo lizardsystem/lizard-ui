@@ -124,7 +124,10 @@ var setSidebarState = function(collapse, preventAnim) {
             animationSpeed,
             function() {
                 if (typeof map !== 'undefined') {
-                    map.updateSize();
+                    if (typeof map.updateSize !== 'undefined') {
+                        // Somehow this extra check is needed for Safari.
+                        map.updateSize();
+                    }
                 }
             }
         );
@@ -151,7 +154,10 @@ var setSidebarState = function(collapse, preventAnim) {
             animationSpeed,
             function() {
                 if (typeof map !== 'undefined') {
-                    map.updateSize();
+                    if (typeof map.updateSize !== 'undefined') {
+                        // Somehow this extra check is needed for Safari.
+                        map.updateSize();
+                    }
                 }
             }
         );
