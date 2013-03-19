@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-4.23 (unreleased)
+4.23 (2013-03-19)
 -----------------
 
 - Actions now always use the ``data_attributes`` instead of only using them
