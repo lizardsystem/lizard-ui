@@ -2,8 +2,17 @@ Changelog of lizard-ui
 ======================
 
 
-4.23 (unreleased)
+4.24 (unreleased)
 -----------------
+
+- Nothing changed yet.
+
+
+4.23 (2013-03-19)
+-----------------
+
+- Actions now always use the ``data_attributes`` instead of only using them
+  for the content-actions.
 
 - Apps can now completely remove the sidebar and rightbar elements
   without breaking the JavaScript.
