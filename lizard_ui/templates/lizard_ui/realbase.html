@@ -115,7 +115,11 @@
                              {% if action.description %}
                                title="{{ action.description }}"
                              {% endif %}
-                             class="{{ action.klass }}">
+                             class="{{ action.klass }}"
+                             {% for item in action.data_attributes.items %}
+                               data-{{ item.0 }}="{{ item.1 }}"
+                             {% endfor %}
+                             >
                             {% if action.icon %}
                               <i class="{{ action.icon }}"></i>
                             {% endif %}
@@ -147,6 +151,9 @@
                             {% if action.klass %}
                               class="{{ action.klass }}"
                             {% endif %}
+                             {% for item in action.data_attributes.items %}
+                               data-{{ item.0 }}="{{ item.1 }}"
+                             {% endfor %}
                              >
                             {% if action.icon %}
                               <i class="{{ action.icon }}"></i>
@@ -241,6 +248,9 @@
                           {% else %}
                             class="btn {{ action.klass }}"
                           {% endif %}
+                          {% for item in action.data_attributes.items %}
+                            data-{{ item.0 }}="{{ item.1 }}"
+                          {% endfor %}
                           >
                           {% if action.icon %}
                             <i class="{{ action.icon }}"></i>
@@ -267,10 +277,11 @@
                           <button type="button"
                             {% if action.description %}
                               title="{{ action.description }}"
-                              class="btn {{ action.klass }}"
-                            {% else %}
-                              class="btn {{ action.klass }}"
                             {% endif %}
+                            class="btn {{ action.klass }}"
+                            {% for item in action.data_attributes.items %}
+                              data-{{ item.0 }}="{{ item.1 }}"
+                            {% endfor %}
                             >
                             {% if action.icon %}
                               <i class="{{ action.icon }}"></i>
@@ -301,6 +312,9 @@
                           {% else %}
                             class="btn {{ action.klass }}"
                           {% endif %}
+                          {% for item in action.data_attributes.items %}
+                            data-{{ item.0 }}="{{ item.1 }}"
+                          {% endfor %}
                           >
                           {% if action.icon %}
                             <i class="{{ action.icon }}"></i>
