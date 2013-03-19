@@ -34,7 +34,7 @@ var ieVersion = 0;
         isIE = true;
         var ua = navigator.userAgent;
         var re = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})");
-        if (re.exec(ua) != null) {
+        if (re.exec(ua) !== null) {
             var rv = parseFloat(RegExp.$1);
             ieVersion = rv;
         }
@@ -46,7 +46,7 @@ var ieVersion = 0;
  */
 var isAppleMobile = false;
 (function () {
-    if (navigator && navigator.userAgent && navigator.userAgent != null) {
+    if (navigator && navigator.userAgent && navigator.userAgent !== null) {
         var strUserAgent = navigator.userAgent.toLowerCase();
         var arrMatches = strUserAgent.match(/(iphone|ipod|ipad)/);
         if (arrMatches)
@@ -67,6 +67,9 @@ jQuery.fn.exists = function () {
 // http://benalman.com/
 // Copyright (c) 2011 Ben Alman; Licensed MIT, GPL
 (function($){var a,b=decodeURIComponent,c=$.deparam=function(a,d){var e={};$.each(a.replace(/\+/g," ").split("&"),function(a,f){var g=f.split("="),h=b(g[0]);if(!!h){var i=b(g[1]||""),j=h.split("]["),k=j.length-1,l=0,m=e;j[0].indexOf("[")>=0&&/\]$/.test(j[k])?(j[k]=j[k].replace(/\]$/,""),j=j.shift().split("[").concat(j),k++):k=0,$.isFunction(d)?i=d(h,i):d&&(i=c.reviver(h,i));if(k)for(;l<=k;l++)h=j[l]!==""?j[l]:m.length,l<k?m=m[h]=m[h]||(isNaN(j[l+1])?{}:[]):m[h]=i;else $.isArray(e[h])?e[h].push(i):h in e?e[h]=[e[h],i]:e[h]=i}});return e};c.reviver=function(b,c){var d={"true":!0,"false":!1,"null":null,"undefined":a};return+c+""===c?+c:c in d?d[c]:c}})(jQuery);
+// ^^^ TODO: this gives 11 jshint errors.
+// And *what* does it do?
+
 
 // some class aliases for Bootstrap information popovers
 var setUpPopovers = function() {
@@ -215,10 +218,11 @@ var setRightbarState = function(collapse, preventAnim) {
 
 // secondary left bar, for workspace and collage
 var setSecondarySidebarState = function(collapse, preventAnim) {
-    var animationSpeed = preventAnim === true ? 0 : defaultAnimationSpeed;
+    var top, bottom, element, animationSpeed;
+    animationSpeed = preventAnim === true ? 0 : defaultAnimationSpeed;
     if (collapse) {
-        var bottom = $("#footer").position().top;
-        var element = $("#secondary-sidebar");
+        bottom = $("#footer").position().top;
+        element = $("#secondary-sidebar");
         element.css("overflow-y", "hidden");
         $("#secondary-sidebar").animate(
             {
@@ -229,10 +233,10 @@ var setSecondarySidebarState = function(collapse, preventAnim) {
         $('.secondary-sidebar-button').removeClass('active');
     }
     else {
-        var top = $("#sidebar").position().top;
+        top = $("#sidebar").position().top;
         $('.secondary-sidebar-button').addClass('active');
-        var bottom = $("#footer").position().top;
-        var element = $("#secondary-sidebar");
+        bottom = $("#footer").position().top;
+        element = $("#secondary-sidebar");
         element.css('top', bottom);
         element.show();
         element.animate(
