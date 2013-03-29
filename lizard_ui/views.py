@@ -13,8 +13,9 @@ from django.http import Http404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render
-from django.utils.translation import ugettext as _, get_language,\
-    check_for_language
+from django.utils.translation import check_for_language
+from django.utils.translation import get_language
+from django.utils.translation import ugettext as _
 from django.views.generic.base import TemplateView, View
 from django.views.generic.edit import FormView
 
