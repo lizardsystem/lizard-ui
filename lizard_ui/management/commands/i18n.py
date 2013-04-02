@@ -20,6 +20,8 @@ class Command(makemessages.Command):
 
         - No need to chdir to the app/site's directory, we guess that.
 
+        - Follow symlinks in the app/site's directory for more po files.
+
         - By default, all existing locales are updated instead of requiring
           you to specify that.
 
@@ -36,6 +38,7 @@ class Command(makemessages.Command):
         if not options.get('locale'):
             logger.info("No locale specified, updating all existing ones.")
             options['all'] = True
+        options['symlinks'] = True
         makemessages.Command.handle_noargs(self, *args, **options)
         logger.info("Also compiling all .po files into .mo.")
         compilemessages.compile_messages(self.stderr)

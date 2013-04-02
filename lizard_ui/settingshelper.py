@@ -61,7 +61,6 @@ def setup_logging(buildout_dir,
             'sentry': {
                 'level': sentry_level,
                 'class': 'raven.contrib.django.handlers.SentryHandler',
-                'formatter': 'verbose'
                 },
             },
         'loggers': {
