@@ -1,6 +1,6 @@
 from setuptools import setup
 
-version = '4.12.dev0'
+version = '4.16.dev0'
 
 long_description = '\n\n'.join([
     open('README.rst').read(),
@@ -11,7 +11,7 @@ long_description = '\n\n'.join([
 
 install_requires = [
     'BeautifulSoup',
-    'Django >= 1.3',
+    'Django >= 1.4',
     'django-nose',
     'django-extensions',
     'django-staticfiles >= 1.0',

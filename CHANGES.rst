@@ -2,7 +2,45 @@ Changelog of lizard-ui
 ======================
 
 
-4.12 (unreleased)
+4.16 (unreleased)
+-----------------
+
+- Changed login/logout to be real hyperlinks instead of the modal popup.
+  The links now point to the url alias named 'login'.
+
+- Fixed a bug when map is unavailable during opening / closing the sidebar.
+
+
+4.15 (2012-12-19)
+-----------------
+
+- Fixed urls.py, so it won't recusively include other lizard-* URLs when
+  running as part of a site.
+
+- Made the appscreen admin more user friendly.
+
+- Initialize popovers again after fast appscreen load.
+
+
+4.14 (2012-12-17)
+-----------------
+
+- Added flot.fillbetween plugin to the list of Javascript files.
+
+- Applied the rename of jquery's .ui-button to .xui-button everywhere.
+
+- Also renamed jquerys $(el).button to $(el).jqbutton as to now conflict
+  with Bootstrap.
+
+
+4.13 (2012-12-04)
+-----------------
+
+- Updated a Django version.
+
+- Align the popup-loading spinner in the middle.
+
+4.12 (2012-11-22)
 -----------------
 
 - Fixed graph axislabels.
@@ -11,6 +49,16 @@ Changelog of lizard-ui
 
 - Moved graph stuff to lizard-map, which is a more suitable place for it (in the current app structure).
   In the future all UI stuff should go to lizard-ui.
+
+- Updated Twitter Bootstrap to v2.2.1.
+
+- Added better support for clickable popovers.
+
+- Changed tree styling a bit to support info icons next to tree items.
+
+- Disabled fadeIn for OpenLayers tiles.
+
+- Added a track that 'instantly' loads application screens.
 
 
 4.11 (2012-10-18)

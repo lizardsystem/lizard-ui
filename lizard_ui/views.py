@@ -8,7 +8,7 @@ import json
 from django.conf import settings
 from django.contrib.auth import login
 from django.contrib.auth import logout
-from django.core.urlresolvers import reverse
+from django.core.urlresolvers import reverse, NoReverseMatch
 from django.http import Http404
 from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404
@@ -239,16 +239,28 @@ class UiView(ViewContextMixin, TemplateView):
                 actions.append(action)
                 # Separate logout action.
                 action = Action()
-                action.url = '%s?%s' % (reverse('lizard_ui.logout'),
-                                        query_string)
+                try:
+                    action.url = '%s?%s' % (reverse('logout'),
+                                            query_string)
+                except NoReverseMatch:
+                    # lizard-auth-client not yet integrated: fall back
+                    # to the old (local) logout page
+                    action.url = '%s?%s' % (reverse('lizard_ui.logout'),
+                                            query_string)
                 action.name = _('logout')
                 action.description = _('Click here to logout')
                 action.klass = 'ui-logout-link'
                 actions.append(action)
             else:
                 action = Action(icon='icon-user')
-                action.url = '%s?%s' % (reverse('lizard_ui.login'),
-                                        query_string)
+                try:
+                    action.url = '%s?%s' % (reverse('login'),
+                                            query_string)
+                except NoReverseMatch:
+                    # lizard-auth-client not yet integrated: fall back
+                    # to the old (local) login form
+                    action.url = '%s?%s' % (reverse('lizard_ui.login'),
+                                            query_string)
                 action.name = _('Login')
                 action.description = _('Click here to login')
                 action.klass = 'ui-login-link'

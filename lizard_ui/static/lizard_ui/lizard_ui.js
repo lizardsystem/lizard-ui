@@ -205,7 +205,9 @@ var closeSidebar = function() {
   $('div#content').animate({
     left: 0
   }, animationSpeed, function() {
-    if (map) map.updateSize();
+    if (typeof map !== 'undefined') {
+        map.updateSize();
+    }
     return setUpMapDimensions();
   });
 };
@@ -219,7 +221,9 @@ var openSidebar = function() {
   $('div#content').animate({
     left: 300
   }, animationSpeed, function() {
-    if (map) map.updateSize();
+    if (typeof map !== 'undefined') {
+        map.updateSize();
+    }
     return setUpMapDimensions();
   });
   $('.secondary-sidebar-button').removeAttr('disabled');
@@ -376,10 +380,12 @@ function setUpAccordion() {
                         // Refresh target pane contents only.
                         ourId = "#" + $(this).attr("id");
                         if (ourId === nextPaneId) {
-                            $(this).html($(data).find(ourId));
+                            $(this).html($(data).find(ourId).html());
+                            $(this).data("tree-initialized", false);
                         }
                     });
                     setUpTree();
+                    setUpPopovers();
                 },
                 error: function (e) {
                     $(nextPaneId).html('<div class="ss_error ss_sprite" />' +
@@ -431,6 +437,8 @@ $(document).ready(function() {
       return window.rightbarState = "opened";
     }
   });
+  // Disabled due to SSO login
+  /*
   $('.ui-login-link').click(function(e) {
     e.preventDefault();
     $('#login-modal').modal('toggle');
@@ -449,7 +457,54 @@ $(document).ready(function() {
     e.preventDefault();
     return handleLogin();
   });
+  */
 });
+
+function setup_appscreen_instant_load() {
+    $('.ui-icon-list a').each(function () {
+        var href = $(this).attr('href');
+        if (href) {
+            // ensure icon link is relative and contains '/screen/', so we know it points
+            // to another appscreen
+            if (href.length > 1 && href[0] == '/' && href.indexOf('/screen/') != -1) {
+                $(this).click(function (e) {
+                    // ensure click event is cancelled
+                    if (e) {
+                        e.stopPropagation();
+                        e.preventDefault();
+                    }
+                    // define an error handler that just does a location.replace, in case
+                    // of an error
+                    var redirect = function () {
+                        window.location.href = href;
+                    };
+                    // retrieve the page asynchronously
+                    $.get(href)
+                    .success(function (data) {
+                        try {
+                            // replace sidebar and crumb elements with the new content
+                            var $old_sidebar = $('#sidebar');
+                            var $old_breadcrumbs = $('#breadcrumbs');
+                            var $data = $(data);
+                            $old_sidebar.replaceWith($data.find('#sidebar'));
+                            $old_breadcrumbs.replaceWith($data.find('#breadcrumbs'));
+                            // hide popovers which might still be active
+                            $('div.popover').remove();
+                            // initialize any new popovers
+                            setUpPopovers();
+                        }
+                        catch (err) {
+                            redirect();
+                        }
+                    })
+                    .error(function () {
+                        redirect();
+                    });
+                });
+            }
+        }
+    });
+}
 
 $(document).ready(function () {
     // fix div heights for IE7
@@ -465,7 +520,4 @@ $(document).ready(function () {
     setUpTree();
     setUpSortableTables();
     setUpAccordion();
-
-
-
 });

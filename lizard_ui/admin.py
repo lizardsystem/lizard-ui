@@ -13,6 +13,9 @@ class ApplicationIconInline(admin.TabularInline):
 class ApplicationScreenAdmin(admin.ModelAdmin):
     inlines = [ApplicationIconInline, ]
 
+class ApplicationIconAdmin(SecurityFilteredAdmin):
+    list_display = ['__str__', 'name', 'url']
+    list_editable = ['url', 'name']
 
-admin.site.register(ApplicationIcon, SecurityFilteredAdmin)
+admin.site.register(ApplicationIcon, ApplicationIconAdmin)
 admin.site.register(ApplicationScreen, ApplicationScreenAdmin)

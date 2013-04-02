@@ -397,7 +397,8 @@ ul.tree {
             outline: 1px solid #000;
         }
 
-        &.selected{
+        &.selected,
+        &.selected-invisible{
             background-color: #d9d9d6;
         }
     }
@@ -406,15 +407,8 @@ ul.tree {
 // Mostly used by lizard-fewsjdbc
 #sidebar ul.filetree {
     list-style: none;
-    margin: 0;
+    margin: 0 0 9px 0;
     padding: 0;
-
-    li.expandable span.folder,
-    li.collapsable span.folder {
-        cursor: pointer;
-        display: block;
-        margin: 6px 0;
-    }
 
     ul {
         list-style: none;
@@ -422,30 +416,35 @@ ul.tree {
     }
 
     li {
-        margin: 2px 0;
+        margin: 6px 0;
+        position: relative;
         .selected {
           background-color: #D9D9D6;
         }
     }
 
-    div.hitarea {
-        width: 16px;
-        height: 16px;
-        float: left;
+    .hitarea {
+        padding-left: 16px;
         cursor: pointer;
     }
 
-    div.expandable-hitarea {
+    .expandable-hitarea {
         background: url("../../lizard_ui/arrows.png") no-repeat scroll 6px -10px transparent;
     }
 
-    div.collapsable-hitarea {
+    .collapsable-hitarea {
         background: url("../../lizard_ui/arrows.png") no-repeat scroll -7px 5px transparent;
     }
 
-    a.file {
+    .file {
         display: block;
-        margin: 6px 0;
+    }
+
+    .sidebarbox-action-icon {
+        position: absolute;
+        top: 0;
+        right: 0;
+        cursor: pointer;
     }
 }
 /* ****************** /Treeview ************ */
@@ -665,4 +664,24 @@ a.collage-add {
 // Ensure popovers are above the Google Maps logo
 .olLayerGooglePoweredBy, .olLayerGoogleCopyright {
   z-index: 999 !important;
+}
+
+// Disable OL fade in effect
+.olLayerGrid .olTileImage {
+    -webkit-transition: none;
+    -moz-transition: none;
+    -o-transition: none;
+    transition: none;
+}
+
+// align "loading" spinner in the middle
+.popup-loading-animation {
+    display: block;
+    height: 32px;
+    width: 32px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -16px;
+    margin-top: -16px;
 }

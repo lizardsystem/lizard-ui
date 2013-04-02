@@ -14,3 +14,6 @@ following two files::
 
 All .ui-button styles have been changes to .xui-button as they conflict with
 twitter-bootstrap.  [reinout]
+
+Also, $(el).button() conflicted with bootstrap, so for jquery this is now
+renamed to $(el).jqbutton(). This mainly affects lizard-riool. [ejnens]
