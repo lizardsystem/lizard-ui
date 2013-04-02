@@ -84,7 +84,7 @@
     <![endif]-->
 
   </head>
-  <body>
+  <body {% block inside-body-tag-itself %}{% endblock %}>
 	{% block modal %}
 	  {% include 'lizard_ui/modal_login.html' %}
 	  {% include 'lizard_ui/change_language.html' %}
@@ -113,7 +113,8 @@
                         <li>
                           <a href="{{ action.url }}"
                              {% if action.description %}
-                               title="{{ action.description }}"
+                               data-title="{{ action.name }}"
+                               data-content="{{ action.description }}"
                              {% endif %}
                              class="{{ action.klass }}"
                              {% for item in action.data_attributes.items %}
