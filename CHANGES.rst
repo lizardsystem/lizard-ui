@@ -5,7 +5,9 @@ Changelog of lizard-ui
 4.25 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Merged deltaportaal fixes. Next to ``#popup-tabs`` there's now also
+  ``.popup-tabs``. The body tag can have an ID or class now (needed for
+  fiber). Added popup hover on one extra action category.
 
 
 4.24 (2013-03-19)
