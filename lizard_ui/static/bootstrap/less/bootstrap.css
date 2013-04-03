@@ -5298,6 +5298,7 @@ a.badge:hover {
 html,
 body {
   overflow: hidden;
+  height: 100%;
 }
 header,
 #footer {
@@ -5592,18 +5593,21 @@ ul.tree.tree-top-level {
 #login-error, #change-password-error {
   display: none;
 }
-#popup-tabs {
+#popup-tabs,
+.popup-tabs {
   border: none;
 }
-#popup-tabs > ul.ui-widget-header {
+#popup-tabs > ul.ui-widget-header,
+.popup-tabs > ul.ui-widget-header {
   background: none;
   padding: 0;
   border: none;
   border-radius: 0;
   border-bottom: 1px solid #AAAAAA;
 }
-#popup-tabs > ul > li > a {
-  padding: 0.05em 1em;
+#popup-tabs > ul > li > a,
+.popup-tabs > ul > li > a {
+  padding: 0.05em 1em ! important;
 }
 #sidebar ul li.workspace-acceptable,
 #sidebar ul div.workspace-acceptable {
