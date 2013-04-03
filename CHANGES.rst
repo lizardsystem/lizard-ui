@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-4.25 (unreleased)
+4.25 (2013-04-03)
 -----------------
 
 - Merged deltaportaal fixes. Next to ``#popup-tabs`` there's now also
