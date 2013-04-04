@@ -1,8 +1,6 @@
 # (c) Nelen & Schuurmans.  GPL licensed, see LICENSE.txt
 import logging
 
-from raven.contrib.django.models import sentry_exception_handler
-
 logger = logging.getLogger(__name__)
 
 
@@ -18,4 +16,3 @@ class TracebackLoggingMiddleware(object):
 
     def process_exception(self, request, exception):
         logger.exception("Error 500 in %s", request.path)
-        sentry_exception_handler(request=request)
