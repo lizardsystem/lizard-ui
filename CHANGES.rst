@@ -2,8 +2,8 @@ Changelog of lizard-ui
 ======================
 
 
-4.26 (unreleased)
------------------
+4.25.1 (2013-04-04)
+-------------------
 
 - Removed ``sentry_exception_handler()`` call from our exception middleware
   (introduced in 4.25), again. This breaks the tests. Further investigation
