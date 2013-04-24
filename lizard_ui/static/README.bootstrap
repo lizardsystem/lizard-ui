@@ -20,7 +20,7 @@ Copy the font-awesome.less to the less bootstrap directory.
 //@import "sprites.less"; // lizard: use font for icons
 @import "font-awesome.less"; // lizard: use font for icons
 
-Copy the font-awesome-ie7.css to the font-awesome directory.
+Copy the font-awesome-ie7.css and font files to the font-awesome directory.
 
 Build the project:
 npm install
