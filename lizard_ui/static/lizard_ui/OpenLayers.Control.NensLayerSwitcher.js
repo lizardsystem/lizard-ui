@@ -30,7 +30,7 @@
 OpenLayers.Control.NensLayerSwitcher =
   OpenLayers.Class(OpenLayers.Control, {
 
-    /**
+      /**
      * Property: dropdownTemplate
      * {underscoreTemplate} The template that contains the dropdown elements.
      */
@@ -38,10 +38,10 @@ OpenLayers.Control.NensLayerSwitcher =
 	  dropdownTemplate: _.template('' +
 		  '<li role="presentation">' +
                '<a href="#"' +
-		          'class="baselayer'+
-                  '<% if (checked){ %> icon-ok<% }%>"' +
+		          'class="layer"'+
                   'data-layer-id="<%= layer_id %>">' +
-                  '<%= name %>' +
+                  '<% if (checked){ %> <i class="icon-ok"></i> <% }%>' +
+   			      '<%= name %>' +
                '</a>' +
           '</li>'),
 
@@ -62,6 +62,13 @@ OpenLayers.Control.NensLayerSwitcher =
      * {DOMElement}
      */
     layersElement: null,
+
+	      /**
+     * Property: baseLayersElement
+     * {DOMElement}
+     */
+    baseLayersElement: null,
+
 
     /**
      * Property: baseLayersDiv
@@ -178,7 +185,12 @@ OpenLayers.Control.NensLayerSwitcher =
      */
     clearLayersArray: function(layersType) {
 		console.log('clearLayersArray called');
-		this.layersElement.children().remove();
+		if (layersType==="base") {
+			this.baseLayersElement.children().remove();
+		}
+		else {
+			this.layersElement.children().remove();
+		}
     },
 
 
@@ -230,6 +242,7 @@ OpenLayers.Control.NensLayerSwitcher =
         }
 
 		this.clearLayersArray("base");
+		this.clearLayersArray("layers");
         var containsOverlays = false;
         var containsBaseLayers = false;
 
@@ -256,12 +269,6 @@ OpenLayers.Control.NensLayerSwitcher =
 
             if (layer.displayInLayerSwitcher) {
 
-                if (baseLayer) {
-                    containsBaseLayers = true;
-                } else {
-                    containsOverlays = true;
-                }
-
                 // only check a baselayer if it is *the* baselayer, check data
                 //  layers if they are visible
                 var checked = (baseLayer) ? (layer == this.map.baseLayer)
@@ -269,6 +276,12 @@ OpenLayers.Control.NensLayerSwitcher =
 
 				if (baseLayer) {
 					// We only use base layers for now.
+					this.baseLayersElement.append(
+						this.dropdownTemplate({'name': layer.name,
+											   'checked': checked,
+											   'layer_id': layer.id}));
+				}
+				else {
 					this.layersElement.append(
 						this.dropdownTemplate({'name': layer.name,
 											   'checked': checked,
@@ -277,11 +290,19 @@ OpenLayers.Control.NensLayerSwitcher =
 			}
 		};
 
-		this.layersElement.find('.baselayer').click(function(e){
+		this.baseLayersElement.find('.layer').click(function(e){
 			map.setBaseLayer(map.getLayer($(e.target).data('layer-id')));
 			e.preventDefault();
 			e.stopPropagation();
 		});
+
+		this.layersElement.find('.layer').click(function(e){
+			var layer = map.getLayer($(e.target).data('layer-id'));
+			layer.setVisibility(!layer.visibility);
+			e.preventDefault();
+			e.stopPropagation();
+		});
+
 
 
         return this.div;
@@ -321,17 +342,27 @@ OpenLayers.Control.NensLayerSwitcher =
     loadContents: function() {
 		console.log('loadContents called');
 
-
 		$('#action-layers .dropdown-toggle').attr('data-toggle', 'dropdown');
+		$('#action-base-layers .dropdown-toggle').attr('data-toggle',
+													   'dropdown');
 
 		var actionLayers = $('#action-layers');
+		var baseActionLayers = $('#action-base-layers');
 		actionLayers.addClass('dropdown');
+		baseActionLayers.addClass('dropdown');
 
-		var ul = $('<ul>').attr('id', 'action-layers-ul'
+		var layersUl = $('<ul>').attr('id', 'action-layers-ul'
 							   ).attr('class', 'dropdown-menu'
 									 ).attr('role', 'menu');
-		actionLayers.append(ul);
+
+		var baseLayersUl = $('<ul>').attr('id', 'action-base-layers-ul'
+										 ).attr('class', 'dropdown-menu'
+											   ).attr('role', 'menu');
+
+		actionLayers.append(layersUl);
+		baseActionLayers.append(baseLayersUl);
 		this.layersElement = $('#action-layers-ul');
+		this.baseLayersElement = $('#action-base-layers-ul');
     },
 
     CLASS_NAME: "OpenLayers.Control.NensLayerSwitcher"

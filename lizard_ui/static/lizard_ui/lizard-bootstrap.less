@@ -35,6 +35,9 @@
   div, ul {
     // Divs nested inside us get the right height, too.
     height: @barHeight;
+    .dropdown-menu {
+        height: auto;
+    }
   }
 }
 
@@ -86,7 +89,8 @@ body {
 @rightbarWidth: 250px;
 
 // These never need scroll.
-header, #footer {
+// Removed header from overlow because the dropdown didn't work.
+#footer {
   overflow: hidden;
 }
 
@@ -101,7 +105,12 @@ header, #footer {
   .horizontal-bar;
   #gradient > .vertical(lighten(@light, 10%), @light);
   border-bottom: 1px solid @lightBorderColor;
+
+  li.dropdown.open > .dropdown-toggle {
+    background-color: darken(@light, 5%);
+  }
 }
+
 
 // Bar at the bottom.
 #footer {
