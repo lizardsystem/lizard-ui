@@ -29,15 +29,14 @@ npm install
 make bootstrap-css
 make bootstrap-js
 
-// I (roland) don't know if this is needed anymore.
 Also, Bootstrap tooltip was modified to use a different insert strategy:
-bootstrap.js:
-    $tip
-      .detach()
-      .css({ top: 0, left: 0, display: 'block' })
-      .appendTo(inside ? this.$element : document.body)
-      // (Lizard) FIX popover insert strategy
-      //.insertAfter(this.$element)
+bootstrap-tooltip.js:
+        $tip
+          .detach()
+          .css({ top: 0, left: 0, display: 'block' })
+		  // Lizard fix: appendTo
+		  .appendTo(document.body)
+		  //         this.options.container ? $tip.appendTo(this.options.container) : $tip.insertAfter(this.$element)
 
 And clickevents are canceled when a user clicks on a popover:
 bootstrap.js:
