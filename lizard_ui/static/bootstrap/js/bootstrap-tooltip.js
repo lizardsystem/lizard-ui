@@ -137,8 +137,9 @@
         $tip
           .detach()
           .css({ top: 0, left: 0, display: 'block' })
-
-        this.options.container ? $tip.appendTo(this.options.container) : $tip.insertAfter(this.$element)
+		  // Lizard fix: appendTo
+		  .appendTo(document.body)
+		  //         this.options.container ? $tip.appendTo(this.options.container) : $tip.insertAfter(this.$element)
 
         pos = this.getPosition()
 
@@ -309,6 +310,11 @@
     }
 
   , toggle: function (e) {
+	  // (Lizard) ensure click event is canceled for popovers
+      if (e) {
+          e.stopPropagation();
+          e.preventDefault();
+      }
       var self = e ? $(e.currentTarget)[this.type](this._options).data(this.type) : this
       self.tip().hasClass('in') ? self.hide() : self.show()
     }
