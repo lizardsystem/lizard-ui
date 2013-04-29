@@ -40,8 +40,8 @@ OpenLayers.Control.NensLayerSwitcher =
                '<a href="#"' +
 		          'class="layer"'+
                   'data-layer-id="<%= layer_id %>">' +
-   			      '<%= name %>' +
                   '<% if (checked){ %> <i class="icon-ok"></i> <% }%>' +
+   			      '<%= name %>' +
                '</a>' +
           '</li>'),
 
@@ -96,6 +96,19 @@ OpenLayers.Control.NensLayerSwitcher =
     dataLayersDiv: null,
 
     /**
+     * Property: baseActionsLayers
+     * {DOMElement}
+     */
+    baseActionLayers: null,
+
+    /**
+     * Property: actionLayers
+     * {DOMElement}
+     */
+    actionLayers: null,
+
+
+    /**
      * Property: dataLayers
      * {Array(Object)}
      */
@@ -107,6 +120,7 @@ OpenLayers.Control.NensLayerSwitcher =
      * {Boolean}
      */
     ascending: true,
+
 
     /**
      * Constructor: OpenLayers.Control.LayerSwitcher
@@ -303,7 +317,12 @@ OpenLayers.Control.NensLayerSwitcher =
 			e.stopPropagation();
 		});
 
-
+		// Hide the action layers icon when there are no layers to display.
+		if (this.actionLayers.find('.layer').length === 0){
+			this.actionLayers.hide();
+		} else {
+			this.actionLayers.show();
+		}
 
         return this.div;
     },
@@ -342,25 +361,31 @@ OpenLayers.Control.NensLayerSwitcher =
     loadContents: function() {
 		console.log('loadContents called');
 
+		// Enable the dropdowns.
 		$('#action-layers .dropdown-toggle').attr('data-toggle', 'dropdown');
 		$('#action-base-layers .dropdown-toggle').attr('data-toggle',
 													   'dropdown');
 
-		var actionLayers = $('#action-layers');
-		var baseActionLayers = $('#action-base-layers');
-		actionLayers.addClass('dropdown');
-		baseActionLayers.addClass('dropdown');
+		// Get the placeholders.
+		this.actionLayers = $('#action-layers');
+		this.baseActionLayers = $('#action-base-layers');
+		this.actionLayers.addClass('dropdown');
+		this.baseActionLayers.addClass('dropdown');
 
+		// Build the dropdown scaffold.
 		var layersUl = $('<ul>').attr('id', 'action-layers-ul'
 							   ).attr('class', 'dropdown-menu'
-									 ).attr('role', 'menu');
+							   ).attr('role', 'menu');
 
 		var baseLayersUl = $('<ul>').attr('id', 'action-base-layers-ul'
-										 ).attr('class', 'dropdown-menu'
-											   ).attr('role', 'menu');
+								   ).attr('class', 'dropdown-menu'
+								   ).attr('role', 'menu');
 
-		actionLayers.append(layersUl);
-		baseActionLayers.append(baseLayersUl);
+		// Put the scaffold in the placeholders.
+		this.actionLayers.append(layersUl);
+		this.baseActionLayers.append(baseLayersUl);
+
+		// Get the references to the dropdowns.
 		this.layersElement = $('#action-layers-ul');
 		this.baseLayersElement = $('#action-base-layers-ul');
     },
