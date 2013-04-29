@@ -304,12 +304,14 @@ OpenLayers.Control.NensLayerSwitcher =
 			}
 		};
 
+        // Switch between base layers with a click.
 		this.baseLayersElement.find('.layer').click(function(e){
 			map.setBaseLayer(map.getLayer($(e.target).data('layer-id')));
 			e.preventDefault();
 			e.stopPropagation();
 		});
 
+		// Enable/disable the layers with a click.
 		this.layersElement.find('.layer').click(function(e){
 			var layer = map.getLayer($(e.target).data('layer-id'));
 			layer.setVisibility(!layer.visibility);
