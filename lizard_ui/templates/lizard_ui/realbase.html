@@ -110,7 +110,9 @@
                   {% if view.site_actions %}
                     <ul class="nav">
 		      {% for action in view.site_actions %}
-                        <li>
+                        <li {% if action.element_id %}
+                               id="{{ action.element_id }}"
+							{% endif %}>
                           <a href="{{ action.url }}"
                              {% if action.description %}
                                data-title="{{ action.name }}"
@@ -147,7 +149,10 @@
                               title="{{ action.name }}"
                               data-content="{{ action.description }}"
                               class="has_popover"
-                            {% endif %}>
+                            {% endif %}
+							{% if action.element_id %}
+                               id="{{ action.element_id }}"
+							{% endif %}>
                           <a href="{{ action.url }}"
                             {% if action.klass %}
                               class="{{ action.klass }}"
@@ -175,7 +180,7 @@
                 {% block content-actions %}
 
                   {% if view.content_actions %}
-                    <ul class="nav">
+                    <ul class="nav pull-right">
                       {% for action in view.content_actions %}
                         <li
                            {% if action.description %}
@@ -184,6 +189,9 @@
                            {% for item in action.data_attributes.items %}
                              data-{{ item.0 }}="{{ item.1 }}"
                            {% endfor %}
+						   {% if action.element_id %}
+                               id="{{ action.element_id }}"
+							{% endif %}
                            >
                           <a href="{{ action.url }}"
                              class="{{ action.klass }}">
@@ -252,6 +260,9 @@
                           {% for item in action.data_attributes.items %}
                             data-{{ item.0 }}="{{ item.1 }}"
                           {% endfor %}
+						  {% if action.element_id %}
+                               id="{{ action.element_id }}"
+						  {% endif %}
                           >
                           {% if action.icon %}
                             <i class="{{ action.icon }}"></i>
@@ -283,6 +294,9 @@
                             {% for item in action.data_attributes.items %}
                               data-{{ item.0 }}="{{ item.1 }}"
                             {% endfor %}
+						    {% if action.element_id %}
+                               id="{{ action.element_id }}"
+							{% endif %}
                             >
                             {% if action.icon %}
                               <i class="{{ action.icon }}"></i>
@@ -316,6 +330,9 @@
                           {% for item in action.data_attributes.items %}
                             data-{{ item.0 }}="{{ item.1 }}"
                           {% endfor %}
+						  {% if action.element_id %}
+                             id="{{ action.element_id }}"
+						  {% endif %}
                           >
                           {% if action.icon %}
                             <i class="{{ action.icon }}"></i>
