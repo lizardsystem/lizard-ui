@@ -29,7 +29,8 @@ class Action(object):
     def __init__(self, name=None, element_id=None, icon=None, url='#',
                  description=None, klass=None, data_attributes=None):
         self.name = name
-        self.element_id = 'action-%s' % element_id
+        if element_id is not None:
+            self.element_id = 'action-%s' % element_id
         self.icon = icon
         self.url = url
         self.description = description

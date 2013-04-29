@@ -40,8 +40,8 @@ OpenLayers.Control.NensLayerSwitcher =
                '<a href="#"' +
 		          'class="layer"'+
                   'data-layer-id="<%= layer_id %>">' +
-                  '<% if (checked){ %> <i class="icon-ok"></i> <% }%>' +
    			      '<%= name %>' +
+                  '<% if (checked){ %> <i class="icon-ok"></i> <% }%>' +
                '</a>' +
           '</li>'),
 
