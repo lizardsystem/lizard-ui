@@ -9,6 +9,9 @@ class Action(object):
 
     - **name**: text of the link.
 
+    - **element_id**: id the element will get in the HTML. The id is prepended
+      with 'action-'.
+
     - **icon**: icon class according to
       http://twitter.github.com/bootstrap/base-css.html#icons, optional.
 
@@ -23,12 +26,13 @@ class Action(object):
       the action that can be used by css that reacts on the actions.
 
     """
-    def __init__(self, name=None, icon=None, url='#', description=None,
-                 klass=None, data_attributes=None):
+    def __init__(self, name=None, element_id=None, icon=None, url='#',
+                 description=None, klass=None, data_attributes=None):
         self.name = name
+        if element_id is not None:
+            self.element_id = 'action-%s' % element_id
         self.icon = icon
         self.url = url
         self.description = description
         self.klass = klass
         self.data_attributes = data_attributes
-

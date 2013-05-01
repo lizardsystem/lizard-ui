@@ -6910,6 +6910,11 @@ a.badge:focus {
   height: 40px;
 }
 
+.horizontal-bar div .dropdown-menu,
+.horizontal-bar ul .dropdown-menu {
+  height: auto;
+}
+
 .block-in-bar {
   padding-right: 13px;
   padding-left: 13px;
@@ -6947,7 +6952,6 @@ body {
   overflow: hidden;
 }
 
-header,
 #footer {
   overflow: hidden;
 }
@@ -6978,6 +6982,11 @@ header,
   height: 40px;
 }
 
+#logo-row div .dropdown-menu,
+#logo-row ul .dropdown-menu {
+  height: auto;
+}
+
 #breadcrumb-row {
   *position: relative;
   *z-index: 2;
@@ -7003,6 +7012,15 @@ header,
 #breadcrumb-row div,
 #breadcrumb-row ul {
   height: 40px;
+}
+
+#breadcrumb-row div .dropdown-menu,
+#breadcrumb-row ul .dropdown-menu {
+  height: auto;
+}
+
+#breadcrumb-row li.dropdown.open > .dropdown-toggle {
+  background-color: #cdcdc9;
 }
 
 #footer {
@@ -7036,6 +7054,11 @@ header,
 #footer div,
 #footer ul {
   height: 40px;
+}
+
+#footer div .dropdown-menu,
+#footer ul .dropdown-menu {
+  height: auto;
 }
 
 #footer .btn-toolbar {
