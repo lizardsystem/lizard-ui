@@ -478,7 +478,7 @@ class UiView(ViewContextMixin, TemplateView):
         """
         collapse_action = Action(
             icon='icon-arrow-left',
-            name=_('Navigation'),
+            name=_('Apps'),
             description=_('Collapse or expand this panel'),
             klass='collapse-sidebar')
         actions = [collapse_action]

@@ -7,6 +7,7 @@ Changelog of lizard-ui
 
 - Upgrade Twitter bootstrap to 2.3.1
 - Upgrade font-awesome v3.0.2
+- Update translations.
 
 
 4.25.1 (2013-04-04)
