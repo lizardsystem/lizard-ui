@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-4.26 (unreleased)
+4.26 (2013-05-06)
 -----------------
 
 - Upgrade Twitter bootstrap to 2.3.1
