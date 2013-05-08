@@ -133,16 +133,13 @@ OpenLayers.Control.NensLayerSwitcher =
 		// check underscore and jquery,
         OpenLayers.Control.prototype.initialize.apply(this, arguments);
         this.layerStates = [];
-
-		console.log('initialize called');
     },
 
     /**
      * APIMethod: destroy
      */
     destroy: function() {
-		console.log('destroy called');
-    },
+	},
 
     /**
      * Method: setMap
@@ -151,7 +148,6 @@ OpenLayers.Control.NensLayerSwitcher =
      * map - {<OpenLayers.Map>}
      */
     setMap: function(map) {
-		console.log('setMap called');
         OpenLayers.Control.prototype.setMap.apply(this, arguments);
 
         this.map.events.on({
@@ -171,7 +167,6 @@ OpenLayers.Control.NensLayerSwitcher =
      *     switcher tabs.
      */
     draw: function() {
-		console.log('draw called');
         OpenLayers.Control.prototype.draw.apply(this);
 
         // create layout divs
@@ -198,7 +193,6 @@ OpenLayers.Control.NensLayerSwitcher =
      * layersType - {String}
      */
     clearLayersArray: function(layersType) {
-		console.log('clearLayersArray called');
 		if (layersType==="base") {
 			this.baseLayersElement.children().remove();
 		}
@@ -216,7 +210,6 @@ OpenLayers.Control.NensLayerSwitcher =
      * {Boolean} The layer state changed since the last redraw() call.
      */
     checkRedraw: function() {
-		console.log('checkRedraw called');
         var redraw = false;
         if ( !this.layerStates.length ||
              (this.map.layers.length != this.layerStates.length) ) {
@@ -247,11 +240,9 @@ OpenLayers.Control.NensLayerSwitcher =
      * {DOMElement} A reference to the DIV DOMElement containing the control
      */
     redraw: function() {
-		console.log('redraw called');
         //if the state hasn't changed since last redraw, no need
         // to do anything. Just return the existing div.
         if (!this.checkRedraw()) {
-			console.log('didn\'t redraw');
             return this.div;
         }
 
@@ -337,8 +328,6 @@ OpenLayers.Control.NensLayerSwitcher =
      *     the control.
      */
     updateMap: function() {
-		console.log('updateMap called');
-
         // set the newly selected base layer
         for(var i=0, len=this.baseLayers.length; i<len; i++) {
             var layerEntry = this.baseLayers[i];
@@ -361,7 +350,6 @@ OpenLayers.Control.NensLayerSwitcher =
      * Set up the labels and divs for the control
      */
     loadContents: function() {
-		console.log('loadContents called');
 
 		// Enable the dropdowns.
 		$('#action-layers .dropdown-toggle').attr('data-toggle', 'dropdown');
