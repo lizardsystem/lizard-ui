@@ -1,6 +1,9 @@
-{% load utility i18n compress %}
+{% load utility i18n %}
 <!DOCTYPE html>
-<html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
   <head>
     <title>
       {% block title %}
@@ -21,68 +24,45 @@
     <link rel="icon" href="{{ STATIC_URL }}lizard_ui/favicon.ico" type="images/x-icon" />
     <link rel="SHORTCUT ICON" href="{{ STATIC_URL }}lizard_ui/favicon.ico" />
 
-    {% compress css %}
-      {% block css %}
-        {# CSS for jqueryui: "smoothness" theme #}
-        <link type="text/css"
-              href="{{ STATIC_URL }}jqueryui/smoothness/jquery-ui.css"
-              rel="stylesheet"
-              media="screen, projection" />
-        {# OpenLayers: manually load the OpenLayers css so we can control the load order #}
-        {# pass theme:null to the OpenLayers.Map instance to prevent OL from autoloading it #}
-        <link rel="stylesheet"
-              href="{{ STATIC_URL }}openlayers/theme/default/style.css"
-              type="text/css"
-              media="screen, projection" />
-        <link rel="stylesheet"
-              href="{{ STATIC_URL }}daterangepicker/daterangepicker.css"
-              type="text/css"
-              media="screen, projection" />
-        {# Twitter bootstrap, but with an included #}
-        {# lizard_ui/lizard-bootstrap.less to overrides bootstrap defaults. #}
-        {# Bootstrap must be below jqueryui to avoid overriding. #}
-        <link rel="stylesheet"
-              href="{{ STATIC_URL }}bootstrap/bootstrap/css/bootstrap.css"
-              type="text/css"
-              media="screen, projection" />
-        {# Sprites: all icons (print, info, etc) in one cacheable image. #}
-        <link rel="stylesheet"
-              href="{{ STATIC_URL }}sprites/sprite.css"
-              type="text/css"
-              media="screen, projection" />
-      {% endblock css %}
-    {% endcompress %}
-    <!--[if IE 7]>
-    <link rel="stylesheet"
-          href="{{ STATIC_URL }}font-awesome/font-awesome-ie7.css"
-          type="text/css"
-          media="screen, projection" />
-    <style type="text/css">
-        html, body { overflow: none; }
-    </style>
-    <![endif]-->
+    {% block css %}
+      {# jqueryui: "smoothness" theme #}
+      <link type="text/css"
+            href="{{ STATIC_URL }}jqueryui/smoothness/jquery-ui.css"
+            rel="stylesheet" />
+      {# OpenLayers: manually load the OpenLayers css so we can control the load order #}
+      {# pass theme:null to the OpenLayers.Map instance to prevent OL from autoloading it #}
+      <link rel="stylesheet"
+            href="{{ STATIC_URL }}openlayers/theme/default/style.css"
+            type="text/css" />
+      {# daterangepicker #}
+      <link rel="stylesheet"
+            href="{{ STATIC_URL }}daterangepicker/daterangepicker.css"
+            type="text/css" />
+      {# Twitter bootstrap, but with an included #}
+      {# lizard_ui/lizard-bootstrap.less to overrides bootstrap defaults. #}
+      {# Bootstrap must be below jqueryui to avoid overriding. #}
+      <link rel="stylesheet"
+            href="{{ STATIC_URL }}bootstrap/bootstrap/css/bootstrap.css"
+            type="text/css" />
+      {# Sprites: all icons (print, info, etc) in one cacheable image. #}
+      <link rel="stylesheet"
+            href="{{ STATIC_URL }}sprites/sprite.css"
+            type="text/css"
+            media="screen, projection" />
+    {% endblock css %}
 
     <!--[if lt IE 9]>
-      {% compress css %}
-        {% block ie-css %}
-        {% endblock ie-css %}
-      {% endcompress %}
+      {% block ie-css %}
+      {% endblock ie-css %}
     <![endif]-->
 
-    {% compress js %}
-      {% block javascript-in-head %}
-        {# Should probably remain unused. #}
-      {% endblock javascript-in-head %}
-    {% endcompress %}
+    {% block javascript-in-head %}
+      {# Should probably remain unused. #}
+    {% endblock javascript-in-head %}
+
     {% block head-extras %}
       {# Your own totally-unmanaged per-template extra css/javascript/links #}
     {% endblock head-extras %}
-
-    {# HTML5 shiv/shim (they are equal), for IE6-8 support of HTML elements. After the styles. #}
-    <!--[if lt IE 9]>
-      <script src="{{ STATIC_URL }}html5shiv/html5shiv.js"></script>
-    <![endif]-->
-
   </head>
   <body {% block inside-body-tag-itself %}{% endblock %}>
 	{% block modal %}
@@ -93,13 +73,12 @@
       {% block page %}
         {% block header %}
           <header>
-            <div id="logo-row"
-                 class="navbar">
+            <div id="logo-row" class="navbar">
               <div id="logo">
                 {% block logo %}
                   {% spaceless %}
                     <a href="/" title='{% trans "Back to homepage" %}'>
-                        <img src="{{ STATIC_URL }}lizard_ui/logo.png" alt="Lizard" />
+                      <img src="{{ STATIC_URL }}lizard_ui/logo.png" alt="Lizard" />
                     </a>
                   {% endspaceless %}
                 {% endblock logo %}
@@ -109,10 +88,10 @@
 
                   {% if view.site_actions %}
                     <ul class="nav">
-		      {% for action in view.site_actions %}
+                      {% for action in view.site_actions %}
                         <li {% if action.element_id %}
                                id="{{ action.element_id }}"
-							{% endif %}>
+                            {% endif %}>
                           <a href="{{ action.url }}"
                              {% if action.description %}
                                data-title="{{ action.name }}"
@@ -132,11 +111,9 @@
                       {% endfor %}
                     </ul>
                   {% endif %}
-
                 {% endblock site-actions %}
               </div>
             </div>
-
             <div id="breadcrumb-row"
                  class="navbar">
               <div id="breadcrumbs">
@@ -150,9 +127,9 @@
                               data-content="{{ action.description }}"
                               class="has_popover"
                             {% endif %}
-							{% if action.element_id %}
+                            {% if action.element_id %}
                                id="{{ action.element_id }}"
-							{% endif %}>
+                            {% endif %}>
                           <a href="{{ action.url }}"
                             {% if action.klass %}
                               class="{{ action.klass }}"
@@ -189,9 +166,9 @@
                            {% for item in action.data_attributes.items %}
                              data-{{ item.0 }}="{{ item.1 }}"
                            {% endfor %}
-						   {% if action.element_id %}
+                           {% if action.element_id %}
                                id="{{ action.element_id }}"
-							{% endif %}
+                           {% endif %}
                            >
                           <a href="{{ action.url }}"
                              class="{{ action.klass }}">
@@ -210,7 +187,6 @@
                 {% endblock content-actions %}
               </div>
             </div>
-
           </header>
         {% endblock header %}
 
@@ -260,9 +236,9 @@
                           {% for item in action.data_attributes.items %}
                             data-{{ item.0 }}="{{ item.1 }}"
                           {% endfor %}
-						  {% if action.element_id %}
+                          {% if action.element_id %}
                                id="{{ action.element_id }}"
-						  {% endif %}
+                          {% endif %}
                           >
                           {% if action.icon %}
                             <i class="{{ action.icon }}"></i>
@@ -294,9 +270,9 @@
                             {% for item in action.data_attributes.items %}
                               data-{{ item.0 }}="{{ item.1 }}"
                             {% endfor %}
-						    {% if action.element_id %}
+                            {% if action.element_id %}
                                id="{{ action.element_id }}"
-							{% endif %}
+                            {% endif %}
                             >
                             {% if action.icon %}
                               <i class="{{ action.icon }}"></i>
@@ -330,9 +306,9 @@
                           {% for item in action.data_attributes.items %}
                             data-{{ item.0 }}="{{ item.1 }}"
                           {% endfor %}
-						  {% if action.element_id %}
+                          {% if action.element_id %}
                              id="{{ action.element_id }}"
-						  {% endif %}
+                          {% endif %}
                           >
                           {% if action.icon %}
                             <i class="{{ action.icon }}"></i>
@@ -356,7 +332,6 @@
     {# Ajax calls need a CSRF token cookie, and this line sends one as a side effect #}
     <!-- {{ csrf_token }} -->
 
-    {# Already minimized, stable scripts. #}
     <script src="{{ STATIC_URL }}jquery/jquery.min.js"></script>
 
     {# Excanvas, for IE7 and IE8 support for HTML5 Canvas. #}
@@ -364,19 +339,6 @@
         <script src="{{ STATIC_URL }}jquery-flot/excanvas.min.js"></script>
     <![endif]-->
 
-    {# Scripts whose non-minified versions have some use in development scenarios. #}
-    {% if debug %}
-    <script src="{{ STATIC_URL }}bootstrap/js/bootstrap.js"></script>
-    {# speed up developing, change to OpenLayers.debug.js when we have OL troubles
-    <script id="openlayers-script"
-            src="{{ STATIC_URL }}openlayers/OpenLayers.js"
-            data-openlayers-url="{{ STATIC_URL }}openlayers/"
-            charset="utf-8"></script>
-    <script src="{{ STATIC_URL }}jquery-json/jquery.json-2.3.js"></script>
-    <script src="{{ STATIC_URL }}momentjs/moment.js"></script>
-    <script src="{{ STATIC_URL }}jquery-transform/jquery.transform-0.9.3.js"></script>
-    <script src="{{ STATIC_URL }}jquery-resize/jquery.ba-resize.js"></script>
-    {% else %}
     <script src="{{ STATIC_URL }}bootstrap/bootstrap/js/bootstrap.min.js"></script>
     <script id="openlayers-script"
             src="{{ STATIC_URL }}openlayers/OpenLayers.js"
@@ -386,34 +348,27 @@
     <script src="{{ STATIC_URL }}momentjs/moment.min.js"></script>
     <script src="{{ STATIC_URL }}jquery-transform/jquery.transform-0.9.3.min.js"></script>
     <script src="{{ STATIC_URL }}jquery-resize/jquery.ba-resize.min.js"></script>
-    {% endif %}
 
-    {% compress js %}
-      {% block javascript %}
-        <script src="{{ STATIC_URL }}jqueryui/jquery-ui.js"></script>
-        <script src="{{ STATIC_URL }}momentjs/nl.js"></script>
-        <script src="{{ STATIC_URL }}lizard_ui/csrf.js"></script>
-        <script src="{{ STATIC_URL }}lizard_ui/lizard_ui.js"></script>
-        <script src="{{ STATIC_URL }}jquery-treeview/jquery.treeview.js"></script>
-        <script src="{{ STATIC_URL }}jquery-flot/jquery.flot.js"></script>
-        <script src="{{ STATIC_URL }}jquery-flot/jquery.flot.selection.js"></script>
-        <script src="{{ STATIC_URL }}jquery-flot/jquery.flot.resize.js"></script>
-        <script src="{{ STATIC_URL }}jquery-flot/jquery.flot.navigate.js"></script>
-        <script src="{{ STATIC_URL }}jquery-flot/jquery.flot.time.js"></script>
-        <script src="{{ STATIC_URL }}jquery-flot/jquery.flot.touch.js"></script>
-        <script src="{{ STATIC_URL }}jquery-flot/jquery.flot.fillbetween.js"></script>
-        <script src="{{ STATIC_URL }}daterangepicker/daterangepicker.js"></script>
-      {% endblock javascript %}
-    {% endcompress %}
+    {% block javascript %}
+      <script src="{{ STATIC_URL }}jqueryui/jquery-ui.js"></script>
+      <script src="{{ STATIC_URL }}momentjs/nl.js"></script>
+      <script src="{{ STATIC_URL }}lizard_ui/csrf.js"></script>
+      <script src="{{ STATIC_URL }}lizard_ui/lizard_ui.js"></script>
+      <script src="{{ STATIC_URL }}jquery-treeview/jquery.treeview.js"></script>
+      <script src="{{ STATIC_URL }}jquery-flot/jquery.flot.js"></script>
+      <script src="{{ STATIC_URL }}jquery-flot/jquery.flot.selection.js"></script>
+      <script src="{{ STATIC_URL }}jquery-flot/jquery.flot.resize.js"></script>
+      <script src="{{ STATIC_URL }}jquery-flot/jquery.flot.navigate.js"></script>
+      <script src="{{ STATIC_URL }}jquery-flot/jquery.flot.time.js"></script>
+      <script src="{{ STATIC_URL }}jquery-flot/jquery.flot.touch.js"></script>
+      <script src="{{ STATIC_URL }}jquery-flot/jquery.flot.fillbetween.js"></script>
+      <script src="{{ STATIC_URL }}daterangepicker/daterangepicker.js"></script>
+    {% endblock javascript %}
 
-    {% block map-javascript %}
-      {# For lizard-map's wms handling #}
-    {% endblock map-javascript %}
-
-    {% if google_tracking_code %}
+    {% if view.google_tracking_code %}
       <script type="text/javascript">
           var _gaq = _gaq || [];
-          _gaq.push(['_setAccount', '{{ google_tracking_code }}']);
+          _gaq.push(['_setAccount', '{{ view.google_tracking_code }}']);
           _gaq.push(['_trackPageview']);
           (function() {
             var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
@@ -442,6 +397,5 @@
     {% block bottom-extras %}
       {# Your own totally-unmanaged per-template extra css/javascript/links #}
     {% endblock bottom-extras %}
-
   </body>
 </html>
