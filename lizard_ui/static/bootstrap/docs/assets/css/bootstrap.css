@@ -6952,10 +6952,6 @@ body {
   overflow: hidden;
 }
 
-#footer {
-  overflow: hidden;
-}
-
 #logo-row {
   *position: relative;
   *z-index: 2;
@@ -7033,7 +7029,6 @@ body {
   height: 40px;
   margin-bottom: 18px;
   margin-bottom: 0;
-  overflow: hidden;
   overflow: visible;
   overflow: auto;
   background-color: #e3e3e1;
@@ -7087,18 +7082,18 @@ body {
   background-image: -o-linear-gradient(top, #f2f2f0, #ffffff);
   background-image: linear-gradient(to bottom, #f2f2f0, #ffffff);
   background-repeat: repeat-x;
-  border-right: 1px solid #c0c0bc;
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff2f2f0', endColorstr='#ffffffff', GradientType=0);
+}
+
+#sidebar,
+#secondary-sidebar {
+  border-right: 1px solid #c0c0bc;
 }
 
 #rightbar {
   right: -250px;
-  display: none;
   width: 250px;
-}
-
-#secondary-sidebar {
-  display: none;
+  border-left: 1px solid #c0c0bc;
 }
 
 .sidebar-inner {
@@ -7290,42 +7285,11 @@ ul.tree.tree-top-level {
   margin-left: 0;
 }
 
-/*
-#login-form {
-    margin: 10% auto auto auto;
-    text-align: center;
-    width: 300px;
-}
-
-.btn.active {
-  background-color: @middle;
-}
-*/
-
 /* ****************** Treeview ************ */
 
 #login-error,
 #change-password-error {
   display: none;
-}
-
-#popup-tabs,
-.popup-tabs {
-  border: none;
-}
-
-#popup-tabs > ul.ui-widget-header,
-.popup-tabs > ul.ui-widget-header {
-  padding: 0;
-  background: none;
-  border: none;
-  border-bottom: 1px solid #AAAAAA;
-  border-radius: 0;
-}
-
-#popup-tabs > ul > li > a,
-.popup-tabs > ul > li > a {
-  padding: 0.05em 1em ! important;
 }
 
 #sidebar ul li.workspace-acceptable,
@@ -7390,7 +7354,7 @@ ul.tree.tree-top-level {
   cursor: pointer;
 }
 
-/* ****************** /Treeview ************ */
+/* ****************** Workspace stuff ************ */
 
 a.workspace-acceptable,
 div.nonworking-workspace-acceptable {
@@ -7452,10 +7416,6 @@ div.nonworking-workspace-acceptable {
   background-color: #ddd;
 }
 
-#lizard-map-wms {
-  display: none;
-}
-
 #moving-box {
   position: absolute;
   top: 0;
@@ -7478,30 +7438,10 @@ span.no-image-spacer {
   width: 20px;
 }
 
-/*#edit-workspace label input {
-    display: inline;
-}*/
-
 #edit-workspace img.workspace-item-image,
 #edit-collage img.collage-item-image {
   vertical-align: middle;
 }
-
-/*#edit-workspace .workspace-items,
-.wscol-actions {
-  margin-left: 0;
-}
-
-#edit-workspace .workspace-items li {
-  list-style: none;
-  padding-top: 2px;
-}
-
-#edit-workspace .workspace-items .below-workspace-item,
-.wscol-actions .below-workspace-item {
-  display: none;
-  text-align: right;
-}*/
 
 ul.wscol-actions {
   padding-top: 1em;
@@ -7549,11 +7489,30 @@ ul.wscol-actions li {
   margin: 0;
 }
 
+/* ****************** Generic stuff ******************* */
+
 img {
   max-width: none !important;
 }
 
-/* ****************** Date range dialog ************ */
+#popup-tabs,
+.popup-tabs {
+  border: none;
+}
+
+#popup-tabs > ul.ui-widget-header,
+.popup-tabs > ul.ui-widget-header {
+  padding: 0;
+  background: none;
+  border: none;
+  border-bottom: 1px solid #AAAAAA;
+  border-radius: 0;
+}
+
+#popup-tabs > ul > li > a,
+.popup-tabs > ul > li > a {
+  padding: 0.05em 1em ! important;
+}
 
 div.date-range-box label {
   display: inline;
@@ -7561,10 +7520,6 @@ div.date-range-box label {
 
 div.date-range-box input {
   display: inline;
-}
-
-.tickLabels {
-  font-size: xx-small !important;
 }
 
 #hover-popup {
