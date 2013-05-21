@@ -365,6 +365,10 @@
       <script src="{{ STATIC_URL }}daterangepicker/daterangepicker.js"></script>
     {% endblock javascript %}
 
+    {% block map-javascript %}
+      {# For lizard-map's wms handling #}
+    {% endblock map-javascript %}
+
     {% if view.google_tracking_code %}
       <script type="text/javascript">
           var _gaq = _gaq || [];
