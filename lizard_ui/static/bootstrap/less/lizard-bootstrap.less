@@ -88,11 +88,8 @@ body {
 @sidebarWidth: 300px;
 @rightbarWidth: 250px;
 
-// These never need scroll.
-// Removed header from overlow because the dropdown didn't work.
-#footer {
-  overflow: hidden;
-}
+// Note: for each of the side/right/bars, keep display:none in their INLINE style.
+// This allows configuration of the visibility of the bars using DB settings, View, etc.
 
 // Top-most bar.
 #logo-row {
@@ -114,7 +111,6 @@ body {
 
 // Bar at the bottom.
 #footer {
-  overflow: hidden;
   .horizontal-bar;
   #gradient > .vertical(@light, lighten(@light, 10%));
   border-top: 1px solid @lightBorderColor;
@@ -139,18 +135,15 @@ body {
   bottom: @aboveFooter;
   width: @sidebarWidth;
   #gradient > .vertical(lighten(@light, 10%), #fff);
+}
+#sidebar,
+#secondary-sidebar {
   border-right: 1px solid @lightBorderColor;
 }
 #rightbar {
+  border-left: 1px solid @lightBorderColor;
   width: @rightbarWidth;
   right: -@rightbarWidth;
-  display: none;
-}
-
-// The secondary sidebar slides in from the bottom. We need to keep it from
-// showing up right away.
-#secondary-sidebar {
-  display: none;
 }
 
 // Keep the sidebar content out of the margins. It is all text, by definition.
@@ -322,9 +315,9 @@ ul.ui-icon-list {
     padding: 4px;
   }
   li a img {
-  	-moz-border-radius: 13px;
-	  -webkit-border-radius: 13px;
-	  border-radius: 13px;
+    -moz-border-radius: 13px;
+    -webkit-border-radius: 13px;
+    border-radius: 13px;
     -webkit-box-shadow: 2px 2px 10px 5px #ccc;
     -moz-box-shadow: 2px 2px 10px 5px #ccc;
     box-shadow: 2px 2px 10px 5px #ccc;
@@ -349,49 +342,10 @@ ul.tree {
   }
 }
 
-// The following is not really a tree display. I think it is not used anymore.
-// Or it should go to lizard-maptree.
-/*
-#login-form {
-    margin: 10% auto auto auto;
-    text-align: center;
-    width: 300px;
-}
-
-.btn.active {
-  background-color: @middle;
-}
-*/
-
-// copied from lizard_map.css
-
 /* ****************** Treeview ************ */
-
 // initially hide login error div
 #login-error, #change-password-error {
   display: none;
-}
-
-// remove 1px border around jquery ui tabs
-#popup-tabs,
-.popup-tabs {
-  border: none;
-}
-
-// remove fat header on jquery ui tabs
-#popup-tabs > ul.ui-widget-header,
-.popup-tabs > ul.ui-widget-header {
-  background: none;
-  padding: 0;
-  border: none;
-  border-radius: 0;
-  border-bottom: 1px solid #AAAAAA;
-}
-
-// remove fat padding on jquery ui tabs
-#popup-tabs > ul > li > a,
-.popup-tabs > ul > li > a {
-  padding: 0.05em 1em ! important;
 }
 
 #sidebar ul {
@@ -456,8 +410,7 @@ ul.tree {
         cursor: pointer;
     }
 }
-/* ****************** /Treeview ************ */
-
+/* ****************** Workspace stuff ************ */
 
 // workspace-acceptable link styling
 a.workspace-acceptable,
@@ -511,11 +464,6 @@ div.nonworking-workspace-acceptable {
   height: 100%;
 }
 
-// hide the WMS div element, which only contains data-* attributes
-#lizard-map-wms {
-  display: none;
-}
-
 // animated box that appears when adding a layer / collage item
 #moving-box {
   width: 0;
@@ -538,30 +486,10 @@ span.no-image-spacer {
   display: inline;
 }
 
-/*#edit-workspace label input {
-    display: inline;
-}*/
-
 #edit-workspace img.workspace-item-image,
 #edit-collage img.collage-item-image {
   vertical-align: middle;
 }
-
-/*#edit-workspace .workspace-items,
-.wscol-actions {
-  margin-left: 0;
-}
-
-#edit-workspace .workspace-items li {
-  list-style: none;
-  padding-top: 2px;
-}
-
-#edit-workspace .workspace-items .below-workspace-item,
-.wscol-actions .below-workspace-item {
-  display: none;
-  text-align: right;
-}*/
 
 // list of buttons, like clearing the workspace or collage
 ul.wscol-actions {
@@ -606,24 +534,41 @@ ul.wscol-actions {
     margin: 0;
 }
 
-// Fix for invisible GMaps tiles
+/* ****************** Generic stuff ******************* */
+// Fix for invisible Google Maps tiles
 // overrides bootstraps reset.less
 img {
   max-width: none !important;
 }
 
-/* ****************** Date range dialog ************ */
+// remove 1px border around jquery ui tabs
+#popup-tabs,
+.popup-tabs {
+  border: none;
+}
 
+// remove fat header on jquery ui tabs
+#popup-tabs > ul.ui-widget-header,
+.popup-tabs > ul.ui-widget-header {
+  background: none;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  border-bottom: 1px solid #AAAAAA;
+}
+
+// remove fat padding on jquery ui tabs
+#popup-tabs > ul > li > a,
+.popup-tabs > ul > li > a {
+  padding: 0.05em 1em ! important;
+}
+
+// Date range dialog
 div.date-range-box label {
   display: inline;
 }
 div.date-range-box input {
   display: inline;
-}
-
-// Old Flot graphs (new ones use Canvas text rendering)
-.tickLabels {
-  font-size: xx-small !important;
 }
 
 // Label appearing when the mouse is hovering over the map
