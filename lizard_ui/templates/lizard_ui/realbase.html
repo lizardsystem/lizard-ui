@@ -39,7 +39,7 @@
             href="{{ STATIC_URL }}daterangepicker/daterangepicker.css"
             type="text/css" />
       {# Twitter bootstrap, but with an included #}
-      {# lizard_ui/lizard-bootstrap.less to overrides bootstrap defaults. #}
+      {# lizard-bootstrap.less to overrides bootstrap defaults. #}
       {# Bootstrap must be below jqueryui to avoid overriding. #}
       <link rel="stylesheet"
             href="{{ STATIC_URL }}bootstrap/bootstrap/css/bootstrap.css"
@@ -190,27 +190,65 @@
           </header>
         {% endblock header %}
 
+        {% comment %}
+        Note: keep the following inline style tags! These are controlled by JavaScript
+        and not by the CSS, so they are inline by definition.
+        {% endcomment %}
+
         {% block main-area %}
-          <div id="sidebar" data-collapsed="{{ view.sidebar_is_collapsed|yesno:'true,false,false' }}">
+          <div id="sidebar"
+               data-collapsed="{{ view.sidebar_is_collapsed|yesno:'true,false,false' }}"
+               style="
+               {% if view.sidebar_is_collapsed %}
+               left: -300px;
+               {% else %}
+               left: 0px;
+               {% endif %}
+               "
+          >
             <div class="sidebar-inner">
               {% block sidebar %}
               {% endblock sidebar %}
             </div>
           </div>
 
-          <div id="secondary-sidebar" data-collapsed="{{ view.secondary_sidebar_is_collapsed|yesno:'true,false,true' }}">
+          <div id="secondary-sidebar"
+               data-collapsed="{{ view.secondary_sidebar_is_collapsed|yesno:'true,false,true' }}"
+          >
             <div class="sidebar-inner">
               {% block secondary-sidebar %}
               {% endblock secondary-sidebar %}
             </div>
           </div>
 
-          <div id="content">
+          <div id="content"
+               style="
+               {% if view.sidebar_is_collapsed %}
+               left: 0px;
+               {% else %}
+               left: 301px
+               {% endif %}
+               {% if view.rightbar_is_collapsed %}
+               right: 0px;
+               {% else %}
+               right: 251px;
+               {% endif %}
+               "
+          >
             {% block content %}
             {% endblock content %}
           </div>
 
-          <div id="rightbar" data-collapsed="{{ view.rightbar_is_collapsed|yesno:'true,false,true' }}">
+          <div id="rightbar"
+               data-collapsed="{{ view.rightbar_is_collapsed|yesno:'true,false,true' }}"
+               style="
+               {% if view.rightbar_is_collapsed %}
+               right: -251px;
+               {% else %}
+               right: 0px;
+               {% endif %}
+               "
+          >
             <div class="sidebar-inner">
               {% block rightbar %}
               {% endblock rightbar %}
