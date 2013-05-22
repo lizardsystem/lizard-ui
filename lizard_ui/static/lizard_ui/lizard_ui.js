@@ -93,6 +93,7 @@ var defaultAnimationSpeed = 300;
 var setSidebarState = function(collapse, preventAnim) {
     var animationSpeed = preventAnim === true ? 0 : defaultAnimationSpeed;
     if (collapse) {
+        // collapsing
         var secondaryCollapsed = $('#secondary-sidebar').data('collapsed');
         if (!secondaryCollapsed) {
             setSecondarySidebarState(true);
@@ -128,6 +129,7 @@ var setSidebarState = function(collapse, preventAnim) {
         );
     }
     else {
+        // opening
         // update arrow icon on button
         $('.collapse-sidebar i')
             .removeClass('icon-arrow-right')
@@ -170,6 +172,7 @@ var setRightbarState = function(collapse, preventAnim) {
         // if (secondaryCollapsed) {
             // hideSecondaryRightbar();
         // }
+        // collapsing
         $('.collapse-rightbar i')
             .removeClass('icon-arrow-right')
             .addClass('icon-arrow-left');
@@ -187,6 +190,7 @@ var setRightbarState = function(collapse, preventAnim) {
         );
     }
     else {
+        // opening
         $('.collapse-rightbar i')
             .removeClass('icon-arrow-left')
             .addClass('icon-arrow-right');
@@ -213,6 +217,7 @@ var setSecondarySidebarState = function(collapse, preventAnim) {
     var top, bottom, element, animationSpeed;
     animationSpeed = preventAnim === true ? 0 : defaultAnimationSpeed;
     if (collapse) {
+        // collapsing
         bottom = $("#footer").position().top;
         element = $("#secondary-sidebar");
         element.css("overflow-y", "hidden");
@@ -225,6 +230,7 @@ var setSecondarySidebarState = function(collapse, preventAnim) {
         $('.secondary-sidebar-button').removeClass('active');
     }
     else {
+        // opening
         top = $("#sidebar").position().top;
         $('.secondary-sidebar-button').addClass('active');
         bottom = $("#footer").position().top;
