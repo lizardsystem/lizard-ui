@@ -7268,6 +7268,10 @@ ul.ui-icon-list .notworking {
   cursor: not-allowed;
 }
 
+#modal-login-form {
+  margin: 0 0 0;
+}
+
 ul.without-bullets {
   margin-left: 0;
   list-style: none;
