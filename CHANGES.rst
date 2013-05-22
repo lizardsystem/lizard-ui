@@ -5,7 +5,7 @@ Changelog of lizard-ui
 4.29 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Fix layout bug in login modal. The margin was too large.
 
 
 4.28 (2013-05-14)
