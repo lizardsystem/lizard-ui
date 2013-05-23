@@ -2,8 +2,8 @@ Changelog of lizard-ui
 ======================
 
 
-4.30 (unreleased)
------------------
+4.29.1 (2013-05-23)
+-------------------
 
 - Added trigger='hover' behaviour for icons. With the now-default-since-4.29
   trigger='click' behaviour, the icons weren't clickable anymore: they just
