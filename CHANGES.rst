@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-4.29 (unreleased)
+4.29 (2013-05-23)
 -----------------
 
 - Removed trigger:hover to compensate for latest bootstrap version.
