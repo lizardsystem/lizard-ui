@@ -200,6 +200,7 @@
                data-collapsed="{{ view.sidebar_is_collapsed|yesno:'true,false,false' }}"
                style="
                {% if view.sidebar_is_collapsed %}
+               display: none;
                left: -300px;
                {% else %}
                left: 0px;
@@ -214,6 +215,11 @@
 
           <div id="secondary-sidebar"
                data-collapsed="{{ view.secondary_sidebar_is_collapsed|yesno:'true,false,true' }}"
+               style="
+               {% if view.secondary_sidebar_is_collapsed %}
+               display: none;
+               {% endif %}
+               "
           >
             <div class="sidebar-inner">
               {% block secondary-sidebar %}
@@ -243,6 +249,7 @@
                data-collapsed="{{ view.rightbar_is_collapsed|yesno:'true,false,true' }}"
                style="
                {% if view.rightbar_is_collapsed %}
+               display: none;
                right: -251px;
                {% else %}
                right: 0px;
