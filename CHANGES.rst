@@ -5,19 +5,33 @@ Changelog of lizard-ui
 4.29 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Removed trigger:hover to compensate for latest bootstrap version.
+
+  See
+  https://github.com/twitter/bootstrap/commit/1fe4ed882341af29a3b709c06642e0dbb556560f#L1L70
+
+  The order in which bootstrap grabs the options for the hover has
+  changed. Explicitly passed options (like the trigger=hover that I'm removing
+  in this commit) now take precedence over `data-trigger='click'` options in
+  the html. So suddenly all the 'i' icons in the sidebar aren't click-to-open
+  anymore, but they reverted to hover.
+
+  As a stop-gap measure we now use bootstrap's default click trigger. That's
+  what we use most of the time now. And it is always customizable with a
+  data-attribute now that we don't override it with an explicit option
+  anymore.
 
 
 4.28 (2013-05-14)
 -----------------
 
-- Nothing changed yet.
+- Translations.
 
 
 4.27 (2013-05-08)
 -----------------
 
-- Nothing changed yet.
+- Translations.
 
 
 4.26 (2013-05-06)
