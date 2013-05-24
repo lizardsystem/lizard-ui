@@ -7340,11 +7340,11 @@ ul.tree.tree-top-level {
 }
 
 #sidebar ul.filetree .expandable-hitarea {
-  background: url("../../lizard_ui/arrows.png") no-repeat scroll 6px -10px transparent;
+  background: url("../../../lizard_ui/arrows.png") no-repeat scroll 6px -10px transparent;
 }
 
 #sidebar ul.filetree .collapsable-hitarea {
-  background: url("../../lizard_ui/arrows.png") no-repeat scroll -7px 5px transparent;
+  background: url("../../../lizard_ui/arrows.png") no-repeat scroll -7px 5px transparent;
 }
 
 #sidebar ul.filetree .file {
