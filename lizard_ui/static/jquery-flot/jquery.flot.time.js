@@ -23,7 +23,7 @@ for details.
             pad = "" + (pad == null ? "0" : pad);
             return n.length == 1 ? pad + n : n;
         };
-        
+
         var r = [];
         var escape = false;
         var hours = d.getHours();
@@ -44,7 +44,7 @@ for details.
 
         for (var i = 0; i < fmt.length; ++i) {
             var c = fmt.charAt(i);
-            
+
             if (escape) {
                 switch (c) {
                 case 'a': c = "" + dayNames[d.getDay()]; break;
@@ -121,7 +121,7 @@ for details.
             return makeUtcWrapper(new Date(ts));
         }
     }
-    
+
     // map of app. size of time units in milliseconds
     var timeUnitSize = {
         "second": 1000,
@@ -136,9 +136,9 @@ for details.
     // an integer algorithm
     var spec = [
         [1, "second"], [2, "second"], [5, "second"], [10, "second"],
-        [30, "second"], 
+        [30, "second"],
         [1, "minute"], [2, "minute"], [5, "minute"], [10, "minute"],
-        [30, "minute"], 
+        [30, "minute"],
         [1, "hour"], [2, "hour"], [4, "hour"],
         [8, "hour"], [12, "hour"],
         [1, "day"], [2, "day"], [3, "day"],
@@ -171,7 +171,7 @@ for details.
                                 break;
                         var size = spec[i][0];
                         var unit = spec[i][1];
-                        
+
                         // special-case the possibility of several years
                         if (unit == "year") {
                             // if given a minTickSize in years, just use it,
@@ -189,7 +189,7 @@ for details.
                                     size = 5;
                                 else
                                     size = 10;
-                            
+
                                 size *= magn;
                             }
 
@@ -201,7 +201,7 @@ for details.
                         axis.tickSize = opts.tickSize || [size, unit];
                         var tickSize = axis.tickSize[0];
                         unit = axis.tickSize[1];
-                        
+
                         var step = tickSize * timeUnitSize[unit];
 
                         if (unit == "second")
@@ -214,7 +214,7 @@ for details.
                             d.setMonth(floorInBase(d.getMonth(), tickSize));
                         if (unit == "year")
                             d.setFullYear(floorInBase(d.getFullYear(), tickSize));
-                        
+
                         // reset smaller components
                         d.setMilliseconds(0);
                         if (step >= timeUnitSize.minute)
@@ -266,19 +266,19 @@ for details.
                         // first check global format
                         if (opts.timeformat != null)
                             return formatDate(d, opts.timeformat, opts.monthNames, opts.dayNames);
-                        
+
                         var t = axis.tickSize[0] * timeUnitSize[axis.tickSize[1]];
                         var span = axis.max - axis.min;
                         var suffix = (opts.twelveHourClock) ? " %p" : "";
                         var hourCode = (opts.twelveHourClock) ? "%I" : "%H";
-                        
+
                         if (t < timeUnitSize.minute)
                             fmt = hourCode + ":%M:%S" + suffix;
                         else if (t < timeUnitSize.day) {
                             if (span < 2 * timeUnitSize.day)
                                 fmt = hourCode + ":%M" + suffix;
                             else
-                                fmt = "%b %d " + hourCode + ":%M" + suffix;
+                                fmt = "%b %d\n" + hourCode + ":%M" + suffix;
                         }
                         else if (t < timeUnitSize.month)
                             fmt = "%b %d";
@@ -290,7 +290,7 @@ for details.
                         }
                         else
                             fmt = "%Y";
-                        
+
                         var rt = formatDate(d, fmt, opts.monthNames, opts.dayNames);
                         return rt;
                     };
