@@ -7486,7 +7486,7 @@ div.nonworking-workspace-acceptable {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 15000;
+  z-index: 6000;
   width: 0;
   height: 0;
   border: 1px solid black;
@@ -7603,7 +7603,7 @@ div.date-range-box input {
 }
 
 #hover-popup {
-  z-index: 10000 !important;
+  z-index: 3000 !important;
 }
 
 a.collage-add {
@@ -7631,10 +7631,11 @@ a.collage-add {
 }
 
 .daterangepicker {
-  z-index: 10000;
+  z-index: 2000;
 }
 
 .popover {
+  z-index: 4000;
   border: 3px solid #000;
 }
 
