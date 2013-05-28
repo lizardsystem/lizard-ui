@@ -7070,7 +7070,7 @@ body {
 #secondary-sidebar {
   position: absolute;
   top: 0;
-  top: 81px;
+  top: 40px;
   bottom: 0;
   bottom: 41px;
   width: 300px;
@@ -7096,18 +7096,18 @@ body {
   border-left: 1px solid #c0c0bc;
 }
 
-.sidebar-inner {
+.sidebar-inner,
+.rightbar-inner {
   padding-right: 13px;
   padding-left: 13px;
 }
 
 #content {
   position: absolute;
-  top: 81px;
+  top: 40px;
   right: 0;
-  bottom: 41px;
+  bottom: 0;
   left: 0;
-  left: 301px;
   overflow: auto;
 }
 
@@ -7145,20 +7145,84 @@ body {
   float: right;
 }
 
+#sidebar-awesome {
+  position: absolute;
+  top: 86px;
+  left: 0;
+  z-index: 2000;
+  width: 300px;
+  height: 500px;
+  background-color: #f2f2f0;
+}
+
+#sidebar-awesome-inner {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: auto;
+}
+
+#collapse-sidebar-awesome {
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  width: 80px;
+  height: 30px;
+  margin-top: -15px;
+}
+
+#collapse-sidebar-awesome:focus {
+  outline: none;
+}
+
+#rightbar-awesome {
+  position: absolute;
+  right: 80px;
+  bottom: 0;
+  z-index: 2000;
+  width: 300px;
+  height: 500px;
+  background-color: #f2f2f0;
+}
+
+#rightbar-awesome-inner {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: auto;
+}
+
+#collapse-rightbar-awesome {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  width: 100px;
+  height: 30px;
+  margin-left: -50px;
+}
+
+#collapse-rightbar-awesome:focus {
+  outline: none;
+}
+
 .padded-sidebar-item {
   display: block;
   padding-top: 4.4px;
   padding-bottom: 4.4px;
 }
 
-#sidebar h2,
-#rightbar h2,
+.sidebar-inner h2,
+.rightbar-inner h2,
 #secondary-sidebar h2,
-#sidebar h3,
-#rightbar h3,
+.sidebar-inner h3,
+.rightbar-inner h3,
 #secondary-sidebar h3,
-#sidebar h4,
-#rightbar h4,
+.sidebar-inner h4,
+.rightbar-inner h4,
 #secondary-sidebar h4 {
   display: block;
   padding-top: 4.4px;
@@ -7171,8 +7235,8 @@ body {
   line-height: 18px;
 }
 
-#sidebar h2,
-#rightbar h2,
+.sidebar-inner h2,
+.rightbar-inner h2,
 #secondary-sidebar h2 {
   padding-left: 13px;
   margin-left: -13px;
@@ -7187,8 +7251,8 @@ body {
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff9ebec2', endColorstr='#ff7fa9ae', GradientType=1);
 }
 
-#sidebar h3,
-#rightbar h3,
+.sidebar-inner h3,
+.rightbar-inner h3,
 #secondary-sidebar h3 {
   padding-left: 13px;
   margin-left: -13px;
@@ -7296,62 +7360,62 @@ ul.tree.tree-top-level {
   display: none;
 }
 
-#sidebar ul li.workspace-acceptable,
-#sidebar ul div.workspace-acceptable {
+.sidebar-inner ul li.workspace-acceptable,
+.sidebar-inner ul div.workspace-acceptable {
   display: block;
   cursor: pointer;
 }
 
-#sidebar ul li.workspace-acceptable:hover,
-#sidebar ul div.workspace-acceptable:hover {
+.sidebar-inner ul li.workspace-acceptable:hover,
+.sidebar-inner ul div.workspace-acceptable:hover {
   outline: 1px solid #000;
 }
 
-#sidebar ul li.workspace-acceptable.selected,
-#sidebar ul div.workspace-acceptable.selected,
-#sidebar ul li.workspace-acceptable.selected-invisible,
-#sidebar ul div.workspace-acceptable.selected-invisible {
+.sidebar-inner ul li.workspace-acceptable.selected,
+.sidebar-inner ul div.workspace-acceptable.selected,
+.sidebar-inner ul li.workspace-acceptable.selected-invisible,
+.sidebar-inner ul div.workspace-acceptable.selected-invisible {
   background-color: #d9d9d6;
 }
 
-#sidebar ul.filetree {
+.sidebar-inner ul.filetree {
   padding: 0;
   margin: 0 0 9px 0;
   list-style: none;
 }
 
-#sidebar ul.filetree ul {
+.sidebar-inner ul.filetree ul {
   padding: 0;
   list-style: none;
 }
 
-#sidebar ul.filetree li {
+.sidebar-inner ul.filetree li {
   position: relative;
   margin: 6px 0;
 }
 
-#sidebar ul.filetree li .selected {
+.sidebar-inner ul.filetree li .selected {
   background-color: #D9D9D6;
 }
 
-#sidebar ul.filetree .hitarea {
+.sidebar-inner ul.filetree .hitarea {
   padding-left: 16px;
   cursor: pointer;
 }
 
-#sidebar ul.filetree .expandable-hitarea {
+.sidebar-inner ul.filetree .expandable-hitarea {
   background: url("../../../lizard_ui/arrows.png") no-repeat scroll 6px -10px transparent;
 }
 
-#sidebar ul.filetree .collapsable-hitarea {
+.sidebar-inner ul.filetree .collapsable-hitarea {
   background: url("../../../lizard_ui/arrows.png") no-repeat scroll -7px 5px transparent;
 }
 
-#sidebar ul.filetree .file {
+.sidebar-inner ul.filetree .file {
   display: block;
 }
 
-#sidebar ul.filetree .sidebarbox-action-icon {
+.sidebar-inner ul.filetree .sidebarbox-action-icon {
   position: absolute;
   top: 0;
   right: 0;

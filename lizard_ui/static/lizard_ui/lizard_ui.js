@@ -90,128 +90,71 @@ var setUpPopovers = function() {
 var defaultAnimationSpeed = 300;
 
 // left bar, containing app icons etc.
-var setSidebarState = function(collapse, preventAnim) {
+var setSidebarAwesomeState = function(collapse, preventAnim) {
     var animationSpeed = preventAnim === true ? 0 : defaultAnimationSpeed;
     if (collapse) {
         // collapsing
-        var secondaryCollapsed = $('#secondary-sidebar').data('collapsed');
-        if (!secondaryCollapsed) {
-            setSecondarySidebarState(true);
-        }
-
         // update arrow icon on button
-        $('.collapse-sidebar i').removeClass('icon-arrow-left').addClass('icon-arrow-right');
-        // disable the seconday sidebar button
-        $('.secondary-sidebar-button').attr('disabled', '');
+        $('#collapse-sidebar-awesome i').removeClass('icon-arrow-left').addClass('icon-arrow-right');
         // slide the sidebar
-        $('#sidebar').animate(
+        $('#sidebar-awesome').animate(
             {
                 left: -300
             },
             animationSpeed,
             'swing',
             function () {
-                $('#sidebar').hide();
-            }
-        );
-        // slide the content
-        $('#content').animate(
-            {
-                left: 0
-            },
-            animationSpeed,
-            'swing',
-            function() {
-                if (typeof map !== 'undefined') {
-                    if (typeof map.updateSize !== 'undefined') {
-                        // Somehow this extra check is needed for Safari.
-                        map.updateSize();
-                    }
-                }
             }
         );
     }
     else {
         // opening
         // update arrow icon on button
-        $('.collapse-sidebar i').removeClass('icon-arrow-right').addClass('icon-arrow-left');
-        // enable the seconday sidebar button
-        $('.secondary-sidebar-button').removeAttr('disabled');
+        $('#collapse-sidebar-awesome i').removeClass('icon-arrow-right').addClass('icon-arrow-left');
         // slide the sidebar
-        $('#sidebar').show();
-        $('#sidebar').animate(
+        $('#sidebar-awesome').animate(
             {
                 left: 0
             },
             animationSpeed,
-            'swing'
-        );
-        // slide the content
-        $('#content').animate(
-            {
-                left: 301
-            },
-            animationSpeed,
             'swing',
-            function() {
-                if (typeof map !== 'undefined') {
-                    if (typeof map.updateSize !== 'undefined') {
-                        // Somehow this extra check is needed for Safari.
-                        map.updateSize();
-                    }
-                }
+            function () {
             }
         );
     }
     // update the state
-    $('#sidebar').data('collapsed', collapse);
+    $('#sidebar-awesome').data('collapsed', collapse);
 };
 
 // right bar, for legend
-var setRightbarState = function(collapse, preventAnim) {
+var setRightbarAwesomeState = function(collapse, preventAnim) {
     var animationSpeed = preventAnim === true ? 0 : defaultAnimationSpeed;
     if (collapse) {
         // collapsing
-        $('.collapse-rightbar i').removeClass('icon-arrow-right').addClass('icon-arrow-left');
-        $('#rightbar').animate(
+        $('.collapse-rightbar-awesome i').removeClass('icon-arrow-down').addClass('icon-arrow-up');
+        $('#rightbar-awesome').animate(
             {
-                right: -251
+                bottom: -500
             },
             animationSpeed,
             'swing',
             function () {
-                $('#rightbar').hide();
             }
-        );
-        $('#content').animate(
-            {
-                right: 0
-            },
-            animationSpeed,
-            'swing'
         );
     }
     else {
         // opening
-        $('.collapse-rightbar i').removeClass('icon-arrow-left').addClass('icon-arrow-right');
-        $('#rightbar').show();
-        $('#rightbar').animate(
+        $('.collapse-rightbar-awesome i').removeClass('icon-arrow-up').addClass('icon-arrow-down');
+        $('#rightbar-awesome').animate(
             {
-                right: 0
-            },
-            animationSpeed,
-            'swing'
-        );
-        $('#content').animate(
-            {
-                right:251
+                bottom: 0
             },
             animationSpeed,
             'swing'
         );
     }
     // update the state
-    $('#rightbar').data('collapsed', collapse);
+    $('#rightbar-awesome').data('collapsed', collapse);
 };
 
 // secondary left bar, for workspace and collage
@@ -419,40 +362,43 @@ function setUpAccordion() {
     }
 }
 
-function setUpBars() {
+function setUpAwesomeBars() {
     // set initial states from data attributes, without animating
-    if ($('#sidebar').exists()) {
-        setSidebarState($('#sidebar').data('collapsed'), true);
+    if ($('#sidebar-awesome').exists()) {
+        setSidebarAwesomeState($('#sidebar-awesome').data('collapsed'), true);
     }
-    if ($('#rightbar').exists()) {
-        setRightbarState($('#rightbar').data('collapsed'), true);
-    }
-    if ($('#secondary-sidebar').exists()) {
-        setSecondarySidebarState($('#secondary-sidebar').data('collapsed'), true);
+    if ($('#rightbar-awesome').exists()) {
+        setRightbarAwesomeState($('#rightbar-awesome').data('collapsed'), true);
     }
 
     // bind buttons
-    $('.collapse-sidebar').click(function(e) {
+    $('#collapse-sidebar-awesome').click(function(e) {
         e.preventDefault();
         // keep the ternary operator, so we magically deal with undefined scenarios
-        setSidebarState($('#sidebar').data('collapsed') === true ? false : true);
+        setSidebarAwesomeState($('#sidebar-awesome').data('collapsed') === true ? false : true);
     });
-    $('.collapse-rightbar').click(function(e) {
+    $('#collapse-rightbar-awesome').click(function(e) {
         e.preventDefault();
         // keep the ternary operator, so we magically deal with undefined scenarios
-        setRightbarState($('#rightbar').data('collapsed') === true ? false : true);
+        setRightbarAwesomeState($('#rightbar-awesome').data('collapsed') === true ? false : true);
     });
-    $('.secondary-sidebar-button').click(function(e) {
-        e.preventDefault();
-        // keep the ternary operator, so we magically deal with undefined scenarios
-        setSecondarySidebarState($('#secondary-sidebar').data('collapsed') === true ? false : true);
-    });
+
+
+    // $('.collapse-rightbar').click(function(e) {
+        // e.preventDefault();
+        // // keep the ternary operator, so we magically deal with undefined scenarios
+        // setRightbarState($('#rightbar').data('collapsed') === true ? false : true);
+    // });
+    // $('.secondary-sidebar-button').click(function(e) {
+        // e.preventDefault();
+        // // keep the ternary operator, so we magically deal with undefined scenarios
+        // setSecondarySidebarState($('#secondary-sidebar').data('collapsed') === true ? false : true);
+    // });
 }
 
 $(document).ready(function() {
-  setUpBars();
+  setUpAwesomeBars();
   setUpPopovers();
-  setUpMapDimensions();
   $('.ui-login-link').click(function(e) {
     e.preventDefault();
     $('#login-modal').modal('toggle');
@@ -492,15 +438,6 @@ $(document).ready(function() {
 });
 
 $(document).ready(function () {
-    // fix div heights for IE7
-    // we don't support IE7 though
-    if (isIE && ieVersion == 7) {
-        $('#content').height('100%');
-        $('#sidebar').height('100%');
-        $('#secondary-sidebar').height('100%');
-        $('#rightbar').height('100%');
-    }
-
     // Do not change the order.
     setUpTree();
     setUpSortableTables();

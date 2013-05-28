@@ -82,7 +82,7 @@ body {
 }
 
 // Two variables to help with positioning. They include the 1px border.
-@belowTopBars: 2 * @barHeight + 1;
+@belowTopBars: @barHeight;
 @aboveFooter: @barHeight + 1;
 // And we need the sidebar width, too, for positioning.
 @sidebarWidth: 300px;
@@ -107,7 +107,6 @@ body {
     background-color: darken(@light, 5%);
   }
 }
-
 
 // Bar at the bottom.
 #footer {
@@ -147,8 +146,7 @@ body {
 }
 
 // Keep the sidebar content out of the margins. It is all text, by definition.
-.sidebar-inner {
-  //.scroll-y;
+.sidebar-inner, .rightbar-inner {
   padding-left: @baseFontSize;
   padding-right: @baseFontSize;
 }
@@ -157,11 +155,10 @@ body {
 // sidebar.
 #content {
   position: absolute;
-  left: 0;
-  right: 0;
   top: @belowTopBars;
-  left: @sidebarWidth + 1;  // Extra pixel for the border.
-  bottom: @aboveFooter;
+  right: 0;
+  bottom: 0;
+  left: 0;
   overflow: auto;
 }
 
@@ -204,6 +201,89 @@ body {
   }
 }
 
+#sidebar-awesome {
+  position: absolute;
+
+  top: 86px;
+  left: 0;
+
+  width: 300px;
+  height: 500px;
+
+  //#gradient > .vertical(lighten(@light, 10%), #fff);
+  background-color: lighten(@light, 10%);
+
+  z-index: 2000;
+}
+
+#sidebar-awesome-inner {
+  position: absolute;
+
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  overflow: auto;
+}
+
+#collapse-sidebar-awesome {
+  position: absolute;
+
+  top: 50%;
+  left: 100%;
+
+  width: 80px;
+  height: 30px;
+
+  margin-top: -15px; // half of height
+}
+
+#collapse-sidebar-awesome:focus {
+  outline: none;
+}
+
+#rightbar-awesome {
+  position: absolute;
+
+  bottom: 0;
+  right: 80px;
+
+  width: 300px;
+  height: 500px;
+
+  //#gradient > .vertical(lighten(@light, 10%), #fff);
+  background-color: lighten(@light, 10%);
+
+  z-index: 2000;
+}
+
+#rightbar-awesome-inner {
+  position: absolute;
+
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  overflow: auto;
+}
+
+#collapse-rightbar-awesome {
+  position: absolute;
+
+  bottom: 100%;
+  left: 50%;
+
+  width: 100px;
+  height: 30px;
+
+  margin-left: -50px; // half of width
+}
+
+#collapse-rightbar-awesome:focus {
+  outline: none;
+}
 
 // Lizard-specific stuff.
 
@@ -222,8 +302,8 @@ body {
 }
 
 // Header styling for all sidebars
-#sidebar,
-#rightbar,
+.sidebar-inner,
+.rightbar-inner,
 #secondary-sidebar {
   h2, h3, h4 {
     clear: left;
@@ -353,7 +433,7 @@ ul.tree {
   display: none;
 }
 
-#sidebar ul {
+.sidebar-inner ul {
     li.workspace-acceptable,
     div.workspace-acceptable {
         cursor: pointer;
@@ -373,7 +453,7 @@ ul.tree {
 }
 
 // Mostly used by lizard-fewsjdbc
-#sidebar ul.filetree {
+.sidebar-inner ul.filetree {
     list-style: none;
     margin: 0 0 9px 0;
     padding: 0;

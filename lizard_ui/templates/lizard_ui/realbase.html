@@ -114,6 +114,7 @@
                 {% endblock site-actions %}
               </div>
             </div>
+            {% comment breadcrumb %}
             <div id="breadcrumb-row"
                  class="navbar">
               <div id="breadcrumbs">
@@ -187,6 +188,7 @@
                 {% endblock content-actions %}
               </div>
             </div>
+            {% endcomment %}
           </header>
         {% endblock header %}
 
@@ -196,6 +198,7 @@
         {% endcomment %}
 
         {% block main-area %}
+          {% comment %}
           <div id="sidebar"
                data-collapsed="{{ view.sidebar_is_collapsed|yesno:'true,false,false' }}"
                style="
@@ -212,7 +215,9 @@
               {% endblock sidebar %}
             </div>
           </div>
+          {% endcomment %}
 
+          {% comment %}
           <div id="secondary-sidebar"
                data-collapsed="{{ view.secondary_sidebar_is_collapsed|yesno:'true,false,true' }}"
                style="
@@ -226,25 +231,60 @@
               {% endblock secondary-sidebar %}
             </div>
           </div>
+          {% endcomment %}
 
-          <div id="content"
-               style="
-               {% if view.sidebar_is_collapsed %}
-               left: 0px;
-               {% else %}
-               left: 301px
-               {% endif %}
-               {% if view.rightbar_is_collapsed %}
-               right: 0px;
-               {% else %}
-               right: 251px;
-               {% endif %}
-               "
-          >
+          <div id="content">
             {% block content %}
             {% endblock content %}
           </div>
 
+          {# Note: keep the inline style, as the position of this block is controlled by Javascript #}
+          <div id="sidebar-awesome"
+               data-collapsed="{{ view.sidebar_is_collapsed|yesno:'true,false,true' }}"
+               style="
+               {% if view.sidebar_is_collapsed %}
+               left: -300px;
+               {% else %}
+               left: 0;
+               {% endif %}
+               "
+          >
+              <button id="collapse-sidebar-awesome" class="btn" title="{% trans 'Collapse or expand this panel' %}" type="button">
+                  <i class="icon-arrow-right"></i>
+                  {% trans 'Apps' %}
+              </button>
+              <div id="sidebar-awesome-inner">
+                  <div class="sidebar-inner">
+                      {% block sidebar %}
+                      {% endblock sidebar %}
+                  </div>
+              </div>
+          </div>
+
+          {# Note: keep the inline style, as the position of this block is controlled by Javascript #}
+          <div id="rightbar-awesome"
+               data-collapsed="{{ view.rightbar_is_collapsed|yesno:'true,false,true' }}"
+               style="
+               {% if view.rightbar_is_collapsed %}
+               bottom: -500px;
+               {% else %}
+               bottom: 0;
+               {% endif %}
+               "
+          >
+              <button id="collapse-rightbar-awesome" class="btn" title="{% trans 'Collapse or expand this panel' %}" type="button">
+                  <i class="icon-arrow-up"></i>
+                  {% trans 'Legend' %}
+              </button>
+              <div id="rightbar-awesome-inner">
+                  <div class="rightbar-inner">
+                      {% block rightbar %}
+                      {% endblock rightbar %}
+                  </div>
+              </div>
+          </div>
+
+          {% comment %}
           <div id="rightbar"
                data-collapsed="{{ view.rightbar_is_collapsed|yesno:'true,false,true' }}"
                style="
@@ -261,7 +301,9 @@
               {% endblock rightbar %}
             </div>
           </div>
+          {% endcomment %}
 
+          {% comment %}
           <div id="footer">
             <div id="sidebar-actions">
               {% block sidebar-actions %}
@@ -369,6 +411,7 @@
               {% endblock rightbar-actions %}
             </div>
           </div>
+          {% endcomment %}
         {% endblock main-area %}
 
       {% endblock page %}
