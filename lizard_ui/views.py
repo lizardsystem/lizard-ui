@@ -9,13 +9,21 @@ from django.conf import settings
 from django.contrib.auth import login
 from django.contrib.auth import logout
 from django.core.urlresolvers import reverse
+
 from django.http import Http404
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse
+from django.http import HttpResponseRedirect
+from django.http import HttpResponseServerError
+
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render
+
+from django.template import Context, loader
+
 from django.utils.translation import check_for_language
 from django.utils.translation import get_language
 from django.utils.translation import ugettext as _
+
 from django.views.generic.base import TemplateView, View
 from django.views.generic.edit import FormView
 
@@ -593,3 +601,17 @@ class IconView(UiView):
     @property
     def icons(self):
         return self.application_screen.icons.all()
+
+
+def handler500(request):
+    """
+    500 error handler which includes ``request`` in the context.
+
+    Templates: `500.html`
+    Context: None
+    """
+
+    t = loader.get_template('500.html')
+    return HttpResponseServerError(t.render(Context({
+        'request': request,
+    })))
