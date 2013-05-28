@@ -19,7 +19,7 @@
     </title>
     <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 	<meta charset="utf-8" />
     <link rel="icon" href="{{ STATIC_URL }}lizard_ui/favicon.ico" type="images/x-icon" />
     <link rel="SHORTCUT ICON" href="{{ STATIC_URL }}lizard_ui/favicon.ico" />
@@ -200,6 +200,7 @@
                data-collapsed="{{ view.sidebar_is_collapsed|yesno:'true,false,false' }}"
                style="
                {% if view.sidebar_is_collapsed %}
+               display: none;
                left: -300px;
                {% else %}
                left: 0px;
@@ -214,6 +215,11 @@
 
           <div id="secondary-sidebar"
                data-collapsed="{{ view.secondary_sidebar_is_collapsed|yesno:'true,false,true' }}"
+               style="
+               {% if view.secondary_sidebar_is_collapsed %}
+               display: none;
+               {% endif %}
+               "
           >
             <div class="sidebar-inner">
               {% block secondary-sidebar %}
@@ -243,6 +249,7 @@
                data-collapsed="{{ view.rightbar_is_collapsed|yesno:'true,false,true' }}"
                style="
                {% if view.rightbar_is_collapsed %}
+               display: none;
                right: -251px;
                {% else %}
                right: 0px;
@@ -370,7 +377,9 @@
     {# Ajax calls need a CSRF token cookie, and this line sends one as a side effect #}
     <!-- {{ csrf_token }} -->
 
+    {% block javascript %}
     <script src="{{ STATIC_URL }}jquery/jquery.min.js"></script>
+    <script src="{{ STATIC_URL }}jquery-mobile-events/jquery.mobile-events.min.js"></script>
 
     {# Excanvas, for IE7 and IE8 support for HTML5 Canvas. #}
     <!--[if lt IE 9]>
@@ -383,24 +392,23 @@
             data-openlayers-url="{{ STATIC_URL }}openlayers/"
             charset="utf-8"></script>
     <script src="{{ STATIC_URL }}jquery-json/jquery.json-2.3.min.js"></script>
-    <script src="{{ STATIC_URL }}momentjs/moment.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.0.0/moment.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.0.0/lang/nl.min.js"></script>
     <script src="{{ STATIC_URL }}jquery-transform/jquery.transform-0.9.3.min.js"></script>
     <script src="{{ STATIC_URL }}jquery-resize/jquery.ba-resize.min.js"></script>
 
-    {% block javascript %}
-      <script src="{{ STATIC_URL }}jqueryui/jquery-ui.js"></script>
-      <script src="{{ STATIC_URL }}momentjs/nl.js"></script>
-      <script src="{{ STATIC_URL }}lizard_ui/csrf.js"></script>
-      <script src="{{ STATIC_URL }}lizard_ui/lizard_ui.js"></script>
-      <script src="{{ STATIC_URL }}jquery-treeview/jquery.treeview.js"></script>
-      <script src="{{ STATIC_URL }}jquery-flot/jquery.flot.js"></script>
-      <script src="{{ STATIC_URL }}jquery-flot/jquery.flot.selection.js"></script>
-      <script src="{{ STATIC_URL }}jquery-flot/jquery.flot.resize.js"></script>
-      <script src="{{ STATIC_URL }}jquery-flot/jquery.flot.navigate.js"></script>
-      <script src="{{ STATIC_URL }}jquery-flot/jquery.flot.time.js"></script>
-      <script src="{{ STATIC_URL }}jquery-flot/jquery.flot.touch.js"></script>
-      <script src="{{ STATIC_URL }}jquery-flot/jquery.flot.fillbetween.js"></script>
-      <script src="{{ STATIC_URL }}daterangepicker/daterangepicker.js"></script>
+    <script src="{{ STATIC_URL }}jqueryui/jquery-ui.js"></script>
+    <script src="{{ STATIC_URL }}lizard_ui/csrf.js"></script>
+    <script src="{{ STATIC_URL }}lizard_ui/lizard_ui.js"></script>
+    <script src="{{ STATIC_URL }}jquery-treeview/jquery.treeview.js"></script>
+    <script src="{{ STATIC_URL }}jquery-flot/jquery.flot.js"></script>
+    <script src="{{ STATIC_URL }}jquery-flot/jquery.flot.selection.js"></script>
+    <script src="{{ STATIC_URL }}jquery-flot/jquery.flot.resize.js"></script>
+    <script src="{{ STATIC_URL }}jquery-flot/jquery.flot.navigate.js"></script>
+    <script src="{{ STATIC_URL }}jquery-flot/jquery.flot.time.js"></script>
+    <script src="{{ STATIC_URL }}jquery-flot/jquery.flot.touch.js"></script>
+    <script src="{{ STATIC_URL }}jquery-flot/jquery.flot.fillbetween.js"></script>
+    <script src="{{ STATIC_URL }}daterangepicker/daterangepicker.js"></script>
     {% endblock javascript %}
 
     {% block map-javascript %}

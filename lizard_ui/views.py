@@ -252,6 +252,23 @@ class UiView(ViewContextMixin, TemplateView):
             if not request.user.has_perm(self.required_permission):
                 return HttpResponseRedirect(
                     settings.LOGIN_URL + '?next=%s' % request.path)
+
+        # open / close sidebar when requested
+        def str2bool(something):
+            if something is None: return None
+            if something.lower() == 'true': return True
+            elif something.lower() == 'false': return False
+            else: return None
+        sidebar_is_collapsed = str2bool(request.GET.get('sidebar_is_collapsed'))
+        if sidebar_is_collapsed is not None:
+            self.sidebar_is_collapsed = sidebar_is_collapsed
+        rightbar_is_collapsed = str2bool(request.GET.get('rightbar_is_collapsed'))
+        if rightbar_is_collapsed is not None:
+            self.rightbar_is_collapsed = rightbar_is_collapsed
+        secondary_sidebar_is_collapsed = str2bool(request.GET.get('secondary_sidebar_is_collapsed'))
+        if secondary_sidebar_is_collapsed is not None:
+            self.secondary_sidebar_is_collapsed = secondary_sidebar_is_collapsed
+
         return super(UiView, self).dispatch(request, *args, **kwargs)
 
     @property

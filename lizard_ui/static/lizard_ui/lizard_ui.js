@@ -93,15 +93,14 @@ var defaultAnimationSpeed = 300;
 var setSidebarState = function(collapse, preventAnim) {
     var animationSpeed = preventAnim === true ? 0 : defaultAnimationSpeed;
     if (collapse) {
+        // collapsing
         var secondaryCollapsed = $('#secondary-sidebar').data('collapsed');
         if (!secondaryCollapsed) {
             setSecondarySidebarState(true);
         }
 
         // update arrow icon on button
-        $('.collapse-sidebar i')
-            .removeClass('icon-arrow-left')
-            .addClass('icon-arrow-right');
+        $('.collapse-sidebar i').removeClass('icon-arrow-left').addClass('icon-arrow-right');
         // disable the seconday sidebar button
         $('.secondary-sidebar-button').attr('disabled', '');
         // slide the sidebar
@@ -109,7 +108,11 @@ var setSidebarState = function(collapse, preventAnim) {
             {
                 left: -300
             },
-            animationSpeed
+            animationSpeed,
+            'swing',
+            function () {
+                $('#sidebar').hide();
+            }
         );
         // slide the content
         $('#content').animate(
@@ -117,6 +120,7 @@ var setSidebarState = function(collapse, preventAnim) {
                 left: 0
             },
             animationSpeed,
+            'swing',
             function() {
                 if (typeof map !== 'undefined') {
                     if (typeof map.updateSize !== 'undefined') {
@@ -128,25 +132,27 @@ var setSidebarState = function(collapse, preventAnim) {
         );
     }
     else {
+        // opening
         // update arrow icon on button
-        $('.collapse-sidebar i')
-            .removeClass('icon-arrow-right')
-            .addClass('icon-arrow-left');
+        $('.collapse-sidebar i').removeClass('icon-arrow-right').addClass('icon-arrow-left');
         // enable the seconday sidebar button
         $('.secondary-sidebar-button').removeAttr('disabled');
         // slide the sidebar
+        $('#sidebar').show();
         $('#sidebar').animate(
             {
-                left : 0
+                left: 0
             },
-            animationSpeed
+            animationSpeed,
+            'swing'
         );
         // slide the content
         $('#content').animate(
             {
-                left : 301
+                left: 301
             },
             animationSpeed,
+            'swing',
             function() {
                 if (typeof map !== 'undefined') {
                     if (typeof map.updateSize !== 'undefined') {
@@ -165,43 +171,43 @@ var setSidebarState = function(collapse, preventAnim) {
 var setRightbarState = function(collapse, preventAnim) {
     var animationSpeed = preventAnim === true ? 0 : defaultAnimationSpeed;
     if (collapse) {
-        // disabled: can't seem to find secondary-rightbar anywhere?
-        // var secondaryCollapsed = $('#secondary-rightbar').data('collapsed');
-        // if (secondaryCollapsed) {
-            // hideSecondaryRightbar();
-        // }
-        $('.collapse-rightbar i')
-            .removeClass('icon-arrow-right')
-            .addClass('icon-arrow-left');
+        // collapsing
+        $('.collapse-rightbar i').removeClass('icon-arrow-right').addClass('icon-arrow-left');
         $('#rightbar').animate(
             {
-                right : -251
+                right: -251
             },
-            animationSpeed
+            animationSpeed,
+            'swing',
+            function () {
+                $('#rightbar').hide();
+            }
         );
         $('#content').animate(
             {
-                right : 0
+                right: 0
             },
-            animationSpeed
+            animationSpeed,
+            'swing'
         );
     }
     else {
-        $('.collapse-rightbar i')
-            .removeClass('icon-arrow-left')
-            .addClass('icon-arrow-right');
+        // opening
+        $('.collapse-rightbar i').removeClass('icon-arrow-left').addClass('icon-arrow-right');
         $('#rightbar').show();
         $('#rightbar').animate(
             {
-                right : 0
+                right: 0
             },
-            animationSpeed
+            animationSpeed,
+            'swing'
         );
         $('#content').animate(
             {
-                right : 251
+                right:251
             },
-            animationSpeed
+            animationSpeed,
+            'swing'
         );
     }
     // update the state
@@ -213,18 +219,24 @@ var setSecondarySidebarState = function(collapse, preventAnim) {
     var top, bottom, element, animationSpeed;
     animationSpeed = preventAnim === true ? 0 : defaultAnimationSpeed;
     if (collapse) {
+        // collapsing
         bottom = $("#footer").position().top;
         element = $("#secondary-sidebar");
         element.css("overflow-y", "hidden");
         $("#secondary-sidebar").animate(
             {
-                top : bottom
+                top: bottom
             },
-            animationSpeed
+            animationSpeed,
+            'swing',
+            function () {
+                element.hide();
+            }
         );
         $('.secondary-sidebar-button').removeClass('active');
     }
     else {
+        // opening
         top = $("#sidebar").position().top;
         $('.secondary-sidebar-button').addClass('active');
         bottom = $("#footer").position().top;
@@ -233,9 +245,10 @@ var setSecondarySidebarState = function(collapse, preventAnim) {
         element.show();
         element.animate(
             {
-                top : top
+                top: top
             },
             animationSpeed,
+            'swing',
             function() {
                 element.css('overflow-y', 'auto');
             }
