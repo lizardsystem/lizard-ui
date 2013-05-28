@@ -6947,8 +6947,7 @@ a.badge:focus {
 }
 
 html,
-body,
-#page {
+body {
   overflow: hidden;
 }
 
@@ -7108,7 +7107,6 @@ body,
   right: 0;
   bottom: 0;
   left: 0;
-  overflow: hidden;
 }
 
 #logo,
