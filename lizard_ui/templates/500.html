@@ -1,23 +1,47 @@
-<html>
+{% load i18n %}
+
+<!DOCTYPE html>
   <head>
-    <title>Error 500</title>
+    <title>
+	  {% trans "Server Error" %}
+    </title>
+    <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta charset="utf-8" />
+    <link rel="icon" href="/static_media/lizard_ui/favicon.ico" type="images/x-icon" />
+    <link rel="SHORTCUT ICON" href="/static_media/lizard_ui/favicon.ico" />
+    <link rel="stylesheet"
+          href="/static_media/bootstrap/bootstrap/css/bootstrap.css"
+          type="text/css" />
   </head>
   <body>
+    <div id="page">
+      <header>
+        <div id="logo-row" class="navbar">
+          <div id="logo">
 
-    <center>
-      <h1>
-	Interne Server Error (500)
-      </h1>
+            <a href="/" title='Terug naar hoofdpagina.'><img src="/static_media/lizard_ui/logo.png" alt="Lizard" /></a>
 
-      <p>
-      Excuses voor het ongemak. Neem contact op met de servicedesk van Nelen & Schuurmans om het probleem te melden. Leg exact uit wat U heeft gedaan, zodat de servicedesk het probleem kan reproduceren en verhelpen.
-      </p>
-      <ul>
-	<li>telefoon: 030-2330250</li>
-	<li>e-mail: <a href="mail:servicedesk@nelen-schuurmans.nl">servicedesk@nelen-schuurmans.nl</a></li>
-      </ul>
-
-    </center>
+          </div>
+		</div>
+	  </header>
+	</div>
+	<div class="text-center">
+	  <h1>{% trans "500 This page cannot be found" %}</h1>
+	  <p> {% trans "Our apologies for the inconvenience." %}</p>
+	  <p> {% trans "If there should be a page please contact us." %}</p>
+	  {% if request.sentry.id %}
+      <p>{% blocktrans with sentry_id=request.sentry.id %}
+		If you need assistance, you may reference this error as
+		<strong>{{ sentry_id }}</strong>.
+		{% endblocktrans %}
+	  </p>
+	  {% endif %}
+	  <p> {% trans "Tel: 030-2330250" %}</p>
+	  <p> {% trans "Email: " %}
+		<a href="mailto:servicedesk@nelen-schuurmans.nl">servicedesk@nelen-schuurmans.nl</a>
+	  </p>
+	</div>
   </body>
 </html>
-
