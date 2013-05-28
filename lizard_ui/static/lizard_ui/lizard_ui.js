@@ -168,47 +168,40 @@ var setRightbarAwesomeState = function(collapse, preventAnim) {
 };
 
 // secondary left bar, for workspace and collage
-var setSecondarySidebarState = function(collapse, preventAnim) {
-    var top, bottom, element, animationSpeed;
-    animationSpeed = preventAnim === true ? 0 : defaultAnimationSpeed;
+var setSecondarySidebarAwesomeState = function(collapse, preventAnim) {
+    var animationSpeed = preventAnim === true ? 0 : defaultAnimationSpeed;
     if (collapse) {
         // collapsing
-        bottom = $("#footer").position().top;
-        element = $("#secondary-sidebar");
-        element.css("overflow-y", "hidden");
-        $("#secondary-sidebar").animate(
+        // update arrow icon on button
+        $('#collapse-secondary-sidebar-awesome i').removeClass('icon-arrow-left').addClass('icon-arrow-right');
+        // slide the sidebar
+        $('#secondary-sidebar-awesome').animate(
             {
-                top: bottom
+                left: -300
             },
             animationSpeed,
             'swing',
             function () {
-                element.hide();
             }
         );
-        $('.secondary-sidebar-button').removeClass('active');
     }
     else {
         // opening
-        top = $("#sidebar").position().top;
-        $('.secondary-sidebar-button').addClass('active');
-        bottom = $("#footer").position().top;
-        element = $("#secondary-sidebar");
-        element.css('top', bottom);
-        element.show();
-        element.animate(
+        // update arrow icon on button
+        $('#collapse-secondary-sidebar-awesome i').removeClass('icon-arrow-right').addClass('icon-arrow-left');
+        // slide the sidebar
+        $('#secondary-sidebar-awesome').animate(
             {
-                top: top
+                left: 0
             },
             animationSpeed,
             'swing',
-            function() {
-                element.css('overflow-y', 'auto');
+            function () {
             }
         );
     }
     // update the state
-    $('#secondary-sidebar').data('collapsed', collapse);
+    $('#secondary-sidebar-awesome').data('collapsed', collapse);
 };
 
 
@@ -377,6 +370,9 @@ function setUpAwesomeBars() {
     if ($('#sidebar-awesome').exists()) {
         setSidebarAwesomeState($('#sidebar-awesome').data('collapsed'), true);
     }
+    if ($('#secondary-sidebar-awesome').exists()) {
+        setSecondarySidebarAwesomeState($('#secondary-sidebar-awesome').data('collapsed'), true);
+    }
     if ($('#rightbar-awesome').exists()) {
         setRightbarAwesomeState($('#rightbar-awesome').data('collapsed'), true);
     }
@@ -387,23 +383,16 @@ function setUpAwesomeBars() {
         // keep the ternary operator, so we magically deal with undefined scenarios
         setSidebarAwesomeState($('#sidebar-awesome').data('collapsed') === true ? false : true);
     });
+    $('#collapse-secondary-sidebar-awesome').click(function(e) {
+        e.preventDefault();
+        // keep the ternary operator, so we magically deal with undefined scenarios
+        setSecondarySidebarAwesomeState($('#secondary-sidebar-awesome').data('collapsed') === true ? false : true);
+    });
     $('#collapse-rightbar-awesome').click(function(e) {
         e.preventDefault();
         // keep the ternary operator, so we magically deal with undefined scenarios
         setRightbarAwesomeState($('#rightbar-awesome').data('collapsed') === true ? false : true);
     });
-
-
-    // $('.collapse-rightbar').click(function(e) {
-        // e.preventDefault();
-        // // keep the ternary operator, so we magically deal with undefined scenarios
-        // setRightbarState($('#rightbar').data('collapsed') === true ? false : true);
-    // });
-    // $('.secondary-sidebar-button').click(function(e) {
-        // e.preventDefault();
-        // // keep the ternary operator, so we magically deal with undefined scenarios
-        // setSecondarySidebarState($('#secondary-sidebar').data('collapsed') === true ? false : true);
-    // });
 }
 
 $(document).ready(function() {

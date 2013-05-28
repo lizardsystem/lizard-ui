@@ -262,6 +262,29 @@
           </div>
 
           {# Note: keep the inline style, as the position of this block is controlled by Javascript #}
+          <div id="secondary-sidebar-awesome"
+               data-collapsed="{{ view.secondary_sidebar_is_collapsed|yesno:'true,false,true' }}"
+               style="
+               {% if view.secondary_sidebar_is_collapsed %}
+               left: -300px;
+               {% else %}
+               left: 0;
+               {% endif %}
+               "
+          >
+              <button id="collapse-secondary-sidebar-awesome" class="btn" title="{% trans 'Collapse or expand this panel' %}" type="button">
+                  <i class="icon-arrow-right"></i>
+                  {% trans 'Workspace' %}
+              </button>
+              <div id="secondary-sidebar-awesome-inner">
+                  <div class="sidebar-inner">
+                      {% block secondary-sidebar %}
+                      {% endblock secondary-sidebar %}
+                  </div>
+              </div>
+          </div>
+
+          {# Note: keep the inline style, as the position of this block is controlled by Javascript #}
           <div id="rightbar-awesome"
                data-collapsed="{{ view.rightbar_is_collapsed|yesno:'true,false,true' }}"
                style="
