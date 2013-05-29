@@ -23,6 +23,7 @@
 	<meta charset="utf-8" />
     <link rel="icon" href="{{ STATIC_URL }}lizard_ui/favicon.ico" type="images/x-icon" />
     <link rel="SHORTCUT ICON" href="{{ STATIC_URL }}lizard_ui/favicon.ico" />
+    <link href='http://fonts.googleapis.com/css?family=Rambla:400,700,400italic|Source+Sans+Pro:200,400,600|Droid+Sans|Anaheim|Titillium+Web:400,700,300,200|Sintony:400,700' rel='stylesheet' type='text/css'>
 
     {% block css %}
       {# jqueryui: "smoothness" theme #}
@@ -250,7 +251,7 @@
                "
           >
               <button id="collapse-sidebar-awesome" class="btn" title="{% trans 'Collapse or expand this panel' %}" type="button">
-                  <i class="icon-arrow-right"></i>
+                  <i class="icon-arrow-down"></i>
                   {% trans 'Apps' %}
               </button>
               <div id="sidebar-awesome-inner">
@@ -273,7 +274,7 @@
                "
           >
               <button id="collapse-secondary-sidebar-awesome" class="btn" title="{% trans 'Collapse or expand this panel' %}" type="button">
-                  <i class="icon-arrow-right"></i>
+                  <i class="icon-arrow-down"></i>
                   {% trans 'Workspace' %}
               </button>
               <div id="secondary-sidebar-awesome-inner">
