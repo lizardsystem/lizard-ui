@@ -223,7 +223,7 @@ textarea {
 
 body {
   margin: 0;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Rambla", Helvetica, Arial, sans-serif;
   font-size: 13px;
   line-height: 18px;
   color: #333333;
@@ -1065,7 +1065,7 @@ input,
 button,
 select,
 textarea {
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Rambla", Helvetica, Arial, sans-serif;
 }
 
 label {
@@ -5245,7 +5245,7 @@ input[type="submit"].btn.btn-mini {
 .navbar-search .search-query {
   padding: 4px 14px;
   margin-bottom: 0;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Rambla", Helvetica, Arial, sans-serif;
   font-size: 13px;
   font-weight: normal;
   line-height: 1;
@@ -6952,7 +6952,11 @@ body {
 }
 
 #logo-row {
+  position: fixed;
   *position: relative;
+  top: 0;
+  right: 0;
+  left: 0;
   *z-index: 2;
   height: 40px;
   margin-bottom: 18px;
@@ -7144,13 +7148,14 @@ body {
 }
 
 #sidebar-awesome {
-  position: absolute;
+  position: fixed;
   top: 65px;
   left: 0;
   z-index: 2000;
   width: 300px;
   height: 300px;
   background-color: #f2f2f0;
+  border-radius: 0 10px 10px 0;
 }
 
 #sidebar-awesome-inner {
@@ -7169,20 +7174,55 @@ body {
   width: 80px;
   height: 30px;
   margin-top: -15px;
+  -webkit-transform: rotate(270deg);
 }
 
-#collapse-sidebar-awesome:focus {
-  outline: none;
+#sidebar-awesome2 {
+  position: fixed;
+  top: 280px;
+  left: 0;
+  z-index: 2000;
+  width: 300px;
+  height: 150px;
+  background-color: #f2f2f0;
+  border-radius: 0 10px 10px 0;
+}
+
+#sidebar-awesome-inner2 {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow: auto;
+}
+
+.btn-collapse-bar.vertical {
+  -ms-transform: rotate(270deg);
+      transform: rotate(270deg);
+  transform: translate(-50px, 0, 0);
+  transform-origin: left top;
+  -ms-transform-origin: left top;
+}
+
+#collapse-sidebar-awesome2 {
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  width: 150px;
+  height: 30px;
+  margin-top: -15px;
 }
 
 #secondary-sidebar-awesome {
-  position: absolute;
+  position: fixed;
   top: 400px;
   left: 0;
   z-index: 2000;
   width: 300px;
   height: 300px;
   background-color: #f2f2f0;
+  border-radius: 0 10px 10px 0;
 }
 
 #secondary-sidebar-awesome-inner {
@@ -7201,20 +7241,18 @@ body {
   width: 110px;
   height: 30px;
   margin-top: -15px;
-}
-
-#collapse-secondary-sidebar-awesome:focus {
-  outline: none;
+  -webkit-transform: rotate(270deg);
 }
 
 #rightbar-awesome {
-  position: absolute;
+  position: fixed;
   right: 80px;
   bottom: 0;
   z-index: 2000;
   width: 300px;
   height: 500px;
   background-color: #f2f2f0;
+  border-radius: 10px 10px 0 0;
 }
 
 #rightbar-awesome-inner {
@@ -7235,7 +7273,7 @@ body {
   margin-left: -50px;
 }
 
-#collapse-rightbar-awesome:focus {
+.btn-collapse-bar:focus {
   outline: none;
 }
 
@@ -7270,15 +7308,6 @@ body {
 #secondary-sidebar h2 {
   padding-left: 13px;
   margin-left: -13px;
-  background-color: #7fa9ae;
-  background-image: -moz-linear-gradient(left, #9ebec2, #7fa9ae);
-  background-image: -webkit-gradient(linear, 0 0, 100% 0, from(#9ebec2), to(#7fa9ae));
-  background-image: -webkit-linear-gradient(left, #9ebec2, #7fa9ae);
-  background-image: -o-linear-gradient(left, #9ebec2, #7fa9ae);
-  background-image: linear-gradient(to right, #9ebec2, #7fa9ae);
-  background-repeat: repeat-x;
-  border-bottom: 1px solid #7fa9ae;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff9ebec2', endColorstr='#ff7fa9ae', GradientType=1);
 }
 
 .sidebar-inner h3,
@@ -7286,15 +7315,6 @@ body {
 #secondary-sidebar h3 {
   padding-left: 13px;
   margin-left: -13px;
-  background-color: #d9d9d6;
-  background-image: -moz-linear-gradient(left, #f2f2f0, #d9d9d6);
-  background-image: -webkit-gradient(linear, 0 0, 100% 0, from(#f2f2f0), to(#d9d9d6));
-  background-image: -webkit-linear-gradient(left, #f2f2f0, #d9d9d6);
-  background-image: -o-linear-gradient(left, #f2f2f0, #d9d9d6);
-  background-image: linear-gradient(to right, #f2f2f0, #d9d9d6);
-  background-repeat: repeat-x;
-  border-bottom: 1px solid #d9d9d6;
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fff2f2f0', endColorstr='#ffd9d9d6', GradientType=1);
 }
 
 #rightbar img {
@@ -7526,9 +7546,12 @@ div.nonworking-workspace-acceptable {
 
 /* ****************** Workspace + collage editor ("kaartlagen") ************ */
 
-.workspace-items > .workspace-item[data-visible="False"] {
-  opacity: 0.4;
-  filter: alpha(opacity=40);
+.workspace-items > .workspace-item[data-visible="False"] i.icon-check {
+  display: none;
+}
+
+.workspace-items > .workspace-item[data-visible="True"] i.icon-check-empty {
+  display: none;
 }
 
 .workspace-item-toggle-visiblity {
@@ -7645,7 +7668,7 @@ a.collage-add {
 .olControlLayerSwitcher .layersDiv label {
   display: inline;
   margin-bottom: 0;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-family: "Rambla", Helvetica, Arial, sans-serif;
   font-size: 13px;
   vertical-align: middle !important;
 }

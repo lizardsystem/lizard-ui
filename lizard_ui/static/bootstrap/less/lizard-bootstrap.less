@@ -94,6 +94,10 @@ body {
 #logo-row {
   .horizontal-bar;
   #gradient > .vertical(lighten(@navbarBackground, 10%), @navbarBackground);
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
 }
 
 // Second bar, below the logo one.
@@ -200,7 +204,7 @@ body {
 }
 
 #sidebar-awesome {
-  position: absolute;
+  position: fixed;
 
   top: 65px;
   left: 0;
@@ -212,6 +216,8 @@ body {
   background-color: lighten(@light, 10%);
 
   z-index: 2000;
+
+  border-radius: 0 10px 10px 0;
 }
 
 #sidebar-awesome-inner {
@@ -229,20 +235,66 @@ body {
   position: absolute;
 
   top: 50%;
-  left: 91%;
+  left: 100%;
 
   width: 80px;
   height: 30px;
-  -webkit-transform: rotate(270deg);  
+  -webkit-transform: rotate(270deg);
   margin-top: -15px; // half of height
 }
 
-#collapse-sidebar-awesome:focus {
-  outline: none;
+#sidebar-awesome2 {
+  position: fixed;
+
+  top: 280px;
+  left: 0;
+
+  width: 300px;
+  height: 150px;
+
+  //note: gradient causes IE8/9 to mess up z-index
+  background-color: lighten(@light, 10%);
+
+  z-index: 2000;
+
+  border-radius: 0 10px 10px 0;
+}
+
+#sidebar-awesome-inner2 {
+  position: absolute;
+
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  overflow: auto;
+}
+
+.btn-collapse-bar.vertical {
+  transform: rotate(270deg);
+  transform: translate(-50px, 0, 0);
+  transform-origin: left top;
+  -ms-transform: rotate(270deg); /* IE 9 */
+  -ms-transform-origin: left top; /* IE 9 */
+  //-webkit-transform: rotate(270deg); /* Safari and Chrome */
+  //-webkit-transform-origin: 20% 40%; /* Safari and Chrome */
+}
+
+#collapse-sidebar-awesome2 {
+  position: absolute;
+
+  top: 50%;
+  left: 100%;
+
+  width: 150px;
+  height: 30px;
+
+  margin-top: -15px; // half of height
 }
 
 #secondary-sidebar-awesome {
-  position: absolute;
+  position: fixed;
 
   top: 400px;
   left: 0;
@@ -254,6 +306,8 @@ body {
   background-color: lighten(@light, 10%);
 
   z-index: 2000;
+
+  border-radius: 0 10px 10px 0;
 }
 
 #secondary-sidebar-awesome-inner {
@@ -271,20 +325,16 @@ body {
   position: absolute;
 
   top: 50%;
-  left: 86%;
-  -webkit-transform: rotate(270deg);  
+  left: 100%;
+  -webkit-transform: rotate(270deg);
   width: 110px;
   height: 30px;
 
   margin-top: -15px; // half of height
 }
 
-#collapse-secondary-sidebar-awesome:focus {
-  outline: none;
-}
-
 #rightbar-awesome {
-  position: absolute;
+  position: fixed;
 
   bottom: 0;
   right: 80px;
@@ -296,6 +346,8 @@ body {
   background-color: lighten(@light, 10%);
 
   z-index: 2000;
+
+  border-radius: 10px 10px 0 0;
 }
 
 #rightbar-awesome-inner {
@@ -321,7 +373,7 @@ body {
   margin-left: -50px; // half of width
 }
 
-#collapse-rightbar-awesome:focus {
+.btn-collapse-bar:focus {
   outline: none;
 }
 
@@ -355,14 +407,14 @@ body {
     margin-top: 0;
   }
   h2 {
-    #gradient > .horizontal(lighten(@middle, 10%), @middle);
-    border-bottom: 1px solid @middle;
+    //background-color: @middle;
+    //border-bottom: 1px solid @middle;
     margin-left: -13px;
     padding-left: 13px;
   }
   h3 {
-    #gradient > .horizontal(lighten(@light, 10%), @light);
-    border-bottom: 1px solid @light;
+    //background-color: @light;
+    //border-bottom: 1px solid @light;
     margin-left: -13px;
     padding-left: 13px;
   }
@@ -601,9 +653,11 @@ div.nonworking-workspace-acceptable {
 }
 
 /* ****************** Workspace + collage editor ("kaartlagen") ************ */
-.workspace-items > .workspace-item[data-visible="False"] {
-    opacity: 0.4;
-    filter: alpha(opacity=40);
+.workspace-items > .workspace-item[data-visible="False"] i.icon-check {
+    display: none;
+}
+.workspace-items > .workspace-item[data-visible="True"] i.icon-check-empty {
+    display: none;
 }
 .workspace-item-toggle-visiblity {
     cursor: pointer;
