@@ -5,6 +5,7 @@ Changelog of lizard-ui
 4.29 (unreleased)
 -----------------
 
+- Included elevationprofile.js in template
 - Fix layout bug in login modal. The margin was too large.
 - Enhance  404 and 500 html error templates.
 
