@@ -2,8 +2,8 @@ Changelog of lizard-ui
 ======================
 
 
-4.30 (unreleased)
------------------
+4.29.2 (2013-06-03)
+-------------------
 
 - Use the correct bootstrap.js URL in debug mode.
 
