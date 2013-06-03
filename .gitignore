@@ -30,3 +30,5 @@ nosetests.xml
 .DS_Store
 test.db
 htmlcov/
+
+lizard_ui/static/bootstrap/node_modules/
