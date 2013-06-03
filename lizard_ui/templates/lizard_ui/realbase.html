@@ -244,20 +244,19 @@
                data-collapsed="{{ view.sidebar_is_collapsed|yesno:'true,false,true' }}"
                style="
                {% if view.sidebar_is_collapsed %}
-               left: -300px;
+               left: -304px;
                {% else %}
                left: 0;
                {% endif %}
                "
           >
               <div id="collapse-sidebar-awesome">
-                  <button class="btn btn-info btn-collapse-bar vertical" title="{% trans 'Collapse or expand this panel' %}" type="button">
-                      <i class="icon-arrow-right"></i>
-                      {% trans 'Apps' %}
+                  <button class="btn btn-collapse-bar" title="{% trans 'Apps' %}" type="button">
+                      <i class="icon-sitemap"></i>
                   </button>
               </div>
               <div id="sidebar-awesome-inner">
-                  <div class="subpanel sidebar-inner apps">
+                  <div class="sidebar-inner">
                       {% block sidebar %}
                       {% endblock sidebar %}
                   </div>
@@ -267,16 +266,15 @@
           {# Note: keep the inline style, as the position of this block is controlled by Javascript #}
           <div id="sidebar-awesome2"
                data-collapsed="true"
-               style="left: -300px;"
+               style="left: -304px;"
           >
               <div id="collapse-sidebar-awesome2">
-                  <button class="btn btn-info btn-collapse-bar vertical" title="{% trans 'Collapse or expand this panel' %}" type="button">
-                      <i class="icon-arrow-right"></i>
-                      {% trans 'Themakaarten' %}
+                  <button class="btn btn-collapse-bar" title="{% trans 'Theme maps' %}" type="button">
+                      <i class="icon-star"></i>
                   </button>
               </div>
               <div id="sidebar-awesome-inner2">
-                  <div class="sidebar-inner theme-maps">
+                  <div class="sidebar-inner">
                       <ul>
                           <li><a href="http://192.168.56.101:8000/map/workspace/38/">Riolering</a></li>
                           <li><a href="http://192.168.56.101:8000/map/workspace/39/">Dijken</a></li>
@@ -290,15 +288,14 @@
                data-collapsed="{{ view.secondary_sidebar_is_collapsed|yesno:'true,false,true' }}"
                style="
                {% if view.secondary_sidebar_is_collapsed %}
-               left: -300px;
+               left: -304px;
                {% else %}
                left: 0;
                {% endif %}
                "
           >
-              <button id="collapse-secondary-sidebar-awesome" class="btn btn-info btn-collapse-bar vertical" title="{% trans 'Collapse or expand this panel' %}" type="button">
-                  <i class="icon-arrow-right"></i>
-                  {% trans 'Kaartlagen' %}
+              <button id="collapse-secondary-sidebar-awesome" class="btn btn-collapse-bar" title="{% trans 'Map layers' %}" type="button">
+                  <i class="icon-reorder"></i>
               </button>
               <div id="secondary-sidebar-awesome-inner">
                   <div class="sidebar-inner">
@@ -313,15 +310,14 @@
                data-collapsed="{{ view.rightbar_is_collapsed|yesno:'true,false,true' }}"
                style="
                {% if view.rightbar_is_collapsed %}
-               bottom: -500px;
+               bottom: -504px;
                {% else %}
                bottom: 0;
                {% endif %}
                "
           >
-              <button id="collapse-rightbar-awesome" class="btn btn-info btn-collapse-bar" title="{% trans 'Collapse or expand this panel' %}" type="button">
-                  <i class="icon-arrow-up"></i>
-                  {% trans 'Legend' %}
+              <button id="collapse-rightbar-awesome" class="btn btn-collapse-bar" title="{% trans 'Legend' %}" type="button">
+                  <i class="icon-list"></i>
               </button>
               <div id="rightbar-awesome-inner">
                   <div class="rightbar-inner">

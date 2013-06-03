@@ -7153,15 +7153,16 @@ body {
   left: 0;
   z-index: 2000;
   width: 300px;
-  height: 300px;
-  background-color: #f2f2f0;
+  height: 250px;
+  background-color: #fff;
+  border: 2px solid #188693;
   border-radius: 0 10px 10px 0;
 }
 
 #sidebar-awesome-inner {
   position: absolute;
   top: 0;
-  right: 0;
+  right: 10px;
   bottom: 0;
   left: 0;
   overflow: auto;
@@ -7170,28 +7171,30 @@ body {
 #collapse-sidebar-awesome {
   position: absolute;
   top: 50%;
-  left: 91%;
-  width: 80px;
+  left: 100%;
+
+  width: 40px;
   height: 30px;
+
   margin-top: -15px;
-  -webkit-transform: rotate(270deg);
 }
 
 #sidebar-awesome2 {
   position: fixed;
-  top: 280px;
+  top: 350px;
   left: 0;
   z-index: 2000;
   width: 300px;
   height: 150px;
-  background-color: #f2f2f0;
+  background-color: #fff;
+  border: 2px solid #188693;
   border-radius: 0 10px 10px 0;
 }
 
 #sidebar-awesome-inner2 {
   position: absolute;
   top: 0;
-  right: 0;
+  right: 10px;
   bottom: 0;
   left: 0;
   overflow: auto;
@@ -7209,26 +7212,27 @@ body {
   position: absolute;
   top: 50%;
   left: 100%;
-  width: 150px;
+  width: 40px;
   height: 30px;
   margin-top: -15px;
 }
 
 #secondary-sidebar-awesome {
   position: fixed;
-  top: 400px;
+  top: 520px;
   left: 0;
   z-index: 2000;
   width: 300px;
-  height: 300px;
-  background-color: #f2f2f0;
+  height: 100px;
+  background-color: #fff;
+  border: 2px solid #188693;
   border-radius: 0 10px 10px 0;
 }
 
 #secondary-sidebar-awesome-inner {
   position: absolute;
   top: 0;
-  right: 0;
+  right: 10px;
   bottom: 0;
   left: 0;
   overflow: auto;
@@ -7237,11 +7241,12 @@ body {
 #collapse-secondary-sidebar-awesome {
   position: absolute;
   top: 50%;
-  left: 86%;
-  width: 110px;
+  left: 100%;
+
+  width: 40px;
   height: 30px;
+
   margin-top: -15px;
-  -webkit-transform: rotate(270deg);
 }
 
 #collapse-secondary-sidebar-awesome:focus {
@@ -7255,7 +7260,8 @@ body {
   z-index: 2000;
   width: 300px;
   height: 500px;
-  background-color: #f2f2f0;
+  background-color: #fff;
+  border: 2px solid #188693;
   border-radius: 10px 10px 0 0;
 }
 
@@ -7272,13 +7278,51 @@ body {
   position: absolute;
   bottom: 100%;
   left: 50%;
-  width: 100px;
+  width: 40px;
   height: 30px;
-  margin-left: -50px;
+  margin-left: -15px;
+}
+
+.btn-collapse-bar {
+  color: #fff;
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+  background-color: #157681;
+  background-image: -moz-linear-gradient(top, #188693, #115e67);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#188693), to(#115e67));
+  background-image: -webkit-linear-gradient(top, #188693, #115e67);
+  background-image: -o-linear-gradient(top, #188693, #115e67);
+  background-image: linear-gradient(to bottom, #188693, #115e67);
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff188693', endColorstr='#ff115e67', GradientType=0);
+}
+
+.btn-collapse-bar:hover {
+  color: #fff;
+  background-color: #157681;
+  background-image: -moz-linear-gradient(top, #188693, #115e67);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#188693), to(#115e67));
+  background-image: -webkit-linear-gradient(top, #188693, #115e67);
+  background-image: -o-linear-gradient(top, #188693, #115e67);
+  background-image: linear-gradient(to bottom, #188693, #115e67);
+  background-position: 0 -2px;
+  background-repeat: repeat-x;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff188693', endColorstr='#ff115e67', GradientType=0);
+  transition: none;
 }
 
 .btn-collapse-bar:focus {
+  color: #fff;
+  background-color: #157681;
+  background-image: -moz-linear-gradient(top, #188693, #115e67);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#188693), to(#115e67));
+  background-image: -webkit-linear-gradient(top, #188693, #115e67);
+  background-image: -o-linear-gradient(top, #188693, #115e67);
+  background-image: linear-gradient(to bottom, #188693, #115e67);
+  background-position: 0 -2px;
+  background-repeat: repeat-x;
   outline: none;
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff188693', endColorstr='#ff115e67', GradientType=0);
+  transition: none;
 }
 
 .padded-sidebar-item {

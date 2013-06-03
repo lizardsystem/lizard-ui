@@ -129,7 +129,7 @@ var toggleSidebarAwesomeState = function(ignored, preventAnim, subpanel) {
             // slide the sidebar
             $bar.animate(
                 {
-                    left: -300
+                    left: -300 - 4 // deal with 2px border
                 },
                 animationSpeed,
                 'swing',
@@ -161,14 +161,14 @@ var toggleSidebarAwesomeState = function(ignored, preventAnim, subpanel) {
 // right bar, for legend
 var setSidebarAwesomeState = function(collapse, preventAnim) {
     var animationSpeed = preventAnim === true ? 0 : defaultAnimationSpeed;
-    var $icon = $('#collapse-sidebar-awesome i');
+    // var $icon = $('#collapse-sidebar-awesome i');
     var $bar = $('#sidebar-awesome');
     if (collapse) {
         // collapsing
-        $icon.removeClass('icon-arrow-left').addClass('icon-arrow-right');
+        // $icon.removeClass('icon-arrow-left').addClass('icon-arrow-right');
         $bar.animate(
             {
-                left: -300
+                left: -300 - 4 // deal with 2px border
             },
             animationSpeed,
             'swing',
@@ -178,7 +178,7 @@ var setSidebarAwesomeState = function(collapse, preventAnim) {
     }
     else {
         // opening
-        $icon.removeClass('icon-arrow-right').addClass('icon-arrow-left');
+        // $icon.removeClass('icon-arrow-right').addClass('icon-arrow-left');
         $bar.animate(
             {
                 left: 0
@@ -195,14 +195,14 @@ var setSidebarAwesomeState = function(collapse, preventAnim) {
 // right bar, for legend
 var setSidebarAwesome2State = function(collapse, preventAnim) {
     var animationSpeed = preventAnim === true ? 0 : defaultAnimationSpeed;
-    var $icon = $('#collapse-sidebar-awesome2 i');
+    // var $icon = $('#collapse-sidebar-awesome2 i');
     var $bar = $('#sidebar-awesome2');
     if (collapse) {
         // collapsing
-        $icon.removeClass('icon-arrow-left').addClass('icon-arrow-right');
+        // $icon.removeClass('icon-arrow-left').addClass('icon-arrow-right');
         $bar.animate(
             {
-                left: -300
+                left: -300 - 4 // deal with 2px border
             },
             animationSpeed,
             'swing',
@@ -212,7 +212,7 @@ var setSidebarAwesome2State = function(collapse, preventAnim) {
     }
     else {
         // opening
-        $icon.removeClass('icon-arrow-right').addClass('icon-arrow-left');
+        // $icon.removeClass('icon-arrow-right').addClass('icon-arrow-left');
         $bar.animate(
             {
                 left: 0
@@ -228,14 +228,14 @@ var setSidebarAwesome2State = function(collapse, preventAnim) {
 // right bar, for legend
 var setRightbarAwesomeState = function(collapse, preventAnim) {
     var animationSpeed = preventAnim === true ? 0 : defaultAnimationSpeed;
-    var $icon = $('#collapse-rightbar-awesome i');
+    // var $icon = $('#collapse-rightbar-awesome i');
     var $bar = $('#rightbar-awesome');
     if (collapse) {
         // collapsing
-        $icon.removeClass('icon-arrow-down').addClass('icon-arrow-up');
+        // $icon.removeClass('icon-arrow-down').addClass('icon-arrow-up');
         $bar.animate(
             {
-                bottom: -500
+                bottom: -500 - 4 // deal with 2px border
             },
             animationSpeed,
             'swing',
@@ -245,7 +245,7 @@ var setRightbarAwesomeState = function(collapse, preventAnim) {
     }
     else {
         // opening
-        $icon.removeClass('icon-arrow-up').addClass('icon-arrow-down');
+        // $icon.removeClass('icon-arrow-up').addClass('icon-arrow-down');
         $bar.animate(
             {
                 bottom: 0
@@ -264,11 +264,11 @@ var setSecondarySidebarAwesomeState = function(collapse, preventAnim) {
     if (collapse) {
         // collapsing
         // update arrow icon on button
-        $('#collapse-secondary-sidebar-awesome i').removeClass('icon-arrow-left').addClass('icon-arrow-right');
+        // $('#collapse-secondary-sidebar-awesome i').removeClass('icon-arrow-left').addClass('icon-arrow-right');
         // slide the sidebar
         $('#secondary-sidebar-awesome').animate(
             {
-                left: -300
+                left: -300 - 4 // deal with 2px border
             },
             animationSpeed,
             'swing',
@@ -279,7 +279,7 @@ var setSecondarySidebarAwesomeState = function(collapse, preventAnim) {
     else {
         // opening
         // update arrow icon on button
-        $('#collapse-secondary-sidebar-awesome i').removeClass('icon-arrow-right').addClass('icon-arrow-left');
+        // $('#collapse-secondary-sidebar-awesome i').removeClass('icon-arrow-right').addClass('icon-arrow-left');
         // slide the sidebar
         $('#secondary-sidebar-awesome').animate(
             {
