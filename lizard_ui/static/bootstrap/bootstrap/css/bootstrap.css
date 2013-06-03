@@ -7172,8 +7172,10 @@ body {
   position: absolute;
   top: 50%;
   left: 100%;
+
   width: 40px;
   height: 30px;
+
   margin-top: -15px;
 }
 
@@ -7240,9 +7242,15 @@ body {
   position: absolute;
   top: 50%;
   left: 100%;
+
   width: 40px;
   height: 30px;
+
   margin-top: -15px;
+}
+
+#collapse-secondary-sidebar-awesome:focus {
+  outline: none;
 }
 
 #rightbar-awesome {
