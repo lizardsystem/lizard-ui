@@ -9,6 +9,7 @@
 
 // Border color for bars that we colors with our light color.
 @lightBorderColor: darken(@light, 10%);
+@collapseBarBorderColor: lighten(@navbarBackground, 10%);
 
 // A green navbar. We customize bootstrap's navbar colors here.
 @navbarBackground:                @dark;
@@ -210,21 +211,22 @@ body {
   left: 0;
 
   width: 300px;
-  height: 300px;
+  height: 250px;
 
   //note: gradient causes IE8/9 to mess up z-index
-  background-color: lighten(@light, 10%);
+  background-color: #fff;
 
   z-index: 2000;
 
   border-radius: 0 10px 10px 0;
+  border: 2px solid @collapseBarBorderColor;
 }
 
 #sidebar-awesome-inner {
   position: absolute;
 
   top: 0;
-  right: 0;
+  right: 10px;
   bottom: 0;
   left: 0;
 
@@ -237,34 +239,35 @@ body {
   top: 50%;
   left: 100%;
 
-  width: 80px;
+  width: 40px;
   height: 30px;
-  -webkit-transform: rotate(270deg);
+
   margin-top: -15px; // half of height
 }
 
 #sidebar-awesome2 {
   position: fixed;
 
-  top: 280px;
+  top: 350px;
   left: 0;
 
   width: 300px;
   height: 150px;
 
   //note: gradient causes IE8/9 to mess up z-index
-  background-color: lighten(@light, 10%);
+  background-color: #fff;
 
   z-index: 2000;
 
   border-radius: 0 10px 10px 0;
+  border: 2px solid @collapseBarBorderColor;
 }
 
 #sidebar-awesome-inner2 {
   position: absolute;
 
   top: 0;
-  right: 0;
+  right: 10px;
   bottom: 0;
   left: 0;
 
@@ -287,7 +290,7 @@ body {
   top: 50%;
   left: 100%;
 
-  width: 150px;
+  width: 40px;
   height: 30px;
 
   margin-top: -15px; // half of height
@@ -296,25 +299,26 @@ body {
 #secondary-sidebar-awesome {
   position: fixed;
 
-  top: 400px;
+  top: 520px;
   left: 0;
 
   width: 300px;
-  height: 300px;
+  height: 100px;
 
   //note: gradient causes IE8/9 to mess up z-index
-  background-color: lighten(@light, 10%);
+  background-color: #fff;
 
   z-index: 2000;
 
   border-radius: 0 10px 10px 0;
+  border: 2px solid @collapseBarBorderColor;
 }
 
 #secondary-sidebar-awesome-inner {
   position: absolute;
 
   top: 0;
-  right: 0;
+  right: 10px;
   bottom: 0;
   left: 0;
 
@@ -326,8 +330,8 @@ body {
 
   top: 50%;
   left: 100%;
-  -webkit-transform: rotate(270deg);
-  width: 110px;
+
+  width: 40px;
   height: 30px;
 
   margin-top: -15px; // half of height
@@ -343,11 +347,12 @@ body {
   height: 500px;
 
   //note: gradient causes IE8/9 to mess up z-index
-  background-color: lighten(@light, 10%);
+  background-color: #fff;
 
   z-index: 2000;
 
   border-radius: 10px 10px 0 0;
+  border: 2px solid @collapseBarBorderColor;
 }
 
 #rightbar-awesome-inner {
@@ -367,13 +372,30 @@ body {
   bottom: 100%;
   left: 50%;
 
-  width: 100px;
+  width: 40px;
   height: 30px;
 
-  margin-left: -50px; // half of width
+  margin-left: -15px; // half of width
+}
+
+.btn-collapse-bar {
+  color: #fff;
+  #gradient > .vertical(lighten(@navbarBackground, 10%), @navbarBackground);
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+
+.btn-collapse-bar:hover {
+  color: #fff;
+  #gradient > .vertical(lighten(@navbarBackground, 10%), @navbarBackground);
+  background-position: 0 -2px;
+  transition: none;
 }
 
 .btn-collapse-bar:focus {
+  color: #fff;
+  #gradient > .vertical(lighten(@navbarBackground, 10%), @navbarBackground);
+  background-position: 0 -2px;
+  transition: none;
   outline: none;
 }
 
