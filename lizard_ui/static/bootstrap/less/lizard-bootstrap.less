@@ -9,6 +9,7 @@
 
 // Border color for bars that we colors with our light color.
 @lightBorderColor: darken(@light, 10%);
+@collapseBarBorderColor: lighten(@navbarBackground, 10%);
 
 // A green navbar. We customize bootstrap's navbar colors here.
 @navbarBackground:                @dark;
@@ -94,6 +95,14 @@ body {
 #logo-row {
   .horizontal-bar;
   #gradient > .vertical(lighten(@navbarBackground, 10%), @navbarBackground);
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+}
+
+.form-location-search {
+  margin: 5px 0 0 5px; // remove Bootstrap margin, add our own
 }
 
 // Second bar, below the logo one.
@@ -200,25 +209,28 @@ body {
 }
 
 #sidebar-awesome {
-  position: absolute;
+  position: fixed;
 
   top: 65px;
   left: 0;
 
   width: 300px;
-  height: 300px;
+  height: 250px;
 
   //note: gradient causes IE8/9 to mess up z-index
-  background-color: lighten(@light, 10%);
+  background-color: #fff;
 
   z-index: 2000;
+
+  border-radius: 0 10px 10px 0;
+  border: 2px solid @collapseBarBorderColor;
 }
 
 #sidebar-awesome-inner {
   position: absolute;
 
   top: 0;
-  right: 0;
+  right: 10px;
   bottom: 0;
   left: 0;
 
@@ -229,38 +241,88 @@ body {
   position: absolute;
 
   top: 50%;
-  left: 91%;
+  left: 100%;
 
-  width: 80px;
+  width: 40px;
   height: 30px;
-  -webkit-transform: rotate(270deg);  
+
   margin-top: -15px; // half of height
 }
 
-#collapse-sidebar-awesome:focus {
-  outline: none;
-}
+#sidebar-awesome2 {
+  position: fixed;
 
-#secondary-sidebar-awesome {
-  position: absolute;
-
-  top: 400px;
+  top: 350px;
   left: 0;
 
   width: 300px;
-  height: 300px;
+  height: 150px;
 
   //note: gradient causes IE8/9 to mess up z-index
-  background-color: lighten(@light, 10%);
+  background-color: #fff;
 
   z-index: 2000;
+
+  border-radius: 0 10px 10px 0;
+  border: 2px solid @collapseBarBorderColor;
+}
+
+#sidebar-awesome-inner2 {
+  position: absolute;
+
+  top: 0;
+  right: 10px;
+  bottom: 0;
+  left: 0;
+
+  overflow: auto;
+}
+
+.btn-collapse-bar.vertical {
+  transform: rotate(270deg);
+  transform: translate(-50px, 0, 0);
+  transform-origin: left top;
+  -ms-transform: rotate(270deg); /* IE 9 */
+  -ms-transform-origin: left top; /* IE 9 */
+  //-webkit-transform: rotate(270deg); /* Safari and Chrome */
+  //-webkit-transform-origin: 20% 40%; /* Safari and Chrome */
+}
+
+#collapse-sidebar-awesome2 {
+  position: absolute;
+
+  top: 50%;
+  left: 100%;
+
+  width: 40px;
+  height: 30px;
+
+  margin-top: -15px; // half of height
+}
+
+#secondary-sidebar-awesome {
+  position: fixed;
+
+  top: 520px;
+  left: 0;
+
+  width: 300px;
+  height: 100px;
+
+  //note: gradient causes IE8/9 to mess up z-index
+  background-color: #fff;
+
+  z-index: 2000;
+
+  border-radius: 0 10px 10px 0;
+  border: 2px solid @collapseBarBorderColor;
 }
 
 #secondary-sidebar-awesome-inner {
   position: absolute;
 
   top: 0;
-  right: 0;
+  right: 10px;
   bottom: 0;
   left: 0;
 
@@ -271,20 +333,16 @@ body {
   position: absolute;
 
   top: 50%;
-  left: 86%;
-  -webkit-transform: rotate(270deg);  
-  width: 110px;
+  left: 100%;
+
+  width: 40px;
   height: 30px;
 
   margin-top: -15px; // half of height
 }
 
-#collapse-secondary-sidebar-awesome:focus {
-  outline: none;
-}
-
 #rightbar-awesome {
-  position: absolute;
+  position: fixed;
 
   bottom: 0;
   right: 80px;
@@ -293,9 +351,12 @@ body {
   height: 500px;
 
   //note: gradient causes IE8/9 to mess up z-index
-  background-color: lighten(@light, 10%);
+  background-color: #fff;
 
   z-index: 2000;
+
+  border-radius: 10px 10px 0 0;
+  border: 2px solid @collapseBarBorderColor;
 }
 
 #rightbar-awesome-inner {
@@ -315,13 +376,30 @@ body {
   bottom: 100%;
   left: 50%;
 
-  width: 100px;
+  width: 40px;
   height: 30px;
 
-  margin-left: -50px; // half of width
+  margin-left: -15px; // half of width
 }
 
-#collapse-rightbar-awesome:focus {
+.btn-collapse-bar {
+  color: #fff;
+  #gradient > .vertical(lighten(@navbarBackground, 10%), @navbarBackground);
+  text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+}
+
+.btn-collapse-bar:hover {
+  color: #fff;
+  #gradient > .vertical(lighten(@navbarBackground, 10%), @navbarBackground);
+  background-position: 0 -2px;
+  transition: none;
+}
+
+.btn-collapse-bar:focus {
+  color: #fff;
+  #gradient > .vertical(lighten(@navbarBackground, 10%), @navbarBackground);
+  background-position: 0 -2px;
+  transition: none;
   outline: none;
 }
 
@@ -355,14 +433,14 @@ body {
     margin-top: 0;
   }
   h2 {
-    #gradient > .horizontal(lighten(@middle, 10%), @middle);
-    border-bottom: 1px solid @middle;
+    //background-color: @middle;
+    //border-bottom: 1px solid @middle;
     margin-left: -13px;
     padding-left: 13px;
   }
   h3 {
-    #gradient > .horizontal(lighten(@light, 10%), @light);
-    border-bottom: 1px solid @light;
+    //background-color: @light;
+    //border-bottom: 1px solid @light;
     margin-left: -13px;
     padding-left: 13px;
   }
@@ -601,9 +679,11 @@ div.nonworking-workspace-acceptable {
 }
 
 /* ****************** Workspace + collage editor ("kaartlagen") ************ */
-.workspace-items > .workspace-item[data-visible="False"] {
-    opacity: 0.4;
-    filter: alpha(opacity=40);
+.workspace-items > .workspace-item[data-visible="False"] i.icon-check {
+    display: none;
+}
+.workspace-items > .workspace-item[data-visible="True"] i.icon-check-empty {
+    display: none;
 }
 .workspace-item-toggle-visiblity {
     cursor: pointer;

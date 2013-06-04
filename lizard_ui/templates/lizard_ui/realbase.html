@@ -225,6 +225,14 @@
                   {% endspaceless %}
                 {% endblock logo %}
               </div>
+              <div class="pull-left">
+                <form class="form-search form-location-search">
+                  <div class="input-append">
+                    <input type="text" class="input-medium search-query" placeholder="Naam van de lokatie">
+                    <button type="submit" class="btn">Zoek lokatie</button>
+                  </div>
+                </form>
+              </div>
               <div id="site-actions">
                 {% block site-actions %}
 
@@ -381,134 +389,93 @@
           </div>
 
           {# Note: keep the inline style, as the position of this block is controlled by Javascript #}
-          {% comment %}
-          <div id="rightbar"
-               data-collapsed="{{ view.rightbar_is_collapsed|yesno:'true,false,true' }}"
+          <div id="sidebar-awesome"
+               data-collapsed="{{ view.sidebar_is_collapsed|yesno:'true,false,true' }}"
                style="
-               {% if view.rightbar_is_collapsed %}
-               display: none;
-               right: -251px;
+               {% if view.sidebar_is_collapsed %}
+               left: -304px;
                {% else %}
-               right: 0px;
+               left: 0;
                {% endif %}
                "
           >
-            <div class="sidebar-inner">
-              {% block rightbar %}
-              {% endblock rightbar %}
-            </div>
+              <div id="collapse-sidebar-awesome">
+                  <button class="btn btn-collapse-bar" title="{% trans 'Apps' %}" type="button">
+                      <i class="icon-sitemap"></i>
+                  </button>
+              </div>
+              <div id="sidebar-awesome-inner">
+                  <div class="sidebar-inner">
+                      {% block sidebar %}
+                      {% endblock sidebar %}
+                  </div>
+              </div>
           </div>
-          {% endcomment %}
 
-          {% comment %}
-          <div id="footer">
-            <div id="sidebar-actions">
-              {% block sidebar-actions %}
-
-                {% if view.sidebar_actions %}
-                  <div class="btn-toolbar">
-                    <div class="btn-group">
-
-                      {% for action in view.sidebar_actions %}
-                        <button type="button"
-                          {% if action.description %}
-                            title="{{ action.description }}"
-                            class="btn {{ action.klass }}"
-                          {% else %}
-                            class="btn {{ action.klass }}"
-                          {% endif %}
-                          {% for item in action.data_attributes.items %}
-                            data-{{ item.0 }}="{{ item.1 }}"
-                          {% endfor %}
-                          {% if action.element_id %}
-                               id="{{ action.element_id }}"
-                          {% endif %}
-                          >
-                          {% if action.icon %}
-                            <i class="{{ action.icon }}"></i>
-                          {% endif %}
-                          {{ action.name }}
-                        </button>
-                      {% endfor %}
-
-                    </div>
+          {# Note: keep the inline style, as the position of this block is controlled by Javascript #}
+          <div id="sidebar-awesome2"
+               data-collapsed="true"
+               style="left: -304px;"
+          >
+              <div id="collapse-sidebar-awesome2">
+                  <button class="btn btn-collapse-bar" title="{% trans 'Theme maps' %}" type="button">
+                      <i class="icon-star"></i>
+                  </button>
+              </div>
+              <div id="sidebar-awesome-inner2">
+                  <div class="sidebar-inner">
+                      <ul>
+                          <li><a href="http://192.168.56.101:8000/map/workspace/38/">Riolering</a></li>
+                          <li><a href="http://192.168.56.101:8000/map/workspace/39/">Dijken</a></li>
+                      </ul>
                   </div>
-                {% endif %}
-
-              {% endblock sidebar-actions %}
-            </div>
-            <div id="orthogonal-actions">
-              {% block orthogonal-actions %}
-
-                {% if view.orthogonal_action_groups %}
-                  <div class="btn-toolbar">
-                    {% for group in view.orthogonal_action_groups %}
-                      <div class="btn-group">
-
-                        {% for action in group %}
-                          <button type="button"
-                            {% if action.description %}
-                              title="{{ action.description }}"
-                            {% endif %}
-                            class="btn {{ action.klass }}"
-                            {% for item in action.data_attributes.items %}
-                              data-{{ item.0 }}="{{ item.1 }}"
-                            {% endfor %}
-                            {% if action.element_id %}
-                               id="{{ action.element_id }}"
-                            {% endif %}
-                            >
-                            {% if action.icon %}
-                              <i class="{{ action.icon }}"></i>
-                            {% endif %}
-                            {{ action.name }}
-                          </button>
-                        {% endfor %}
-                      {% endfor %}
-                    {% endif %}
-                  </div>
-                </div>
-
-              {% endblock orthogonal-actions %}
-            </div>
-
-            <div id="rightbar-actions">
-              {% block rightbar-actions %}
-
-                {% if view.rightbar_actions %}
-                  <div class="btn-toolbar">
-                    <div class="btn-group">
-
-                      {% for action in view.rightbar_actions %}
-                        <button type="button"
-                          {% if action.description %}
-                            title="{{ action.description }}"
-                            class="btn {{ action.klass }}"
-                          {% else %}
-                            class="btn {{ action.klass }}"
-                          {% endif %}
-                          {% for item in action.data_attributes.items %}
-                            data-{{ item.0 }}="{{ item.1 }}"
-                          {% endfor %}
-                          {% if action.element_id %}
-                             id="{{ action.element_id }}"
-                          {% endif %}
-                          >
-                          {% if action.icon %}
-                            <i class="{{ action.icon }}"></i>
-                          {% endif %}
-                          {{ action.name }}
-                        </button>
-                      {% endfor %}
-
-                    </div>
-                  </div>
-                {% endif %}
-
-              {% endblock rightbar-actions %}
-            </div>
+              </div>
           </div>
-          {% endcomment %}
+
+          {# Note: keep the inline style, as the position of this block is controlled by Javascript #}
+          <div id="secondary-sidebar-awesome"
+               data-collapsed="{{ view.secondary_sidebar_is_collapsed|yesno:'true,false,true' }}"
+               style="
+               {% if view.secondary_sidebar_is_collapsed %}
+               left: -304px;
+               {% else %}
+               left: 0;
+               {% endif %}
+               "
+          >
+              <button id="collapse-secondary-sidebar-awesome" class="btn btn-collapse-bar" title="{% trans 'Map layers' %}" type="button">
+                  <i class="icon-reorder"></i>
+              </button>
+              <div id="secondary-sidebar-awesome-inner">
+                  <div class="sidebar-inner">
+                      {% block secondary-sidebar %}
+                      {% endblock secondary-sidebar %}
+                  </div>
+              </div>
+          </div>
+
+          {# Note: keep the inline style, as the position of this block is controlled by Javascript #}
+          <div id="rightbar-awesome"
+               data-collapsed="{{ view.rightbar_is_collapsed|yesno:'true,false,true' }}"
+               style="
+               {% if view.rightbar_is_collapsed %}
+               bottom: -504px;
+               {% else %}
+               bottom: 0;
+               {% endif %}
+               "
+          >
+              <button id="collapse-rightbar-awesome" class="btn btn-collapse-bar" title="{% trans 'Legend' %}" type="button">
+                  <i class="icon-list"></i>
+              </button>
+              <div id="rightbar-awesome-inner">
+                  <div class="rightbar-inner">
+                      {% block rightbar %}
+                      {% endblock rightbar %}
+                  </div>
+              </div>
+          </div>
+
         {% endblock main-area %}
 
       {% endblock page %}
@@ -549,6 +516,7 @@
     <script src="{{ STATIC_URL }}jquery-flot/jquery.flot.touch.js"></script>
     <script src="{{ STATIC_URL }}jquery-flot/jquery.flot.fillbetween.js"></script>
     <script src="{{ STATIC_URL }}daterangepicker/daterangepicker.js"></script>
+    <script src="{{ STATIC_URL }}lizard_elevationprofile/elevationprofile.js"></script>
     {% endblock javascript %}
 
     {% block map-javascript %}
