@@ -50,6 +50,11 @@
             href="{{ STATIC_URL }}sprites/sprite.css"
             type="text/css"
             media="screen, projection" />
+	  <link rel="stylesheet"
+            href="{{ STATIC_URL }}lizard_ui/box-awesome.css"
+            type="text/css"
+            media="screen, projection" />
+
     {% endblock css %}
 
     <!--[if lt IE 9]>
@@ -70,6 +75,142 @@
 	  {% include 'lizard_ui/modal_login.html' %}
 	  {% include 'lizard_ui/change_language.html' %}
 	{% endblock %}
+	<div id="box-awesome">
+	  <div id="box-awesome-search">
+		<form>
+		  <input type="text">
+		</form>
+	  </div>
+	</div>
+
+	<div id="box-awesome-search-button">
+	  <span id="box-awesome-search-span" class="icon-search icon-large"></span>
+	</div>
+
+	<div id="box-awesome-actions">
+      <ul class="nav">
+
+        <li
+           id="action-layers"
+           >
+          <a href="#"
+
+             data-title=""
+             data-content="Toon kaartlagen"
+
+             class="dropdown-toggle"
+
+             >
+
+            <i class="icon-map-marker"></i>
+
+
+          </a>
+        </li>
+
+        <li
+           id="action-base-layers"
+           >
+          <a href="#"
+
+             data-title=""
+             data-content="Toon basislagen"
+
+             class="dropdown-toggle"
+
+             >
+
+            <i class="icon-globe"></i>
+
+
+          </a>
+        </li>
+
+	  </ul>
+	</div>
+
+	<div id="box-awesome-tabs">
+		<span id="span-apps"
+			  class="box-awesome-button-span"
+			  onClick="unDisplay();display('apps')">Apps</span>
+	  	<span id="span-workspaces"
+			  class="box-awesome-button-span"
+			  onClick="unDisplay();display('workspaces')">Workspaces</span>
+		<span id="span-legenda"
+			  class="box-awesome-button-span"
+			  onClick="unDisplay();display('legend')">Legenda</span>
+		<div id="box-awesome-apps"
+			 class="box-awesome-inner">
+            <div class="sidebar-inner">
+			  <ul class="ui-icon-list">
+				<li title="" data-content="metingen van HHNK en gemeenten" class="has_popover" data-original-title="Metingen">
+				  <a href="/map/screen/measurements/">
+					<img src="/static_media/lizard_ui/app_icons/meetgegevens.png" alt="Metingen">
+					<div>Metingen</div>
+				  </a>
+				</li>
+
+				<li title="" data-content="basis kaarten van HHNK" class="has_popover" data-original-title="Kaarten">
+				  <a href="/shape/">
+					<img src="/static_media/lizard_ui/app_icons/kaartlagen.png" alt="Kaarten">
+					<div>Kaarten</div>
+				  </a>
+				</li>
+
+				<li title="" data-content="link naar youtube met instructie film" class="has_popover" data-original-title="instructie film">
+				  <a href="http://www.youtube.com/watch?v=bx551r6G6Tg&amp;feature=related">
+					<img src="/static_media/lizard_ui/app_icons/play.png" alt="instructie film">
+					<div>instructie film</div>
+				  </a>
+				</li>
+
+				<li>
+				  <a href="/webmap/category/hhnk_wfs/">
+					<img src="/static_media/lizard_ui/app_icons/kaartlagen.png" alt="WFS kaarten">
+					<div>WFS kaarten</div>
+				  </a>
+				</li>
+
+			  </ul>
+            </div>
+        </div>
+		<div id="box-awesome-workspaces"
+			 class="box-awesome-inner" style="display:none">
+          <div class="sidebar-inner">
+			<div id="edit-workspace" class="sidebarbox workspace">
+			  <h2>
+				<span title="Dit is uw workspace. Ga met de muis over items voor extra opties.">
+				  Kaartlagen
+				</span>
+			  </h2>
+
+			  <ul class="workspace-items unstyled ui-sortable">
+
+
+				<li>
+				  Geen kaartlagen geselecteerd.
+				</li>
+
+			  </ul>
+			  <hr noshade="" style="border-color: #7FA9AE; color: #7FA9AE; background-color: #7FA9AE;">
+			  <div class="btn-group" style="display: block; width: 78px; margin-left: auto; margin-right: auto;">
+				<button id="workspace-empty" href="/map/myworkspace/empty/" class="btn btn-danger sidebarbox-action-icon action-post-workspace-empty" title="Workspace leegmaken">
+				  <i class="icon-trash icon-white"></i>
+				</button>
+				<button id="workspace-save" href="/map/myworkspace/save/" class="btn sidebarbox-action-icon popup-workspace-save" data-size="xs" title="Workspace opslaan" disabled="disabled">
+				  <i class="icon-save"></i>
+				</button>
+			  </div>
+			</div>
+          </div>
+		</div>
+		<div id="box-awesome-legend"
+		   class="box-awesome-inner" style="display:none">
+          <div class="rightbar-inner">
+			<h2>Legenda</h2>
+          </div>
+        </div>
+    </div>
     <div id="page">
       {% block page %}
         {% block header %}
@@ -333,134 +474,6 @@
               </div>
           </div>
 
-          {% comment %}
-          <div id="rightbar"
-               data-collapsed="{{ view.rightbar_is_collapsed|yesno:'true,false,true' }}"
-               style="
-               {% if view.rightbar_is_collapsed %}
-               display: none;
-               right: -251px;
-               {% else %}
-               right: 0px;
-               {% endif %}
-               "
-          >
-            <div class="sidebar-inner">
-              {% block rightbar %}
-              {% endblock rightbar %}
-            </div>
-          </div>
-          {% endcomment %}
-
-          {% comment %}
-          <div id="footer">
-            <div id="sidebar-actions">
-              {% block sidebar-actions %}
-
-                {% if view.sidebar_actions %}
-                  <div class="btn-toolbar">
-                    <div class="btn-group">
-
-                      {% for action in view.sidebar_actions %}
-                        <button type="button"
-                          {% if action.description %}
-                            title="{{ action.description }}"
-                            class="btn {{ action.klass }}"
-                          {% else %}
-                            class="btn {{ action.klass }}"
-                          {% endif %}
-                          {% for item in action.data_attributes.items %}
-                            data-{{ item.0 }}="{{ item.1 }}"
-                          {% endfor %}
-                          {% if action.element_id %}
-                               id="{{ action.element_id }}"
-                          {% endif %}
-                          >
-                          {% if action.icon %}
-                            <i class="{{ action.icon }}"></i>
-                          {% endif %}
-                          {{ action.name }}
-                        </button>
-                      {% endfor %}
-
-                    </div>
-                  </div>
-                {% endif %}
-
-              {% endblock sidebar-actions %}
-            </div>
-            <div id="orthogonal-actions">
-              {% block orthogonal-actions %}
-
-                {% if view.orthogonal_action_groups %}
-                  <div class="btn-toolbar">
-                    {% for group in view.orthogonal_action_groups %}
-                      <div class="btn-group">
-
-                        {% for action in group %}
-                          <button type="button"
-                            {% if action.description %}
-                              title="{{ action.description }}"
-                            {% endif %}
-                            class="btn {{ action.klass }}"
-                            {% for item in action.data_attributes.items %}
-                              data-{{ item.0 }}="{{ item.1 }}"
-                            {% endfor %}
-                            {% if action.element_id %}
-                               id="{{ action.element_id }}"
-                            {% endif %}
-                            >
-                            {% if action.icon %}
-                              <i class="{{ action.icon }}"></i>
-                            {% endif %}
-                            {{ action.name }}
-                          </button>
-                        {% endfor %}
-                      {% endfor %}
-                    {% endif %}
-                  </div>
-                </div>
-
-              {% endblock orthogonal-actions %}
-            </div>
-
-            <div id="rightbar-actions">
-              {% block rightbar-actions %}
-
-                {% if view.rightbar_actions %}
-                  <div class="btn-toolbar">
-                    <div class="btn-group">
-
-                      {% for action in view.rightbar_actions %}
-                        <button type="button"
-                          {% if action.description %}
-                            title="{{ action.description }}"
-                            class="btn {{ action.klass }}"
-                          {% else %}
-                            class="btn {{ action.klass }}"
-                          {% endif %}
-                          {% for item in action.data_attributes.items %}
-                            data-{{ item.0 }}="{{ item.1 }}"
-                          {% endfor %}
-                          {% if action.element_id %}
-                             id="{{ action.element_id }}"
-                          {% endif %}
-                          >
-                          {% if action.icon %}
-                            <i class="{{ action.icon }}"></i>
-                          {% endif %}
-                          {{ action.name }}
-                        </button>
-                      {% endfor %}
-
-                    </div>
-                  </div>
-                {% endif %}
-
-              {% endblock rightbar-actions %}
-            </div>
-          </div>
-          {% endcomment %}
         {% endblock main-area %}
 
       {% endblock page %}
@@ -540,5 +553,15 @@
     {% block bottom-extras %}
       {# Your own totally-unmanaged per-template extra css/javascript/links #}
     {% endblock bottom-extras %}
+	  <script type="text/javascript">
+		function unDisplay() {
+		  $('.box-awesome-inner').hide()
+		};
+		function display(tab, height) {
+		  $('#box-awesome-' + tab).show();
+		};
+
+	  </script>
+
   </body>
 </html>
