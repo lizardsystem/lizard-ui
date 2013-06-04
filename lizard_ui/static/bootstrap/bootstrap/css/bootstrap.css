@@ -6986,6 +6986,10 @@ body {
   height: auto;
 }
 
+.form-location-search {
+  margin: 5px 0 0 5px;
+}
+
 #breadcrumb-row {
   *position: relative;
   *z-index: 2;
@@ -7172,10 +7176,8 @@ body {
   position: absolute;
   top: 50%;
   left: 100%;
-
   width: 40px;
   height: 30px;
-
   margin-top: -15px;
 }
 
@@ -7242,15 +7244,9 @@ body {
   position: absolute;
   top: 50%;
   left: 100%;
-
   width: 40px;
   height: 30px;
-
   margin-top: -15px;
-}
-
-#collapse-secondary-sidebar-awesome:focus {
-  outline: none;
 }
 
 #rightbar-awesome {
