@@ -1,0 +1,58 @@
+#box-awesome {
+	position: absolute;
+	z-index: 2000;
+	top: 60px;
+	left: 30px;
+}
+
+#box-awesome input {
+	width: 288px;
+}
+
+#box-awesome-search-button {
+	position: absolute;
+	z-index: 2000;
+	top: 60px;
+	left: 340px;
+
+	width: 60px;
+	height: 28px;
+	background-color: #157681;
+	cursor: pointer;
+}
+
+#box-awesome-search-span {
+	position: relative;
+	left: 20px;
+	top: 3px;
+}
+
+#box-awesome-tabs {
+	position: absolute;
+	z-index: 2000;
+	top: 100px;
+	left: 30px;
+	width: 300px;
+	height: 300px;
+
+	background-color: white;
+}
+
+.box-awesome-button-span {
+	background-color: #157681;
+	margin: 5px;
+	width: 90px;
+	height: 40px;
+	font-size: 15px;
+	text-align: center;
+	line-height: 2.5;
+	cursor: pointer;
+}
+
+
+#box-awesome-actions {
+	position: absolute;
+	z-index: 2000;
+	top: 100px;
+	left: 340px;
+}
