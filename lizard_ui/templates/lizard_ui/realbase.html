@@ -50,6 +50,7 @@
             href="{{ STATIC_URL }}sprites/sprite.css"
             type="text/css"
             media="screen, projection" />
+	  {# Used for the Lizard Awesome box (aka new google maps) #}
 	  <link rel="stylesheet"
             href="{{ STATIC_URL }}lizard_ui/box-awesome.css"
             type="text/css"
@@ -75,142 +76,57 @@
 	  {% include 'lizard_ui/modal_login.html' %}
 	  {% include 'lizard_ui/change_language.html' %}
 	{% endblock %}
+
 	<div id="box-awesome">
+
 	  <div id="box-awesome-search">
 		<form>
-		  <input type="text">
+	  <input type="text">
 		</form>
+	  </div>
+
+	  <div id="box-awesome-search-button">
+		<span id="box-awesome-search-span" class="icon-search icon-large"></span>
+	  </div>
+
+	  <div id="box-awesome-tabs">
+		<ul>
+		  <li>
+			<a href="#box-awesome-content-apps">
+			  <i class="icon-sitemap"></i>
+			</a>
+		  </li>
+		  <li>
+			<a href="#box-awesome-content-themes">
+			  <i class="icon-star"></i>
+			</a>
+		  </li>
+		  <li>
+			<a href="#box-awesome-content-themes">
+			  <i class="icon-reorder"></i>
+			</a>
+		  </li>
+		  <li>
+			<a href="#box-awesome-content-themes">
+			  <i class="icon-list"></i>
+			</a>
+		  </li>
+		</ul>
+		<div id="box-awesome-content-apps"
+			 class="box-awesome-content">
+		  <div id="sidebar-awesome-inner">
+			<div class="sidebar-inner">
+
+			  {% block sidebar %}
+			  {% endblock %}
+
+			</div>
+		  </div>
+		</div>
 	  </div>
 	</div>
 
-	<div id="box-awesome-search-button">
-	  <span id="box-awesome-search-span" class="icon-search icon-large"></span>
 	</div>
-
-	<div id="box-awesome-actions">
-      <ul class="nav">
-
-        <li
-           id="action-layers"
-           >
-          <a href="#"
-
-             data-title=""
-             data-content="Toon kaartlagen"
-
-             class="dropdown-toggle"
-
-             >
-
-            <i class="icon-map-marker"></i>
-
-
-          </a>
-        </li>
-
-        <li
-           id="action-base-layers"
-           >
-          <a href="#"
-
-             data-title=""
-             data-content="Toon basislagen"
-
-             class="dropdown-toggle"
-
-             >
-
-            <i class="icon-globe"></i>
-
-
-          </a>
-        </li>
-
-	  </ul>
-	</div>
-
-	<div id="box-awesome-tabs">
-		<span id="span-apps"
-			  class="box-awesome-button-span"
-			  onClick="unDisplay();display('apps')">Apps</span>
-	  	<span id="span-workspaces"
-			  class="box-awesome-button-span"
-			  onClick="unDisplay();display('workspaces')">Workspaces</span>
-		<span id="span-legenda"
-			  class="box-awesome-button-span"
-			  onClick="unDisplay();display('legend')">Legenda</span>
-		<div id="box-awesome-apps"
-			 class="box-awesome-inner">
-            <div class="sidebar-inner">
-			  <ul class="ui-icon-list">
-				<li title="" data-content="metingen van HHNK en gemeenten" class="has_popover" data-original-title="Metingen">
-				  <a href="/map/screen/measurements/">
-					<img src="/static_media/lizard_ui/app_icons/meetgegevens.png" alt="Metingen">
-					<div>Metingen</div>
-				  </a>
-				</li>
-
-				<li title="" data-content="basis kaarten van HHNK" class="has_popover" data-original-title="Kaarten">
-				  <a href="/shape/">
-					<img src="/static_media/lizard_ui/app_icons/kaartlagen.png" alt="Kaarten">
-					<div>Kaarten</div>
-				  </a>
-				</li>
-
-				<li title="" data-content="link naar youtube met instructie film" class="has_popover" data-original-title="instructie film">
-				  <a href="http://www.youtube.com/watch?v=bx551r6G6Tg&amp;feature=related">
-					<img src="/static_media/lizard_ui/app_icons/play.png" alt="instructie film">
-					<div>instructie film</div>
-				  </a>
-				</li>
-
-				<li>
-				  <a href="/webmap/category/hhnk_wfs/">
-					<img src="/static_media/lizard_ui/app_icons/kaartlagen.png" alt="WFS kaarten">
-					<div>WFS kaarten</div>
-				  </a>
-				</li>
-
-			  </ul>
-            </div>
-        </div>
-		<div id="box-awesome-workspaces"
-			 class="box-awesome-inner" style="display:none">
-          <div class="sidebar-inner">
-			<div id="edit-workspace" class="sidebarbox workspace">
-			  <h2>
-				<span title="Dit is uw workspace. Ga met de muis over items voor extra opties.">
-				  Kaartlagen
-				</span>
-			  </h2>
-
-			  <ul class="workspace-items unstyled ui-sortable">
-
-
-				<li>
-				  Geen kaartlagen geselecteerd.
-				</li>
-
-			  </ul>
-			  <hr noshade="" style="border-color: #7FA9AE; color: #7FA9AE; background-color: #7FA9AE;">
-			  <div class="btn-group" style="display: block; width: 78px; margin-left: auto; margin-right: auto;">
-				<button id="workspace-empty" href="/map/myworkspace/empty/" class="btn btn-danger sidebarbox-action-icon action-post-workspace-empty" title="Workspace leegmaken">
-				  <i class="icon-trash icon-white"></i>
-				</button>
-				<button id="workspace-save" href="/map/myworkspace/save/" class="btn sidebarbox-action-icon popup-workspace-save" data-size="xs" title="Workspace opslaan" disabled="disabled">
-				  <i class="icon-save"></i>
-				</button>
-			  </div>
-			</div>
-          </div>
-		</div>
-		<div id="box-awesome-legend"
-		   class="box-awesome-inner" style="display:none">
-          <div class="rightbar-inner">
-			<h2>Legenda</h2>
-          </div>
-        </div>
-    </div>
     <div id="page">
       {% block page %}
         {% block header %}
@@ -348,69 +264,12 @@
         {% endcomment %}
 
         {% block main-area %}
-          {% comment %}
-          <div id="sidebar"
-               data-collapsed="{{ view.sidebar_is_collapsed|yesno:'true,false,false' }}"
-               style="
-               {% if view.sidebar_is_collapsed %}
-               display: none;
-               left: -300px;
-               {% else %}
-               left: 0px;
-               {% endif %}
-               "
-          >
-            <div class="sidebar-inner">
-              {% block sidebar %}
-              {% endblock sidebar %}
-            </div>
-          </div>
-          {% endcomment %}
-
-          {% comment %}
-          <div id="secondary-sidebar"
-               data-collapsed="{{ view.secondary_sidebar_is_collapsed|yesno:'true,false,true' }}"
-               style="
-               {% if view.secondary_sidebar_is_collapsed %}
-               display: none;
-               {% endif %}
-               "
-          >
-            <div class="sidebar-inner">
-              {% block secondary-sidebar %}
-              {% endblock secondary-sidebar %}
-            </div>
-          </div>
-          {% endcomment %}
-
           <div id="content">
             {% block content %}
             {% endblock content %}
           </div>
 
           {# Note: keep the inline style, as the position of this block is controlled by Javascript #}
-          <div id="sidebar-awesome"
-               data-collapsed="{{ view.sidebar_is_collapsed|yesno:'true,false,true' }}"
-               style="
-               {% if view.sidebar_is_collapsed %}
-               left: -304px;
-               {% else %}
-               left: 0;
-               {% endif %}
-               "
-          >
-              <div id="collapse-sidebar-awesome">
-                  <button class="btn btn-collapse-bar" title="{% trans 'Apps' %}" type="button">
-                      <i class="icon-sitemap"></i>
-                  </button>
-              </div>
-              <div id="sidebar-awesome-inner">
-                  <div class="sidebar-inner">
-                      {% block sidebar %}
-                      {% endblock sidebar %}
-                  </div>
-              </div>
-          </div>
 
           {# Note: keep the inline style, as the position of this block is controlled by Javascript #}
           <div id="sidebar-awesome2"
@@ -553,15 +412,5 @@
     {% block bottom-extras %}
       {# Your own totally-unmanaged per-template extra css/javascript/links #}
     {% endblock bottom-extras %}
-	  <script type="text/javascript">
-		function unDisplay() {
-		  $('.box-awesome-inner').hide()
-		};
-		function display(tab, height) {
-		  $('#box-awesome-' + tab).show();
-		};
-
-	  </script>
-
   </body>
 </html>

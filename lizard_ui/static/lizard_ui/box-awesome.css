@@ -10,13 +10,11 @@
 }
 
 #box-awesome-search-button {
-	position: absolute;
-	z-index: 2000;
-	top: 60px;
-	left: 340px;
-
+	position: relative;
+	top: -54px;
+	left: 305px;
 	width: 60px;
-	height: 28px;
+	height: 27px;
 	background-color: #157681;
 	cursor: pointer;
 }
@@ -28,27 +26,48 @@
 }
 
 #box-awesome-tabs {
-	position: absolute;
-	z-index: 2000;
-	top: 100px;
-	left: 30px;
+	position: relative;
+	top: -49px;
 	width: 300px;
-	height: 300px;
-
-	background-color: white;
 }
 
-.box-awesome-button-span {
-	background-color: #157681;
-	margin: 5px;
-	width: 90px;
-	height: 40px;
-	font-size: 15px;
+
+#box-awesome-tabs ul {
+	margin: 0;
+}
+
+#box-awesome-tabs li {
+	list-style: none;
+	display: inline-block;
+	margin: 0px 10px 0px 5px;
+
+	line-height: 1.5;
 	text-align: center;
-	line-height: 2.5;
-	cursor: pointer;
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25)
+
 }
 
+#box-awesome-tabs a {
+	text-decoration: none;
+}
+
+#box-awesome-tabs i {
+	padding: 10px;
+	font-size: 20px;
+
+	color: white;
+	cursor: pointer;
+	background-color: #157681;
+}
+
+.box-awesome-content {
+	position: relative;
+	top :
+	height: 300px;
+	width: 300px;
+	background-color: white;
+
+}
 
 #box-awesome-actions {
 	position: absolute;
