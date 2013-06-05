@@ -78,7 +78,7 @@
 	<div id="box-awesome">
 	  <div id="box-awesome-search">
 		<form>
-		  <input type="text">
+		  <input type="text" class="search-query" placeholder="Zoeken naar...">
 		</form>
 	  </div>
 	</div>
@@ -131,12 +131,15 @@
 
 	<div id="box-awesome-tabs">
 		<span id="span-apps"
+        style="color:white;"  
 			  class="box-awesome-button-span"
 			  onClick="unDisplay();display('apps')">Apps</span>
 	  	<span id="span-workspaces"
+        style="color:white;"    
 			  class="box-awesome-button-span"
 			  onClick="unDisplay();display('workspaces')">Workspaces</span>
 		<span id="span-legenda"
+        style="color:white;"  
 			  class="box-awesome-button-span"
 			  onClick="unDisplay();display('legend')">Legenda</span>
 		<div id="box-awesome-apps"
@@ -225,14 +228,7 @@
                   {% endspaceless %}
                 {% endblock logo %}
               </div>
-              <div class="pull-left">
-                <form class="form-search form-location-search">
-                  <div class="input-append">
-                    <input type="text" class="input-medium search-query" placeholder="Naam van de lokatie">
-                    <button type="submit" class="btn">Zoek lokatie</button>
-                  </div>
-                </form>
-              </div>
+
               <div id="site-actions">
                 {% block site-actions %}
 
@@ -388,91 +384,8 @@
             {% endblock content %}
           </div>
 
-          {# Note: keep the inline style, as the position of this block is controlled by Javascript #}
-          <div id="sidebar-awesome"
-               data-collapsed="{{ view.sidebar_is_collapsed|yesno:'true,false,true' }}"
-               style="
-               {% if view.sidebar_is_collapsed %}
-               left: -304px;
-               {% else %}
-               left: 0;
-               {% endif %}
-               "
-          >
-              <div id="collapse-sidebar-awesome">
-                  <button class="btn btn-collapse-bar" title="{% trans 'Apps' %}" type="button">
-                      <i class="icon-sitemap"></i>
-                  </button>
-              </div>
-              <div id="sidebar-awesome-inner">
-                  <div class="sidebar-inner">
-                      {% block sidebar %}
-                      {% endblock sidebar %}
-                  </div>
-              </div>
-          </div>
 
-          {# Note: keep the inline style, as the position of this block is controlled by Javascript #}
-          <div id="sidebar-awesome2"
-               data-collapsed="true"
-               style="left: -304px;"
-          >
-              <div id="collapse-sidebar-awesome2">
-                  <button class="btn btn-collapse-bar" title="{% trans 'Theme maps' %}" type="button">
-                      <i class="icon-star"></i>
-                  </button>
-              </div>
-              <div id="sidebar-awesome-inner2">
-                  <div class="sidebar-inner">
-                      {% block sidebar2 %}
-                      {% endblock sidebar2 %}
-                  </div>
-              </div>
-          </div>
 
-          {# Note: keep the inline style, as the position of this block is controlled by Javascript #}
-          <div id="secondary-sidebar-awesome"
-               data-collapsed="{{ view.secondary_sidebar_is_collapsed|yesno:'true,false,true' }}"
-               style="
-               {% if view.secondary_sidebar_is_collapsed %}
-               left: -304px;
-               {% else %}
-               left: 0;
-               {% endif %}
-               "
-          >
-              <button id="collapse-secondary-sidebar-awesome" class="btn btn-collapse-bar" title="{% trans 'Map layers' %}" type="button">
-                  <i class="icon-reorder"></i>
-              </button>
-              <div id="secondary-sidebar-awesome-inner">
-                  <div class="sidebar-inner">
-                      {% block secondary-sidebar %}
-                      {% endblock secondary-sidebar %}
-                  </div>
-              </div>
-          </div>
-
-          {# Note: keep the inline style, as the position of this block is controlled by Javascript #}
-          <div id="rightbar-awesome"
-               data-collapsed="{{ view.rightbar_is_collapsed|yesno:'true,false,true' }}"
-               style="
-               {% if view.rightbar_is_collapsed %}
-               bottom: -504px;
-               {% else %}
-               bottom: 0;
-               {% endif %}
-               "
-          >
-              <button id="collapse-rightbar-awesome" class="btn btn-collapse-bar" title="{% trans 'Legend' %}" type="button">
-                  <i class="icon-list"></i>
-              </button>
-              <div id="rightbar-awesome-inner">
-                  <div class="rightbar-inner">
-                      {% block rightbar %}
-                      {% endblock rightbar %}
-                  </div>
-              </div>
-          </div>
 
         {% endblock main-area %}
 
@@ -515,6 +428,11 @@
     <script src="{{ STATIC_URL }}jquery-flot/jquery.flot.fillbetween.js"></script>
     <script src="{{ STATIC_URL }}daterangepicker/daterangepicker.js"></script>
     <script src="{{ STATIC_URL }}lizard_elevationprofile/elevationprofile.js"></script>
+    <script>
+      $(document).ready(function() {
+        $('input.search-query').focus();
+      });
+    </script>
     {% endblock javascript %}
 
     {% block map-javascript %}
