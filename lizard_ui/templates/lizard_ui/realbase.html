@@ -81,7 +81,7 @@
 
 	  <div id="box-awesome-search">
 		<form>
-		  <input type="text" class="search-query" placeholder="Zoeken naar...">
+		  <input type="text" placeholder="Zoeken naar...">
 		</form>
 	  </div>
 
@@ -102,31 +102,42 @@
 			</a>
 		  </li>
 		  <li>
-			<a href="#box-awesome-content-themes">
-			  <i class="icon-reorder"></i>
-			</a>
-		  </li>
-		  <li>
-			<a href="#box-awesome-content-themes">
+			<a href="#box-awesome-content-legend">
 			  <i class="icon-list"></i>
 			</a>
 		  </li>
 		</ul>
 		<div id="box-awesome-content-apps"
-			 class="box-awesome-content">
+			 class="box-awesome-content" style="display:none">
 		  <div id="sidebar-awesome-inner">
 			<div class="sidebar-inner">
-
 			  {% block sidebar %}
 			  {% endblock %}
-
 			</div>
+		  </div>
+		</div>
+		<div id="box-awesome-content-themes"
+			 class="box-awesome-content" style="display:none">
+		  <div id="sidebar-awesome-inner2">
+			<div class="sidebar-inner">
+              {% block sidebar2 %}
+              {% endblock sidebar2 %}
+			</div>
+          </div>
+		</div>
+
+		<div id="box-awesome-content-legend"
+			 class="box-awesome-content" >
+          <div id="rightbar-awesome-inner">
+            <div class="rightbar-inner">
+              {% block rightbar %}
+              {% endblock rightbar %}
+            </div>
 		  </div>
 		</div>
 	  </div>
 	</div>
 
-	</div>
     <div id="page">
       {% block page %}
         {% block header %}
@@ -271,12 +282,6 @@
                   <button class="btn btn-collapse-bar" title="{% trans 'Theme maps' %}" type="button">
                       <i class="icon-star"></i>
                   </button>
-              </div>
-              <div id="sidebar-awesome-inner2">
-                  <div class="sidebar-inner">
-                      {% block sidebar2 %}
-                      {% endblock sidebar2 %}
-                  </div>
               </div>
           </div>
         {% endblock main-area %}
