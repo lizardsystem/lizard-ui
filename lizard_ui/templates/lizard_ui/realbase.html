@@ -78,22 +78,12 @@
 	{% endblock %}
 
 	<div id="box-awesome">
-
-	  <div id="box-awesome-search">
-		<form>
-		  <input type="text" placeholder="Zoeken naar...">
-		</form>
-	  </div>
-
-	  <div id="box-awesome-search-button">
-		<span id="box-awesome-search-span" class="icon-search icon-large"></span>
-	  </div>
-
 	  <div id="box-awesome-tabs">
-		<ul id="box-awesome-tabs-list" class="nav navtabs">
+		<ul class="nav nav-tabs">
 		  <li class="active">
-			<a href="#box-awesome-content-apps" data-toggle="tab">
-			  <i class="icon-sitemap"></i>
+			<a href="#box-awesome-content-apps"
+			   data-toggle="tab">
+			  <i class="icon-th"></i>
 			</a>
 		  </li>
 		  <li>
@@ -103,47 +93,35 @@
 			</a>
 		  </li>
 		  <li>
-			<a href="#box-awesome-content-legend" data-toggle="tab">
+			<a href="#box-awesome-content-legend"
+			   data-toggle="tab">
 			  <i class="icon-list"></i>
 			</a>
 		  </li>
 		</ul>
-		<div class="tab-content box-awesome-content">
+		<div id="box-awesome-content"
+			 class="tab-content">
 		  <div id="box-awesome-content-apps"
-			   class="tab-pane active">
-			<div id="sidebar-awesome-inner">
-			  <div class="sidebar-inner">
-				{% block sidebar %}
-				{% endblock %}
-			  </div>
-			</div>
+			   class="tab-pane active sidebar-inner">
+			{% block sidebar %}
+			{% endblock %}
 		  </div>
 		  <div id="box-awesome-content-themes"
-			   class="tab-pane">
-			<div id="sidebar-awesome-inner2">
-			  <div class="sidebar-inner">
-				{% block sidebar2 %}
-				{% endblock sidebar2 %}
-			  </div>
-			</div>
+			   class="tab-pane sidebar-inner">
+              {% block sidebar2 %}
+              {% endblock sidebar2 %}
 		  </div>
-
 		  <div id="box-awesome-content-legend"
-			   class="tab-pane" >
-			<div id="rightbar-awesome-inner">
-              <div class="rightbar-inner">
-				{% block rightbar %}
-				{% endblock rightbar %}
-              </div>
-			</div>
+			   class="tab-pane sidebar-inner">
+			{% block rightbar %}
+            {% endblock rightbar %}
 		  </div>
 		</div>
 	  </div>
 	</div>
-
-    <div id="page">
+	<div id="page">
       {% block page %}
-        {% block header %}
+      {% block header %}
           <header>
             <div id="logo-row" class="navbar">
               <div id="logo">

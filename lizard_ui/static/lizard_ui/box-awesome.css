@@ -1,77 +1,19 @@
 #box-awesome {
 	position: absolute;
 	z-index: 2000;
-	top: 60px;
-	left: 30px;
-}
-
-#box-awesome input {
-	width: 288px;
-}
-
-#box-awesome-search-button {
-	position: relative;
-	top: -54px;
-	left: 305px;
-	width: 60px;
-	height: 27px;
-	background-color: #157681;
-	cursor: pointer;
-}
-
-#box-awesome-search-span {
-	position: relative;
-	left: 20px;
-	top: 3px;
+	top: 100px;
+	left: 11px;
 }
 
 #box-awesome-tabs {
 	position: relative;
 	top: -49px;
-	width: 300px;
-}
-
-
-#box-awesome-tabs ul {
-	margin: 0;
-}
-
-#box-awesome-tabs li {
-	list-style: none;
-	display: inline-block;
-	margin: 0px 10px 0px 5px;
-
-	line-height: 1.5;
-	text-align: center;
-    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25)
-
-}
-
-#box-awesome-tabs a {
-	text-decoration: none;
-}
-
-#box-awesome-tabs i {
-	padding: 10px;
-	font-size: 20px;
-
-	color: white;
-	cursor: pointer;
-	background-color: #157681;
-}
-
-.box-awesome-content {
-	position: relative;
+	width: 400px;
 	height: 300px;
-	width: 300px;
-	top: 5px;
-	background-color: white;
-
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3), 0 4px 15px -5px transparent;
+	background: #FFF;
 }
 
-#box-awesome-actions {
-	position: absolute;
-	z-index: 2000;
-	top: 100px;
-	left: 340px;
+#box-awesome-content {
+	height: 246px;
 }
