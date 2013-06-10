@@ -78,6 +78,13 @@
 	{% endblock %}
 
 	<div id="box-awesome">
+	  <form>
+		<div id="box-awesome-search">
+		  <input type="text">
+		  <button class="icon-search" aria-label="Search">
+		  </button>
+		</div>
+	  </form>
 	  <div id="box-awesome-tabs">
 		<ul class="nav nav-tabs">
 		  <li class="active">
@@ -108,8 +115,8 @@
 		  </div>
 		  <div id="box-awesome-content-themes"
 			   class="tab-pane sidebar-inner">
-              {% block sidebar2 %}
-              {% endblock sidebar2 %}
+            {% block sidebar2 %}
+            {% endblock sidebar2 %}
 		  </div>
 		  <div id="box-awesome-content-legend"
 			   class="tab-pane sidebar-inner">
