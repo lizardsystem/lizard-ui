@@ -456,42 +456,12 @@ function setUpAccordion() {
     }
 }
 
-function setUpAwesomeBars() {
-    // set initial states from data attributes, without animating
-    if ($('#sidebar-awesome').exists()) {
-        setSidebarAwesomeState($('#sidebar-awesome').data('collapsed'), true);
-    }
-    if ($('#sidebar-awesome2').exists()) {
-        setSidebarAwesome2State($('#sidebar-awesome2').data('collapsed'), true);
-    }
-    if ($('#secondary-sidebar-awesome').exists()) {
-        setSecondarySidebarAwesomeState($('#secondary-sidebar-awesome').data('collapsed'), true);
-    }
-    if ($('#rightbar-awesome').exists()) {
-        setRightbarAwesomeState($('#rightbar-awesome').data('collapsed'), true);
-    }
-
-    // bind buttons
-    $('#collapse-sidebar-awesome').click(function(e) {
-        e.preventDefault();
-        setSidebarAwesomeState($('#sidebar-awesome').data('collapsed') === true ? false : true);
-    });
-    $('#collapse-sidebar-awesome2').click(function(e) {
-        e.preventDefault();
-        setSidebarAwesome2State($('#sidebar-awesome2').data('collapsed') === true ? false : true);
-    });
-    $('#collapse-secondary-sidebar-awesome').click(function(e) {
-        e.preventDefault();
-        setSecondarySidebarAwesomeState($('#secondary-sidebar-awesome').data('collapsed') === true ? false : true);
-    });
-    $('#collapse-rightbar-awesome').click(function(e) {
-        e.preventDefault();
-        setRightbarAwesomeState($('#rightbar-awesome').data('collapsed') === true ? false : true);
-    });
+var setUpAwesomeBox = function() {
+	$("#box-awesome-tabs ul").tabs();
 }
 
 $(document).ready(function() {
-  setUpAwesomeBars();
+//  setUpAwesomeBox();
   setUpPopovers();
   $('.ui-login-link').click(function(e) {
     e.preventDefault();

@@ -78,69 +78,50 @@
 	{% endblock %}
 
 	<div id="box-awesome">
-
-	  <div id="box-awesome-search">
-		<form>
-		  <input type="text" placeholder="Zoeken naar...">
-		</form>
-	  </div>
-
-	  <div id="box-awesome-search-button">
-		<span id="box-awesome-search-span" class="icon-search icon-large"></span>
-	  </div>
-
 	  <div id="box-awesome-tabs">
-		<ul>
-		  <li>
-			<a href="#box-awesome-content-apps">
-			  <i class="icon-sitemap"></i>
+		<ul class="nav nav-tabs">
+		  <li class="active">
+			<a href="#box-awesome-content-apps"
+			   data-toggle="tab">
+			  <i class="icon-th"></i>
 			</a>
 		  </li>
 		  <li>
-			<a href="#box-awesome-content-themes">
+			<a href="#box-awesome-content-themes"
+			   data-toggle="tab">
 			  <i class="icon-star"></i>
 			</a>
 		  </li>
 		  <li>
-			<a href="#box-awesome-content-legend">
+			<a href="#box-awesome-content-legend"
+			   data-toggle="tab">
 			  <i class="icon-list"></i>
 			</a>
 		  </li>
 		</ul>
-		<div id="box-awesome-content-apps"
-			 class="box-awesome-content" style="display:none">
-		  <div id="sidebar-awesome-inner">
-			<div class="sidebar-inner">
-			  {% block sidebar %}
-			  {% endblock %}
-			</div>
+		<div id="box-awesome-content"
+			 class="tab-content">
+		  <div id="box-awesome-content-apps"
+			   class="tab-pane active sidebar-inner">
+			{% block sidebar %}
+			{% endblock %}
 		  </div>
-		</div>
-		<div id="box-awesome-content-themes"
-			 class="box-awesome-content" style="display:none">
-		  <div id="sidebar-awesome-inner2">
-			<div class="sidebar-inner">
+		  <div id="box-awesome-content-themes"
+			   class="tab-pane sidebar-inner">
               {% block sidebar2 %}
               {% endblock sidebar2 %}
-			</div>
-          </div>
-		</div>
-
-		<div id="box-awesome-content-legend"
-			 class="box-awesome-content" >
-          <div id="rightbar-awesome-inner">
-            <div class="rightbar-inner">
-              {% block rightbar %}
-              {% endblock rightbar %}
-            </div>
+		  </div>
+		  <div id="box-awesome-content-legend"
+			   class="tab-pane sidebar-inner">
+			{% block rightbar %}
+            {% endblock rightbar %}
 		  </div>
 		</div>
 	  </div>
 	</div>
-
-    <div id="page">
+	<div id="page">
       {% block page %}
-        {% block header %}
+      {% block header %}
           <header>
             <div id="logo-row" class="navbar">
               <div id="logo">
@@ -273,17 +254,6 @@
             {% endblock content %}
           </div>
 
-          {# Note: keep the inline style, as the position of this block is controlled by Javascript #}
-          <div id="sidebar-awesome2"
-               data-collapsed="true"
-               style="left: -304px;"
-          >
-              <div id="collapse-sidebar-awesome2">
-                  <button class="btn btn-collapse-bar" title="{% trans 'Theme maps' %}" type="button">
-                      <i class="icon-star"></i>
-                  </button>
-              </div>
-          </div>
         {% endblock main-area %}
 
       {% endblock page %}
