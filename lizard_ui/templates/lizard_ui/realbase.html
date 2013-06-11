@@ -76,8 +76,6 @@
 	  {% include 'lizard_ui/modal_login.html' %}
 	  {% include 'lizard_ui/change_language.html' %}
 	{% endblock %}
-    {% block secondary-sidebar %}
-    {% endblock %}
 
 	<div id="box-awesome">
 	  <form>
@@ -130,6 +128,11 @@
 	</div>
 	<div id="page">
       {% block page %}
+
+      {# Note: KEEP ME #}
+      {% block secondary-sidebar %}
+      {% endblock %}
+
       {% block header %}
           <header>
             <div id="logo-row" class="navbar">
