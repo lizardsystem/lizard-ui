@@ -7759,4 +7759,5 @@ a.collage-add {
   height: 32px;
   margin-top: -16px;
   margin-left: -16px;
+  background: url('/static_media/lizard_ui/ajax-loader.gif');
 }
