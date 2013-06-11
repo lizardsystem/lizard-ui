@@ -78,7 +78,7 @@
 	{% endblock %}
 
 	<div id="box-awesome">
-	  <form>
+	  <form id="box-awesome-search-form">
 		<div id="box-awesome-search">
 		  <input type="text">
 		  <button class="icon-search" aria-label="Search">
@@ -88,12 +88,6 @@
 	  <div id="box-awesome-tabs">
 		<ul class="nav nav-tabs">
 		  <li class="active">
-			<a href="#box-awesome-content-apps"
-			   data-toggle="tab">
-			  <i class="icon-th"></i>
-			</a>
-		  </li>
-		  <li>
 			<a href="#box-awesome-content-themes"
 			   data-toggle="tab">
 			  <i class="icon-star"></i>
@@ -105,16 +99,18 @@
 			  <i class="icon-list"></i>
 			</a>
 		  </li>
+		  <li>
+			<a href="#box-awesome-content-apps"
+			   data-toggle="tab">
+			  <i class="icon-th"></i>
+			</a>
+		  </li>
+
 		</ul>
 		<div id="box-awesome-content"
 			 class="tab-content">
-		  <div id="box-awesome-content-apps"
-			   class="tab-pane active sidebar-inner">
-			{% block sidebar %}
-			{% endblock %}
-		  </div>
 		  <div id="box-awesome-content-themes"
-			   class="tab-pane sidebar-inner">
+			   class="tab-pane sidebar-inner active">
             {% block sidebar2 %}
             {% endblock sidebar2 %}
 		  </div>
@@ -123,7 +119,15 @@
 			{% block rightbar %}
             {% endblock rightbar %}
 		  </div>
+		  <div id="box-awesome-content-apps"
+			   class="tab-pane sidebar-inner">
+			{% block sidebar %}
+			{% endblock %}
+		  </div>
 		</div>
+	  </div>
+	  <div id="box-awesome-results" style="display:none">
+		{# comment Placeholder for the search results. #}
 	  </div>
 	</div>
 	<div id="page">
