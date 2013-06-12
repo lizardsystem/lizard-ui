@@ -76,3 +76,8 @@
 #box-awesome-results ul {
 	list-style-type: none;
 }
+
+#box-awesome-results p {
+	margin-top: 10px;
+	margin-left: 20px;
+}
