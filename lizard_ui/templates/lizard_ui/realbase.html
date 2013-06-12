@@ -100,12 +100,18 @@
 			</a>
 		  </li>
 		  <li>
+			<a id="elevation-profile-action"
+			   href="#box-awesome-content-elevationprofile"
+			   data-toggle="tab">
+			  <i class="icon-bar-chart"></i>
+			</a>
+		  </li>
+		  <li>
 			<a href="#box-awesome-content-apps"
 			   data-toggle="tab">
 			  <i class="icon-th"></i>
 			</a>
 		  </li>
-
 		</ul>
 		<div id="box-awesome-content"
 			 class="tab-content">
@@ -118,6 +124,16 @@
 			   class="tab-pane sidebar-inner">
 			{% block rightbar %}
             {% endblock rightbar %}
+		  </div>
+		  <div id="box-awesome-content-elevationprofile"
+			   class="tab-pane sidebar-inner">
+			<p>
+			  Trek een lijn op de kaart.
+			</p>
+			<div style="position:relative">
+			  <div id="elevation-profile-content" style="height:192px">
+			  </div>
+			</div>
 		  </div>
 		  <div id="box-awesome-content-apps"
 			   class="tab-pane sidebar-inner">
