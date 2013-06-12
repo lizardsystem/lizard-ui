@@ -26,7 +26,7 @@ for details.
         
         var r = [];
         var escape = false;
-        var hours = d.getHours();
+        var hours = d.getUTCHours();
         var isAM = hours < 12;
         if (monthNames == null)
             monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -47,21 +47,21 @@ for details.
             
             if (escape) {
                 switch (c) {
-                case 'a': c = "" + dayNames[d.getDay()]; break;
-                case 'b': c = "" + monthNames[d.getMonth()]; break;
-                case 'd': c = leftPad(d.getDate()); break;
-                case 'e': c = leftPad(d.getDate(), " "); break;
+                case 'a': c = "" + dayNames[d.getUTCDay()]; break;
+                case 'b': c = "" + monthNames[d.getUTCMonth()]; break;
+                case 'd': c = leftPad(d.getUTCDate()); break;
+                case 'e': c = leftPad(d.getUTCDate(), " "); break;
                 case 'H': c = leftPad(hours); break;
                 case 'I': c = leftPad(hours12); break;
                 case 'l': c = leftPad(hours12, " "); break;
-                case 'm': c = leftPad(d.getMonth() + 1); break;
-                case 'M': c = leftPad(d.getMinutes()); break;
-                case 'S': c = leftPad(d.getSeconds()); break;
-                case 'y': c = leftPad(d.getFullYear() % 100); break;
-                case 'Y': c = "" + d.getFullYear(); break;
+                case 'm': c = leftPad(d.getUTCMonth() + 1); break;
+                case 'M': c = leftPad(d.getUTCMinutes()); break;
+                case 'S': c = leftPad(d.getUTCSeconds()); break;
+                case 'y': c = leftPad(d.getUTCFullYear() % 100); break;
+                case 'Y': c = "" + d.getUTCFullYear(); break;
                 case 'p': c = (isAM) ? ("" + "am") : ("" + "pm"); break;
                 case 'P': c = (isAM) ? ("" + "AM") : ("" + "PM"); break;
-                case 'w': c = "" + d.getDay(); break;
+                case 'w': c = "" + d.getUTCDay(); break;
                 }
                 r.push(c);
                 escape = false;
@@ -109,7 +109,7 @@ for details.
         if (opts.timezone == "browser") {
             return new Date(ts);
         } else if (!opts.timezone || opts.timezone == "utc") {
-            return makeUtcWrapper(new Date(ts));
+            return new Date(ts);
         } else if (typeof timezoneJS != "undefined" && typeof timezoneJS.Date != "undefined") {
             var d = new timezoneJS.Date();
             // timezone-js is fickle, so be sure to set the time zone before
@@ -118,7 +118,7 @@ for details.
             d.setTime(ts);
             return d;
         } else {
-            return makeUtcWrapper(new Date(ts));
+            return new Date(ts);
         }
     }
     
@@ -205,16 +205,16 @@ for details.
                         var step = tickSize * timeUnitSize[unit];
 
                         if (unit == "second")
-                            d.setSeconds(floorInBase(d.getSeconds(), tickSize));
+                            d.setSeconds(floorInBase(d.getUTCSeconds(), tickSize));
                         if (unit == "minute")
-                            d.setMinutes(floorInBase(d.getMinutes(), tickSize));
+                            d.setMinutes(floorInBase(d.getUTCMinutes(), tickSize));
                         if (unit == "hour")
-                            d.setHours(floorInBase(d.getHours(), tickSize));
+                            d.setHours(floorInBase(d.getUTCHours(), tickSize));
                         if (unit == "month")
-                            d.setMonth(floorInBase(d.getMonth(), tickSize));
+                            d.setMonth(floorInBase(d.getUTCMonth(), tickSize));
                         if (unit == "year")
-                            d.setFullYear(floorInBase(d.getFullYear(), tickSize));
-                        
+                            d.setFullYear(floorInBase(d.getUTCFullYear(), tickSize));
+
                         // reset smaller components
                         d.setMilliseconds(0);
                         if (step >= timeUnitSize.minute)
@@ -241,17 +241,17 @@ for details.
                                     // so we don't end up in the middle of a day
                                     d.setDate(1);
                                     var start = d.getTime();
-                                    d.setMonth(d.getMonth() + 1);
+                                    d.setMonth(d.getUTCMonth() + 1);
                                     var end = d.getTime();
                                     d.setTime(v + carry * timeUnitSize.hour + (end - start) * tickSize);
-                                    carry = d.getHours();
+                                    carry = d.getUTCHours();
                                     d.setHours(0);
                                 }
                                 else
-                                    d.setMonth(d.getMonth() + tickSize);
+                                    d.setMonth(d.getUTCMonth() + tickSize);
                             }
                             else if (unit == "year") {
-                                d.setFullYear(d.getFullYear() + tickSize);
+                                d.setFullYear(d.getUTCFullYear() + tickSize);
                             }
                             else
                                 d.setTime(v + step);
