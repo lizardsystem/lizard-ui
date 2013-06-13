@@ -205,28 +205,28 @@ for details.
                         var step = tickSize * timeUnitSize[unit];
 
                         if (unit == "second")
-                            d.setSeconds(floorInBase(d.getUTCSeconds(), tickSize));
+                            d.setUTCSeconds(floorInBase(d.getUTCSeconds(), tickSize));
                         if (unit == "minute")
-                            d.setMinutes(floorInBase(d.getUTCMinutes(), tickSize));
+                            d.setUTCMinutes(floorInBase(d.getUTCMinutes(), tickSize));
                         if (unit == "hour")
-                            d.setHours(floorInBase(d.getUTCHours(), tickSize));
+                            d.setUTCHours(floorInBase(d.getUTCHours(), tickSize));
                         if (unit == "month")
-                            d.setMonth(floorInBase(d.getUTCMonth(), tickSize));
+                            d.setUTCMonth(floorInBase(d.getUTCMonth(), tickSize));
                         if (unit == "year")
-                            d.setFullYear(floorInBase(d.getUTCFullYear(), tickSize));
+                            d.setUTCFullYear(floorInBase(d.getUTCFullYear(), tickSize));
 
                         // reset smaller components
-                        d.setMilliseconds(0);
+                        d.setUTCMilliseconds(0);
                         if (step >= timeUnitSize.minute)
-                            d.setSeconds(0);
+                            d.setUTCSeconds(0);
                         if (step >= timeUnitSize.hour)
-                            d.setMinutes(0);
+                            d.setUTCMinutes(0);
                         if (step >= timeUnitSize.day)
-                            d.setHours(0);
+                            d.setUTCHours(0);
                         if (step >= timeUnitSize.day * 4)
-                            d.setDate(1);
+                            d.setUTCDate(1);
                         if (step >= timeUnitSize.year)
-                            d.setMonth(0);
+                            d.setUTCMonth(0);
 
 
                         var carry = 0, v = Number.NaN, prev;
@@ -239,19 +239,19 @@ for details.
                                     // a bit complicated - we'll divide the month
                                     // up but we need to take care of fractions
                                     // so we don't end up in the middle of a day
-                                    d.setDate(1);
+                                    d.setUTCDate(1);
                                     var start = d.getTime();
-                                    d.setMonth(d.getUTCMonth() + 1);
+                                    d.setUTCMonth(d.getUTCMonth() + 1);
                                     var end = d.getTime();
                                     d.setTime(v + carry * timeUnitSize.hour + (end - start) * tickSize);
                                     carry = d.getUTCHours();
-                                    d.setHours(0);
+                                    d.setUTCHours(0);
                                 }
                                 else
-                                    d.setMonth(d.getUTCMonth() + tickSize);
+                                    d.setUTCMonth(d.getUTCMonth() + tickSize);
                             }
                             else if (unit == "year") {
-                                d.setFullYear(d.getUTCFullYear() + tickSize);
+                                d.setUTCFullYear(d.getUTCFullYear() + tickSize);
                             }
                             else
                                 d.setTime(v + step);
