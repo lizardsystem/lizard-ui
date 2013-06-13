@@ -92,13 +92,18 @@ body {
 // This allows configuration of the visibility of the bars using DB settings, View, etc.
 
 // Top-most bar.
-#logo-row {
-  .horizontal-bar;
-  #gradient > .vertical(lighten(@navbarBackground, 10%), @navbarBackground);
+header {
+  z-index: 2000;
   position: fixed;
   left: 0;
   top: 0;
   right: 0;
+  height: 40px;
+}
+
+#logo-row {
+  .horizontal-bar;
+  #gradient > .vertical(lighten(@navbarBackground, 10%), @navbarBackground);
 }
 
 .form-location-search {
@@ -525,6 +530,15 @@ ul.ui-icon-list {
   }
 }
 
+// Make modals appear on top of map
+.modal-backdrop {
+  z-index: 4010;
+}
+
+.modal {
+  z-index: 4020;
+}
+
 // Fix for login modal
 #modal-login-form {
   margin: 0 0 0;
@@ -675,7 +689,7 @@ div.nonworking-workspace-acceptable {
   top: 0;
   left: 0;
   border: 1px solid black;
-  z-index: 6000;
+  z-index: 4000;
 }
 
 /* ****************** Workspace + collage editor ("kaartlagen") ************ */
@@ -789,8 +803,8 @@ div.date-range-box input {
 }
 
 // Label appearing when the mouse is hovering over the map
-#hover-popup {
-  z-index: 3000 !important;
+#maptooltip {
+  z-index: 1900 !important;
 }
 
 // Add to collage link in popups
@@ -821,13 +835,13 @@ a.collage-add {
 
 // Give daterangepicker a higher z-index
 .daterangepicker {
-  z-index: 2000;
+  z-index: 3000;
 }
 
 // Give popover a thick black border, as requested by upper management
 .popover {
   border: 3px solid #000;
-  z-index: 4000;
+  z-index: 3000;
 }
 @popoverArrowWidth: 6px;
 @popoverArrowColor: #000;

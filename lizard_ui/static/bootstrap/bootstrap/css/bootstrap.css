@@ -6951,12 +6951,17 @@ body {
   overflow: hidden;
 }
 
-#logo-row {
+header {
   position: fixed;
-  *position: relative;
   top: 0;
   right: 0;
   left: 0;
+  z-index: 2000;
+  height: 40px;
+}
+
+#logo-row {
+  *position: relative;
   *z-index: 2;
   height: 40px;
   margin-bottom: 18px;
@@ -7426,6 +7431,14 @@ ul.ui-icon-list .notworking {
   cursor: not-allowed;
 }
 
+.modal-backdrop {
+  z-index: 4010;
+}
+
+.modal {
+  z-index: 4020;
+}
+
 #modal-login-form {
   margin: 0 0 0;
 }
@@ -7582,7 +7595,7 @@ div.nonworking-workspace-acceptable {
   position: absolute;
   top: 0;
   left: 0;
-  z-index: 6000;
+  z-index: 4000;
   width: 0;
   height: 0;
   border: 1px solid black;
@@ -7701,8 +7714,8 @@ div.date-range-box input {
   display: inline;
 }
 
-#hover-popup {
-  z-index: 3000 !important;
+#maptooltip {
+  z-index: 1900 !important;
 }
 
 a.collage-add {
@@ -7730,11 +7743,11 @@ a.collage-add {
 }
 
 .daterangepicker {
-  z-index: 2000;
+  z-index: 3000;
 }
 
 .popover {
-  z-index: 4000;
+  z-index: 3000;
   border: 3px solid #000;
 }
 
