@@ -8590,8 +8590,6 @@ OpenLayers.Map = OpenLayers.Class({
             }
         }
 
-        this.resetLayersZIndex();
-
         this.events.triggerEvent("removelayer", {layer: layer});
         layer.events.triggerEvent("removed", {map: this, layer: layer});
     },
