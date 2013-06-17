@@ -1,5 +1,5 @@
 #box-awesome {
-	position: absolute;
+	position: fixed;
 	z-index: 2000;
 	top: 50px;
 	left: 11px;
@@ -37,15 +37,13 @@
 	width: 72px;
 	height: 27px;
 
-	background-image: -webkit-linear-gradient(top,#177d89,#115e67);
+	background-image: linear-gradient(to bottom, #177d89, #115e67);
     border: 0;
     border-radius: 0 2px 2px 0;
     box-shadow: 0 2px 6px rgba(0,0,0,0.3);
 
 	color: white;
 }
-
-
 
 
 #box-awesome-tabs {
@@ -61,4 +59,25 @@
 
 #box-awesome-content {
 	height: 246px;
+}
+
+#box-awesome-results {
+	position: relative;
+	top: 15px;
+
+	width: 400px;
+	height: 150px;
+	overflow-x: hidden;
+
+	background-color: #FFF;
+	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3), 0 4px 15px -5px transparent;
+}
+
+#box-awesome-results ul {
+	list-style-type: none;
+}
+
+#box-awesome-results p {
+	margin-top: 10px;
+	margin-left: 20px;
 }

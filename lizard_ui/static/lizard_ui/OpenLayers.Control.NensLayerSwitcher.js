@@ -40,7 +40,7 @@ OpenLayers.Control.NensLayerSwitcher =
                '<a href="#"' +
 		          'class="layer"'+
                   'data-layer-id="<%= layer_id %>">' +
-                  '<% if (checked){ %> <i class="icon-ok"></i> <% }%>' +
+                  '<% if (checked){ %> <i class="icon-">&#xf00c;</i> <% }%>' +
    			      '<%= name %>' +
                '</a>' +
           '</li>'),
@@ -304,7 +304,12 @@ OpenLayers.Control.NensLayerSwitcher =
 
 		// Enable/disable the layers with a click.
 		this.layersElement.find('.layer').click(function(e){
-			var layer = map.getLayer($(e.target).data('layer-id'));
+		    var layerId = $(e.target).data('layer-id');
+		    if (!layerId) {
+		        // clicked on icon
+		        layerId = $(e.target).parents('a').data('layer-id');
+		    }
+			var layer = map.getLayer(layerId);
 			layer.setVisibility(!layer.visibility);
 			e.preventDefault();
 			e.stopPropagation();
