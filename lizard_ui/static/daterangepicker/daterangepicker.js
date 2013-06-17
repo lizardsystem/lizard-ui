@@ -224,6 +224,7 @@
         constructor: DateRangePicker,
 
         mousedown: function (e) {
+            e.stopPropagation();
             e.preventDefault();
         },
 
