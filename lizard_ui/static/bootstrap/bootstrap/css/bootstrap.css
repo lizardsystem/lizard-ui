@@ -7341,29 +7341,10 @@ header {
 .sidebar-inner h4,
 .rightbar-inner h4,
 #secondary-sidebar h4 {
-  display: block;
-  padding-top: 4.4px;
-  padding-bottom: 4.4px;
-  margin-top: 0;
-  margin-right: -13px;
   clear: left;
   font-size: 13px;
   font-weight: bold;
   line-height: 18px;
-}
-
-.sidebar-inner h2,
-.rightbar-inner h2,
-#secondary-sidebar h2 {
-  padding-left: 13px;
-  margin-left: -13px;
-}
-
-.sidebar-inner h3,
-.rightbar-inner h3,
-#secondary-sidebar h3 {
-  padding-left: 13px;
-  margin-left: -13px;
 }
 
 #rightbar img {
