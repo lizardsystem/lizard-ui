@@ -224,7 +224,6 @@
         constructor: DateRangePicker,
 
         mousedown: function (e) {
-            e.stopPropagation();
             e.preventDefault();
         },
 
@@ -278,7 +277,6 @@
             this.move();
 
             if (e) {
-                e.stopPropagation();
                 e.preventDefault();
             }
 
@@ -494,7 +492,7 @@
                     {
                         cname += 'active';
                     }
-                    
+
                     var title = 'r' + row + 'c' + col;
                     html += '<td class="' + cname + '" data-title="' + title + '">' + item.date() + '</td>';
                 }
