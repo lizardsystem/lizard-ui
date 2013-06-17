@@ -7755,3 +7755,7 @@ a.collage-add {
   margin-left: -16px;
   background: url('/static_media/lizard_ui/ajax-loader.gif');
 }
+
+.ui-tabs .ui-tabs-panel {
+  padding: 10px 0 0;
+}
