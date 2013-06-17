@@ -13,7 +13,9 @@
 }
 
 #box-awesome-search input {
-	padding-left: 0;
+	padding-left: 10px!important;
+	font-size: 1em;
+    font-family: 'Roboto', sans-serif !important;
 	padding-right: 0;
 	width: 100%;
 
