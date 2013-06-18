@@ -39,8 +39,8 @@
 	width: 72px;
 	height: 27px;
 
-	background: linear-gradient(top bottom, #177d89, #115e67);
-    background: -webkit-linear-gradient(top bottom, #177d89, #115e67);
+	background: linear-gradient(to bottom, #177d89, #115e67);
+    background: -webkit-linear-gradient(to bottom, #177d89, #115e67);
     border: 0;
     border-radius: 0 2px 2px 0;
     box-shadow: 0 2px 6px rgba(0,0,0,0.3);
