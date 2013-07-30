@@ -27,8 +27,8 @@
 		</div>
 	  </header>
 	</div>
-	<div class="text-center">
-	  <h1>{% trans "500 This page cannot be found" %}</h1>
+	<div class="text-center" style="position:relative; top:40px;">
+	  <h1>{% trans "500 Internal server error." %}</h1>
 	  <p> {% trans "Our apologies for the inconvenience." %}</p>
 	  <p> {% trans "If there should be a page please contact us." %}</p>
 	  {% if request.sentry.id %}
