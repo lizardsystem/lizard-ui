@@ -23,7 +23,7 @@
 }
 
 .daterangepicker .calendar th, .daterangepicker .calendar td {
-  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;  
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
 .daterangepicker .ranges label {
@@ -48,7 +48,7 @@
   font-size: 13px;
   background: #f5f5f5;
   border: 1px solid #f5f5f5;
-  color: #08c;
+  color: #157681;
   padding: 3px 12px;
   margin-bottom: 8px;
   -webkit-border-radius: 5px;
@@ -58,8 +58,8 @@
 }
 
 .daterangepicker .ranges li.active, .daterangepicker .ranges li:hover {
-  background: #08c;
-  border: 1px solid #08c;
+  background: #157681;
+  border: 1px solid #157681;
   color: #fff;
 }
 
