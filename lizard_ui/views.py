@@ -31,6 +31,8 @@ from lizard_ui.forms import LoginForm, ChangeLanguageForm
 from lizard_ui.layout import Action
 from lizard_ui.models import ApplicationScreen
 from lizard_ui.models import ApplicationIcon
+from lizard_ui.models import CustomerLogo
+
 from lizard_ui import uisettings
 
 
@@ -160,9 +162,9 @@ class ChangeLanguageView(ViewContextMixin, FormView, ViewNextURLMixin):
             next = request.REQUEST.get('next', None)
             if request.is_ajax():
                 response = HttpResponse(json.dumps({'success': True}),
-                    mimetype='application/json')
+                                        mimetype='application/json')
             else:
-                response = http.HttpResponseRedirect(next)
+                response = HttpResponseRedirect(next)
             if lang_code and check_for_language(lang_code):
                 if hasattr(request, 'session'):
                     request.session[settings.LANGUAGE_COOKIE_NAME] = lang_code
@@ -180,7 +182,7 @@ class ChangeLanguageView(ViewContextMixin, FormView, ViewNextURLMixin):
                     errors += ' '.join(errorlist)
             return HttpResponse(json.dumps({'success': False,
                                             'error_message': errors}),
-                mimetype='application/json')
+                                mimetype='application/json')
         return self.form_invalid(form)
 
 
@@ -601,6 +603,10 @@ class IconView(UiView):
     @property
     def icons(self):
         return self.application_screen.icons.all()
+
+    @property
+    def customer_logo(self):
+        return CustomerLogo.objects.filter(used=True)[0].logo.name
 
 
 def handler500(request):

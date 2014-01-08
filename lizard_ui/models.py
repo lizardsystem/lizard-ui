@@ -3,8 +3,10 @@ from django.db import models
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 
+from lizard_map.utility import get_host
 from lizard_security.manager import FilteredManager
 from lizard_security.models import DataSet
+
 
 SCREEN_DEFAULT_SLUG = 'home'
 
@@ -148,3 +150,26 @@ class ApplicationIcon(models.Model):
             if self.icon.startswith(indicator):
                 return self.icon
         return settings.STATIC_URL + self.icon
+
+
+class CustomerLogo(models.Model):
+    """
+    Definition of customer's logo and alt-text.
+    """
+
+    def upload_path(self, filename):
+        return '/'.join(["customerlogo", get_host(), filename])
+
+    name = models.CharField(_('name'), max_length=100, null=True, blank=True)
+    logo = models.ImageField(upload_to=upload_path, null=True, blank=True)
+    used = models.BooleanField(default=True,
+                               help_text="This is the logo that is used.")
+
+    def __unicode__(self):
+        return self.name
+
+    def save(self, *args, **kwargs):
+        """A special save to make sure only one default is selected."""
+        if self.used:
+            CustomerLogo.objects.filter(used=True).update(used=False)
+        super(CustomerLogo, self).save(*args, **kwargs)
