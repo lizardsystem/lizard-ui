@@ -606,7 +606,10 @@ class IconView(UiView):
 
     @property
     def customer_logo(self):
-        return CustomerLogo.objects.filter(used=True)[0].logo.name
+        logo = CustomerLogo.objects.filter(used=True)
+        if logo:
+            return logo[0].logo.name
+        return False
 
 
 def handler500(request):
