@@ -55,6 +55,10 @@
             href="{{ STATIC_URL }}lizard_ui/box-awesome.css"
             type="text/css"
             media="screen, projection" />
+	  <link rel="stylesheet"
+			href="{{ STATIC_URL }}bootstrap-tour/bootstrap-tour.min.css"
+			type="text/css"
+			media="screen, projection" />
 
     {% endblock css %}
 
@@ -340,6 +344,7 @@
     <script src="{{ STATIC_URL }}jquery-flot/jquery.flot.fillbetween.js"></script>
     <script src="{{ STATIC_URL }}daterangepicker/daterangepicker.js"></script>
     <script src="{{ STATIC_URL }}lizard_elevationprofile/elevationprofile.js"></script>
+	<script src="{{ STATIC_URL }}bootstrap-tour/bootstrap-tour.min.js"></script>
     {% endblock javascript %}
 
     {% block map-javascript %}
