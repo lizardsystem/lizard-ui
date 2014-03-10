@@ -1,4 +1,4 @@
-/*!
+ /*!
  * Bootstrap v2.3.1
  *
  * Copyright 2012 Twitter, Inc
@@ -7354,6 +7354,14 @@ header {
 #textual,
 .textual-content {
   padding: 13px;
+  position: absolute;
+  top: 0px;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+
 }
 
 #breadcrumbs ul {

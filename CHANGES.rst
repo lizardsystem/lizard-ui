@@ -5,10 +5,16 @@ Changelog of lizard-ui
 4.29 (unreleased)
 -----------------
 
+- Fixed scrolling on #textual page (for the dashboard).
+
 - Included elevationprofile.js in template
+
 - Fix layout bug in login modal. The margin was too large.
+
 - Enhance  404 and 500 html error templates.
+
 - Update daterange picker colors to be the same as the lizard header.
+
 
 4.28 (2013-05-14)
 -----------------
