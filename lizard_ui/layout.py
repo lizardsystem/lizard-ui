@@ -27,7 +27,8 @@ class Action(object):
 
     """
     def __init__(self, name=None, element_id=None, icon=None, url='#',
-                 description=None, klass=None, data_attributes=None):
+                 description=None, klass=None, data_attributes=None,
+                 target=None):
         self.name = name
         if element_id is not None:
             self.element_id = 'action-%s' % element_id
@@ -36,3 +37,4 @@ class Action(object):
         self.description = description
         self.klass = klass
         self.data_attributes = data_attributes
+        self.target = target  # &$%^!, this is for opening in a new tab.

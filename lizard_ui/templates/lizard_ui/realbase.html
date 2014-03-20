@@ -211,6 +211,9 @@
                              data-title="{{ action.name }}"
                              data-content="{{ action.description }}"
                            {% endif %}
+                           {% if action.target %}
+                             target="{{ action.target }}"
+                           {% endif %}
                            class="{{ action.klass }}"
                            {% for item in action.data_attributes.items %}
                              data-{{ item.0 }}="{{ item.1 }}"
