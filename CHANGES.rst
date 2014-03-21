@@ -11,9 +11,11 @@ Changelog of lizard-ui
 
 - Fix layout bug in login modal. The margin was too large.
 
-- Enhance  404 and 500 html error templates.
+- Enhance 404 and 500 html error templates.
 
 - Update daterange picker colors to be the same as the lizard header.
+
+- Supporting, sigh, opening actions in a new tab...
 
 
 4.28 (2013-05-14)
