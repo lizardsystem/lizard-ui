@@ -17,6 +17,7 @@ Changelog of lizard-ui
 
 - Supporting, sigh, opening actions in a new tab...
 
+- Downgrade openlayers to 2.12-r7 due 'Witte Chrome' problem.
 
 4.28 (2013-05-14)
 -----------------
