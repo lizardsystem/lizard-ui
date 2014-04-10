@@ -17,7 +17,8 @@ Changelog of lizard-ui
 
 - Supporting, sigh, opening actions in a new tab...
 
-- Downgrade openlayers to 2.12-r7 due 'Witte Chrome' problem.
+- Set openlayers 2.13.1 for mobile divices (ipad, iphone), 2.12-r7 for the rest.
+
 
 4.28 (2013-05-14)
 -----------------

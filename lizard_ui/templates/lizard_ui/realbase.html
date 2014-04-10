@@ -37,9 +37,17 @@
             rel="stylesheet" />
       {# OpenLayers: manually load the OpenLayers css so we can control the load order #}
       {# pass theme:null to the OpenLayers.Map instance to prevent OL from autoloading it #}
-      <link rel="stylesheet"
+      <script type="text/javascript">
+          if((navigator.userAgent.toLowerCase().indexOf("ipad") > -1) ||
+             (navigator.userAgent.toLowerCase().indexOf("iphone") > -1)) {
+	      document.write('<link rel="stylesheet" href="{{ STATIC_URL }}openlayers/1.13.1/theme/default/style.css" type="text/css" />');
+	  } else {
+	      document.write('<link rel="stylesheet" href="{{ STATIC_URL }}openlayers/1.12-r7/theme/default/style.css" type="text/css" />');
+	  }
+      </script>
+      <!--link rel="stylesheet"
             href="{{ STATIC_URL }}openlayers/theme/default/style.css"
-            type="text/css" />
+            type="text/css" /-->
       {# daterangepicker #}
       <link rel="stylesheet"
             href="{{ STATIC_URL }}daterangepicker/daterangepicker.css"
@@ -336,10 +344,13 @@
       <![endif]-->
 
       <script src="{{ STATIC_URL }}bootstrap/bootstrap/js/bootstrap.min.js"></script>
-      <script id="openlayers-script"
-              src="{{ STATIC_URL }}openlayers/OpenLayers.js"
-              data-openlayers-url="{{ STATIC_URL }}openlayers/"
-              charset="utf-8"></script>
+      <script type="text/javascript">
+	if (false) {
+	    document.write('<script id="openlayers-script" src="{{ STATIC_URL }}openlayers/1.13.1/OpenLayers.js" data-openlayers-url="{{ STATIC_URL }}openlayers/1.13.1/" charset="utf-8"/>');
+	} else {
+	    document.write('<script id="openlayers-script" src="{{ STATIC_URL }}openlayers/1.12-r7/OpenLayers.js" data-openlayers-url="{{ STATIC_URL }}openlayers/1.12-r7/" charset="utf-8"/>');
+	}
+      </script>
       <script src="{{ STATIC_URL }}jquery-json/jquery.json-2.3.min.js"></script>
       <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.0.0/moment.min.js"></script>
       <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.0.0/lang/nl.min.js"></script>
@@ -360,6 +371,7 @@
       <script src="{{ STATIC_URL }}daterangepicker/daterangepicker.js"></script>
       <script src="{{ STATIC_URL }}lizard_elevationprofile/elevationprofile.js"></script>
       <script src="{{ STATIC_URL }}bootstrap-tour/bootstrap-tour.min.js"></script>
+      
     {% endblock javascript %}
 
     {% block map-javascript %}
