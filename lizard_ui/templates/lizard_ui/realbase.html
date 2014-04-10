@@ -45,9 +45,6 @@
 	      document.write('<link rel="stylesheet" href="{{ STATIC_URL }}openlayers/1.12-r7/theme/default/style.css" type="text/css" />');
 	  }
       </script>
-      <!--link rel="stylesheet"
-            href="{{ STATIC_URL }}openlayers/theme/default/style.css"
-            type="text/css" /-->
       {# daterangepicker #}
       <link rel="stylesheet"
             href="{{ STATIC_URL }}daterangepicker/daterangepicker.css"
@@ -345,7 +342,8 @@
 
       <script src="{{ STATIC_URL }}bootstrap/bootstrap/js/bootstrap.min.js"></script>
       <script type="text/javascript">
-	if (false) {
+	if((navigator.userAgent.toLowerCase().indexOf("ipad") > -1) ||
+           (navigator.userAgent.toLowerCase().indexOf("iphone") > -1)) {
 	    document.write('<script id="openlayers-script" src="{{ STATIC_URL }}openlayers/1.13.1/OpenLayers.js" data-openlayers-url="{{ STATIC_URL }}openlayers/1.13.1/" charset="utf-8"/>');
 	} else {
 	    document.write('<script id="openlayers-script" src="{{ STATIC_URL }}openlayers/1.12-r7/OpenLayers.js" data-openlayers-url="{{ STATIC_URL }}openlayers/1.12-r7/" charset="utf-8"/>');
