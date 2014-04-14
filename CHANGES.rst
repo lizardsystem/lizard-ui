@@ -17,7 +17,9 @@ Changelog of lizard-ui
 
 - Supporting, sigh, opening actions in a new tab...
 
-- Set openlayers 2.13.1 for mobile divices (ipad, iphone), 2.12-r7 for the rest.
+- Set openlayers 2.13.1 for mobile divices (ipad, iphone), 2.12-r7 for the
+  rest. (See http://stackoverflow.com/q/236073/27401 for the solution on how
+  to write out a closing script tag inside javascript).
 
 
 4.28 (2013-05-14)
