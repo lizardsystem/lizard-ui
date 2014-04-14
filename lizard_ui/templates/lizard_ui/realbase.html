@@ -344,11 +344,13 @@
       <script type="text/javascript">
 	if((navigator.userAgent.toLowerCase().indexOf("ipad") > -1) ||
            (navigator.userAgent.toLowerCase().indexOf("iphone") > -1)) {
-	    document.write('<script id="openlayers-script" src="{{ STATIC_URL }}openlayers/1.13.1/OpenLayers.js" data-openlayers-url="{{ STATIC_URL }}openlayers/1.13.1/" charset="utf-8"/>');
+	    document.write('<script id="openlayers-script" src="{{ STATIC_URL }}openlayers/1.13.1/OpenLayers.js" data-openlayers-url="{{ STATIC_URL }}openlayers/1.13.1/" charset="utf-8"></sc' + 'ript>');
 	} else {
-	    document.write('<script id="openlayers-script" src="{{ STATIC_URL }}openlayers/1.12-r7/OpenLayers.js" data-openlayers-url="{{ STATIC_URL }}openlayers/1.12-r7/" charset="utf-8"/>');
+	    document.write('<script id="openlayers-script" src="{{ STATIC_URL }}openlayers/1.12-r7/OpenLayers.js" data-openlayers-url="{{ STATIC_URL }}openlayers/1.12-r7/" charset="utf-8"></sc' + 'ript>');
 	}
       </script>
+      {# Note that weird + madness inside the closing scirpt tag above... #}
+      {# See http://stackoverflow.com/q/236073/27401 #}
       <script src="{{ STATIC_URL }}jquery-json/jquery.json-2.3.min.js"></script>
       <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.0.0/moment.min.js"></script>
       <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.0.0/lang/nl.min.js"></script>
@@ -369,7 +371,7 @@
       <script src="{{ STATIC_URL }}daterangepicker/daterangepicker.js"></script>
       <script src="{{ STATIC_URL }}lizard_elevationprofile/elevationprofile.js"></script>
       <script src="{{ STATIC_URL }}bootstrap-tour/bootstrap-tour.min.js"></script>
-      
+
     {% endblock javascript %}
 
     {% block map-javascript %}
