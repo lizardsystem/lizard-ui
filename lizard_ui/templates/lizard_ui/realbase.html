@@ -18,8 +18,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<meta charset="utf-8" />
+    {% block favicon %}
     <link rel="icon" href="{{ STATIC_URL }}lizard_ui/favicon.ico" type="images/x-icon" />
     <link rel="SHORTCUT ICON" href="{{ STATIC_URL }}lizard_ui/favicon.ico" />
+    {% endblock favicon %}
 
     {% compress css %}
       {% block css %}
@@ -137,6 +139,7 @@
               </div>
             </div>
 
+            {% block breadcrumbrow %}
             <div id="breadcrumb-row"
                  class="navbar">
               <div id="breadcrumbs">
@@ -210,6 +213,7 @@
                 {% endblock content-actions %}
               </div>
             </div>
+            {% endblock breadcrumbrow %}
 
           </header>
         {% endblock header %}
@@ -241,6 +245,7 @@
             </div>
           </div>
 
+          {% block footer %}
           <div id="footer">
             <div id="sidebar-actions">
               {% block sidebar-actions %}
@@ -348,6 +353,7 @@
               {% endblock rightbar-actions %}
             </div>
           </div>
+          {% endblock footer %}
         {% endblock main-area %}
 
       {% endblock page %}
