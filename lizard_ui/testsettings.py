@@ -28,6 +28,8 @@ INSTALLED_APPS = [
 
 SENTRY_SERVERS = ('http://1ea687a6dc894fa5bd7bc35b578c1dc0:913530819af3428b85fa6a0a7124dbe9@sentry.lizardsystem.nl/1')
 
+SECRET_KEY = 'rpuca4!x1(tu+)f#9iuojoh-8b=uytt9cj(=xowewumxa1pi5&'
+
 ROOT_URLCONF = 'lizard_ui.urls'
 
 MIDDLEWARE_CLASSES = (
