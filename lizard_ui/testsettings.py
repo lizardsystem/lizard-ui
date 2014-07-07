@@ -42,6 +42,7 @@ MIDDLEWARE_CLASSES = (
     'lizard_security.middleware.SecurityMiddleware',
     'tls.TLSRequestMiddleware',
     )
+
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     'lizard_security.backends.LizardPermissionBackend',)
