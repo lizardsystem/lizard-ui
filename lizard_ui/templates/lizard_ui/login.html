@@ -5,7 +5,7 @@
 
 
 <form id="login-form" class="well"
-	  action="{% url lizard_ui.login %}" method="POST">
+	  action="{% url "lizard_ui.login" %}" method="POST">
   {% csrf_token %}
   <div>
     <label>{% trans "Name" %}</label>
@@ -56,4 +56,3 @@
 
 </form>
 {% endblock %}
-
