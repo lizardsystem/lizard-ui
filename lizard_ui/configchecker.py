@@ -58,8 +58,7 @@ def checker():  # Pragma: nocover
                     'STATIC_ROOT',
                     'LOGGING',
                     'STATICFILES_FINDERS']:
-        if ((not hasattr(settings, setting)) or
-            (not getattr(settings, setting))):
+        if not getattr(settings, setting, None):
             # Not available or empty.
             logger.error("Setting %s is missing. Example value: %s",
                          setting, getattr(example_settings, setting))
