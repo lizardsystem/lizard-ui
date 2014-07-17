@@ -1,12 +1,12 @@
 import logging
 
 from django.conf import settings
-from django.conf.urls.defaults import include
-from django.conf.urls.defaults import patterns
-from django.conf.urls.defaults import url
+from django.conf.urls import include
+from django.conf.urls import patterns
+from django.conf.urls import url
 from django.conf.urls.static import static
 from django.contrib import admin
-from staticfiles.urls import staticfiles_urlpatterns
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
 import lizard_ui.configchecker
 import lizard_ui.views
@@ -48,6 +48,9 @@ urlpatterns = patterns(
         name='lizard_ui.change_language'),
 )
 
+if settings.DEBUG:
+    urlpatterns += debugmode_urlpatterns()
+    
 if getattr(settings, 'LIZARD_UI_STANDALONE', False):
     admin.autodiscover()
     urlpatterns += patterns(

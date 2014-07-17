@@ -17,7 +17,7 @@
     <!-- Always force latest IE rendering engine (even in intranet) & Chrome Frame -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-	<meta charset="utf-8" />
+    <meta charset="utf-8" />
     <link rel="icon" href="{{ STATIC_URL }}lizard_ui/favicon.ico" type="images/x-icon" />
     <link rel="SHORTCUT ICON" href="{{ STATIC_URL }}lizard_ui/favicon.ico" />
 
@@ -137,79 +137,81 @@
               </div>
             </div>
 
-            <div id="breadcrumb-row"
-                 class="navbar">
-              <div id="breadcrumbs">
-                {% block breadcrumbs %}
+            {% block breadcrumbrow %}
+              <div id="breadcrumb-row"
+                   class="navbar">
+                <div id="breadcrumbs">
+                  {% block breadcrumbs %}
 
-                  {% if view.breadcrumbs_with_fallback %}
-                    <ul>
-                      {% for action in view.breadcrumbs_with_fallback %}
-                        <li {% if action.description %}
-                              title="{{ action.name }}"
-                              data-content="{{ action.description }}"
-                              class="has_popover"
+                    {% if view.breadcrumbs_with_fallback %}
+                      <ul>
+                        {% for action in view.breadcrumbs_with_fallback %}
+                          <li {% if action.description %}
+                                title="{{ action.name }}"
+                                data-content="{{ action.description }}"
+                                class="has_popover"
+                              {% endif %}
+  							{% if action.element_id %}
+                                 id="{{ action.element_id }}"
+  							{% endif %}>
+                            <a href="{{ action.url }}"
+                              {% if action.klass %}
+                                class="{{ action.klass }}"
+                              {% endif %}
+                               {% for item in action.data_attributes.items %}
+                                 data-{{ item.0 }}="{{ item.1 }}"
+                               {% endfor %}
+                               >
+                              {% if action.icon %}
+                                <i class="{{ action.icon }}"></i>
+                              {% endif %}
+                              {{ action.name }}
+                            </a>
+                            {% if not forloop.last %}
+                              &rarr;
                             {% endif %}
-							{% if action.element_id %}
-                               id="{{ action.element_id }}"
-							{% endif %}>
-                          <a href="{{ action.url }}"
-                            {% if action.klass %}
-                              class="{{ action.klass }}"
-                            {% endif %}
+                          </li>
+                        {% endfor %}
+                      </ul>
+                    {% endif %}
+
+                  {% endblock breadcrumbs %}
+                </div>
+                <div id="content-actions">
+                  {% block content-actions %}
+
+                    {% if view.content_actions %}
+                      <ul class="nav pull-right">
+                        {% for action in view.content_actions %}
+                          <li
+                             {% if action.description %}
+                               title="{{ action.description }}"
+                             {% endif %}
                              {% for item in action.data_attributes.items %}
                                data-{{ item.0 }}="{{ item.1 }}"
                              {% endfor %}
+  						   {% if action.element_id %}
+                                 id="{{ action.element_id }}"
+  							{% endif %}
                              >
-                            {% if action.icon %}
-                              <i class="{{ action.icon }}"></i>
-                            {% endif %}
-                            {{ action.name }}
-                          </a>
-                          {% if not forloop.last %}
-                            &rarr;
-                          {% endif %}
-                        </li>
-                      {% endfor %}
-                    </ul>
-                  {% endif %}
+                            <a href="{{ action.url }}"
+                               class="{{ action.klass }}">
+                              {% if action.icon %}
+                                <i class="{{ action.icon }}"></i>
+                              {% endif %}
+                              <span class="action-text">
+                                {{ action.name }}
+                              </span>
+                            </a>
+                          </li>
+                        {% endfor %}
+                      </ul>
+                    {% endif %}
 
-                {% endblock breadcrumbs %}
+                  {% endblock content-actions %}
+                </div>
               </div>
-              <div id="content-actions">
-                {% block content-actions %}
-
-                  {% if view.content_actions %}
-                    <ul class="nav pull-right">
-                      {% for action in view.content_actions %}
-                        <li
-                           {% if action.description %}
-                             title="{{ action.description }}"
-                           {% endif %}
-                           {% for item in action.data_attributes.items %}
-                             data-{{ item.0 }}="{{ item.1 }}"
-                           {% endfor %}
-						   {% if action.element_id %}
-                               id="{{ action.element_id }}"
-							{% endif %}
-                           >
-                          <a href="{{ action.url }}"
-                             class="{{ action.klass }}">
-                            {% if action.icon %}
-                              <i class="{{ action.icon }}"></i>
-                            {% endif %}
-                            <span class="action-text">
-                              {{ action.name }}
-                            </span>
-                          </a>
-                        </li>
-                      {% endfor %}
-                    </ul>
-                  {% endif %}
-
-                {% endblock content-actions %}
-              </div>
-            </div>
+            {% endblock breadcrumbrow %}
 
           </header>
         {% endblock header %}
@@ -241,6 +243,7 @@
             </div>
           </div>
 
+          {% block footer %}
           <div id="footer">
             <div id="sidebar-actions">
               {% block sidebar-actions %}
@@ -348,6 +351,7 @@
               {% endblock rightbar-actions %}
             </div>
           </div>
+          {% endblock footer %}
         {% endblock main-area %}
 
       {% endblock page %}
