@@ -23,6 +23,7 @@ class ApplicationIconAdmin(SecurityFilteredAdmin):
 class CustomerLogoAdmin(admin.ModelAdmin):
     list_display = ['name', 'used']
 
+
 admin.site.register(ApplicationIcon, ApplicationIconAdmin)
 admin.site.register(ApplicationScreen, ApplicationScreenAdmin)
 admin.site.register(CustomerLogo, CustomerLogoAdmin)
