@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-4.30 (unreleased)
+4.30 (2014-07-17)
 -----------------
 
 - Updated for Django 1.6 (NOT backwards compatible!).
