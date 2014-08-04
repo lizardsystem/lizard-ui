@@ -5,9 +5,10 @@ Changelog of lizard-ui
 4.30 (unreleased)
 -----------------
 
-- Updated for Django 1.6 (NOT backwards compatible!).
-
 - Added some blocks in template.
+
+- Updated Django to 1.6.5. Possibly incompatible with older versions
+  and older apps.
 
 
 4.29.3 (2013-06-11)
