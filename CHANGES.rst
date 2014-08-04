@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-4.30 (unreleased)
+4.40 (2014-08-04)
 -----------------
 
 - Added some blocks in template.
