@@ -58,8 +58,7 @@ def checker():  # Pragma: nocover
                     'STATIC_ROOT',
                     'LOGGING',
                     'STATICFILES_FINDERS']:
-        if ((not hasattr(settings, setting)) or
-            (not getattr(settings, setting))):
+        if not getattr(settings, setting, None):
             # Not available or empty.
             logger.error("Setting %s is missing. Example value: %s",
                          setting, getattr(example_settings, setting))
@@ -72,14 +71,9 @@ def checker():  # Pragma: nocover
             "from lizard_ui.settingshelper import STATICFILES_FINDERS\n"
             "STATICFILES_FINDERS = STATICFILES_FINDERS")
 
-    for old_setting in ['COMPRESS_STORAGE', 'COMPRESS_URL', 'COMPRESS_ROOT']:
-        if hasattr(settings, old_setting):
-            logger.error("Old django_compressor setting %s found: remove it.",
-                         old_setting)
-    # TODO: compressor settings.
     for app in ['lizard_ui',
                 'compressor',
-                'staticfiles',
+                'django.contrib.staticfiles',
                 'lizard_security',
                 'django.contrib.admin',
                 'django.contrib.auth',

@@ -14,8 +14,9 @@ INSTALLED_APPS = [
     'lizard_ui',
     'south',
     'compressor',
-    'staticfiles',
+    'django.contrib.staticfiles',
     'lizard_security',
+    'raven.contrib.django',
     'django_extensions',
     'django_nose',
     'django.contrib.admin',
@@ -26,6 +27,8 @@ INSTALLED_APPS = [
     ]
 
 SENTRY_SERVERS = ('http://1ea687a6dc894fa5bd7bc35b578c1dc0:913530819af3428b85fa6a0a7124dbe9@sentry.lizardsystem.nl/1')
+
+SECRET_KEY = 'rpuca4!x1(tu+)f#9iuojoh-8b=uytt9cj(=xowewumxa1pi5&'
 
 ROOT_URLCONF = 'lizard_ui.urls'
 
@@ -39,6 +42,7 @@ MIDDLEWARE_CLASSES = (
     'lizard_security.middleware.SecurityMiddleware',
     'tls.TLSRequestMiddleware',
     )
+
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     'lizard_security.backends.LizardPermissionBackend',)
