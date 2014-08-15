@@ -105,14 +105,14 @@
 	    <li class="active">
 	      <a href="#box-awesome-content-themes"
 		 data-toggle="tab"
-		 title="Themakaarten">
+		 title="{% trans 'Topic maps' %}">
 		<i class="icon-star"></i>
 	      </a>
 	    </li>
 	    <li>
 	      <a href="#box-awesome-content-legend"
 		 data-toggle="tab"
-		 title="Legenda">
+		 title="{% trans 'Legend' %}">
 		<img src="{{ STATIC_URL }}lizard_ui/icon-legend.png"
                      style="margin-top:-3px;" />
 	      </a>
@@ -121,7 +121,7 @@
 	      <a id="elevation-profile-action"
 		 href="#box-awesome-content-elevationprofile"
 		 data-toggle="tab"
-		 title="Profiel">
+		 title="{% trans 'Profile' %}">
 		<img src="{{ STATIC_URL }}lizard_ui/icon-chart.png"
                      style="margin-top:-3px;" />
 	      </a>
@@ -129,7 +129,7 @@
 	    <li>
 	      <a href="#box-awesome-content-apps"
 		 data-toggle="tab"
-		 title="Apps"
+		 title="{% trans 'Apps'%}"
 		 id="box-awesome-app-tab">
 		<i class="icon-th"></i>
 	      </a>
@@ -150,7 +150,7 @@
 	    <div id="box-awesome-content-elevationprofile"
 		 class="tab-pane sidebar-inner">
 	      <p>
-		Trek een lijn op de kaart.
+		{% trans 'Draw a line on the map.' %}
 	      </p>
 	      <div style="position:relative">
 		<div id="elevation-profile-content"
@@ -334,6 +334,7 @@
     {% block javascript %}
       <script src="{{ STATIC_URL }}jquery/jquery.min.js"></script>
       <script src="{{ STATIC_URL }}jquery-mobile-events/jquery.mobile-events.min.js"></script>
+      <script type="text/javascript" src="{% url django.views.i18n.javascript_catalog %}"></script>
 
       {# Excanvas, for IE7 and IE8 support for HTML5 Canvas. #}
       <!--[if lt IE 9]>

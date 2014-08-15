@@ -32,10 +32,8 @@
 	  <p> {% trans "Our apologies for the inconvenience." %}</p>
 	  <p> {% trans "If there should be a page please contact us." %}</p>
 	  {% if request.sentry.id %}
-      <p>{% blocktrans with sentry_id=request.sentry.id %}
-		If you need assistance, you may reference this error as
-		<strong>{{ sentry_id }}</strong>.
-		{% endblocktrans %}
+      <p>{% trans 'If you need assistance, you may reference this error as' %}
+	<strong>&nbsp;{{ request.sentry.id }}</strong>.
 	  </p>
 	  {% endif %}
 	  <p> {% trans "Email: " %}

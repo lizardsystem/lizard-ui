@@ -2,8 +2,12 @@
 host = https://translations.lizard.net
 type = PO
 
-[lizardsystem.lizard-ui]
+[lizard5.lizard-ui-django]
 file_filter = lizard_ui/locale/<lang>/LC_MESSAGES/django.po
 source_file = lizard_ui/locale/en/LC_MESSAGES/django.po
 source_lang = en
 
+[lizard5.lizard-ui-djangojs]
+file_filter = lizard_ui/locale/<lang>/LC_MESSAGES/djangojs.po
+source_file = lizard_ui/locale/en/LC_MESSAGES/djangojs.po
+source_lang = en

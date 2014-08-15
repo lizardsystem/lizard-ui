@@ -1,0 +1,31 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# 
+# Translators:
+#   <>, 2012, 2014.
+#   <admin@example.com>, 2013.
+# Roland van Laar <roland.vanlaar@nelen-schuurmans.nl>, 2013.
+msgid ""
+msgstr ""
+"Project-Id-Version: Lizard 5\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-08-14 11:12-0500\n"
+"PO-Revision-Date: 2014-08-15 08:24+0000\n"
+"Last-Translator: alexandr <>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: nl\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+
+#: static/lizard_ui/lizard_ui.js:364
+msgid "An error occurred. Please try again later."
+msgstr "Er is een fout opgetreden. Probeer het later opnieuw."
+
+#: static/lizard_ui/lizard_ui.js:447
+msgid "Error on loading page parts."
+msgstr "Fout bij laden paginaonderdeel."
+
+

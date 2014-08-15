@@ -361,7 +361,7 @@ var handleChangeLanguage = function() {
             }
         },
         error: function(data) {
-            return $('#change-language-error').html("An error occurred. Please try again later.").show();
+            return $('#change-language-error').html(gettext("An error occurred. Please try again later.")).show();
         }
     });
 };
@@ -444,7 +444,7 @@ function setUpAccordion() {
                 },
                 error: function (e) {
                     $(nextPaneId).html('<div class="ss_error ss_sprite" />' +
-                                       'Fout bij laden paginaonderdeel.');
+                                       gettext('Error on loading page parts.'));
                 }
             });
             $("li.selected", pane).removeClass("selected");
