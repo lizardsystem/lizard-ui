@@ -14,7 +14,7 @@ INSTALLED_APPS = [
     'lizard_ui',
     'south',
     'compressor',
-    'staticfiles',
+    'django.contrib.staticfiles',
     'lizard_security',
     'django_extensions',
     'django_nose',
