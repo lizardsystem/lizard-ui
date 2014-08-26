@@ -334,7 +334,7 @@
     {% block javascript %}
       <script src="{{ STATIC_URL }}jquery/jquery.min.js"></script>
       <script src="{{ STATIC_URL }}jquery-mobile-events/jquery.mobile-events.min.js"></script>
-      <script type="text/javascript" src="{% url django.views.i18n.javascript_catalog %}"></script>
+      <script type="text/javascript" src="{% url "django.views.i18n.javascript_catalog" %}"></script>
 
       {# Excanvas, for IE7 and IE8 support for HTML5 Canvas. #}
       <!--[if lt IE 9]>
