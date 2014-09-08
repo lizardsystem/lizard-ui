@@ -1,6 +1,6 @@
 from setuptools import setup
 
-version = '4.29.dev0'
+version = '5.0.dev0'
 
 long_description = '\n\n'.join([
     open('README.rst').read(),
@@ -17,6 +17,7 @@ install_requires = [
     'django_compressor >= 1.1',  # Yes, underscore.
     'docutils',  # For the admin docs.
     'lizard-security',
+    'lizard-map',
     'raven',
     'south',
     'werkzeug',
