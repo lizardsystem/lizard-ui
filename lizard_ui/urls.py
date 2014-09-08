@@ -66,44 +66,45 @@ if getattr(settings, 'LIZARD_UI_STANDALONE', False):
         url(r'^examples/blocks_via_view/$',
             lizard_ui.views.ExampleBlockView.as_view()),
         )
+
+    from django.views.generic.base import TemplateView
     urlpatterns += patterns(
-        'django.views.generic.simple',
-        (r'^examples/$', 'direct_to_template',
-         {'template': 'lizard_ui/examples/lizard-ui-introduction.html'}),
-        (r'^examples/blocks/$', 'direct_to_template',
-         {'template': 'lizard_ui/examples/example-blocks.html'}),
-        (r'^examples/textual/$', 'direct_to_template',
-         {'template': 'lizard_ui/examples/example-textual.html'}),
-        (r'^examples/table/$', 'direct_to_template',
-         {'template': 'lizard_ui/examples/example-table.html'}),
-        (r'^examples/cms/$', 'direct_to_template',
-         {'template': 'lizard_ui/examples/example-cms-layout.html'}),
-        (r'^examples/images/$', 'direct_to_template',
-         {'template': 'lizard_ui/examples/example-images.html'}),
-        (r'^examples/tree/$', 'direct_to_template',
-         {'template': 'lizard_ui/examples/example_tree.html'}),
-        (r'^examples/vertical/$', 'direct_to_template',
-         {'template': 'lizard_ui/examples/example_vertical.html'}),
-        (r'^examples/jqueryui/$', 'direct_to_template',
-         {'template': 'lizard_ui/examples/example_jqueryui.html'}),
-        (r'^examples/collapsible/$', 'direct_to_template',
-         {'template': 'lizard_ui/examples/example_collapsible.html'}),
-        (r'^examples/sidebarstretch/$', 'direct_to_template',
-         {'template': 'lizard_ui/examples/example_sidebarstretch.html'}),
-        (r'^examples/printbutton/$', 'direct_to_template',
-         {'template': 'lizard_ui/examples/example-printbutton.html'}),
-        (r'^examples/accordion/$', 'direct_to_template',
-         {'template': 'lizard_ui/examples/example_accordion1.html'}),
-        (r'^examples/accordion2/$', 'direct_to_template',
-         {'template': 'lizard_ui/examples/example_accordion2.html'}),
-        (r'^examples/accordion3/$', 'direct_to_template',
-         {'template': 'lizard_ui/examples/example_accordion3.html'}),
-        (r'^examples/icons/$', 'direct_to_template',
-         {'template': 'lizard_ui/examples/example_icons.html'}),
-        (r'^examples/portaltabs/$', 'direct_to_template',
-         {'template': 'lizard_ui/examples/example-portaltabs.html'}),
-        (r'^examples/appscreens/$', 'direct_to_template',
-         {'template': 'lizard_ui/examples/example-appscreens.html'}),
+        (r'^examples/$', TemplateView.as_view(
+            template_name='lizard_ui/examples/lizard-ui-introduction.html')),
+        (r'^examples/blocks/$', TemplateView.as_view(
+            template_name='lizard_ui/examples/example-blocks.html')),
+        (r'^examples/textual/$', TemplateView.as_view(
+            template_name='lizard_ui/examples/example-textual.html')),
+        (r'^examples/table/$', TemplateView.as_view(
+            template_name='lizard_ui/examples/example-table.html')),
+        (r'^examples/cms/$', TemplateView.as_view(
+            template_name='lizard_ui/examples/example-cms-layout.html')),
+        (r'^examples/images/$', TemplateView.as_view(
+            template_name='lizard_ui/examples/example-images.html')),
+        (r'^examples/tree/$', TemplateView.as_view(
+            template_name='lizard_ui/examples/example_tree.html')),
+        (r'^examples/vertical/$', TemplateView.as_view(
+            template_name='lizard_ui/examples/example_vertical.html')),
+        (r'^examples/jqueryui/$', TemplateView.as_view(
+            template_name='lizard_ui/examples/example_jqueryui.html')),
+        (r'^examples/collapsible/$', TemplateView.as_view(
+            template_name='lizard_ui/examples/example_collapsible.html')),
+        (r'^examples/sidebarstretch/$', TemplateView.as_view(
+            template_name='lizard_ui/examples/example_sidebarstretch.html')),
+        (r'^examples/printbutton/$', TemplateView.as_view(
+            template_name='lizard_ui/examples/example-printbutton.html')),
+        (r'^examples/accordion/$', TemplateView.as_view(
+            template_name='lizard_ui/examples/example_accordion1.html')),
+        (r'^examples/accordion2/$', TemplateView.as_view(
+            template_name='lizard_ui/examples/example_accordion2.html')),
+        (r'^examples/accordion3/$', TemplateView.as_view(
+            template_name='lizard_ui/examples/example_accordion3.html')),
+        (r'^examples/icons/$', TemplateView.as_view(
+            template_name='lizard_ui/examples/example_icons.html')),
+        (r'^examples/portaltabs/$', TemplateView.as_view(
+            template_name='lizard_ui/examples/example-portaltabs.html')),
+        (r'^examples/appscreens/$', TemplateView.as_view(
+            template_name='lizard_ui/examples/example-appscreens.html')),
         )
     urlpatterns += patterns(
         '',
@@ -111,4 +112,6 @@ if getattr(settings, 'LIZARD_UI_STANDALONE', False):
             'lizard_ui.views.example_breadcrumbs',
             {},
             name='lizard_ui.example_breadcrumbs'),
+        (r'^jsi18n/$', 'django.views.i18n.javascript_catalog', {
+            'packages': ('lizard_fewsjdbc',)})
         )

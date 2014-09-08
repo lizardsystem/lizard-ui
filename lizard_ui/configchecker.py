@@ -79,7 +79,7 @@ def checker():  # Pragma: nocover
     # TODO: compressor settings.
     for app in ['lizard_ui',
                 'compressor',
-                'staticfiles',
+                'django.contrib.staticfiles',
                 'lizard_security',
                 'django.contrib.admin',
                 'django.contrib.auth',
@@ -104,7 +104,7 @@ def checker():  # Pragma: nocover
                 logger.warn("You're missing a sentry log handler. Pass "
                             "sentry_level='WARN' to setup_logging().")
         if not 'raven.contrib.django' in settings.INSTALLED_APPS:
-            logger.warn("You're missing 'raven.contrib.django' in your ",
+            logger.warn("You're missing 'raven.contrib.django' in your "
                         "INSTALLED_APPS list.")
     else:
         logger.info(
