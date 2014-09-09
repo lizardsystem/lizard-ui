@@ -26,6 +26,7 @@ nosetests.xml
 
 #Mr Developer
 .mr.developer.cfg
+src/
 
 .DS_Store
 test.db

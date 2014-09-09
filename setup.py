@@ -1,6 +1,6 @@
 from setuptools import setup
 
-version = '4.29.dev0'
+version = '5.0.dev0'
 
 long_description = '\n\n'.join([
     open('README.rst').read(),
@@ -11,13 +11,13 @@ long_description = '\n\n'.join([
 
 install_requires = [
     'BeautifulSoup',
-    'Django >= 1.4',
+    'Django >= 1.4, < 1.7',
     'django-nose',
     'django-extensions',
-    'django-staticfiles >= 1.0',
     'django_compressor >= 1.1',  # Yes, underscore.
     'docutils',  # For the admin docs.
     'lizard-security',
+    'lizard-map',
     'raven',
     'south',
     'werkzeug',

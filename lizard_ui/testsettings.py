@@ -14,7 +14,7 @@ INSTALLED_APPS = [
     'lizard_ui',
     'south',
     'compressor',
-    'staticfiles',
+    'django.contrib.staticfiles',
     'lizard_security',
     'django_extensions',
     'django_nose',
@@ -90,5 +90,7 @@ ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
 
 STATICFILES_FINDERS = STATICFILES_FINDERS
 LOGGING = setup_logging(BUILDOUT_DIR)
+
+SECRET_KEY = "Does not need to be secret for testing"
 
 LIZARD_UI_STANDALONE = True

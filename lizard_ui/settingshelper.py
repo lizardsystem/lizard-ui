@@ -1,10 +1,8 @@
 import os
 
 STATICFILES_FINDERS = (
-    'staticfiles.finders.FileSystemFinder',
-    'staticfiles.finders.AppDirectoriesFinder',
-    # Enable 'old' /media directories in addition to /static.
-    'staticfiles.finders.LegacyAppDirectoriesFinder',
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
     # Enable support for django-compressor.
     'compressor.finders.CompressorFinder',
     )
