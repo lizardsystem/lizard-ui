@@ -219,6 +219,9 @@
                             axis.options.max = max;
                         }
                     });
+                    // Event addition by Reinout to work with navigate.js
+                    plot.getPlaceholder().trigger("plotpan", [ plot ]);
+                    // End of addition
                 }
 
                 // Apply the scale.
@@ -255,6 +258,9 @@
                             axis.options.max = max;
                         }
                     });
+                    // Event addition by Reinout to work with navigate.js
+                    plot.getPlaceholder().trigger("plotzoom", [ plot ]);
+                    // End of addition
                 }
 
                 plot.setupGrid();
