@@ -5,6 +5,10 @@ Changelog of lizard-ui
 4.29 (unreleased)
 -----------------
 
+- Made the "awesomebox" a bit wider (20px) and higher (100px) to prevent
+  scrolling **at least** when there's only one result. At least the graph is
+  visible, then. You still need to scroll for the add-to-dashboard table...
+
 - Fixed scrolling on #textual page (for the dashboard).
 
 - Included elevationprofile.js in template
