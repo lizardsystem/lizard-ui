@@ -7,7 +7,7 @@
 
 #box-awesome-search {
 	position: relative;
-	width: 400px;
+	width: 420px;
 	height: 28px;
 
 }
@@ -15,7 +15,7 @@
 #box-awesome-search input {
 	padding-left: 10px!important;
 	font-size: 1em;
-    font-family: 'Roboto', sans-serif !important;
+        font-family: 'Roboto', sans-serif !important;
 	padding-right: 0;
 	width: 100%;
 
@@ -34,7 +34,7 @@
 #box-awesome-search button {
 	position: relative;
 	top: -35px;
-	left: 400px;
+	left: 420px;
 
 	width: 72px;
 	height: 27px;
@@ -53,7 +53,7 @@
 	position: relative;
 	top: -5px;
 
-	width: 400px;
+	width: 420px;
 	height: 376px;
 
 	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3), 0 4px 15px -5px transparent;
@@ -68,7 +68,7 @@
 	position: relative;
 	top: 15px;
 
-	width: 400px;
+	width: 420px;
 	height: 150px;
 	overflow-x: hidden;
 
