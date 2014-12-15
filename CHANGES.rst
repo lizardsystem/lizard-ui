@@ -25,6 +25,8 @@ Changelog of lizard-ui
   rest. (See http://stackoverflow.com/q/236073/27401 for the solution on how
   to write out a closing script tag inside javascript).
 
+- Updated to django 1.6.
+  
 
 4.28 (2013-05-14)
 -----------------
