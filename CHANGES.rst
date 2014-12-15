@@ -2,8 +2,8 @@ Changelog of lizard-ui
 ======================
 
 
-4.29 (unreleased)
------------------
+5.0 (2014-12-15)
+----------------
 
 - Made the "awesomebox" a bit wider (20px) and higher (100px) to prevent
   scrolling **at least** when there's only one result. At least the graph is
