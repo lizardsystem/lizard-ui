@@ -278,13 +278,13 @@ for details.
                             if (span < 2 * timeUnitSize.day)
                                 fmt = hourCode + ":%M" + suffix;
                             else
-                                fmt = "%b %d\n" + hourCode + ":%M" + suffix;
+                                fmt = "%d %b\n" + hourCode + ":%M" + suffix;
                         }
                         else if (t < timeUnitSize.month)
-                            fmt = "%b %d";
+                            fmt = "%d %b";
                         else if (t < timeUnitSize.year) {
                             if (span < timeUnitSize.year)
-                                fmt = "%b";
+                                fmt = "%b %Y";
                             else
                                 fmt = "%b %Y";
                         }
