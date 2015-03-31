@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-5.1 (unreleased)
+5.1 (2015-03-31)
 ----------------
 
 - UI changes directly (and dirty) in the downloaded flot library (so watch out
