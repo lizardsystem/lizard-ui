@@ -5,7 +5,12 @@ Changelog of lizard-ui
 5.1 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- UI changes directly (and dirty) in the downloaded flot library (so watch out
+  if you download a new one).
+
+  - Always showing years next to the month name.
+
+  - Hardcoded Dutch month names and fixed some formatting.
 
 
 5.0 (2014-12-15)
@@ -32,7 +37,7 @@ Changelog of lizard-ui
   to write out a closing script tag inside javascript).
 
 - Updated to django 1.6.
-  
+
 
 4.28 (2013-05-14)
 -----------------
