@@ -2,8 +2,8 @@ Changelog of lizard-ui
 ======================
 
 
-5.2 (unreleased)
-----------------
+5.1.1 (2015-03-31)
+------------------
 
 - Flot formatting tweak: don't show year when day is shown. Too long
   otherwise.
