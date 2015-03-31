@@ -281,7 +281,7 @@ for details.
                                 fmt = "%d %b\n" + hourCode + ":%M" + suffix;
                         }
                         else if (t < timeUnitSize.month)
-                            fmt = "%d %b %Y";
+                            fmt = "%d %b";
                         else if (t < timeUnitSize.year) {
                             if (span < timeUnitSize.year)
                                 fmt = "%b %Y";
