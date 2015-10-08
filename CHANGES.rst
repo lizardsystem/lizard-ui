@@ -5,7 +5,9 @@ Changelog of lizard-ui
 5.2 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Started with arabic translation (only login/logout has been translated till
+  now, though, as test).
+  [reinout]
 
 
 5.1.1 (2015-03-31)
