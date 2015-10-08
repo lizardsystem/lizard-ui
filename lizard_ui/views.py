@@ -166,7 +166,7 @@ class ChangeLanguageView(ViewContextMixin, FormView, ViewNextURLMixin):
                 response = HttpResponseRedirect(next)
             if lang_code and check_for_language(lang_code):
                 if hasattr(request, 'session'):
-                    request.session[settings.LANGUAGE_COOKIE_NAME] = lang_code
+                    request.session[settings.LANGUAGE_SESSION_KEY] = lang_code
                 else:
                     response.set_cookie(settings.LANGUAGE_COOKIE_NAME, lang_code)
             return response
