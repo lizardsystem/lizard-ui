@@ -5,7 +5,12 @@ Changelog of lizard-ui
 5.3 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Moved language checker over to lizard-map. That way it can be enabled
+  through a ``Setting`` object.
+  [reinout]
+
+- Using correct session key for storing the language.
+  [reinout]
 
 
 5.2 (2015-10-08)
