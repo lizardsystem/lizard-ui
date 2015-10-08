@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-5.2 (unreleased)
+5.2 (2015-10-08)
 ----------------
 
 - Started with arabic translation (only login/logout has been translated till
