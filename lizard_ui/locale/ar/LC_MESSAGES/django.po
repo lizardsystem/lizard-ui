@@ -4,18 +4,20 @@
 #
 # Translators:
 # Translators:
+#   <admin@example.com>, 2015.
 msgid ""
 msgstr ""
 "Project-Id-Version: Lizard 5\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-10-07 09:26-0500\n"
-"PO-Revision-Date: 2014-08-14 16:13+0000\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: ar\n"
+"POT-Creation-Date: 2015-10-07 09:02-0500\n"
+"PO-Revision-Date: 2015-10-08 11:53+0000\n"
+"Last-Translator: admin <admin@example.com>\n"
+"Language-Team: Arabic (http://translations.lizard.net/projects/p/lizard5/"
+"team/ar/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: ar\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5\n"
 
@@ -79,7 +81,7 @@ msgstr ""
 
 #: views.py:345
 msgid "logout"
-msgstr ""
+msgstr "تسجيل الخروج"
 
 #: views.py:346
 msgid "Click here to logout"
@@ -89,7 +91,7 @@ msgstr ""
 #: templates/lizard_ui/modal_login.html:5
 #: templates/lizard_ui/modal_login.html:33
 msgid "Login"
-msgstr ""
+msgstr "تسجيل الدخول"
 
 #: views.py:361
 msgid "Click here to login"
