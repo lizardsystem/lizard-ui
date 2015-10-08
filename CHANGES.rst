@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-5.3 (unreleased)
+5.3 (2015-10-08)
 ----------------
 
 - Moved language checker over to lizard-map. That way it can be enabled
