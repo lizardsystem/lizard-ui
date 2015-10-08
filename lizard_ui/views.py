@@ -22,7 +22,6 @@ from django.template import Context, loader
 
 from django.utils.translation import check_for_language
 from django.utils.translation import ugettext as _
-from django.utils.translation import LANGUAGE_SESSION_KEY
 
 from django.views.generic.base import TemplateView, View
 from django.views.generic.edit import FormView
@@ -167,7 +166,8 @@ class ChangeLanguageView(ViewContextMixin, FormView, ViewNextURLMixin):
                 response = HttpResponseRedirect(next)
             if lang_code and check_for_language(lang_code):
                 if hasattr(request, 'session'):
-                    request.session[LANGUAGE_SESSION_KEY] = lang_code
+                    request.session['django_language'] = lang_code
+                    # django_language is hardcoded, on 1.6 it isn't importable.
                 else:
                     response.set_cookie(settings.LANGUAGE_COOKIE_NAME, lang_code)
             return response
