@@ -734,7 +734,7 @@ Changelog of lizard-ui
 - Changed gray H2 bars' bevel to a higher contrast, expressing more depth.
 
 - Aligned lizard logo to the outmost left.
-.
+
 - Added tooltips to several interface elements.
 
 - Improved appearance of the breadcrumb. (TODO: position is still a bit
