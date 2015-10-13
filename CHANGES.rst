@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-5.4 (unreleased)
+5.4 (2015-10-13)
 ----------------
 
 - Prepare fonts.googleapis for https.
