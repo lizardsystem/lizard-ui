@@ -5,7 +5,8 @@ Changelog of lizard-ui
 5.4 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Prepare fonts.googleapis for https.
+  [alexandr]
 
 
 5.3 (2015-10-08)
