@@ -2,6 +2,12 @@ Changelog of lizard-ui
 ======================
 
 
+5.5 (unreleased)
+----------------
+
+- Nothing changed yet.
+
+
 5.4 (2015-10-13)
 ----------------
 
