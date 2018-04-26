@@ -11,16 +11,9 @@ long_description = '\n\n'.join([
 
 install_requires = [
     'BeautifulSoup',
-    'Django >= 1.4, < 1.7',
-    'django-nose',
-    'django-extensions',
+    'Django >= 1.7, < 1.9',
     'django_compressor >= 1.1',  # Yes, underscore.
-    'docutils',  # For the admin docs.
-    'lizard-security',
     'raven',
-    'south',
-    'werkzeug',
-    'translations',
     ],
 
 tests_require = [
@@ -42,7 +35,7 @@ setup(name='lizard-ui',
       license='LGPL',
       packages=['lizard_ui'],
       include_package_data=True,
-      zip_safe=False,
+      zip_safe=True,
       install_requires=install_requires,
       tests_require=tests_require,
       extras_require={'test': tests_require},

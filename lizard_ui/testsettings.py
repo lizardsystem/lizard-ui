@@ -15,7 +15,6 @@ INSTALLED_APPS = [
     'south',
     'compressor',
     'django.contrib.staticfiles',
-    'lizard_security',
     'raven.contrib.django',
     'django_extensions',
     'django_nose',
@@ -39,13 +38,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    'lizard_security.middleware.SecurityMiddleware',
-    'tls.TLSRequestMiddleware',
     )
-
-AUTHENTICATION_BACKENDS = (
-    'django.contrib.auth.backends.ModelBackend',
-    'lizard_security.backends.LizardPermissionBackend',)
 
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 

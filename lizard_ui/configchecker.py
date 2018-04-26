@@ -73,13 +73,12 @@ def checker():  # Pragma: nocover
 
     for app in ['lizard_ui',
                 'compressor',
-                'django.contrib.staticfiles',
-                'lizard_security',
                 'django.contrib.admin',
                 'django.contrib.auth',
                 'django.contrib.contenttypes',
                 'django.contrib.sessions',
-                'django.contrib.sites']:
+                'django.contrib.sites',
+                'django.contrib.staticfiles']:
         if app not in settings.INSTALLED_APPS:
             logger.error("%s is missing from INSTALLED_APPS.", app)
     if ('lizard_ui.middleware.TracebackLoggingMiddleware' in

@@ -1,5 +1,4 @@
 from django.contrib import admin
-from lizard_security.admin import SecurityFilteredAdmin
 
 from lizard_ui.models import ApplicationIcon
 from lizard_ui.models import ApplicationScreen
@@ -13,7 +12,7 @@ class ApplicationIconInline(admin.TabularInline):
 class ApplicationScreenAdmin(admin.ModelAdmin):
     inlines = [ApplicationIconInline, ]
 
-class ApplicationIconAdmin(SecurityFilteredAdmin):
+class ApplicationIconAdmin(admin.ModelAdmin):
     list_display = ['__str__', 'name', 'url']
     list_editable = ['url', 'name']
 
