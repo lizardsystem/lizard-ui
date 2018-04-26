@@ -3,9 +3,6 @@ from django.db import models
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 
-from lizard_security.manager import FilteredManager
-from lizard_security.models import DataSet
-
 SCREEN_DEFAULT_SLUG = 'home'
 
 
@@ -105,10 +102,6 @@ class ApplicationIcon(models.Model):
         default=1000,
         help_text=_('Number used for ordering icons relative to each other.'),
         )
-    data_set = models.ForeignKey(DataSet,
-                                 null=True,
-                                 blank=True)
-    objects = FilteredManager()
 
     class Meta:
         ordering = ('index', )

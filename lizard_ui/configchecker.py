@@ -74,7 +74,6 @@ def checker():  # Pragma: nocover
     for app in ['lizard_ui',
                 'compressor',
                 'django.contrib.staticfiles',
-                'lizard_security',
                 'django.contrib.admin',
                 'django.contrib.auth',
                 'django.contrib.contenttypes',
