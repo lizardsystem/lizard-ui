@@ -39,13 +39,6 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     )
-<<<<<<< ae710c452ca10ce7b2eba205581500503345fbb9
-
-AUTHENTICATION_BACKENDS = (
-    'django.contrib.auth.backends.ModelBackend',
-    'lizard_security.backends.LizardPermissionBackend',)
-=======
->>>>>>> Remove lizard-security
 
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
