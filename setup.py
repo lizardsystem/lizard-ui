@@ -12,13 +12,9 @@ long_description = '\n\n'.join([
 install_requires = [
     'BeautifulSoup',
     'Django >= 1.4, < 1.7',
-    'django-nose',
-    'django-extensions',
     'django_compressor >= 1.1',  # Yes, underscore.
-    'docutils',  # For the admin docs.
     'raven',
     'south',
-    'translations',
     ],
 
 tests_require = [
