@@ -32,3 +32,6 @@ test.db
 htmlcov/
 
 lizard_ui/static/bootstrap/node_modules/
+
+# Pycharm
+.idea
