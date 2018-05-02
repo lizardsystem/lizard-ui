@@ -364,7 +364,7 @@ class UiView(ViewContextMixin, TemplateView):
     def page_title(self):
         """Return name of latest breadcrumb for page title fallback."""
         if not self.breadcrumbs:
-            return
+            return ''
         return self.breadcrumbs[-1].name
 
     @property
