@@ -97,7 +97,7 @@ if getattr(settings, 'LIZARD_UI_STANDALONE', False):
         (r'^examples/accordion2/$', 'TemplateView',
          {'template_name': 'lizard_ui/examples/example_accordion2.html'}),
         (r'^examples/accordion3/$', 'TemplateView',
-         {'template_name': 'lizard_ui/examples/example_accordion3.htgit ml'}),
+         {'template_name': 'lizard_ui/examples/example_accordion3.html'}),
         (r'^examples/icons/$', 'TemplateView',
          {'template_name': 'lizard_ui/examples/example_icons.html'}),
         (r'^examples/portaltabs/$', 'TemplateView',
