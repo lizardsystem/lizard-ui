@@ -6,20 +6,18 @@ import urllib
 import json
 
 from django.conf import settings
-from django.contrib.auth import login
-from django.contrib.auth import logout
 from django.core.urlresolvers import reverse
-from django.http import Http404
-from django.http import HttpResponse, HttpResponseRedirect
+from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
+from django.shortcuts import redirect
 from django.shortcuts import render
 from django.utils.translation import check_for_language
 from django.utils.translation import get_language
 from django.utils.translation import ugettext as _
-from django.views.generic.base import TemplateView, View
+from django.views.generic.base import TemplateView
 from django.views.generic.edit import FormView
 
-from lizard_ui.forms import LoginForm, ChangeLanguageForm
+from lizard_ui.forms import ChangeLanguageForm
 from lizard_ui.layout import Action
 from lizard_ui.models import ApplicationScreen
 from lizard_ui.models import ApplicationIcon
@@ -80,63 +78,6 @@ class ViewNextURLMixin(object):
         return next_url
 
 
-class LoginView(ViewContextMixin, FormView, ViewNextURLMixin):
-    """Logs in the user."""
-
-    template_name = 'lizard_ui/login.html'
-    form_class = LoginForm
-    default_redirect = '/'
-
-    def post(self, request, *args, **kwargs):
-        form_class = self.get_form_class()
-        form = self.get_form(form_class)
-        if form.is_valid():
-            login(self.request, form.get_user())
-            if request.session.test_cookie_worked():
-                request.session.delete_test_cookie()
-            if request.is_ajax():
-                return HttpResponse(json.dumps({'success': True}),
-                                    mimetype='application/json')
-
-            next_url = form.cleaned_data['next_url']
-            redirect_to = self.check_url(next_url)
-            return HttpResponseRedirect(redirect_to)
-
-        if request.is_ajax():
-            errors = ' '.join(form.non_field_errors())
-            for fieldname, errorlist in form.errors.items():
-                if fieldname in form.fields:
-                    errors += ' ' + form.fields[fieldname].label + ': '
-                    errors += ' '.join(errorlist)
-                else:
-                    errors += ' '.join(errorlist)
-            return HttpResponse(json.dumps({'success': False,
-                                            'error_message': errors}),
-                                mimetype='application/json')
-        return self.form_invalid(form)
-
-
-class LogoutView(View, ViewNextURLMixin):
-    """
-    Logout for ajax and regualar GET/POSTS.
-
-    This View does a logout for the user,
-    redirects to the next url when it's given.
-    When the request is done via Ajax an empty response is returned.
-    """
-
-    def get(self, request, *args, **kwargs):
-        logout(request)
-        if request.is_ajax():
-            return HttpResponse("")
-
-        redirect_to = self.check_url(self.next_url())
-        return HttpResponseRedirect(redirect_to)
-
-    def post(self, *args, **kwargs):
-        return self.get(*args, **kwargs)
-
-
 class ChangeLanguageView(ViewContextMixin, FormView, ViewNextURLMixin):
     """Shows a change language modal form."""
 
@@ -152,7 +93,7 @@ class ChangeLanguageView(ViewContextMixin, FormView, ViewNextURLMixin):
             next = request.REQUEST.get('next', None)
             if request.is_ajax():
                 response = HttpResponse(json.dumps({'success': True}),
-                    mimetype='application/json')
+                    content_type='application/json')
             else:
                 response = http.HttpResponseRedirect(next)
             if lang_code and check_for_language(lang_code):
@@ -172,7 +113,7 @@ class ChangeLanguageView(ViewContextMixin, FormView, ViewNextURLMixin):
                     errors += ' '.join(errorlist)
             return HttpResponse(json.dumps({'success': False,
                                             'error_message': errors}),
-                mimetype='application/json')
+                content_type='application/json')
         return self.form_invalid(form)
 
 
@@ -222,28 +163,15 @@ class UiView(ViewContextMixin, TemplateView):
     show_secondary_sidebar_title = None
     show_secondary_sidebar_icon = None
     show_rightbar_title = None
-    require_application_icon_with_permission = False
-    # ^^^ If there's no visible application icon, we don't have the necessary
-    # permission. At least, that's what this is intended for.
     required_permission = None
     sidebar_is_collapsed = False
     rightbar_is_collapsed = True
     secondary_sidebar_is_collapsed = True
 
-    def get_context_data(self, **kwargs):
-        if self.require_application_icon_with_permission:
-            if not self.best_matching_application_icon:
-                logger.warn(
-                    "Accessing view without required application icon.")
-                # TODO: change to 403 (forbidden) with Django 1.4.
-                raise Http404
-        return super(UiView, self).get_context_data(**kwargs)
-
     def dispatch(self, request, *args, **kwargs):
         if self.required_permission:
             if not request.user.has_perm(self.required_permission):
-                return HttpResponseRedirect(
-                    settings.LOGIN_URL + '?next=%s' % request.path)
+                return redirect(settings.LOGIN_URL + '?next=%s' % request.path)
         return super(UiView, self).dispatch(request, *args, **kwargs)
 
     @property
@@ -436,7 +364,7 @@ class UiView(ViewContextMixin, TemplateView):
     def page_title(self):
         """Return name of latest breadcrumb for page title fallback."""
         if not self.breadcrumbs:
-            return
+            return ''
         return self.breadcrumbs[-1].name
 
     @property

@@ -42,7 +42,7 @@ def setup_logging(buildout_dir,
         'handlers': {
             'null': {
                 'level': 'DEBUG',
-                'class': 'django.utils.log.NullHandler',
+                'class': 'logging.NullHandler',
                 },
             'console': {
                 'level': console_level,
@@ -58,7 +58,7 @@ def setup_logging(buildout_dir,
                 },
             'sentry': {
                 'level': sentry_level,
-                'class': 'raven.contrib.django.handlers.SentryHandler',
+                'class': 'raven.contrib.django.raven_compat.handlers.SentryHandler',
                 },
             },
         'loggers': {

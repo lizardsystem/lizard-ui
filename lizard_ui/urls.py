@@ -1,18 +1,17 @@
 import logging
 
 from django.conf import settings
+from django.contrib.auth.views import login, logout
 from django.conf.urls import include
-from django.conf.urls import patterns
 from django.conf.urls import url
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
-import lizard_ui.configchecker
 import lizard_ui.views
+import lizard_ui.forms
 
 logger = logging.getLogger(__name__)
-lizard_ui.configchecker  # Pyflakes...
 
 
 def debugmode_urlpatterns():
@@ -29,13 +28,12 @@ def debugmode_urlpatterns():
     return patterns
 
 
-urlpatterns = patterns(
-    '',
-    url(r'^accounts/login/$',
-        lizard_ui.views.LoginView.as_view(),
+urlpatterns = [
+    url(r'^accounts/login/$', login,
+        kwargs=dict(template_name='lizard_ui/login.html',
+                    authentication_form=lizard_ui.forms.LoginForm),
         name='lizard_ui.login'),
-    url(r'^accounts/logout/$',
-        lizard_ui.views.LogoutView.as_view(),
+    url(r'^accounts/logout/$', logout,
         name='lizard_ui.logout'),
     url(r'^screen/(?P<slug>.*)/$',
         lizard_ui.views.IconView.as_view(),
@@ -46,21 +44,20 @@ urlpatterns = patterns(
     url(r'^accounts/change_language/$',
         lizard_ui.views.ChangeLanguageView.as_view(),
         name='lizard_ui.change_language'),
-)
+]
 
 if settings.DEBUG:
     urlpatterns += debugmode_urlpatterns()
     
 if getattr(settings, 'LIZARD_UI_STANDALONE', False):
     admin.autodiscover()
-    urlpatterns += patterns(
-        '',
+    urlpatterns += [
         (r'^admin/', include(admin.site.urls)),
-    )
+    ]
     urlpatterns += debugmode_urlpatterns()
     # Online documentation, mount it for example in the settings.DEBUG section
     # to get the documentation in your project while developing.
-    urlpatterns += patterns(
+    urlpatterns += [
         '',
         url(r'^examples/$',
             lizard_ui.views.UiView.as_view(
@@ -68,8 +65,8 @@ if getattr(settings, 'LIZARD_UI_STANDALONE', False):
                 )),
         url(r'^examples/blocks_via_view/$',
             lizard_ui.views.ExampleBlockView.as_view()),
-        )
-    urlpatterns += patterns(
+        ]
+    urlpatterns += [
         'django.views.generic.base',
         (r'^examples/$', 'TemplateView',
          {'template_name': 'lizard_ui/examples/lizard-ui-introduction.html'}),
@@ -107,11 +104,10 @@ if getattr(settings, 'LIZARD_UI_STANDALONE', False):
          {'template_name': 'lizard_ui/examples/example-portaltabs.html'}),
         (r'^examples/appscreens/$', 'TemplateView',
          {'template_name': 'lizard_ui/examples/example-appscreens.html'}),
-        )
-    urlpatterns += patterns(
-        '',
+        ]
+    urlpatterns += [
         url(r'^examples/breadcrumbs/$',
             'lizard_ui.views.example_breadcrumbs',
             {},
             name='lizard_ui.example_breadcrumbs'),
-        )
+        ]
