@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-4.50 (unreleased)
+4.50 (2018-05-08)
 -----------------
 
 - Upgrade to Django 1.11
