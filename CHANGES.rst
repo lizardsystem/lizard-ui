@@ -2,10 +2,20 @@ Changelog of lizard-ui
 ======================
 
 
-4.41 (unreleased)
+4.50 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Upgrade to Django 1.11
+
+- Remove lizard-security
+
+- Use built-in django staticfiles
+
+- Cull down nonessential dependencies
+
+- Regenerate migrations
+
+- Use builtin login and logout views
 
 
 4.40 (2014-08-04)
