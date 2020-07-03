@@ -212,7 +212,7 @@ class UiView(ViewContextMixin, TemplateView):
                         if language_code.lower().startswith(code):
                             language_name = name
                             break
-                query_string = urllib.urlencode(
+                query_string = urllib.parse.urlencode(
                     {'next': self.request.path_info})
                 lang_action = Action(icon='icon-flag')
                 lang_action.url = '%s?%s' % (
@@ -223,7 +223,7 @@ class UiView(ViewContextMixin, TemplateView):
                 actions.append(lang_action)
 
         if uisettings.SHOW_LOGIN:
-            query_string = urllib.urlencode({'next': self.request.path_info})
+            query_string = urllib.parse.urlencode({'next': self.request.path_info})
             if self.request.user.is_authenticated():
                 # Name of the user. TODO: link to profile page.
                 # The action is just text-with-an-icon right now.
