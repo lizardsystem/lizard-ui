@@ -6,7 +6,6 @@ from django.test import TestCase
 from django.test.client import RequestFactory
 
 from lizard_ui.models import ApplicationIcon
-from lizard_ui.configchecker import checker
 from lizard_ui.middleware import TracebackLoggingMiddleware
 from lizard_ui.templatetags.utility import dutch_timedelta
 from lizard_ui.templatetags.utility import euro
@@ -128,13 +127,6 @@ class TestTracebackLoggingMiddleware(TestCase):
         middleware.process_exception(request, exception)
 
 
-class TestConfigChecker(TestCase):
-
-    def test_smoke(self):
-        """Just test that it doesn't crash and burn."""
-        checker()
-
-
 class TestExampleApplicationScreen(TestCase):
 
     def test_smoke(self):
@@ -169,4 +161,3 @@ class TestApplicationIcon(TestCase):
         ai = ApplicationIcon(icon='http://example.org/reinout.png')
         self.assertEquals('http://example.org/reinout.png',
                           ai.icon_url())
-
