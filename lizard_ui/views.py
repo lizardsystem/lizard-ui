@@ -7,6 +7,7 @@ import json
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.shortcuts import render
@@ -94,7 +95,7 @@ class ChangeLanguageView(ViewContextMixin, FormView, ViewNextURLMixin):
                 response = HttpResponse(json.dumps({'success': True}),
                     content_type='application/json')
             else:
-                response = http.HttpResponseRedirect(next)
+                response = HttpResponseRedirect(next)
             if lang_code and check_for_language(lang_code):
                 if hasattr(request, 'session'):
                     request.session[settings.LANGUAGE_COOKIE_NAME] = lang_code
