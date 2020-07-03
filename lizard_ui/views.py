@@ -1,7 +1,6 @@
 # (c) Nelen & Schuurmans.  GPL licensed, see LICENSE.txt
 from copy import copy
 import logging
-import urlparse
 import urllib
 import json
 
@@ -69,7 +68,7 @@ class ViewNextURLMixin(object):
         if next_url is None:
             next_url = self.default_redirect
 
-        netloc = urlparse.urlparse(next_url)[1]
+        netloc = urllib.parse(next_url)[1]
         # Security check -- don't allow redirection to a different
         # host.
         if netloc and netloc != self.request.get_host():
