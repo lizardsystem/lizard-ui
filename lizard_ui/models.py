@@ -97,7 +97,8 @@ class ApplicationIcon(models.Model):
         help_text=_("Application screen we point at (this disables the url)"),
         null=True,
         blank=True,
-        related_name='parent_icon')
+        related_name='parent_icon',
+        on_delete=models.CASCADE)
     index = models.IntegerField(
         _('index'),
         default=1000,
