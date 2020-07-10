@@ -1,4 +1,4 @@
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.db import models
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
@@ -90,13 +90,15 @@ class ApplicationIcon(models.Model):
     application_screen = models.ForeignKey(
         ApplicationScreen,
         help_text=_("Application screen we're a part of"),
-        related_name='icons')
+        related_name='icons',
+        on_delete=models.CASCADE)
     sub_screen = models.OneToOneField(
         ApplicationScreen,
         help_text=_("Application screen we point at (this disables the url)"),
         null=True,
         blank=True,
-        related_name='parent_icon')
+        related_name='parent_icon',
+        on_delete=models.CASCADE)
     index = models.IntegerField(
         _('index'),
         default=1000,
