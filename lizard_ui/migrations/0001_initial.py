@@ -10,41 +10,91 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='ApplicationIcon',
+            name="ApplicationIcon",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=40, verbose_name='name')),
-                ('icon', models.CharField(help_text='Either a full URL or an /static_media/... URL or lizard_ui/app_icons/...', max_length=200, verbose_name='icon')),
-                ('description', models.TextField(blank=True, null=True, verbose_name='description')),
-                ('url', models.CharField(blank=True, max_length=200, null=True, verbose_name='url')),
-                ('index', models.IntegerField(default=1000, help_text='Number used for ordering icons relative to each other.', verbose_name='index')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=40, verbose_name="name")),
+                (
+                    "icon",
+                    models.CharField(
+                        help_text="Either a full URL or an /static_media/... URL or lizard_ui/app_icons/...",
+                        max_length=200,
+                        verbose_name="icon",
+                    ),
+                ),
+                (
+                    "description",
+                    models.TextField(blank=True, null=True, verbose_name="description"),
+                ),
+                (
+                    "url",
+                    models.CharField(
+                        blank=True, max_length=200, null=True, verbose_name="url"
+                    ),
+                ),
+                (
+                    "index",
+                    models.IntegerField(
+                        default=1000,
+                        help_text="Number used for ordering icons relative to each other.",
+                        verbose_name="index",
+                    ),
+                ),
             ],
-            options={
-                'ordering': ('index',),
-            },
+            options={"ordering": ("index",),},
         ),
         migrations.CreateModel(
-            name='ApplicationScreen',
+            name="ApplicationScreen",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=40, verbose_name='name')),
-                ('slug', models.SlugField(max_length=40)),
-                ('description', models.TextField(blank=True, null=True, verbose_name='description')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("name", models.CharField(max_length=40, verbose_name="name")),
+                ("slug", models.SlugField(max_length=40)),
+                (
+                    "description",
+                    models.TextField(blank=True, null=True, verbose_name="description"),
+                ),
             ],
         ),
         migrations.AddField(
-            model_name='applicationicon',
-            name='application_screen',
-            field=models.ForeignKey(help_text="Application screen we're a part of", on_delete=django.db.models.deletion.CASCADE, related_name='icons', to='lizard_ui.ApplicationScreen'),
+            model_name="applicationicon",
+            name="application_screen",
+            field=models.ForeignKey(
+                help_text="Application screen we're a part of",
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="icons",
+                to="lizard_ui.ApplicationScreen",
+            ),
         ),
         migrations.AddField(
-            model_name='applicationicon',
-            name='sub_screen',
-            field=models.OneToOneField(blank=True, help_text='Application screen we point at (this disables the url)', null=True, on_delete=django.db.models.deletion.CASCADE, related_name='parent_icon', to='lizard_ui.ApplicationScreen'),
+            model_name="applicationicon",
+            name="sub_screen",
+            field=models.OneToOneField(
+                blank=True,
+                help_text="Application screen we point at (this disables the url)",
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="parent_icon",
+                to="lizard_ui.ApplicationScreen",
+            ),
         ),
     ]

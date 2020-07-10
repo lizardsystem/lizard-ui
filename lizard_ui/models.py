@@ -3,7 +3,7 @@ from django.db import models
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 
-SCREEN_DEFAULT_SLUG = 'home'
+SCREEN_DEFAULT_SLUG = "home"
 
 
 class ApplicationScreen(models.Model):
@@ -12,21 +12,20 @@ class ApplicationScreen(models.Model):
     icons in it.
     """
 
-    name = models.CharField(_('name'), max_length=40)
+    name = models.CharField(_("name"), max_length=40)
     slug = models.SlugField(max_length=40)
-    description = models.TextField(_('description'), blank=True, null=True)
+    description = models.TextField(_("description"), blank=True, null=True)
 
     def __unicode__(self):
-        return u'%s (%s)' % (self.name, self.slug)
+        return u"%s (%s)" % (self.name, self.slug)
 
     def get_absolute_url(self):
         if self.slug == SCREEN_DEFAULT_SLUG:
-            return reverse('lizard_ui.icons')
-        return reverse('lizard_ui.icons',
-                       kwargs={'slug': self.slug})
+            return reverse("lizard_ui.icons")
+        return reverse("lizard_ui.icons", kwargs={"slug": self.slug})
 
     def crumbs(self, seen_slugs=()):
-        if self.slug == 'home':
+        if self.slug == "home":
             # Home is already handled elsewhere, nothing we need to
             # show
             return []
@@ -34,16 +33,20 @@ class ApplicationScreen(models.Model):
         # Otherwise, if we find that this screen is reachable from the
         # home screen, we need an entry in the crumbs for this screen,
         # and possibly for screens before it.
-        crumb_here = [{
-                'url': '/?screen=%s' % (self.slug,),
-                'description': self.name,
-                'title': self.description or self.name}]
+        crumb_here = [
+            {
+                "url": "/?screen=%s" % (self.slug,),
+                "description": self.name,
+                "title": self.description or self.name,
+            }
+        ]
 
         minlength = None
         prepend = None
 
-        for icon in (ApplicationIcon.objects.
-                     filter(url__endswith=('?screen=%s' % (self.slug,)))):
+        for icon in ApplicationIcon.objects.filter(
+            url__endswith=("?screen=%s" % (self.slug,))
+        ):
             # This screen has a link to us on it!
             screen = icon.application_screen
 
@@ -58,8 +61,9 @@ class ApplicationScreen(models.Model):
             # Keep it if it's not None, and the shortest so far.
             # It is most likely that the user got to this page using
             # the shortest route through the app screens.
-            if (proposed is not None and
-                (minlength is None or len(proposed) < minlength)):
+            if proposed is not None and (
+                minlength is None or len(proposed) < minlength
+            ):
                 minlength = len(proposed)
                 prepend = proposed
 
@@ -77,39 +81,44 @@ class ApplicationIcon(models.Model):
     Definition of an application icon. Essentially they consist of a
     name, an icon and an url.
     """
+
     supports_object_permissions = True
 
-    name = models.CharField(_('name'), max_length=40)
+    name = models.CharField(_("name"), max_length=40)
     icon = models.CharField(
-        _('icon'),
+        _("icon"),
         max_length=200,
-        help_text=_('Either a full URL or an /static_media/... URL or lizard_ui/app_icons/...'),
-        )
-    description = models.TextField(_('description'), blank=True, null=True)
-    url = models.CharField(_('url'), max_length=200, blank=True, null=True)
+        help_text=_(
+            "Either a full URL or an /static_media/... URL or lizard_ui/app_icons/..."
+        ),
+    )
+    description = models.TextField(_("description"), blank=True, null=True)
+    url = models.CharField(_("url"), max_length=200, blank=True, null=True)
     application_screen = models.ForeignKey(
         ApplicationScreen,
         help_text=_("Application screen we're a part of"),
-        related_name='icons',
-        on_delete=models.CASCADE)
+        related_name="icons",
+        on_delete=models.CASCADE,
+    )
     sub_screen = models.OneToOneField(
         ApplicationScreen,
         help_text=_("Application screen we point at (this disables the url)"),
         null=True,
         blank=True,
-        related_name='parent_icon',
-        on_delete=models.CASCADE)
+        related_name="parent_icon",
+        on_delete=models.CASCADE,
+    )
     index = models.IntegerField(
-        _('index'),
+        _("index"),
         default=1000,
-        help_text=_('Number used for ordering icons relative to each other.'),
-        )
+        help_text=_("Number used for ordering icons relative to each other."),
+    )
 
     class Meta:
-        ordering = ('index', )
+        ordering = ("index",)
 
     def __unicode__(self):
-        return u'%s' % self.name
+        return u"%s" % self.name
 
     def get_absolute_url(self):
         """Return url or sub screen's url; the latter takes preference.
@@ -138,7 +147,7 @@ class ApplicationIcon(models.Model):
 
     def icon_url(self):
         """Return cleaned-up URL."""
-        already_good = [settings.STATIC_URL, 'http://', 'https://']
+        already_good = [settings.STATIC_URL, "http://", "https://"]
         for indicator in already_good:
             if self.icon.startswith(indicator):
                 return self.icon

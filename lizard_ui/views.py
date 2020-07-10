@@ -24,7 +24,7 @@ from lizard_ui.models import ApplicationIcon
 from lizard_ui import uisettings
 
 
-DEFAULT_APPLICATION_SCREEN = 'home'
+DEFAULT_APPLICATION_SCREEN = "home"
 
 logger = logging.getLogger(__name__)
 
@@ -41,13 +41,14 @@ class ViewContextMixin(object):
     anything in a context dictionary, just stick it on ``self``!
 
     """
+
     def get_context_data(self, **kwargs):
         """Return context with view object available as 'view'."""
         try:
             context = super(ViewContextMixin, self).get_context_data(**kwargs)
         except AttributeError:
             context = {}
-        context.update({'view': self})
+        context.update({"view": self})
         return context
 
 
@@ -57,11 +58,11 @@ class ViewNextURLMixin(object):
     This can be used for login or logout functionality.
     """
 
-    default_redirect = '/'
+    default_redirect = "/"
 
     def next_url(self):
         # Used to fill the hidden field in the LoginForm
-        return self.request.GET.get('next', self.default_redirect)
+        return self.request.GET.get("next", self.default_redirect)
 
     def check_url(self, next_url=None):
         """Check if the next url is valid."""
@@ -81,60 +82,61 @@ class ViewNextURLMixin(object):
 class ChangeLanguageView(ViewContextMixin, FormView, ViewNextURLMixin):
     """Shows a change language modal form."""
 
-    template_name = 'lizard_ui/change_language.html'
+    template_name = "lizard_ui/change_language.html"
     form_class = ChangeLanguageForm
-    default_redirect = '/'
+    default_redirect = "/"
 
     def post(self, request, *args, **kwargs):
         form_class = self.get_form_class()
         form = self.get_form(form_class)
         if form.is_valid():
-            lang_code = request.POST.get('language', None)
-            next = request.REQUEST.get('next', None)
+            lang_code = request.POST.get("language", None)
+            next = request.REQUEST.get("next", None)
             if request.is_ajax():
-                response = HttpResponse(json.dumps({'success': True}),
-                    content_type='application/json')
+                response = HttpResponse(
+                    json.dumps({"success": True}), content_type="application/json"
+                )
             else:
                 response = HttpResponseRedirect(next)
             if lang_code and check_for_language(lang_code):
-                if hasattr(request, 'session'):
+                if hasattr(request, "session"):
                     request.session[settings.LANGUAGE_COOKIE_NAME] = lang_code
                 else:
                     response.set_cookie(settings.LANGUAGE_COOKIE_NAME, lang_code)
             return response
 
         if request.is_ajax():
-            errors = ' '.join(form.non_field_errors())
+            errors = " ".join(form.non_field_errors())
             for fieldname, errorlist in form.errors.items():
                 if fieldname in form.fields:
-                    errors += ' ' + form.fields[fieldname].label + ': '
-                    errors += ' '.join(errorlist)
+                    errors += " " + form.fields[fieldname].label + ": "
+                    errors += " ".join(errorlist)
                 else:
-                    errors += ' '.join(errorlist)
-            return HttpResponse(json.dumps({'success': False,
-                                            'error_message': errors}),
-                content_type='application/json')
+                    errors += " ".join(errorlist)
+            return HttpResponse(
+                json.dumps({"success": False, "error_message": errors}),
+                content_type="application/json",
+            )
         return self.form_invalid(form)
 
 
-def example_breadcrumbs(request,
-                        template='lizard_ui/example-breadcrumbs.html'):
-    crumbs = [{'name': 'name', 'url': 'url'},
-              {'name': 'name2', 'url': 'url2'}]
-    return render(request, template, {'crumbs': crumbs})
+def example_breadcrumbs(request, template="lizard_ui/example-breadcrumbs.html"):
+    crumbs = [{"name": "name", "url": "url"}, {"name": "name2", "url": "url2"}]
+    return render(request, template, {"crumbs": crumbs})
 
 
 def application_screen(
     request,
     application_screen_slug=None,
     template="lizard_ui/lizardbase.html",
-    crumbs_prepend=None):
+    crumbs_prepend=None,
+):
     """
     Render a screen with app icons. Not very useful, except for testing.
     """
-    return render(request,
-                  template,
-                  {'application_screen_slug': application_screen_slug})
+    return render(
+        request, template, {"application_screen_slug": application_screen_slug}
+    )
 
 
 class UiView(ViewContextMixin, TemplateView):
@@ -157,8 +159,9 @@ class UiView(ViewContextMixin, TemplateView):
     (and the user is redirected to the login page if needed).
 
     """
-    template_name = 'lizard_ui/lizardbase.html'
-    icon_url_name = 'lizard_ui.icons'
+
+    template_name = "lizard_ui/lizardbase.html"
+    icon_url_name = "lizard_ui.icons"
     # ^^^ So that we can subclass this view and still get proper urls.
     show_secondary_sidebar_title = None
     show_secondary_sidebar_icon = None
@@ -171,7 +174,7 @@ class UiView(ViewContextMixin, TemplateView):
     def dispatch(self, request, *args, **kwargs):
         if self.required_permission:
             if not request.user.has_perm(self.required_permission):
-                return redirect(settings.LOGIN_URL + '?next=%s' % request.path)
+                return redirect(settings.LOGIN_URL + "?next=%s" % request.path)
         return super(UiView, self).dispatch(request, *args, **kwargs)
 
     @property
@@ -189,7 +192,7 @@ class UiView(ViewContextMixin, TemplateView):
         ``UI_SITE_TITLE`` (which is 'lizard' by default).
 
         """
-        return ' - '.join([self.page_title, uisettings.SITE_TITLE])
+        return " - ".join([self.page_title, uisettings.SITE_TITLE])
 
     @property
     def site_actions(self):
@@ -205,7 +208,7 @@ class UiView(ViewContextMixin, TemplateView):
             languages = settings.LANGUAGES
             if len(languages) > 1:
                 language_code = get_language()  # current language code
-                language_name = _('Language')  # sort of default
+                language_name = _("Language")  # sort of default
                 try:
                     language_name = dict(settings.LANGUAGES)[language_code.lower()]
                 except KeyError:
@@ -213,58 +216,55 @@ class UiView(ViewContextMixin, TemplateView):
                         if language_code.lower().startswith(code):
                             language_name = name
                             break
-                query_string = urllib.parse.urlencode(
-                    {'next': self.request.path_info})
-                lang_action = Action(icon='icon-flag')
-                lang_action.url = '%s?%s' % (
-                    reverse('lizard_ui.change_language'), query_string)
+                query_string = urllib.parse.urlencode({"next": self.request.path_info})
+                lang_action = Action(icon="icon-flag")
+                lang_action.url = "%s?%s" % (
+                    reverse("lizard_ui.change_language"),
+                    query_string,
+                )
                 lang_action.name = language_name
-                lang_action.description = _('Pick a language')
-                lang_action.klass = 'ui-change-language-link'
+                lang_action.description = _("Pick a language")
+                lang_action.klass = "ui-change-language-link"
                 actions.append(lang_action)
 
         if uisettings.SHOW_LOGIN:
-            query_string = urllib.parse.urlencode({'next': self.request.path_info})
+            query_string = urllib.parse.urlencode({"next": self.request.path_info})
             if self.request.user.is_authenticated():
                 # Name of the user. TODO: link to profile page.
                 # The action is just text-with-an-icon right now.
-                action = Action(icon='icon-user')
+                action = Action(icon="icon-user")
                 action.name = self.request.user
-                action.description = _('Your current username')
+                action.description = _("Your current username")
                 actions.append(action)
                 # Separate logout action.
                 action = Action()
-                if getattr(settings, 'SSO_ENABLED', False):
+                if getattr(settings, "SSO_ENABLED", False):
                     # point to the SSO logout page (which redirects
                     # to another server)
-                    action.url = '%s?%s' % (reverse('logout'),
-                                            query_string)
+                    action.url = "%s?%s" % (reverse("logout"), query_string)
                 else:
                     # fall back to the old (local) logout page
-                    action.url = '%s?%s' % (reverse('lizard_ui.logout'),
-                                            query_string)
-                action.name = _('logout')
-                action.description = _('Click here to logout')
-                action.klass = 'ui-logout-link'
+                    action.url = "%s?%s" % (reverse("lizard_ui.logout"), query_string)
+                action.name = _("logout")
+                action.description = _("Click here to logout")
+                action.klass = "ui-logout-link"
                 actions.append(action)
             else:
-                action = Action(icon='icon-user')
-                if getattr(settings, 'SSO_ENABLED', False):
+                action = Action(icon="icon-user")
+                if getattr(settings, "SSO_ENABLED", False):
                     # point to the SSO login page (which redirects
                     # to another server)
-                    action.url = '%s?%s' % (reverse('login'),
-                                            query_string)
+                    action.url = "%s?%s" % (reverse("login"), query_string)
                 else:
                     # fall back to the old (local) login form
-                    action.url = '%s?%s' % (reverse('lizard_ui.login'),
-                                            query_string)
-                action.name = _('Login')
-                action.description = _('Click here to login')
-                if getattr(settings, 'SSO_ENABLED', False):
-                    action.klass = 'ui-sso-login-link'
+                    action.url = "%s?%s" % (reverse("lizard_ui.login"), query_string)
+                action.name = _("Login")
+                action.description = _("Click here to login")
+                if getattr(settings, "SSO_ENABLED", False):
+                    action.klass = "ui-sso-login-link"
                 else:
                     # fall back to the javascript login modal
-                    action.klass = 'ui-login-link'
+                    action.klass = "ui-login-link"
                 actions.append(action)
         return actions
 
@@ -278,17 +278,16 @@ class UiView(ViewContextMixin, TemplateView):
             icon_url = icon.get_absolute_url()
             if not icon_url:
                 continue
-            if icon_url == '/':
+            if icon_url == "/":
                 # Pointer at a CMS page above us, probably.
                 continue
-            if (icon_url.startswith('http://') or
-                icon_url.startswith('https://')):
+            if icon_url.startswith("http://") or icon_url.startswith("https://"):
                 # External url, so it cannot match.
                 continue
-            if not icon_url.startswith('/'):
-                icon_url = '/' + icon_url
-            if not icon_url.endswith('/'):
-                icon_url = icon_url + '/'
+            if not icon_url.startswith("/"):
+                icon_url = "/" + icon_url
+            if not icon_url.endswith("/"):
+                icon_url = icon_url + "/"
             if page_url.startswith(icon_url):
                 if best_url and len(icon_url) < len(best_url):
                     # It matches, but it is shorter than what we already have.
@@ -303,11 +302,14 @@ class UiView(ViewContextMixin, TemplateView):
 
         Useful in cases we don't have a proper breadcrumb path.
         """
-        app_screen = get_object_or_404(ApplicationScreen,
-                                       slug=DEFAULT_APPLICATION_SCREEN)
-        return Action(name=app_screen.name,
-                      url=app_screen.get_absolute_url(),
-                      description=app_screen.description)
+        app_screen = get_object_or_404(
+            ApplicationScreen, slug=DEFAULT_APPLICATION_SCREEN
+        )
+        return Action(
+            name=app_screen.name,
+            url=app_screen.get_absolute_url(),
+            description=app_screen.description,
+        )
 
     @property
     def our_own_breadcrumb_element(self):
@@ -316,8 +318,7 @@ class UiView(ViewContextMixin, TemplateView):
         Useful in cases we don't have a proper breadcrumb path or if we are a
         sub-page of an app for which we found a breadcrumb path.
         """
-        return Action(name=self.page_title,
-                      url=self.request.path)
+        return Action(name=self.page_title, url=self.request.path)
 
     @property
     def breadcrumbs(self):
@@ -333,10 +334,14 @@ class UiView(ViewContextMixin, TemplateView):
             return
         breadcrumb_elements = icon.parents()
         breadcrumb_elements.append(icon)
-        result = [Action(name=element.name,
-                         url=element.get_absolute_url(),
-                         description=element.description)
-                  for element in breadcrumb_elements]
+        result = [
+            Action(
+                name=element.name,
+                url=element.get_absolute_url(),
+                description=element.description,
+            )
+            for element in breadcrumb_elements
+        ]
         return result
 
     @property
@@ -356,15 +361,14 @@ class UiView(ViewContextMixin, TemplateView):
         if not self.page_title:
             # We cannot point at ourselves without a title to use.
             return
-        result = [self.home_breadcrumb_element,
-                  self.our_own_breadcrumb_element]
+        result = [self.home_breadcrumb_element, self.our_own_breadcrumb_element]
         return result
 
     @property
     def page_title(self):
         """Return name of latest breadcrumb for page title fallback."""
         if not self.breadcrumbs:
-            return ''
+            return ""
         return self.breadcrumbs[-1].name
 
     @property
@@ -375,10 +379,12 @@ class UiView(ViewContextMixin, TemplateView):
     @property
     def edit_action(self):
         """Return edit link as an action, ready for content_actions."""
-        return Action(name=_('Edit'),
-                      description=_('Edit this page.'),
-                      url=self.edit_link,
-                      icon='icon-edit')
+        return Action(
+            name=_("Edit"),
+            description=_("Edit this page."),
+            url=self.edit_link,
+            icon="icon-edit",
+        )
 
     @property
     def content_actions(self):
@@ -405,18 +411,22 @@ class UiView(ViewContextMixin, TemplateView):
 
         """
         collapse_action = Action(
-            icon='icon-arrow-left',
-            name=_('Apps'),
-            description=_('Collapse or expand this panel'),
-            klass='collapse-sidebar')
+            icon="icon-arrow-left",
+            name=_("Apps"),
+            description=_("Collapse or expand this panel"),
+            klass="collapse-sidebar",
+        )
         actions = [collapse_action]
         if self.show_secondary_sidebar_title:
             # Having a title means we want to show it.
             actions.append(
-                Action(name=self.show_secondary_sidebar_title,
-                       description=_('Collapse or expand this panel'),
-                       icon=self.show_secondary_sidebar_icon,
-                       klass='secondary-sidebar-button'))
+                Action(
+                    name=self.show_secondary_sidebar_title,
+                    description=_("Collapse or expand this panel"),
+                    icon=self.show_secondary_sidebar_icon,
+                    klass="secondary-sidebar-button",
+                )
+            )
         return actions
 
     @property
@@ -431,10 +441,13 @@ class UiView(ViewContextMixin, TemplateView):
         if self.show_rightbar_title:
             # Having a title means we want to show it.
             actions.append(
-                Action(name=self.show_rightbar_title,
-                       description=_('Collapse or expand this panel'),
-                       icon='icon-arrow-left',
-                       klass='collapse-rightbar'))
+                Action(
+                    name=self.show_rightbar_title,
+                    description=_("Collapse or expand this panel"),
+                    icon="icon-arrow-left",
+                    klass="collapse-rightbar",
+                )
+            )
         return actions
 
     @property
@@ -453,30 +466,31 @@ class UiView(ViewContextMixin, TemplateView):
 
 class ExampleBlockView(UiView):
     """Example view that shows which attributes go where."""
-    template_name = 'lizard_ui/examples/example-blocks-view.html'
-    page_title = 'view.page_title'
-    show_secondary_sidebar_title = 'Show 2nd'
-    site_actions = [Action(name='view.site_actions')]
-    breadcrumbs = [Action(name='view.breadcrumbs'), Action(name='tadaah')]
-    content_actions = [Action(name='view.content_actions')]
+
+    template_name = "lizard_ui/examples/example-blocks-view.html"
+    page_title = "view.page_title"
+    show_secondary_sidebar_title = "Show 2nd"
+    site_actions = [Action(name="view.site_actions")]
+    breadcrumbs = [Action(name="view.breadcrumbs"), Action(name="tadaah")]
+    content_actions = [Action(name="view.content_actions")]
 
     @property
     def sidebar_actions(self):
         actions = super(ExampleBlockView, self).sidebar_actions
-        actions[0].name = 'view.sidebar_actions'
+        actions[0].name = "view.sidebar_actions"
         return actions
 
-    orthogonal_action_groups = [
-        [Action(name='view.orthogonal_action_groups')]]
+    orthogonal_action_groups = [[Action(name="view.orthogonal_action_groups")]]
 
 
 class IconView(UiView):
     """View that shows an application screen plus icons."""
-    template_name = 'lizard_ui/icons.html'
+
+    template_name = "lizard_ui/icons.html"
 
     @property
     def application_screen(self):
-        slug = self.kwargs.get('slug', DEFAULT_APPLICATION_SCREEN)
+        slug = self.kwargs.get("slug", DEFAULT_APPLICATION_SCREEN)
         return get_object_or_404(ApplicationScreen, slug=slug)
 
     @property
@@ -486,7 +500,7 @@ class IconView(UiView):
     @property
     def edit_link(self):
         pk = self.application_screen.id
-        return '/admin/lizard_ui/applicationscreen/%s/' % pk
+        return "/admin/lizard_ui/applicationscreen/%s/" % pk
 
     @property
     def breadcrumbs(self):

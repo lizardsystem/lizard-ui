@@ -16,7 +16,7 @@ def split_len(seq, length):
 
     # Nice... stride backwards using step length of one reverses the string.
     seq_rev = seq[::-1]
-    result = [seq_rev[i:i + length][::-1] for i in range(0, len(seq), length)]
+    result = [seq_rev[i : i + length][::-1] for i in range(0, len(seq), length)]
     result.reverse()
     return result
 
@@ -31,14 +31,14 @@ def euro(price):
     """
 
     if isinstance(price, float) or isinstance(price, int):
-        price_string = '%.0f' % price
+        price_string = "%.0f" % price
         price_list = split_len(price_string, 3)
-        price_with_points = '.'.join(price_list)
+        price_with_points = ".".join(price_list)
 
         # Mark the output as safe
-        return mark_safe(u'&euro; %s,-' % price_with_points)
+        return mark_safe(u"&euro; %s,-" % price_with_points)
     else:
-        return '(geen bedrag)'
+        return "(geen bedrag)"
 
 
 @register.filter
@@ -87,27 +87,27 @@ def dutch_timedelta(seconds):
     elif seconds > 1:
         result.append("%d seconden" % seconds)
 
-    return ', '.join(result[:2])
+    return ", ".join(result[:2])
 
 
 @register.filter
 def short_timedelta(td):
     if td is None:
-        return '-'
+        return "-"
     elif td.days == 1:
-        return '%d dag' % td.days
+        return "%d dag" % td.days
     elif td.days > 1:
-        return '%d dagen' % td.days
+        return "%d dagen" % td.days
     else:
         seconds = td.seconds
         if seconds >= 3600:
-            return '%s uur' % (seconds / 3600)
+            return "%s uur" % (seconds / 3600)
         if seconds >= 60:
-            return '%s minuten' % (seconds / 60)
-        return '%s seconde' % seconds
+            return "%s minuten" % (seconds / 60)
+        return "%s seconde" % seconds
 
 
-@register.inclusion_tag('lizard_ui/tag_breadcrumbs.html')
+@register.inclusion_tag("lizard_ui/tag_breadcrumbs.html")
 def breadcrumbs(crumbs):
     """
     returns nice breadcrumbs layout.
@@ -117,12 +117,10 @@ def breadcrumbs(crumbs):
     - url (optional): link to page
     - classes (optional): list of classes to be added to the link
     """
-    return {'crumbs': crumbs}
+    return {"crumbs": crumbs}
 
 
-@register.inclusion_tag(
-    'lizard_ui/tag_application_icons.html',
-    takes_context=True)
+@register.inclusion_tag("lizard_ui/tag_application_icons.html", takes_context=True)
 def application_icons(context, application_screen_slug):
     """
     Returns list of application icons, with surrounding header and ul.
@@ -130,29 +128,34 @@ def application_icons(context, application_screen_slug):
 
     # Default screen slug.
     if application_screen_slug is None:
-        application_screen_slug = 'home'
+        application_screen_slug = "home"
 
-    application_screens = ApplicationScreen.objects.filter(
-        slug=application_screen_slug)
+    application_screens = ApplicationScreen.objects.filter(slug=application_screen_slug)
     if len(application_screens) == 0:
-        return {'error': ('ApplicationScreen with slug "%s" does not exist. '
-                          'Create it or choose another screen.')
-                % application_screen_slug}
+        return {
+            "error": (
+                'ApplicationScreen with slug "%s" does not exist. '
+                "Create it or choose another screen."
+            )
+            % application_screen_slug
+        }
 
-    if 'STATIC_URL' in context:
-        static_url = context['STATIC_URL']
+    if "STATIC_URL" in context:
+        static_url = context["STATIC_URL"]
     else:
-        static_url = ''
+        static_url = ""
 
     # Add currently logged in user to the context so that the displayed icons
     # may depend on the user. At the time of writing this, lizard-ui itself doesn't
     # do that, but at least one site (HDSR) overrides the template to hide an
     # icon from some users.
-    if 'view' in context:
-        user = context['view'].request.user
+    if "view" in context:
+        user = context["view"].request.user
     else:
         user = AnonymousUser()
 
-    return {'application_screen': application_screens[0],
-            'user': user,
-            'STATIC_URL': static_url}
+    return {
+        "application_screen": application_screens[0],
+        "user": user,
+        "STATIC_URL": static_url,
+    }

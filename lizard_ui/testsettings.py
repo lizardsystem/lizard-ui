@@ -6,46 +6,45 @@ from lizard_ui.settingshelper import STATICFILES_FINDERS
 DEBUG = True
 TEMPLATE_DEBUG = True
 DATABASES = {
-    'default': {'ENGINE': 'django.db.backends.sqlite3',
-                'NAME': 'test.db'},
-    }
+    "default": {"ENGINE": "django.db.backends.sqlite3", "NAME": "test.db"},
+}
 SITE_ID = 1
 INSTALLED_APPS = [
-    'lizard_ui',
-    'south',
-    'compressor',
-    'django.contrib.staticfiles',
-    'raven.contrib.django',
-    'django_extensions',
-    'django_nose',
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.sites',
-    ]
+    "lizard_ui",
+    "south",
+    "compressor",
+    "django.contrib.staticfiles",
+    "raven.contrib.django",
+    "django_extensions",
+    "django_nose",
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.sites",
+]
 
-SENTRY_SERVERS = ('http://1ea687a6dc894fa5bd7bc35b578c1dc0:913530819af3428b85fa6a0a7124dbe9@sentry.lizardsystem.nl/1')
+SENTRY_SERVERS = "http://1ea687a6dc894fa5bd7bc35b578c1dc0:913530819af3428b85fa6a0a7124dbe9@sentry.lizardsystem.nl/1"
 
-SECRET_KEY = 'rpuca4!x1(tu+)f#9iuojoh-8b=uytt9cj(=xowewumxa1pi5&'
+SECRET_KEY = "rpuca4!x1(tu+)f#9iuojoh-8b=uytt9cj(=xowewumxa1pi5&"
 
-ROOT_URLCONF = 'lizard_ui.urls'
+ROOT_URLCONF = "lizard_ui.urls"
 
 MIDDLEWARE = (
-    'django.middleware.common.CommonMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.locale.LocaleMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    )
+    "django.middleware.common.CommonMiddleware",
+    "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.locale.LocaleMiddleware",
+    "django.middleware.csrf.CsrfViewMiddleware",
+    "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "django.contrib.messages.middleware.MessageMiddleware",
+)
 
-TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+TEST_RUNNER = "django_nose.NoseTestSuiteRunner"
 
-LANGUAGE_CODE = 'nl-nl'
+LANGUAGE_CODE = "nl-nl"
 LANGUAGES = (
-    ('nl', 'Nederlands'),
-    ('en', 'English'),
+    ("nl", "Nederlands"),
+    ("en", "English"),
 )
 
 # Note: the below settings are more elaborate than needed,
@@ -61,29 +60,29 @@ SETTINGS_DIR = os.path.dirname(os.path.realpath(__file__))
 # for instance for BUILDOUT_DIR/var/static files to give
 # django-staticfiles a proper place to place all collected
 # static files.
-BUILDOUT_DIR = os.path.abspath(os.path.join(SETTINGS_DIR, '..'))
+BUILDOUT_DIR = os.path.abspath(os.path.join(SETTINGS_DIR, ".."))
 
 # Absolute path to the directory that holds user-uploaded
 # media.
-MEDIA_ROOT = os.path.join(BUILDOUT_DIR, 'var', 'media')
+MEDIA_ROOT = os.path.join(BUILDOUT_DIR, "var", "media")
 # Absolute path to the directory where django-staticfiles'
 # "bin/django build_static" places all collected static
 # files from all applications' /media directory.
-STATIC_ROOT = os.path.join(BUILDOUT_DIR, 'var', 'static')
+STATIC_ROOT = os.path.join(BUILDOUT_DIR, "var", "static")
 
 # URL that handles the media served from MEDIA_ROOT. Make
 # sure to use a trailing slash if there is a path component
 # (optional in other cases).
-MEDIA_URL = '/media/'
+MEDIA_URL = "/media/"
 # URL for the per-application /media static files collected
 # by django-staticfiles.  Use it in templates like "{{
 # MEDIA_URL }}mypackage/my.css".
-STATIC_URL = '/static_media/'
+STATIC_URL = "/static_media/"
 # URL prefix for admin media -- CSS, JavaScript and
 # images. Make sure to use a trailing slash.  Uses
 # STATIC_URL as django-staticfiles nicely collects admin's
 # static media into STATIC_ROOT/admin.
-ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
+ADMIN_MEDIA_PREFIX = STATIC_URL + "admin/"
 
 STATICFILES_FINDERS = STATICFILES_FINDERS
 LOGGING = setup_logging(BUILDOUT_DIR)
