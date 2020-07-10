@@ -90,7 +90,8 @@ class ApplicationIcon(models.Model):
     application_screen = models.ForeignKey(
         ApplicationScreen,
         help_text=_("Application screen we're a part of"),
-        related_name='icons')
+        related_name='icons',
+        on_delete=models.CASCADE)
     sub_screen = models.OneToOneField(
         ApplicationScreen,
         help_text=_("Application screen we point at (this disables the url)"),
