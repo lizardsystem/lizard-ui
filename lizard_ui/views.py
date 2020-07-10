@@ -1,13 +1,13 @@
 # (c) Nelen & Schuurmans.  GPL licensed, see LICENSE.txt
 from copy import copy
 import logging
-import urlparse
 import urllib
 import json
 
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.http import HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.shortcuts import render
@@ -69,7 +69,7 @@ class ViewNextURLMixin(object):
         if next_url is None:
             next_url = self.default_redirect
 
-        netloc = urlparse.urlparse(next_url)[1]
+        netloc = urllib.parse(next_url)[1]
         # Security check -- don't allow redirection to a different
         # host.
         if netloc and netloc != self.request.get_host():
@@ -95,7 +95,7 @@ class ChangeLanguageView(ViewContextMixin, FormView, ViewNextURLMixin):
                 response = HttpResponse(json.dumps({'success': True}),
                     content_type='application/json')
             else:
-                response = http.HttpResponseRedirect(next)
+                response = HttpResponseRedirect(next)
             if lang_code and check_for_language(lang_code):
                 if hasattr(request, 'session'):
                     request.session[settings.LANGUAGE_COOKIE_NAME] = lang_code
@@ -213,7 +213,7 @@ class UiView(ViewContextMixin, TemplateView):
                         if language_code.lower().startswith(code):
                             language_name = name
                             break
-                query_string = urllib.urlencode(
+                query_string = urllib.parse.urlencode(
                     {'next': self.request.path_info})
                 lang_action = Action(icon='icon-flag')
                 lang_action.url = '%s?%s' % (
@@ -224,7 +224,7 @@ class UiView(ViewContextMixin, TemplateView):
                 actions.append(lang_action)
 
         if uisettings.SHOW_LOGIN:
-            query_string = urllib.urlencode({'next': self.request.path_info})
+            query_string = urllib.parse.urlencode({'next': self.request.path_info})
             if self.request.user.is_authenticated():
                 # Name of the user. TODO: link to profile page.
                 # The action is just text-with-an-icon right now.

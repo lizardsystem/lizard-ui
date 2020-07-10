@@ -5,7 +5,13 @@ Changelog of lizard-ui
 4.51 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- This release is only for changes for deltaportaal's 2020 upgrade, not for
+  generic consumption.
+
+- Removed configchecker: lizard-ui isn't used as a generic base app anymore
+  :-)
+
+- Python3 compatibility.
 
 
 4.50 (2018-05-08)

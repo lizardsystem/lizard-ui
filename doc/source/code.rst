@@ -1,9 +1,6 @@
 Code documentation
 ==================
 
-.. automodule:: lizard_ui.configchecker
-   :members:
-
 .. automodule:: lizard_ui.layout
    :members:
 
