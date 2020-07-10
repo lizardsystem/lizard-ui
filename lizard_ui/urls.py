@@ -1,7 +1,7 @@
 import logging
 
 from django.conf import settings
-from django.contrib.auth.views import login, logout
+from django.contrib.auth import views as auth_views
 from django.conf.urls import include
 from django.conf.urls import url
 from django.conf.urls.static import static
@@ -29,11 +29,13 @@ def debugmode_urlpatterns():
 
 
 urlpatterns = [
-    url(r'^accounts/login/$', login,
-        kwargs=dict(template_name='lizard_ui/login.html',
-                    authentication_form=lizard_ui.forms.LoginForm),
+    url(r'^accounts/login/$',
+        auth_views.LoginView.as_view(
+            template_name='lizard_ui/login.html',
+            authentication_form=lizard_ui.forms.LoginForm),
         name='lizard_ui.login'),
-    url(r'^accounts/logout/$', logout,
+    url(r'^accounts/logout/$',
+        auth_views.LogoutView.as_view(),
         name='lizard_ui.logout'),
     url(r'^screen/(?P<slug>.*)/$',
         lizard_ui.views.IconView.as_view(),
@@ -48,7 +50,7 @@ urlpatterns = [
 
 if settings.DEBUG:
     urlpatterns += debugmode_urlpatterns()
-    
+
 if getattr(settings, 'LIZARD_UI_STANDALONE', False):
     admin.autodiscover()
     urlpatterns += [

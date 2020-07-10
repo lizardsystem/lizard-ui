@@ -31,7 +31,7 @@ SECRET_KEY = 'rpuca4!x1(tu+)f#9iuojoh-8b=uytt9cj(=xowewumxa1pi5&'
 
 ROOT_URLCONF = 'lizard_ui.urls'
 
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
