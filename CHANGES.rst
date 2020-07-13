@@ -5,7 +5,7 @@ Changelog of lizard-ui
 4.52 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Syntax fix in the pypi description.
 
 
 4.51 (2020-07-13)
@@ -765,7 +765,7 @@ Changelog of lizard-ui
 - Changed gray H2 bars' bevel to a higher contrast, expressing more depth.
 
 - Aligned lizard logo to the outmost left.
-.
+
 - Added tooltips to several interface elements.
 
 - Improved appearance of the breadcrumb. (TODO: position is still a bit
