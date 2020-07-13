@@ -2,6 +2,12 @@ Changelog of lizard-ui
 ======================
 
 
+4.52 (unreleased)
+-----------------
+
+- Nothing changed yet.
+
+
 4.51 (2020-07-13)
 -----------------
 
