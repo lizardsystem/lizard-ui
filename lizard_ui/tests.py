@@ -1,15 +1,14 @@
-import datetime
-
 from django.contrib.auth.models import User
-from django.urls import reverse
 from django.test import TestCase
 from django.test.client import RequestFactory
-
-from lizard_ui.models import ApplicationIcon
+from django.urls import reverse
 from lizard_ui.middleware import TracebackLoggingMiddleware
+from lizard_ui.models import ApplicationIcon
 from lizard_ui.templatetags.utility import dutch_timedelta
 from lizard_ui.templatetags.utility import euro
 from lizard_ui.templatetags.utility import short_timedelta
+
+import datetime
 import lizard_ui.views
 
 

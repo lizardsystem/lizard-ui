@@ -1,7 +1,8 @@
-import os
-
 from lizard_ui.settingshelper import setup_logging
 from lizard_ui.settingshelper import STATICFILES_FINDERS
+
+import os
+
 
 DEBUG = True
 TEMPLATE_DEBUG = True

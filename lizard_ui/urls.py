@@ -1,15 +1,15 @@
-import logging
-
 from django.conf import settings
-from django.contrib.auth import views as auth_views
 from django.conf.urls import include
 from django.conf.urls import url
 from django.conf.urls.static import static
 from django.contrib import admin
+from django.contrib.auth import views as auth_views
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 
-import lizard_ui.views
 import lizard_ui.forms
+import lizard_ui.views
+import logging
+
 
 logger = logging.getLogger(__name__)
 

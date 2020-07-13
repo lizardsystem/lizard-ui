@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 # Copyright 2011 Nelen & Schuurmans
+from django.core.management.commands import compilemessages
+from django.core.management.commands import makemessages
+
 import logging
 import os
 
-from django.core.management.commands import makemessages
-from django.core.management.commands import compilemessages
 
 logger = logging.getLogger(__name__)
 

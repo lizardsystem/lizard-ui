@@ -1,10 +1,10 @@
 # utilities for making life easier
 
 from django import template
-from django.utils.safestring import mark_safe
 from django.contrib.auth.models import AnonymousUser
-
+from django.utils.safestring import mark_safe
 from lizard_ui.models import ApplicationScreen
+
 
 register = template.Library()
 

@@ -1,27 +1,26 @@
 # (c) Nelen & Schuurmans.  GPL licensed, see LICENSE.txt
 from copy import copy
-import logging
-import urllib
-import json
-
 from django.conf import settings
-from django.urls import reverse
 from django.http import HttpResponse
 from django.http import HttpResponseRedirect
 from django.shortcuts import get_object_or_404
 from django.shortcuts import redirect
 from django.shortcuts import render
+from django.urls import reverse
 from django.utils.translation import check_for_language
 from django.utils.translation import get_language
 from django.utils.translation import ugettext as _
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import FormView
-
+from lizard_ui import uisettings
 from lizard_ui.forms import ChangeLanguageForm
 from lizard_ui.layout import Action
-from lizard_ui.models import ApplicationScreen
 from lizard_ui.models import ApplicationIcon
-from lizard_ui import uisettings
+from lizard_ui.models import ApplicationScreen
+
+import json
+import logging
+import urllib
 
 
 DEFAULT_APPLICATION_SCREEN = "home"

@@ -1,5 +1,4 @@
 from django.contrib import admin
-
 from lizard_ui.models import ApplicationIcon
 from lizard_ui.models import ApplicationScreen
 
