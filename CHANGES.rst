@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-4.52 (unreleased)
+4.52 (2020-07-13)
 -----------------
 
 - Syntax fix in the pypi description.
