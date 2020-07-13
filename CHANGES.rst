@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-4.51 (unreleased)
+4.51 (2020-07-13)
 -----------------
 
 - This release is only for changes for deltaportaal's 2020 upgrade, not for
