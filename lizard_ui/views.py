@@ -228,7 +228,7 @@ class UiView(ViewContextMixin, TemplateView):
 
         if uisettings.SHOW_LOGIN:
             query_string = urllib.parse.urlencode({"next": self.request.path_info})
-            if self.request.user.is_authenticated():
+            if self.request.user.is_authenticated:
                 # Name of the user. TODO: link to profile page.
                 # The action is just text-with-an-icon right now.
                 action = Action(icon="icon-user")
