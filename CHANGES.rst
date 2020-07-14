@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-4.53 (unreleased)
+4.53 (2020-07-14)
 -----------------
 
 - Removed raven dependency (should be sentry-sdk anyway).
