@@ -16,7 +16,6 @@ install_requires = (
         "beautifulsoup4",
         "Django >= 1.9, < 3",
         "django_compressor >= 1.1",  # Yes, underscore.
-        "raven",
     ],
 )
 

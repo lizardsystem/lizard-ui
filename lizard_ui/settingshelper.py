@@ -47,10 +47,6 @@ def setup_logging(
                 "formatter": "verbose",
                 "filename": os.path.join(buildout_dir, "var", "log", "django.log"),
             },
-            "sentry": {
-                "level": sentry_level,
-                "class": "raven.contrib.django.raven_compat.handlers.SentryHandler",
-            },
         },
         "loggers": {
             "": {"handlers": [], "propagate": True, "level": "DEBUG",},
@@ -65,12 +61,6 @@ def setup_logging(
         result["loggers"][""]["handlers"].append("console")
     if file_level is not None:
         result["loggers"][""]["handlers"].append("logfile")
-    if sentry_level is not None:
-        result["loggers"][""]["handlers"].append("sentry")
-    else:
-        # When sentry is still in the handlers sentry needs to be installed
-        # which gave import errors in Django 1.4.
-        del result["handlers"]["sentry"]
     if sql:
         result["loggers"]["django.db.backends"]["handlers"] = ["console", "logfile"]
     return result
