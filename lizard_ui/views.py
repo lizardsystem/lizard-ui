@@ -9,7 +9,7 @@ from django.shortcuts import render
 from django.urls import reverse
 from django.utils.translation import check_for_language
 from django.utils.translation import get_language
-from django.utils.translation import ugettext as _
+from django.utils.translation import gettext as _
 from django.views.generic.base import TemplateView
 from django.views.generic.edit import FormView
 from lizard_ui import uisettings

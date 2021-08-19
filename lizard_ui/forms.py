@@ -1,7 +1,7 @@
 from django import forms
 from django.conf import settings
 from django.contrib.auth.forms import AuthenticationForm
-from django.utils.translation import ugettext as _
+from django.utils.translation import gettext as _
 
 
 class LoginForm(AuthenticationForm):
