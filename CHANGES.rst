@@ -5,7 +5,7 @@ Changelog of lizard-ui
 4.54 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Refreshed lizard-ui for deltaportaal: it now runs on django 3.2.
 
 
 4.53 (2020-07-14)
