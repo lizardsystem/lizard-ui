@@ -1,6 +1,6 @@
 from setuptools import setup
 
-version = "4.54.dev0"
+version = "4.54"
 
 long_description = "\n\n".join(
     [
