@@ -1,6 +1,6 @@
 from django.conf import settings
 from django.conf.urls import include
-from django.conf.urls import url
+from django.urls import re_path
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
@@ -28,7 +28,7 @@ def debugmode_urlpatterns():
 
 
 urlpatterns = [
-    url(
+    re_path(
         r"^accounts/login/$",
         auth_views.LoginView.as_view(
             template_name="lizard_ui/login.html",
@@ -36,16 +36,16 @@ urlpatterns = [
         ),
         name="lizard_ui.login",
     ),
-    url(
+    re_path(
         r"^accounts/logout/$", auth_views.LogoutView.as_view(), name="lizard_ui.logout"
     ),
-    url(
+    re_path(
         r"^screen/(?P<slug>.*)/$",
         lizard_ui.views.IconView.as_view(),
         name="lizard_ui.icons",
     ),
-    url(r"^$", lizard_ui.views.IconView.as_view(), name="lizard_ui.icons"),
-    url(
+    re_path(r"^$", lizard_ui.views.IconView.as_view(), name="lizard_ui.icons"),
+    re_path(
         r"^accounts/change_language/$",
         lizard_ui.views.ChangeLanguageView.as_view(),
         name="lizard_ui.change_language",
@@ -65,13 +65,13 @@ if getattr(settings, "LIZARD_UI_STANDALONE", False):
     # to get the documentation in your project while developing.
     urlpatterns += [
         "",
-        url(
+        re_path(
             r"^examples/$",
             lizard_ui.views.UiView.as_view(
                 template_name="lizard_ui/examples/lizard-ui-introduction.html"
             ),
         ),
-        url(r"^examples/blocks_via_view/$", lizard_ui.views.ExampleBlockView.as_view()),
+        re_path(r"^examples/blocks_via_view/$", lizard_ui.views.ExampleBlockView.as_view()),
     ]
     urlpatterns += [
         "django.views.generic.base",
@@ -167,7 +167,7 @@ if getattr(settings, "LIZARD_UI_STANDALONE", False):
         ),
     ]
     urlpatterns += [
-        url(
+        re_path(
             r"^examples/breadcrumbs/$",
             "lizard_ui.views.example_breadcrumbs",
             {},
