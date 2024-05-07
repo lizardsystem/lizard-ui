@@ -5,7 +5,7 @@ Changelog of lizard-ui
 4.56 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Replace ifequal with if.
 
 
 4.55 (2024-05-07)
