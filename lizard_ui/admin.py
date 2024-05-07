@@ -8,16 +8,16 @@ class ApplicationIconInline(admin.TabularInline):
     fk_name = "application_screen"
 
 
+@admin.register(ApplicationScreen)
 class ApplicationScreenAdmin(admin.ModelAdmin):
     inlines = [
         ApplicationIconInline,
     ]
 
 
+@admin.register(ApplicationIcon)
 class ApplicationIconAdmin(admin.ModelAdmin):
     list_display = ["__str__", "name", "url"]
     list_editable = ["url", "name"]
 
 
-admin.site.register(ApplicationIcon, ApplicationIconAdmin)
-admin.site.register(ApplicationScreen, ApplicationScreenAdmin)

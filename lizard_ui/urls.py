@@ -1,5 +1,5 @@
 from django.conf import settings
-from django.conf.urls import include
+from django.urls import include, path
 from django.urls import re_path
 from django.conf.urls.static import static
 from django.contrib import admin
@@ -28,25 +28,25 @@ def debugmode_urlpatterns():
 
 
 urlpatterns = [
-    re_path(
-        r"^accounts/login/$",
+    path(
+        "accounts/login/",
         auth_views.LoginView.as_view(
             template_name="lizard_ui/login.html",
             authentication_form=lizard_ui.forms.LoginForm,
         ),
         name="lizard_ui.login",
     ),
-    re_path(
-        r"^accounts/logout/$", auth_views.LogoutView.as_view(), name="lizard_ui.logout"
+    path(
+        "accounts/logout/", auth_views.LogoutView.as_view(), name="lizard_ui.logout"
     ),
     re_path(
         r"^screen/(?P<slug>.*)/$",
         lizard_ui.views.IconView.as_view(),
         name="lizard_ui.icons",
     ),
-    re_path(r"^$", lizard_ui.views.IconView.as_view(), name="lizard_ui.icons"),
-    re_path(
-        r"^accounts/change_language/$",
+    path("", lizard_ui.views.IconView.as_view(), name="lizard_ui.icons"),
+    path(
+        "accounts/change_language/",
         lizard_ui.views.ChangeLanguageView.as_view(),
         name="lizard_ui.change_language",
     ),
@@ -65,13 +65,13 @@ if getattr(settings, "LIZARD_UI_STANDALONE", False):
     # to get the documentation in your project while developing.
     urlpatterns += [
         "",
-        re_path(
-            r"^examples/$",
+        path(
+            "examples/",
             lizard_ui.views.UiView.as_view(
                 template_name="lizard_ui/examples/lizard-ui-introduction.html"
             ),
         ),
-        re_path(r"^examples/blocks_via_view/$", lizard_ui.views.ExampleBlockView.as_view()),
+        path("examples/blocks_via_view/", lizard_ui.views.ExampleBlockView.as_view()),
     ]
     urlpatterns += [
         "django.views.generic.base",
@@ -167,8 +167,8 @@ if getattr(settings, "LIZARD_UI_STANDALONE", False):
         ),
     ]
     urlpatterns += [
-        re_path(
-            r"^examples/breadcrumbs/$",
+        path(
+            "examples/breadcrumbs/",
             "lizard_ui.views.example_breadcrumbs",
             {},
             name="lizard_ui.example_breadcrumbs",
