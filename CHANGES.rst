@@ -2,7 +2,7 @@ Changelog of lizard-ui
 ======================
 
 
-4.56 (unreleased)
+4.56 (2024-05-07)
 -----------------
 
 - Replace ifequal with if.
