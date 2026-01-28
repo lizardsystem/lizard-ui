@@ -5,7 +5,7 @@ Changelog of lizard-ui
 4.57 (unreleased)
 -----------------
 
-- Nothing changed yet.
+- Support Django 5.2.
 
 
 4.56 (2024-05-07)
