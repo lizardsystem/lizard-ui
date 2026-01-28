@@ -14,7 +14,7 @@ long_description = "\n\n".join(
 install_requires = (
     [
         "beautifulsoup4",
-        "Django >= 3.2, < 5",
+        "Django >= 3.2, < 6",
         "django_compressor >= 1.1",  # Yes, underscore.
     ],
 )
